@@ -1,0 +1,23 @@
+{
+  "name": "animanga-wrapped",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.15",
+    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-react": "^7.22.15",
+    "eslint": "^8.48.0",
+    "eslint-config-next": "^13.4.19",
+    "install": "^0.13.0",
+    "next": "^13.4.19",
+    "npm": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
