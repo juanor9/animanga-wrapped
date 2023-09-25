@@ -7,8 +7,6 @@ import Image from "next/image";
 const User = () => {
   // Utiliza el estado para almacenar los valores
   const [accessToken, setAccessToken] = useState("");
-
-
   const [viewerData, setViewerData] = useState(null);
 
   useEffect(() => {

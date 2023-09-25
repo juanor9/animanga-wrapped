@@ -22,6 +22,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.3",
-    "@apollo/experimental-nextjs-app-support": "^0.4.2"
+    "@apollo/experimental-nextjs-app-support": "^0.4.2",
+    "@reduxjs/toolkit": "^1.9.5",
+    "base64url": "^3.0.1",
+    "react-redux": "^8.1.2"
   }
 }
