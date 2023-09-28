@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node src/server.mjs",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node src/server.mjs",
     "lint": "next lint"
   },
   "devDependencies": {
@@ -22,6 +22,14 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.3",
-    "@apollo/experimental-nextjs-app-support": "^0.4.2"
+    "@apollo/experimental-nextjs-app-support": "^0.4.2",
+    "@reduxjs/toolkit": "^1.9.5",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "http-proxy-middleware": "^2.0.6",
+    "https": "^1.0.0",
+    "react-redux": "^8.1.2",
+    "server-only": "^0.0.1",
+    "url": "^0.11.3"
   }
 }
