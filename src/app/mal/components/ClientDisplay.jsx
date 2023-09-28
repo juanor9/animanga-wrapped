@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMalData } from "@/redux/features/MAL";
 import fetchAuthToken from "../services/mal";
@@ -8,14 +8,13 @@ import fetchAuthToken from "../services/mal";
 const ClientDisplay = ({ children, envVar }) => {
   const dispatch = useDispatch();
   const { malData } = useSelector((state) => state.MALReducer);
-  // console.log("🚀 ~ file: ClientDisplay.jsx:10 ~ ClientDisplay ~ malData:", malData)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const uri = window.location.href;
       const url = new URL(uri);
       const codeFromUrl = url.searchParams.get("code");
 
-      const verifier = window.localStorage.getItem('challenge')
+      const code_verifier = window.localStorage.getItem("code_verifier");
 
       dispatch(
         setMalData({
@@ -23,27 +22,41 @@ const ClientDisplay = ({ children, envVar }) => {
           code: codeFromUrl,
           MALClientId: envVar.MALClientId,
           MALClientSecret: envVar.MALClientSecret,
-          verifier,
+          code_verifier,
         })
       );
     }
   }, []);
-
+  const [authData, setAuthData] = useState(null);
+  console.log(
+    "🚀 ~ file: ClientDisplay.jsx:32 ~ ClientDisplay ~ authData:",
+    authData
+  );
   useEffect(() => {
     const malDataKeys = Object.keys(malData);
     if (malDataKeys.length > 0) {
       const fetchData = async () => {
-        const url = '/api/v1/oauth2/token';
+        const url = "/api/v1/oauth2/token";
         try {
           const data = await fetchAuthToken(malData, url);
-          console.log("🚀 ~ file: ClientDisplay.jsx:59 ~ useEffect ~ data:", data);
+          setAuthData(data);
+          return data;
         } catch (error) {
-          console.error('Error al obtener el token de autorización:', error);
+          console.error("Error al obtener el token de autorización:", error);
         }
       };
       fetchData();
     }
   }, [malData]);
+
+  const [accessToken, setAccessToken] = useState(null);
+  console.log("🚀 ~ file: ClientDisplay.jsx:53 ~ ClientDisplay ~ accessToken:", accessToken)
+  useEffect(() => {
+    if (authData) {
+      const { access_token } = authData;
+      setAccessToken(access_token);
+    }
+  }, [authData]);
 
   return (
     <>

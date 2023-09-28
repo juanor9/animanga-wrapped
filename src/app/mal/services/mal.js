@@ -1,4 +1,4 @@
-const fetchAuthToken = async ({MALClientId, MALClientSecret, code, verifier}, url) => {
+const fetchAuthToken = async ({MALClientId, MALClientSecret, code, code_verifier}, url) => {
   console.log("Sending request to:", url);
   const response = await fetch(url, {
     method: "POST",
@@ -9,9 +9,9 @@ const fetchAuthToken = async ({MALClientId, MALClientSecret, code, verifier}, ur
       client_id: MALClientId,
       client_secret: MALClientSecret,
       code: code,
-      code_verifier: verifier,
+      code_verifier: code_verifier,
       grant_type: "authorization_code",
-      // redirect_uri: "https://localhost:3000/user-mal",
+      redirect_uri: "https://localhost:3000/user-mal",
     }),
   });
 

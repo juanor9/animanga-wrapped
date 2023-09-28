@@ -14,9 +14,9 @@ export default function GetUrlParams (props) {
 
 };
 
-export function SetVerifier ({verifier, challenge}) {
+export function SetVerifier ({challenge, verifier}) {
   useEffect(() => {
-    window.localStorage.setItem('verifier', verifier)
     window.localStorage.setItem('challenge', challenge)
-  }, [verifier]);
+    window.localStorage.setItem('code_verifier', verifier)
+  }, [challenge]);
 };

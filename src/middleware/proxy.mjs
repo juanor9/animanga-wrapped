@@ -14,7 +14,7 @@ export default function (req, res, next) {
       });
       proxyRes.on('end', () => {
         body = Buffer.concat(body).toString();
-        console.log(`Response from MyAnimeList for ${req.url}:`, proxyRes.statusCode, body);
+        // console.log(`Response from MyAnimeList for ${req.url}:`, proxyRes.statusCode, body);
       });
     }
   });
