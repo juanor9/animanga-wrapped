@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  malCodeVerifier: "",
+  malData: {},
 };
 
 const MALSlice = createSlice({
   name: "malCodeVerifier",
   initialState,
   reducers: {
-    setCodeVerifier: (state, action) => {
-      state.code = action.payload;
+    setMalData: (state, action) => {
+      state.malData = action.payload;
     },
   },
 });
 
-export const { setCodeVerifier } = MALSlice.actions;
+export const { setMalData } = MALSlice.actions;
 
 export default MALSlice.reducer;

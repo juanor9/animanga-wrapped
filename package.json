@@ -2,10 +2,11 @@
   "name": "animanga-wrapped",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node src/server.mjs",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node src/server.mjs",
     "lint": "next lint"
   },
   "devDependencies": {
@@ -25,6 +26,14 @@
     "@apollo/experimental-nextjs-app-support": "^0.4.2",
     "@reduxjs/toolkit": "^1.9.5",
     "base64url": "^3.0.1",
-    "react-redux": "^8.1.2"
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "http-proxy-middleware": "^2.0.6",
+    "https": "^1.0.0",
+    "react-redux": "^8.1.2",
+    "server-only": "^0.0.1",
+    "url": "^0.11.3"
   }
 }

@@ -1,13 +1,13 @@
+"use client";
+
 import styles from "./page.module.css";
 import crypto from "crypto";
-import { setCodeVerifier } from "@/redux/features/MAL";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { SetVerifier } from "./mal/services/getUrlParams";
 
-export default async function Home() {
-  const ALClientId = process.env.AL_ID;
+const MALClientId = process.env.MAL_CLIENT_ID;
+const ALClientId = process.env.AL_ID;
 
-  // const { malCodeVerifier } = useAppSelector((state) => state.MALReducer);
-  const dispatch = useAppDispatch();
+export default function Home() {
 
   const MALCodeVerifier = crypto
     .randomBytes(32)
@@ -16,7 +16,7 @@ export default async function Home() {
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
 
-  // Calcula el code_challenge
+  // // Calcula el code_challenge
   const MALCodeChallenge = crypto
     .createHash("sha256")
     .update(MALCodeVerifier)
@@ -25,20 +25,11 @@ export default async function Home() {
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
 
-  if (MALCodeVerifier) {
-    console.log('inside if')
-    try {
-      dispatch(setCodeVerifier(MALCodeVerifier));
-      MALCodeVerifier;
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
 
-  const MALClientId = process.env.MAL_CLIENT_ID;
 
   return (
     <main className={styles.main}>
+      <SetVerifier verifier={MALCodeVerifier} challenge = {MALCodeChallenge} />
       <a
         href={`https://anilist.co/api/v2/oauth/authorize?client_id=${ALClientId}&response_type=token`}
       >

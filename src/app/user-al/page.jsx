@@ -42,7 +42,6 @@ const User = () => {
   useEffect(() => {
     if (viewerData){
       const {Viewer} = viewerData;
-      console.log("🚀 ~ file: page.jsx:47 ~ useEffect ~ Viewer:", Viewer)
 
       setUserId(Viewer.id);
       setUsername(Viewer.name);
@@ -50,7 +49,7 @@ const User = () => {
     }
   }, [viewerData]);
 
-  
+
 
   return (
     <div>
