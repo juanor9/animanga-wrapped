@@ -1,5 +1,7 @@
-const fetchAuthToken = async ({MALClientId, MALClientSecret, code, code_verifier}, url) => {
-  console.log("Sending request to:", url);
+export async function fetchAuthToken(
+  { MALClientId, MALClientSecret, code, code_verifier },
+  url
+) {
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -21,5 +23,22 @@ const fetchAuthToken = async ({MALClientId, MALClientSecret, code, code_verifier
 
   const data = await response.json();
   return data;
-};
- export default fetchAuthToken;
+}
+
+export async function fetchUser(accessToken, url) {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch auth token: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  const results = await data;
+  return results;
+}

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMalData } from "@/redux/features/MAL";
-import fetchAuthToken from "../services/mal";
+import { fetchAuthToken, fetchUser } from "../services/mal";
 
 const ClientDisplay = ({ children, envVar }) => {
   const dispatch = useDispatch();
@@ -28,21 +28,18 @@ const ClientDisplay = ({ children, envVar }) => {
     }
   }, []);
   const [authData, setAuthData] = useState(null);
-  console.log(
-    "🚀 ~ file: ClientDisplay.jsx:32 ~ ClientDisplay ~ authData:",
-    authData
-  );
+
   useEffect(() => {
     const malDataKeys = Object.keys(malData);
     if (malDataKeys.length > 0) {
       const fetchData = async () => {
-        const url = "/api/v1/oauth2/token";
+        const url = "/net/v1/oauth2/token";
         try {
           const data = await fetchAuthToken(malData, url);
           setAuthData(data);
           return data;
         } catch (error) {
-          console.error("Error al obtener el token de autorización:", error);
+          throw new Error("Error al obtener el token de autorización:", error);
         }
       };
       fetchData();
@@ -50,7 +47,6 @@ const ClientDisplay = ({ children, envVar }) => {
   }, [malData]);
 
   const [accessToken, setAccessToken] = useState(null);
-  console.log("🚀 ~ file: ClientDisplay.jsx:53 ~ ClientDisplay ~ accessToken:", accessToken)
   useEffect(() => {
     if (authData) {
       const { access_token } = authData;
@@ -58,9 +54,32 @@ const ClientDisplay = ({ children, envVar }) => {
     }
   }, [authData]);
 
+  const [userData, setUserData] = useState(null)
+  console.log("🚀 ~ file: ClientDisplay.jsx:58 ~ ClientDisplay ~ userData:", userData)
+  useEffect(() => {
+    if (accessToken) {
+      const fetchUserData = async () => {
+        const url = "/api/v2/users/@me";
+        const callUserData = await fetchUser(accessToken, url);
+        return callUserData;
+      };
+
+      (async () => {
+        try {
+          const userData = await fetchUserData();
+          setUserData(userData);
+        } catch (error) {
+          throw new Error(error);
+        }
+      })();
+    }
+  }, [accessToken]);
+
   return (
     <>
       <div>{children}</div>
+      <p>Username: {userData.name}</p>
+      <p>ID: {userData.id}</p>
     </>
   );
 };

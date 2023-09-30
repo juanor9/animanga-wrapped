@@ -2,7 +2,8 @@ import express from 'express';
 import next from 'next';
 import https from 'https';
 import fs from 'fs';
-import proxyMiddleware from './middleware/proxy.mjs';
+import apiMiddleware from './middleware/malAPIProxy.mjs';
+import netMiddleware from './middleware/malNetProxy.mjs'
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -11,7 +12,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.use('/api', proxyMiddleware);
+  server.use('/api', apiMiddleware);
+  server.use('/net', netMiddleware);
 
   server.all('*', (req, res) => {
     return handle(req, res);
