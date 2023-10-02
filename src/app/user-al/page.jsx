@@ -7,8 +7,6 @@ import Image from "next/image";
 const User = () => {
   // Utiliza el estado para almacenar los valores
   const [accessToken, setAccessToken] = useState("");
-
-
   const [viewerData, setViewerData] = useState(null);
 
   useEffect(() => {
@@ -44,7 +42,6 @@ const User = () => {
   useEffect(() => {
     if (viewerData){
       const {Viewer} = viewerData;
-      console.log("🚀 ~ file: page.jsx:47 ~ useEffect ~ Viewer:", Viewer)
 
       setUserId(Viewer.id);
       setUsername(Viewer.name);
@@ -52,7 +49,7 @@ const User = () => {
     }
   }, [viewerData]);
 
-  
+
 
   return (
     <div>

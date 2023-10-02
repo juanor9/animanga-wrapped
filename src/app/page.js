@@ -1,9 +1,28 @@
-import styles from './page.module.css'
+// "use client";
 
+import styles from "./page.module.css";
+import { SetVerifier } from "./mal/services/getUrlParams";
+import SetCodes from "./mal/services/setCodes";
+
+const MALClientId = process.env.MAL_CLIENT_ID;
+const ALClientId = process.env.AL_ID;
 export default function Home() {
+  const {MALCodeChallenge, MALCodeVerifier} = SetCodes();
+  // console.log("🚀 ~ file: page.js:11 ~ Home ~ codes:", codes)
+
   return (
     <main className={styles.main}>
-      <a href='https://anilist.co/api/v2/oauth/authorize?client_id=14428&response_type=token'>Login with AniList</a>
+      <SetVerifier challenge={MALCodeChallenge} verifier={MALCodeVerifier} />
+      <a
+        href={`https://anilist.co/api/v2/oauth/authorize?client_id=${ALClientId}&response_type=token`}
+      >
+        Login with AniList
+      </a>
+      <a
+        href={`https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${MALClientId}&code_challenge=${MALCodeChallenge}&state=tnk&redirect_uri=https://localhost:3000/user-mal`}
+      >
+        Login with MyAnimeList
+      </a>
     </main>
-  )
+  );
 }
