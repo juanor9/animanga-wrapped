@@ -1,12 +1,11 @@
-
-import styles from "./page.module.css";
-import { SetVerifier } from "./mal/services/getUrlParams";
-import SetCodes from "./mal/services/setCodes";
+import styles from './page.module.css';
+import { SetVerifier } from './mal/services/getUrlParams';
+import SetCodes from './mal/services/setCodes';
 
 const MALClientId = process.env.MAL_CLIENT_ID;
 const ALClientId = process.env.AL_ID;
-export default function Home() {
-  const {MALCodeChallenge, MALCodeVerifier} = SetCodes();
+const Home = () => {
+  const { MALCodeChallenge, MALCodeVerifier } = SetCodes();
 
   return (
     <main className={styles.main}>
@@ -23,4 +22,6 @@ export default function Home() {
       </a>
     </main>
   );
-}
+};
+
+export default Home;
