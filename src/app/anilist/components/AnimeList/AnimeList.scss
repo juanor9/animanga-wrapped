@@ -1,0 +1,10 @@
+.anime-list{
+  &__loading{
+    color: aquamarine;
+  }
+  &__list-container{
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+}

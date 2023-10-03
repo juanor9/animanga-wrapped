@@ -1,4 +1,4 @@
-import { GET_VIEWER } from "./queries";
+import { GET_VIEWER, GET_ANIME_LIST } from "./queries";
 import { getClient } from "./client";
 
 export async function getViewer(token) {
@@ -9,5 +9,55 @@ export async function getViewer(token) {
   } catch (error) {
     console.error("Error fetching viewer data:", error);
     throw error; // Opcional: puedes lanzar el error para manejarlo en el componente que llama a getViewer()
+  }
+}
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+export async function getAnimeList(userId) {
+  try {
+    const query = GET_ANIME_LIST;
+    const initialVariables = {
+      userId: userId,
+      page: 1,
+      perPage: 50,
+    };
+    const initialData = await getClient().query({
+      query,
+      variables: initialVariables,
+    });
+
+    if (!initialData.data || !initialData.data.Page.pageInfo) {
+      throw new Error("Invalid API response");
+    }
+
+    const { lastPage } = initialData.data.Page.pageInfo;
+    const allData = [initialData.data.Page.activities];
+
+    for (let i = 2; i < lastPage; i++) {
+      const newVariables = {
+        userId: userId,
+        page: i,
+        perPage: 50,
+      };
+      const newData = await getClient().query({
+        query,
+        variables: newVariables,
+      });
+      if (!newData.data.Page.pageInfo.hasNextPage) {
+        break; // Sale del bucle
+      }
+      allData.push(newData.data.Page.activities);
+      if (i % 5 === 0) {
+        await sleep(60000);
+      } else {
+        await sleep(1000);
+      }
+    }
+    const allActivities = allData.flat();
+    return allActivities;
+  } catch (error) {
+    console.error("Error fetching anime list:", error);
+    throw error;
   }
 }
