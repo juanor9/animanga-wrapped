@@ -1,4 +1,3 @@
-// "use client";
 
 import styles from "./page.module.css";
 import { SetVerifier } from "./mal/services/getUrlParams";
@@ -8,7 +7,6 @@ const MALClientId = process.env.MAL_CLIENT_ID;
 const ALClientId = process.env.AL_ID;
 export default function Home() {
   const {MALCodeChallenge, MALCodeVerifier} = SetCodes();
-  // console.log("🚀 ~ file: page.js:11 ~ Home ~ codes:", codes)
 
   return (
     <main className={styles.main}>

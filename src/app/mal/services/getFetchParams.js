@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const GetFetchParams = () => {
-const {malData} = useSelector((state) => state.MALReducer)
+  const { malData } = useSelector((state) => state.MALReducer);
 
-return malData;
+  return malData;
 };
 
-export default GetFetchParams
+export default GetFetchParams;

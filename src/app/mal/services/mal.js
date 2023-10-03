@@ -1,19 +1,22 @@
+/* eslint-disable camelcase */
 export async function fetchAuthToken(
-  { MALClientId, MALClientSecret, code, code_verifier },
-  url
+  {
+    MALClientId, MALClientSecret, code, code_verifier,
+  },
+  url,
 ) {
   const response = await fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
       client_id: MALClientId,
       client_secret: MALClientSecret,
-      code: code,
-      code_verifier: code_verifier,
-      grant_type: "authorization_code",
-      redirect_uri: "https://localhost:3000/user-mal",
+      code,
+      code_verifier,
+      grant_type: 'authorization_code',
+      redirect_uri: 'https://localhost:3000/user-mal',
     }),
   });
 
@@ -27,9 +30,9 @@ export async function fetchAuthToken(
 
 export async function fetchUser(accessToken, url) {
   const response = await fetch(url, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
   });

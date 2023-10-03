@@ -12,8 +12,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  // server.use('/api', apiMiddleware);
-  // server.use('/net', netMiddleware);
+  server.use('/api', apiMiddleware);
+  server.use('/net', netMiddleware);
 
   server.all('*', (req, res) => {
     return handle(req, res);

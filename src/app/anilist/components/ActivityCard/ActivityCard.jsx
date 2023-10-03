@@ -1,4 +1,4 @@
-import "./ActivityCard.scss";
+import './ActivityCard.scss';
 
 const ActivityCard = ({ activity }) => {
   function convertTimestampToDate(timestamp) {
@@ -12,8 +12,7 @@ const ActivityCard = ({ activity }) => {
   const title = media.title.userPreferred;
   const image = media.coverImage.medium;
 
-  if (status !== "watched episode" && status !== "completed") {
-    console.log(activity)
+  if (status !== 'watched episode' && status !== 'completed') {
     return null;
   }
 
@@ -23,7 +22,7 @@ const ActivityCard = ({ activity }) => {
       <p>Date: {date}</p>
       <p>Anime: {title}</p>
       <p>
-        Status: {status} {progress ? progress : null}
+        Status: {status} {progress || null}
       </p>
     </div>
   );

@@ -1,4 +1,4 @@
-import ClientDisplay from "../mal/components/ClientDisplay";
+import ClientDisplay from '../mal/components/ClientDisplay';
 import GetEnviromentValues from '../mal/services/getEnviromentValues';
 
 const User = () => {
@@ -7,8 +7,7 @@ const User = () => {
   return (
     <div>
       <h2>User Page</h2>
-      <ClientDisplay envVar = {malEnvData}>
-      </ClientDisplay>
+      <ClientDisplay envVar={malEnvData} />
     </div>
   );
 };

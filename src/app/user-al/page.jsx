@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { getViewer } from "../anilist/services/anilist";
-import ALAnimeList from "../anilist/components/AnimeList/AnimeList";
+import React, { useEffect, useState } from 'react';
+import { getViewer } from '../anilist/services/anilist';
+import ALAnimeList from '../anilist/components/AnimeList/AnimeList';
 
 const User = () => {
   // Estados
-  const [accessToken, setAccessToken] = useState("");
+  const [accessToken, setAccessToken] = useState('');
   const [viewerData, setViewerData] = useState(null);
   const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState(null);
 
   // Efecto para obtener el token de acceso
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const hashFragment = window.location.hash;
       const params = new URLSearchParams(hashFragment.substring(1));
-      const newAccessToken = params.get("access_token");
+      const newAccessToken = params.get('access_token');
       setAccessToken(newAccessToken);
     }
   }, []);
@@ -28,7 +28,7 @@ const User = () => {
         const viewer = await getViewer(accessToken);
         setViewerData(viewer);
       } catch (error) {
-        console.error("Error fetching viewer data:", error);
+        console.error('Error fetching viewer data:', error);
       }
     };
 
