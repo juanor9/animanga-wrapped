@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { GET_VIEWER, GET_ANIME_LIST } from './queries';
-import { getClient } from './client';
+import getClient from './client';
 
 export async function getViewer(token) {
   try {

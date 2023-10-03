@@ -1,9 +1,15 @@
-"use client";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable import/extensions */
 
-import React from "react";
-import { store } from "./store";
-import { Provider } from "react-redux";
+'use client';
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  return <Provider store={store}>{children}</Provider>;
-}
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+
+const Providers = (
+  { children }:
+    { children: React.ReactNode },
+) => <Provider store={store}>{children}</Provider>;
+
+export default Providers;

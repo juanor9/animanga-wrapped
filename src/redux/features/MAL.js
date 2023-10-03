@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   malData: {},
 };
 
 const MALSlice = createSlice({
-  name: "malCodeVerifier",
+  name: 'malCodeVerifier',
   initialState,
   reducers: {
     setMalData: (state, action) => {
