@@ -54,8 +54,11 @@ const ClientDisplay = ({ children, envVar }) => {
     }
   }, [authData]);
 
-  const [userData, setUserData] = useState(null)
-  console.log("🚀 ~ file: ClientDisplay.jsx:58 ~ ClientDisplay ~ userData:", userData)
+  const [userData, setUserData] = useState(null);
+  console.log(
+    "🚀 ~ file: ClientDisplay.jsx:58 ~ ClientDisplay ~ userData:",
+    userData
+  );
   useEffect(() => {
     if (accessToken) {
       const fetchUserData = async () => {
@@ -78,8 +81,8 @@ const ClientDisplay = ({ children, envVar }) => {
   return (
     <>
       <div>{children}</div>
-      <p>Username: {userData.name}</p>
-      <p>ID: {userData.id}</p>
+      {userData.name ? <p>Username: {userData.name}</p> : null}
+      {userData.id ? <p>ID: {userData.id}</p> : null}
     </>
   );
 };
