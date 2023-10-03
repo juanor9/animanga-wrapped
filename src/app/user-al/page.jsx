@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { getViewer } from '../anilist/services/anilist';
 import ALAnimeList from '../anilist/components/AnimeList/AnimeList';
+import ALMangaList from '../anilist/components/MangaList/MangaList';
 
 const User = () => {
   // Estados
@@ -28,7 +29,7 @@ const User = () => {
         const viewer = await getViewer(accessToken);
         setViewerData(viewer);
       } catch (error) {
-        console.error('Error fetching viewer data:', error);
+        throw new Error('Error fetching viewer data:', error);
       }
     };
 
@@ -53,6 +54,7 @@ const User = () => {
       <p>UserId: {userId}</p>
       <p>Username: {username}</p>
       <ALAnimeList userId={userId} />
+      <ALMangaList userId={userId} />
     </div>
   );
 };

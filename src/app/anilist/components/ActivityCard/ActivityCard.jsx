@@ -12,13 +12,15 @@ const ActivityCard = ({ activity }) => {
   const title = media.title.userPreferred;
   const image = media.coverImage.medium;
 
-  if (status !== 'watched episode' && status !== 'completed') {
+  if (status !== 'watched episode' && status !== 'completed' && status !== 'read chapter') {
     return null;
   }
 
   return (
     <div className="activity-card">
-      <img src={image} alt={title} />
+      <picture>
+        <img src={image} alt={title} />
+      </picture>
       <p>Date: {date}</p>
       <p>Anime: {title}</p>
       <p>
