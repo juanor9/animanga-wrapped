@@ -80,8 +80,12 @@ const ClientDisplay = ({ children, envVar }) => {
   return (
     <>
       <div>{children}</div>
-      {userData.name ? <p>Username: {userData.name}</p> : null}
-      {userData.id ? <p>ID: {userData.id}</p> : null}
+      {userData ? (
+        <>
+          <p>Username: {userData.name}</p>
+          <p>ID: {userData.id}</p>
+        </>
+      ) : null}
     </>
   );
 };
