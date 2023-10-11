@@ -2,6 +2,7 @@
 
 'use client';
 
+// Importaciones necesarias
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMalData } from '../../../redux/features/MAL';
@@ -10,12 +11,18 @@ import { fetchAuthToken, fetchUser } from '../services/mal';
 const ClientDisplay = ({ children, envVar }) => {
   const dispatch = useDispatch();
   const { malData } = useSelector((state) => state.MALReducer);
+
+  // Estado local para guardar datos de autenticación y datos del usuario
+  const [authData, setAuthData] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+  const [userData, setUserData] = useState(null);
+
+  // Efecto para obtener y configurar datos iniciales de MAL desde la URL
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const uri = window.location.href;
       const url = new URL(uri);
       const codeFromUrl = url.searchParams.get('code');
-
       const code_verifier = window.localStorage.getItem('code_verifier');
 
       dispatch(
@@ -29,8 +36,8 @@ const ClientDisplay = ({ children, envVar }) => {
       );
     }
   }, []);
-  const [authData, setAuthData] = useState(null);
 
+  // Efecto para obtener el token de autenticación usando datos de MAL
   useEffect(() => {
     const malDataKeys = Object.keys(malData);
     if (malDataKeys.length > 0) {
@@ -48,7 +55,7 @@ const ClientDisplay = ({ children, envVar }) => {
     }
   }, [malData]);
 
-  const [accessToken, setAccessToken] = useState(null);
+  // Efecto para establecer el token de acceso a partir de los datos de autenticación
   useEffect(() => {
     if (authData) {
       const { access_token } = authData;
@@ -56,12 +63,11 @@ const ClientDisplay = ({ children, envVar }) => {
     }
   }, [authData]);
 
-  const [userData, setUserData] = useState(null);
-
+  // Efecto para obtener y configurar datos del usuario usando el token de acceso
   useEffect(() => {
     if (accessToken) {
       const fetchUserData = async () => {
-        const url = '/api/v2/users/@me';
+        const url = '/api/mal/v2/users/@me';
         const callUserData = await fetchUser(accessToken, url);
         return callUserData;
       };
@@ -77,6 +83,7 @@ const ClientDisplay = ({ children, envVar }) => {
     }
   }, [accessToken]);
 
+  // Renderizado del componente
   return (
     <>
       <div>{children}</div>
@@ -89,4 +96,5 @@ const ClientDisplay = ({ children, envVar }) => {
     </>
   );
 };
+
 export default ClientDisplay;
