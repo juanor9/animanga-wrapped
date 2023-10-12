@@ -10,7 +10,6 @@ import configExpress from './config/express.mjs';
 import routes from './routes.mjs';
 
 const dev = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 8080;
 const secondPort = process.env.PORT || 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -25,10 +24,6 @@ app.prepare().then(() => {
   server.use('/net', netMiddleware);
 
   server.all('*', (req, res) => handle(req, res));
-
-  server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
 
   https.createServer({
     key: fs.readFileSync('./localhost+2-key.pem'),
