@@ -21,7 +21,11 @@ const AnimeList = () => {
     const windowMalUser = JSON.parse(window.localStorage.getItem('malUser'));
     setMalUser(windowMalUser);
   }
-  const userName = malUser.name;
+  const [userName, setUserName] = useState(null);
+  if (malUser) {
+    const MalUserName = malUser.name;
+    setUserName(MalUserName);
+  }
 
   useEffect(() => {
     if (accessToken && userName) {
