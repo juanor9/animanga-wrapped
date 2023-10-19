@@ -1,6 +1,7 @@
 import styles from './page.module.css';
-import { SetVerifier } from './mal/services/getUrlParams';
-import SetCodes from './mal/services/setCodes';
+import { SetVerifier } from './features/mal/services/getUrlParams';
+import SetCodes from './features/mal/services/setCodes';
+import UserRegistration from './features/user/components/UserRegistration';
 
 const MALClientId = process.env.MAL_CLIENT_ID;
 const ALClientId = process.env.AL_ID;
@@ -20,6 +21,7 @@ const Home = () => {
       >
         Login with MyAnimeList
       </a>
+      <UserRegistration />
     </main>
   );
 };
