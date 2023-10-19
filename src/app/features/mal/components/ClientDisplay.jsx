@@ -5,7 +5,7 @@
 // Importaciones necesarias
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMalData } from '../../../redux/features/MAL';
+import { setMalData } from '../../../../redux/features/MAL';
 import { fetchAuthToken, fetchUser } from '../services/mal';
 
 const ClientDisplay = ({ children, envVar }) => {

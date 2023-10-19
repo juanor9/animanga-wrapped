@@ -1,5 +1,5 @@
-import ClientDisplay from '../mal/components/ClientDisplay';
-import GetEnviromentValues from '../mal/services/getEnviromentValues';
+import ClientDisplay from '../features/mal/components/ClientDisplay';
+import GetEnviromentValues from '../features/mal/services/getEnviromentValues';
 
 const User = () => {
   const malEnvData = GetEnviromentValues();

@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getViewer } from '../anilist/services/anilist';
-import ALAnimeList from '../anilist/components/AnimeList/AnimeList';
-import ALMangaList from '../anilist/components/MangaList/MangaList';
+import { getViewer } from '../features/anilist/services/anilist';
+import ALAnimeList from '../features/anilist/components/AnimeList/AnimeList';
+import ALMangaList from '../features/anilist/components/MangaList/MangaList';
 
 const User = () => {
   // Estados

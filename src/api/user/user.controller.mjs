@@ -9,6 +9,7 @@ export default async function handleCreateUser(req, res) {
   const newUser = data;
   try {
     newUser.isActive = true;
+    newUser.role = 'USER';
 
     // Create user
     const user = await createUser(data);
