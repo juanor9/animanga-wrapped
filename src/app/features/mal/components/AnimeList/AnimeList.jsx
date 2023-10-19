@@ -10,11 +10,17 @@ import ActivityCard from '../ActivityCard/ActivityCard';
 const AnimeList = () => {
   const [animeList, setAnimeList] = useState(null);
   const [animeListDef, setAnimeListDef] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+  const [malUser, setMalUser] = useState(null);
   const currentYear = new Date().getFullYear();
 
   // Efecto para traer la lista de anime
-  const accessToken = window.localStorage.getItem('malToken');
-  const malUser = JSON.parse(window.localStorage.getItem('malUser'));
+  if (typeof window !== 'undefined') {
+    const windowAccessToken = window.localStorage.getItem('malToken');
+    setAccessToken(windowAccessToken);
+    const windowMalUser = JSON.parse(window.localStorage.getItem('malUser'));
+    setMalUser(windowMalUser);
+  }
   const userName = malUser.name;
 
   useEffect(() => {
