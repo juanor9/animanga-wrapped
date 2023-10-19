@@ -45,3 +45,21 @@ export async function fetchUser(accessToken, url) {
   const results = await data;
   return results;
 }
+
+export async function fetchAnimeList(accessToken, url) {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch anime list: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  const results = await data;
+  return results;
+}

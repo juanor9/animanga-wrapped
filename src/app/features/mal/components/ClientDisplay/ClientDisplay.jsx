@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable camelcase */
 
 'use client';
@@ -5,8 +6,8 @@
 // Importaciones necesarias
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMalData } from '../../../../redux/features/MAL';
-import { fetchAuthToken, fetchUser } from '../services/mal';
+import { setMalData } from '../../../../../redux/features/MAL';
+import { fetchAuthToken, fetchUser } from '../../services/mal';
 
 const ClientDisplay = ({ children, envVar }) => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const ClientDisplay = ({ children, envVar }) => {
     if (authData) {
       const { access_token } = authData;
       setAccessToken(access_token);
+      localStorage.setItem('malToken', access_token);
     }
   }, [authData]);
 
@@ -76,6 +78,8 @@ const ClientDisplay = ({ children, envVar }) => {
         try {
           const $userData = await fetchUserData();
           setUserData($userData);
+          const malUser = JSON.stringify($userData);
+          localStorage.setItem('malUser', malUser);
         } catch (error) {
           throw new Error(error);
         }
