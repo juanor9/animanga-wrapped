@@ -61,7 +61,7 @@ const ClientDisplay = ({ children, envVar }) => {
     if (authData) {
       const { access_token } = authData;
       setAccessToken(access_token);
-      localStorage.setItem('malToken', access_token);
+      window.localStorage.setItem('malToken', access_token);
     }
   }, [authData]);
 
@@ -79,7 +79,7 @@ const ClientDisplay = ({ children, envVar }) => {
           const $userData = await fetchUserData();
           setUserData($userData);
           const malUser = JSON.stringify($userData);
-          localStorage.setItem('malUser', malUser);
+          window.localStorage.setItem('malUser', malUser);
         } catch (error) {
           throw new Error(error);
         }

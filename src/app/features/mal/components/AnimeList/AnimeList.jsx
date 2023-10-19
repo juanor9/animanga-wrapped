@@ -13,8 +13,8 @@ const AnimeList = () => {
   const currentYear = new Date().getFullYear();
 
   // Efecto para traer la lista de anime
-  const accessToken = localStorage.getItem('malToken');
-  const malUser = JSON.parse(localStorage.getItem('malUser'));
+  const accessToken = window.localStorage.getItem('malToken');
+  const malUser = JSON.parse(window.localStorage.getItem('malUser'));
   const userName = malUser.name;
 
   useEffect(() => {
