@@ -1,12 +1,38 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
-import { GET_VIEWER, GET_ANIME_LIST, GET_MANGA_LIST } from './queries';
+import {
+  GET_VIEWER,
+  GET_ANIME_LIST,
+  GET_MANGA_LIST,
+  GET_POPULAR_ANIME,
+  GET_POPULAR_MANGA,
+} from './queries';
 import getClient from './client';
 
 function sleep(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
+}
+
+export async function getPopularAnime() {
+  try {
+    const query = GET_POPULAR_ANIME;
+    const { data } = await getClient().query({ query });
+    return data;
+  } catch (error) {
+    throw new Error('Error fetching popular anime data:', error);
+  }
+}
+
+export async function getPopularManga() {
+  try {
+    const query = GET_POPULAR_MANGA;
+    const { data } = await getClient().query({ query });
+    return data;
+  } catch (error) {
+    throw new Error('Error fetching popular manga data:', error);
+  }
 }
 
 export async function getViewer(token) {

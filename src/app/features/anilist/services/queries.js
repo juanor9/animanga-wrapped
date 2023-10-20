@@ -1,5 +1,49 @@
 import { gql } from '@apollo/client';
 
+export const GET_POPULAR_ANIME = gql`
+  query {
+    Page(perPage: 30, page: 1) {
+      media(sort: POPULARITY_DESC, type: ANIME, seasonYear: 2023, isAdult: false) {
+        id
+        title {
+          romaji
+          native
+        }
+        coverImage {
+          large
+          medium
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POPULAR_MANGA = gql`
+  query {
+    Page(page: 1, perPage: 30) {
+      media(type: MANGA, startDate_greater: 20230101, startDate_lesser: 20231231, sort: POPULARITY_DESC, isAdult: false) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        startDate {
+          year
+          month
+          day
+        }
+        popularity
+        coverImage {
+          large
+        }
+        description
+        genres
+      }
+    }
+  }
+`;
+
 export const GET_VIEWER = gql`
   query {
     Viewer {

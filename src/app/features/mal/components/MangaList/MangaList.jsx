@@ -50,7 +50,7 @@ const MangaList = () => {
             setMangaList(manList.data);
           }
         } catch (error) {
-          console.error('Error fetching anime list:', error);
+          console.error('Error fetching manga list:', error);
         }
       })();
     }

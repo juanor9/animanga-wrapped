@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import createUser from '../services/users';
+import createUser from '../../services/users';
+import './UserRegistration.scss';
 
 const UserRegistration = () => {
   const dispatch = useDispatch();
@@ -31,28 +32,41 @@ const UserRegistration = () => {
     }
   };
   return (
-    <section>
-      <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="mail">
+    <section className="user-registration">
+      <form
+        action=""
+        onSubmit={handleSubmit}
+        className="user-registration__form"
+      >
+        <label htmlFor="mail" className="user-registration__label">
           Email
           <input
-            type="mail"
-            name="mail"
+            className="user-registration__input"
             id="mail"
+            name="mail"
             onChange={handleEmailChange}
+            type="mail"
           />
         </label>
-        <label htmlFor="password">
+        <label htmlFor="password" className="user-registration__label">
           Password
           <input
-            type="password"
-            name="password"
+            className="user-registration__input"
             id="password"
+            name="password"
             onChange={handlePasswordChange}
+            type="password"
           />
         </label>
-        <button type="submit"> Submit </button>
+        <button type="submit" className="user-registration__button">
+          {' '}
+          Create user
+        </button>
       </form>
+      <p>
+        By registering you agree to our Terms and Conditions of Use and Privacy
+        Policy. Please read them before registering.
+      </p>
     </section>
   );
 };
