@@ -1,31 +1,32 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react-hooks/exhaustive-deps */
 
 'use client';
 
 import { useState, useEffect } from 'react';
 import { fetchAnimeList } from '../../services/mal';
 import ActivityCard from '../ActivityCard/ActivityCard';
+import './AnimeList.scss';
 
 const AnimeList = () => {
-  const [animeList, setAnimeList] = useState(null);
-  const [animeListDef, setAnimeListDef] = useState(null);
+  const [animeList, setAnimeList] = useState([]);
+  const [animeListDef, setAnimeListDef] = useState([]);
   const [accessToken, setAccessToken] = useState(null);
   const [malUser, setMalUser] = useState(null);
+  const [userName, setUserName] = useState(null);
   const currentYear = new Date().getFullYear();
 
-  // Efecto para traer la lista de anime
-  if (typeof window !== 'undefined') {
-    const windowAccessToken = window.localStorage.getItem('malToken');
-    setAccessToken(windowAccessToken);
-    const windowMalUser = JSON.parse(window.localStorage.getItem('malUser'));
-    setMalUser(windowMalUser);
-  }
-  const [userName, setUserName] = useState(null);
-  if (malUser) {
-    const MalUserName = malUser.name;
-    setUserName(MalUserName);
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const windowAccessToken = window.localStorage.getItem('malToken');
+      const windowMalUser = JSON.parse(window.localStorage.getItem('malUser'));
+      setAccessToken(windowAccessToken);
+      if (windowMalUser) {
+        setMalUser(windowMalUser);
+        setUserName(windowMalUser.name);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (accessToken && userName) {
@@ -34,47 +35,48 @@ const AnimeList = () => {
         const callAnimeList = await fetchAnimeList(accessToken, url);
         return callAnimeList;
       };
+
       (async () => {
         try {
           const aniList = await fetchAnimeListData();
-          setAnimeList(animeList ? [...animeList, ...aniList.data] : aniList.data);
           if (aniList.paging.next) {
-            const continueFetchAnimeListData = async () => {
-              const nextPageUrl = aniList.paging.next;
-              const parts = nextPageUrl.split('?');
-              const queryParams = parts[1];
-              const nextUrl = `/api/mal/v2/users/${userName}/animelist?${queryParams}`;
-              const callAnimeList = await fetchAnimeList(accessToken, nextUrl);
-              return callAnimeList;
-            };
-            const nextAniList = await continueFetchAnimeListData();
-            setAnimeList(animeList ? [...animeList, ...nextAniList.data] : nextAniList.data);
+            const nextPageUrl = aniList.paging.next;
+            const parts = nextPageUrl.split('?');
+            const queryParams = parts[1];
+            const nextUrl = `/api/mal/v2/users/${userName}/animelist?${queryParams}`;
+            const nextAniList = await fetchAnimeList(accessToken, nextUrl);
+            setAnimeList((prevAnimeList) => [...prevAnimeList, ...nextAniList.data]);
+          } else {
+            setAnimeList(aniList.data);
           }
         } catch (error) {
-          throw new Error(error);
+          console.error('Error fetching anime list:', error);
         }
       })();
     }
   }, [accessToken, userName]);
+
   useEffect(() => {
-    if (animeList) {
+    if (animeList.length) {
       const filteredAnimes = animeList.filter((anime) => {
         const updatedAtYear = new Date(anime.node.my_list_status.updated_at).getFullYear();
         return updatedAtYear === currentYear;
       });
       setAnimeListDef(filteredAnimes);
     }
-  }, [animeList]);
+  }, [animeList, currentYear]);
 
   return (
-    <section>
+    <section className="anime-list">
       <h3>Anime List</h3>
-      {animeListDef
-        ? animeListDef.map((item, index) => (
+      <div className="anime-list__list-container">
+        {animeListDef.map((item, index) => (
           <ActivityCard key={index} anime={item.node} />
-        ))
-        : null}
+        ))}
+      </div>
+
     </section>
   );
 };
+
 export default AnimeList;
