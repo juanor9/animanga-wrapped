@@ -1,0 +1,52 @@
+@import '../colors';
+
+.register{
+  padding: 1em;
+  min-height: 100vh;
+  &__section{
+    padding: 2em;
+    border-radius: 2em;
+    color: $black;
+    min-width: 100%;
+    &--green{
+      background-color: $green;
+    }
+    &--orange{
+      background-color: $orange;
+    }
+    &--yellow{
+      background-color: $yellow;
+    }
+    &--pink{
+      background-color: $pink;
+    }
+  }
+  &__container{
+    display: flex;
+    gap: 1em;
+    transition: transform 0.3s ease-out;
+  }
+  &__button{
+    color: $black;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 1em;
+    border: 0;
+    border-radius: 1em;
+    width: 100%;
+    margin-top: 1em;
+    &--green{
+      background-color: $green;
+    }
+    &--orange{
+      background-color: $orange;
+    }
+    &--yellow{
+      background-color: $yellow;
+    }
+    &--pink{
+      background-color: $pink;
+    }
+  }
+}
