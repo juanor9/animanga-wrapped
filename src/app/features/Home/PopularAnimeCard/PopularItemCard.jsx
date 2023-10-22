@@ -6,7 +6,7 @@ const PopularItemCard = ({ item }) => {
   // console.log('🚀 ~ file: PopularItemCard.jsx:4 ~ PopularItemCard ~ title:', title);
   const image = item.coverImage.large;
 
-  function truncateString(str, maxLength = 25) {
+  function truncateString(str, maxLength = 35) {
     if (str.length <= maxLength) return str;
     return `${str.slice(0, maxLength - 3)}...`;
   }

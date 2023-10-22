@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import { useState } from 'react';
@@ -33,40 +35,10 @@ const UserRegistration = () => {
   };
   return (
     <section className="user-registration">
-      <form
-        action=""
-        onSubmit={handleSubmit}
-        className="user-registration__form"
-      >
-        <label htmlFor="mail" className="user-registration__label">
-          Email
-          <input
-            className="user-registration__input"
-            id="mail"
-            name="mail"
-            onChange={handleEmailChange}
-            type="mail"
-          />
-        </label>
-        <label htmlFor="password" className="user-registration__label">
-          Password
-          <input
-            className="user-registration__input"
-            id="password"
-            name="password"
-            onChange={handlePasswordChange}
-            type="password"
-          />
-        </label>
-        <button type="submit" className="user-registration__button">
-          {' '}
-          Create user
-        </button>
-      </form>
-      <p>
-        By registering you agree to our Terms and Conditions of Use and Privacy
-        Policy. Please read them before registering.
-      </p>
+      <button type="submit" className="user-registration__button">
+        {' '}
+        Create user
+      </button>
     </section>
   );
 };

@@ -1,0 +1,33 @@
+@import '../../../colors';
+
+* {
+  transition: all 1s ease;
+}
+.hero {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: $light-black;
+  border-radius: 3em;
+  transition: height 1s ease;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+  }
+  &__copy {
+    min-width: 66%;
+  }
+  &__header {
+    color: $yellow;
+  }
+  &__forms {
+    min-width: 33%;
+    background-color: $orange;
+    color: $black;
+    padding: 2em;
+    border-radius: 2em;
+    transition: height 1s ease;
+  }
+
+}
