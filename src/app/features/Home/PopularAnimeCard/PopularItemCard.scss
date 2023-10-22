@@ -1,15 +1,15 @@
-@import '../../colors';
+@import '../../../colors';
 
 .card{
   display: flex;
   flex-direction: column;
-  font-size: .8em;
-  background-color: $pink;
+  font-size: 1em;
+  background-color: $green;
   padding: 1em;
   border-radius: 1em;
-  min-width: 200px;
+  min-width: 250px;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   text-align: center;
   margin-bottom: 1em;
   &__image{
@@ -23,5 +23,6 @@
     margin: 0;
     margin-top: 1em;
     color: $black;
+    height: 4.3em;
   }
 }

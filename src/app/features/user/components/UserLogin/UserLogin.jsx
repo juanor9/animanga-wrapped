@@ -57,7 +57,7 @@ const UserLogin = () => {
         </label>
         <button type="submit" className="user-registration__button">
           {' '}
-          Create user
+          Login
         </button>
       </form>
     </section>
