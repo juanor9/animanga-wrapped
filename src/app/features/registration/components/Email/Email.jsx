@@ -1,8 +1,6 @@
 const Email = ({ color, clickFunction }) => (
   <div>
     <p>
-
-      Ready to get started?
       Just pop in your email for us.
       Don&apos;t worry, we&apos;ll treat it like a
       limited edition manga – with utmost care.

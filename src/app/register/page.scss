@@ -36,6 +36,11 @@
     border-radius: 1em;
     width: 100%;
     margin-top: 1em;
+    &--disabled{
+      pointer-events: none;
+      background-color:rgb(189, 189, 189);
+      color: white;
+    }
     &--green{
       background-color: $green;
     }
@@ -48,5 +53,29 @@
     &--pink{
       background-color: $pink;
     }
+  }
+  &__formal-text{
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: black !important;
+    padding: 1em;
+    overflow-y: scroll;
+    max-height: 25em;
+    margin-bottom: 1em;
+    & h2{
+      color: black;
+    }
+    & a{
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  &__checkbox{
+    margin: 0 .5em 0 0;
+    width: 1em;
+    height: 1em;
+    &:checked + label::before {
+      border-color: green;
+      background-color: #d4ffd4;  /* Un verde claro */
+  }
   }
 }
