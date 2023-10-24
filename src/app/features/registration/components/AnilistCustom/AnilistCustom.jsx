@@ -1,3 +1,5 @@
+import UserAL from '../../../anilist/components/UserAL/UserAL';
+
 const AnilistCustom = ({ color, clickFunction }) => (
   <div>
     <p>
@@ -7,8 +9,9 @@ const AnilistCustom = ({ color, clickFunction }) => (
       your pick and let&apos;s continue with the next step.
     </p>
     <form onSubmit={clickFunction}>
-      {/* {TODO: Incluir multiselección para manga o anime
-      TODO: mostrar las actividades según la elección del usuario} */}
+      {/* {TODO: Incluir multiselección para manga o anime */}
+
+      <UserAL />
       <button
         type="submit"
         className={`register__button register__button--${color}`}

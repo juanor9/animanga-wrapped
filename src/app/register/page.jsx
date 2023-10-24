@@ -8,6 +8,7 @@ import First from '../features/registration/components/First/First';
 import Email from '../features/registration/components/Email/Email';
 import TermsAndConditions from '../features/registration/components/TermsAndConditions/TermsAndConditions';
 import PrivacyPolicy from '../features/registration/components/PrivacyPolicy/PrivacyPolicy';
+import Age from '../features/registration/components/Age/Age';
 import AnilistAuth from '../features/registration/components/AnilistAuth/AnilistAuth';
 import AnilistCustom from '../features/registration/components/AnilistCustom/AnilistCustom';
 import Location from '../features/registration/components/Location/Location';
@@ -69,7 +70,7 @@ const Register = () => {
         {step === 4
           ? (
             <section className="register__section register__section--yellow">
-              <Email
+              <Age
                 color="orange"
                 clickFunction={handleClick}
               />
@@ -92,6 +93,16 @@ const Register = () => {
           : null}
         {step === 7
           ? (
+            <section className="register__section register__section--yellow">
+              <Email
+                color="orange"
+                clickFunction={handleClick}
+              />
+            </section>
+          )
+          : null}
+        {step === 8
+          ? (
             <section className="register__section register__section--orange">
               <Location
                 color="yellow"
@@ -100,7 +111,7 @@ const Register = () => {
             </section>
           )
           : null}
-        {step === 8
+        {step === 9
           ? (
             <section className="register__section register__section--pink">
               <Password color="green" />

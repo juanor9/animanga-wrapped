@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getViewer } from '../features/anilist/services/anilist';
-import ALAnimeList from '../features/anilist/components/AnimeList/AnimeList';
-import ALMangaList from '../features/anilist/components/MangaList/MangaList';
+import { getViewer } from '../../services/anilist';
+import ALAnimeList from '../AnimeList/AnimeList';
+import ALMangaList from '../MangaList/MangaList';
+import './UserAL.scss';
 
-const User = () => {
+const UserAL = () => {
   // Estados
   const [accessToken, setAccessToken] = useState('');
   const [viewerData, setViewerData] = useState(null);
@@ -49,9 +50,7 @@ const User = () => {
 
   // Componente de retorno
   return (
-    <div>
-      <h2>User Page</h2>
-      <p>UserId: {userId}</p>
+    <div className="user-al">
       <p>Username: {username}</p>
       <ALAnimeList userId={userId} />
       <ALMangaList userId={userId} />
@@ -59,4 +58,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default UserAL;

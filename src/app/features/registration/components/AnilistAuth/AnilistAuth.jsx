@@ -19,7 +19,7 @@ const AnilistAuth = ({ color, step }) => {
   return (
     <div>
       <p>
-        Almost there! Link up with your Anilist account and let&apos;s get the party started.
+        Let&apos;s move on! Link up with your Anilist account and let&apos;s get the party started.
       </p>
       <a
         className={`register__button register__button--${color}`}
