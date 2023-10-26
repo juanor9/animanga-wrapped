@@ -61,7 +61,7 @@ const UserAL = ({ settings }) => {
       dispatch(
         newUser({
           ...user,
-          anilistUserName: username,
+          listUsername: username,
         }),
       );
     }

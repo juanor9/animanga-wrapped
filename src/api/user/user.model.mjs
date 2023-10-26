@@ -3,6 +3,19 @@ import {
 } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
+const ListSchema = new Schema({
+  year: {
+    type: Number,
+    required: true,
+  },
+  animeList: {
+    type: Array,
+  },
+  mangaList: {
+    type: Array,
+  },
+});
+
 const UserSchema = new Schema(
   {
     role: {
@@ -29,8 +42,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    animeList: Array,
-    mangaList: Array,
+    lists: [ListSchema],
   },
   {
     timestamps: true,
@@ -57,7 +69,7 @@ UserSchema.pre('save', async function save(next) {
 // Virtuals
 UserSchema.virtual('profile').get(function profile() {
   const {
-    _id, role, email, country, listUsername, animeList, mangaList,
+    _id, role, email, country, listUsername, lists,
   } = this;
 
   return {
@@ -66,8 +78,7 @@ UserSchema.virtual('profile').get(function profile() {
     email,
     country,
     listUsername,
-    animeList,
-    mangaList,
+    lists,
   };
 });
 
