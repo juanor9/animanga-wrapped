@@ -96,7 +96,8 @@ const Register = () => {
             <section className="register__section register__section--yellow">
               <Email
                 color="orange"
-                clickFunction={handleClick}
+                step={step}
+                clickFunction={setStep}
               />
             </section>
           )
@@ -106,7 +107,8 @@ const Register = () => {
             <section className="register__section register__section--orange">
               <Location
                 color="yellow"
-                clickFunction={handleClick}
+                step={step}
+                clickFunction={setStep}
               />
             </section>
           )
@@ -114,7 +116,9 @@ const Register = () => {
         {step === 9
           ? (
             <section className="register__section register__section--pink">
-              <Password color="green" />
+              <Password
+                color="green"
+              />
             </section>
           )
           : null}

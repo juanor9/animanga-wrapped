@@ -1,17 +1,25 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getViewer } from '../../services/anilist';
+import { newUser } from '../../../../../redux/features/user';
 import ALAnimeList from '../AnimeList/AnimeList';
 import ALMangaList from '../MangaList/MangaList';
 import './UserAL.scss';
 
-const UserAL = () => {
+const UserAL = ({ settings }) => {
   // Estados
   const [accessToken, setAccessToken] = useState('');
   const [viewerData, setViewerData] = useState(null);
   const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState(null);
+
+  const { user } = useSelector((state) => state.UserReducer);
+
+  const dispatch = useDispatch();
 
   // Efecto para obtener el token de acceso
   useEffect(() => {
@@ -48,12 +56,27 @@ const UserAL = () => {
     }
   }, [viewerData]);
 
+  useEffect(() => {
+    if (username) {
+      dispatch(
+        newUser({
+          ...user,
+          anilistUserName: username,
+        }),
+      );
+    }
+  }, [username]);
+
   // Componente de retorno
   return (
     <div className="user-al">
       <p>Username: {username}</p>
-      <ALAnimeList userId={userId} />
-      <ALMangaList userId={userId} />
+      {settings.anime && settings.anime === true ? (
+        <ALAnimeList userId={userId} />
+      ) : null}
+      {settings.manga && settings.manga === true ? (
+        <ALMangaList userId={userId} />
+      ) : null}
     </div>
   );
 };
