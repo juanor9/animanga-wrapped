@@ -3,6 +3,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import createUser from '../../services/users';
 import './UserRegistration.scss';
@@ -35,10 +36,11 @@ const UserRegistration = () => {
   };
   return (
     <section className="user-registration">
-      <button type="submit" className="user-registration__button">
-        {' '}
-        Create user
-      </button>
+      <Link href="/register">
+        <button type="submit" className="user-registration__button">
+          Create user
+        </button>
+      </Link>
     </section>
   );
 };

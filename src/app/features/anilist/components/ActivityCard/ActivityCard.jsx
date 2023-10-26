@@ -12,7 +12,13 @@ const ActivityCard = ({ activity }) => {
   const title = media.title.userPreferred;
   const image = media.coverImage.medium;
 
-  if (status !== 'watched episode' && status !== 'completed' && status !== 'read chapter') {
+  if (
+    status === 'plans to watch'
+    || status === 'plans to read'
+    || status === 'paused watching'
+    || status === 'dropped'
+    || status === 'paused reading'
+  ) {
     return null;
   }
 
@@ -21,11 +27,13 @@ const ActivityCard = ({ activity }) => {
       <picture>
         <img src={image} alt={title} />
       </picture>
-      <p>Date: {date}</p>
-      <p>Anime: {title}</p>
-      <p>
-        Status: {status} {progress || null}
-      </p>
+      <div>
+        <p>{title}</p>
+        <p>Date: {date}</p>
+        <p>
+          Status: {status} {progress || null}
+        </p>
+      </div>
     </div>
   );
 };

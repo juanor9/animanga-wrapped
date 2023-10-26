@@ -1,8 +1,6 @@
 @import '../../../colors';
 
-* {
-  transition: all 1s ease;
-}
+
 .hero {
   width: 100%;
   padding: 1em;
@@ -11,7 +9,6 @@
   gap: 1em;
   background-color: $light-black;
   border-radius: 3em;
-  transition: height 1s ease;
   @media (min-width: 1000px) {
     flex-direction: row;
   }
@@ -27,7 +24,6 @@
     color: $black;
     padding: 2em;
     border-radius: 2em;
-    transition: height 1s ease;
   }
 
 }
