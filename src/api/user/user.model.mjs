@@ -1,20 +1,7 @@
-/* eslint-disable no-unused-vars */
 import {
   Schema, model,
 } from 'mongoose';
 import bcrypt from 'bcryptjs';
-
-// export interface UserDocument extends Document {
-//   role: 'USER' | 'ADMIN';
-//   email: string;
-//   password: string;
-//   country: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-//   profile: userProfileType;
-//   comparePassword: (password: string) => Promise<boolean>;
-//   isActive?: Boolean;
-// }
 
 const UserSchema = new Schema(
   {
@@ -34,9 +21,16 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    country: String,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
+    country: {
+      type: String,
+      required: true,
+    },
+    listUsername: {
+      type: String,
+      required: true,
+    },
+    animeList: Array,
+    mangaList: Array,
   },
   {
     timestamps: true,
@@ -63,7 +57,7 @@ UserSchema.pre('save', async function save(next) {
 // Virtuals
 UserSchema.virtual('profile').get(function profile() {
   const {
-    _id, role, email, country,
+    _id, role, email, country, listUsername, animeList, mangaList,
   } = this;
 
   return {
@@ -71,6 +65,9 @@ UserSchema.virtual('profile').get(function profile() {
     role,
     email,
     country,
+    listUsername,
+    animeList,
+    mangaList,
   };
 });
 
