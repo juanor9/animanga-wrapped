@@ -1,5 +1,5 @@
 import { getUserFilter } from '../../user/user.services.mjs';
-// import { signToken } from '../auth.services';
+import { signToken } from '../auth.services.mjs';
 
 async function handleLogin(
   req,
@@ -24,13 +24,13 @@ async function handleLogin(
     }
 
     // JWT
-    // const jwtPayload = user.profile;
+    const jwtPayload = user.profile;
 
-    // const userToken = signToken(jwtPayload);
+    const userToken = signToken(jwtPayload);
 
     return res.status(200).json({
       profile: user.profile,
-      // userToken
+      userToken,
     });
   } catch (error) {
     return res.status(500).json(error);

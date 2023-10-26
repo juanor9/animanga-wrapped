@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import createUser from '../../services/users';
+import { createUser } from '../../services/users';
 import './UserRegistration.scss';
 
 const UserRegistration = () => {
