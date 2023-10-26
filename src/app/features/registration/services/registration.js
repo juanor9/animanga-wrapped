@@ -6,7 +6,6 @@ const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 const createUser = createAsyncThunk(
   'users/createUser',
   async (data) => {
-    console.log('🚀 ~ file: registration.js:9 ~ data:', data);
     const options = {
       method: 'POST',
       headers: {

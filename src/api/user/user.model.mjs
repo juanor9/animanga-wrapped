@@ -69,16 +69,14 @@ UserSchema.pre('save', async function save(next) {
 // Virtuals
 UserSchema.virtual('profile').get(function profile() {
   const {
-    _id, role, email, country, listUsername, lists,
+    _id, role, email, listUsername,
   } = this;
 
   return {
     _id,
     role,
     email,
-    country,
     listUsername,
-    lists,
   };
 });
 
