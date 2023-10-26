@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { newUser } from '../../../../../redux/features/user';
+import createUser from '../../services/registration';
 
 const Password = ({ color }) => {
   const [password, setPassword] = useState(null);
@@ -24,7 +25,8 @@ const Password = ({ color }) => {
     updateRedux();
 
     if (password) {
-      // TODO: dispatch create new user with user
+      const updatedUser = { ...user, password };
+      dispatch(createUser(updatedUser));
     }
   };
 
