@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { login } from '../../services/users';
 
 const UserLogin = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,7 @@ const UserLogin = () => {
         email,
         password,
       };
-      // console.log('🚀 ~ file: UserRegistration.jsx:23 ~ handleSubmit ~ form:', form);
-      // dispatch(createUser(form));
+      dispatch(login(form));
       // navigate('/catalogue');
     } catch (error) {
       throw new Error(error);
@@ -31,7 +31,6 @@ const UserLogin = () => {
   return (
     <section className="user-registration">
       <form
-        action=""
         onSubmit={handleSubmit}
         className="user-registration__form"
       >
@@ -56,7 +55,6 @@ const UserLogin = () => {
           />
         </label>
         <button type="submit" className="user-registration__button">
-          {' '}
           Login
         </button>
       </form>

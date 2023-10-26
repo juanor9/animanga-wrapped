@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { SetVerifier } from './features/mal/services/getUrlParams';
-import SetCodes from './features/mal/services/setCodes';
-import UserRegistration from './features/user/components/UserRegistration/UserRegistration';
-import AuthButtons from './features/Home/AuthButtons/AuthButtons';
-import Hero from './features/Home/Hero/Hero';
+// import { SetVerifier } from './features/mal/services/getUrlParams';
+// import AuthButtons from './features/Home/AuthButtons/AuthButtons';
+// import UserRegistration from './features/user/components/UserRegistration/UserRegistration';
+
 import './app.scss';
+import Hero from './features/Home/Hero/Hero';
 import PopularSlider from './features/Home/PopularSlider/PopularSlider';
+import SetCodes from './features/mal/services/setCodes';
 
 const MALClientId = process.env.MAL_CLIENT_ID;
 const ALClientId = process.env.AL_ID;
