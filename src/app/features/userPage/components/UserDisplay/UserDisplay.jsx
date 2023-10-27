@@ -16,10 +16,12 @@ const UserDisplay = () => {
   const dispatch = useDispatch();
   const [userToken, setUserToken] = useState(null);
 
-  if (window !== undefined) {
-    const token = window.localStorage.getItem('userToken');
-    setUserToken(token);
-  }
+  useEffect(() => {
+    if (window !== undefined) {
+      const token = window.localStorage.getItem('userToken');
+      setUserToken(token);
+    }
+  }, []);
 
   useEffect(() => {
     if (userToken) {
