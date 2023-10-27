@@ -14,7 +14,12 @@ const UserDisplay = () => {
   const { lists } = useSelector((state) => state.UserReducer.user);
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
-  const userToken = localStorage.getItem('userToken');
+  const [userToken, setUserToken] = useState(null);
+
+  if (window !== undefined) {
+    const token = window.localStorage.getItem('userToken');
+    setUserToken(token);
+  }
 
   useEffect(() => {
     if (userToken) {
