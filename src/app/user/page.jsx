@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import './page.scss';
-import Topnav from '../features/userPage/components/Topnav/Topnav';
+import UserDisplay from '../features/userPage/components/UserDisplay/UserDisplay';
 
 const UserPage = () => (
   <main className="user">
     <h1>Your Anime and Manga Year Wrapped</h1>
-    <Topnav />
+    <UserDisplay />
 
   </main>
 );

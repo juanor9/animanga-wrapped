@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import createuser from '../../app/features/registration/services/registration';
+import { getUserProfile, getUserData } from '../../app/features/userPage/services/userPage';
 
 const initialState = {
   user: {},
 };
 
-const MALSlice = createSlice({
+const UserSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -18,15 +19,18 @@ const MALSlice = createSlice({
     builder.addCase(createuser.fulfilled, (state, action) => {
       state.user = action.payload;
     });
-    // builder.addCase(getLibrariesById.fulfilled, (state, action) => {
-    //   state.user = action.payload;
-    // });
+    builder.addCase(getUserProfile.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addCase(getUserData.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
     // builder.addCase(getLibrariesByFilter.fulfilled, (state, action) => {
     //   state.user = action.payload;
     // });
   },
 });
 
-export const { newUser } = MALSlice.actions;
+export const { newUser } = UserSlice.actions;
 
-export default MALSlice.reducer;
+export default UserSlice.reducer;
