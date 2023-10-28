@@ -13,7 +13,7 @@ const StatsDisplay = ({ lists }) => {
     if (lists && Array.isArray(lists)) {
       const currentYearList = lists.find((element) => Number(element.year) === year);
       const { animeList, mangaList } = currentYearList;
-      const watchedAnime = animeList.filter((w) => w.status === 'watched episode' || w.status === 'completed' || w.status === 'rewatched episode');
+      const watchedAnime = animeList.filter((w) => w.status === 'watched episode' || w.status === 'completed' || w.status === 'rewatched episode' || w.status === 'rewatched');
       if (animeList) {
         setAnime(watchedAnime);
       }
