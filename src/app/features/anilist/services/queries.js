@@ -3,7 +3,12 @@ import { gql } from '@apollo/client';
 export const GET_POPULAR_ANIME = gql`
   query {
     Page(perPage: 30, page: 1) {
-      media(sort: POPULARITY_DESC, type: ANIME, seasonYear: 2023, isAdult: false) {
+      media(
+        sort: POPULARITY_DESC
+        type: ANIME
+        seasonYear: 2023
+        isAdult: false
+      ) {
         id
         title {
           romaji
@@ -21,7 +26,13 @@ export const GET_POPULAR_ANIME = gql`
 export const GET_POPULAR_MANGA = gql`
   query {
     Page(page: 1, perPage: 30) {
-      media(type: MANGA, startDate_greater: 20230101, startDate_lesser: 20231231, sort: POPULARITY_DESC, isAdult: false) {
+      media(
+        type: MANGA
+        startDate_greater: 20230101
+        startDate_lesser: 20231231
+        sort: POPULARITY_DESC
+        isAdult: false
+      ) {
         id
         title {
           romaji
@@ -75,6 +86,7 @@ export const GET_ANIME_LIST = gql`
       ) {
         ... on ListActivity {
           createdAt
+          type
           progress
           status
           media {
@@ -82,24 +94,18 @@ export const GET_ANIME_LIST = gql`
               userPreferred
             }
             id
+            format
+            duration
             coverImage {
               extraLarge
               large
               medium
               color
             }
-            duration
             genres
             tags {
               id
               name
-            }
-            studios(isMain: true) {
-              nodes {
-                id
-                name
-                isAnimationStudio
-              }
             }
             staff {
               nodes {
@@ -107,10 +113,29 @@ export const GET_ANIME_LIST = gql`
                 primaryOccupations
                 gender
                 name {
+                  first
+                  middle
+                  last
                   full
+                  native
                   userPreferred
                 }
               }
+            }
+            startDate {
+              year
+              month
+              day
+            }
+            endDate {
+              year
+              month
+              day
+            }
+            episodes
+            chapters
+            mediaListEntry {
+              score(format: POINT_10)
             }
           }
         }
@@ -121,52 +146,77 @@ export const GET_ANIME_LIST = gql`
 
 export const GET_MANGA_LIST = gql`
   query ($page: Int, $perPage: Int, $userId: Int) {
-  Page(page: $page, perPage: $perPage) {
-    pageInfo {
-      total
-      currentPage
-      lastPage
-      hasNextPage
-      perPage
-    }
-    activities(userId: $userId, type: MANGA_LIST, createdAt_greater: 1672531200, createdAt_lesser: 1704067199, sort: ID_DESC) {
-      ... on ListActivity {
-        createdAt
-        type
-        progress
-        status
-        media {
-          title {
-            userPreferred
-          }
-          id
-          format
-          coverImage {
-            extraLarge
-            large
-            medium
-            color
-          }
-          genres
-          tags {
+    Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        currentPage
+        lastPage
+        hasNextPage
+        perPage
+      }
+      activities(
+        userId: $userId
+        type: MANGA_LIST
+        createdAt_greater: 1672531200
+        createdAt_lesser: 1704067199
+        sort: ID_DESC
+      ) {
+        ... on ListActivity {
+          createdAt
+          type
+          progress
+          status
+          media {
+            title {
+              userPreferred
+            }
             id
-            name
-          }
-          staff {
-            nodes {
+            format
+            duration
+            coverImage {
+              extraLarge
+              large
+              medium
+              color
+            }
+            genres
+            tags {
               id
-              primaryOccupations
-              gender
-              name {
-                full
-                userPreferred
+              name
+            }
+            staff {
+              nodes {
+                id
+                primaryOccupations
+                gender
+                name {
+                  first
+                  middle
+                  last
+                  full
+                  native
+                  userPreferred
+                }
               }
+            }
+            startDate {
+              year
+              month
+              day
+            }
+            endDate {
+              year
+              month
+              day
+            }
+            episodes
+            chapters
+            mediaListEntry {
+              score(format: POINT_10)
             }
           }
         }
       }
     }
   }
-}
-
 `;

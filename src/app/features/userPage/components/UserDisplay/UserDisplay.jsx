@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 'use client';
 
@@ -7,14 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Topnav from '../Topnav/Topnav';
 import { getUserProfile, getUserData } from '../../services/userPage';
 import UserLists from '../UserLists/UserLists';
+import StatsDisplay from '../../../animeStats/components/StatsDisplay/StatsDisplay';
 
 const UserDisplay = () => {
   const [tabValue, setTabValue] = useState('lists');
   const [userId, setUserId] = useState(null);
+  const [userToken, setUserToken] = useState(null);
   const { lists } = useSelector((state) => state.UserReducer.user);
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
-  const [userToken, setUserToken] = useState(null);
 
   useEffect(() => {
     if (window !== undefined) {
@@ -53,6 +54,9 @@ const UserDisplay = () => {
       <Topnav update={setTabValue} />
       {tabValue === 'lists'
         ? <UserLists lists={lists} />
+        : null}
+      {tabValue === 'stats'
+        ? <StatsDisplay lists={lists} />
         : null}
     </>
   );
