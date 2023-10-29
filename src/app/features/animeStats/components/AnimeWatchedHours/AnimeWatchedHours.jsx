@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
+import TimePerSeries from './TimePerSeries/TimePerSeries';
 
 const AnimeWatchedHours = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
@@ -123,9 +124,7 @@ const AnimeWatchedHours = ({ list }) => {
   return (
     <div>
       <p>Total time watched: {totalMinutes} minutes.</p>
-      <ol>
-        {sortedWatchedMinutes.map((anime) => <li>{anime.anime}, {anime.timeWatched} minutes</li>)}
-      </ol>
+      <TimePerSeries list={sortedWatchedMinutes} />
     </div>
   );
 };
