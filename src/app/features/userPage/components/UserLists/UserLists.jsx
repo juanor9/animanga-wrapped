@@ -1,11 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useState, useEffect } from 'react';
 import ActivityCard from '../../../anilist/components/ActivityCard/ActivityCard';
 import './UserLists.scss';
 
 const UserLists = ({ lists }) => {
+  console.log('🚀 ~ file: UserLists.jsx:8 ~ UserLists ~ lists:', lists);
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
+  // console.log('🚀 ~ file: UserLists.jsx:9 ~ UserLists ~ year:', year);
 
   const [anime, setAnime] = useState(null);
+  // console.log('🚀 ~ file: UserLists.jsx:12 ~ UserLists ~ anime:', anime);
   const [manga, setManga] = useState(null);
 
   useEffect(() => {
@@ -24,18 +29,28 @@ const UserLists = ({ lists }) => {
   return (
     <section className="user-lists">
       <h2>{`Activity from ${year}`}</h2>
-      <p>Anime Activity</p>
-      <section className="user-lists__list">
-        {anime
-          ? anime.map((activity) => <ActivityCard key={activity.id} activity={activity} />)
-          : null}
-      </section>
-      <p>Manga Activity</p>
-      <section className="user-lists__list">
-        {manga
-          ? manga.map((activity) => <ActivityCard key={activity.id} activity={activity} />)
-          : null}
-      </section>
+
+      {anime
+        ? (
+          <>
+            <p>Anime Activity</p>
+            <section className="user-lists__list">
+              {anime.map((activity) => <ActivityCard key={activity.id} activity={activity} />)}
+            </section>
+          </>
+        )
+        : null}
+
+      {manga
+        ? (
+          <>
+            <p>Manga Activity</p>
+            <section className="user-lists__list">
+              {manga.map((activity) => <ActivityCard key={activity.id} activity={activity} />)}
+            </section>
+          </>
+        )
+        : null}
     </section>
   );
 };
