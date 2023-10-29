@@ -1,0 +1,10 @@
+.time-watched-list{
+  display: flex;
+  padding: 1em;
+  gap: 2em;
+  overflow-x: scroll;
+  &__items{
+    padding: 1em;
+    width: 250px;
+  }
+}
