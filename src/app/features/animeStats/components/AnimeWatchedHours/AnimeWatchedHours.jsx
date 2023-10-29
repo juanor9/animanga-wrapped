@@ -1,10 +1,9 @@
-/* eslint-disable spaced-comment */
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
 /* eslint-disable max-len */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const AnimeWatchedHours = ({ list }) => {
-  // console.log('🚀 ~ file: AnimeWatchedHours.jsx:4 ~ AnimeWatchedHours ~ list:', list);
+  const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
   useEffect(() => {
     if (list) {
       const fullData = list.map((activity) => (
@@ -23,10 +22,12 @@ const AnimeWatchedHours = ({ list }) => {
         acc[curr.anime].push(curr);
         return acc;
       }, {});
-      Object.keys(groupedByAnime).forEach((key) => {
+
+      const WatchedTimeBySeries = Object.keys(groupedByAnime).map((key) => {
         const fullActivity = groupedByAnime[key];
         const isAnimeCompleted = fullActivity.some((e) => e.status === 'completed');
-        if (isAnimeCompleted) { // Esto es solo para los animes que están ya finalizados de ver.
+
+        if (isAnimeCompleted) {
           const { length } = fullActivity;
           const firstActivityIndex = length - 1;
           const firstActivity = fullActivity[firstActivityIndex];
@@ -39,7 +40,7 @@ const AnimeWatchedHours = ({ list }) => {
             const watchedEpisodes = Number(fullEpisodes) - Number(firstWatchedEpisode) + 1;
             const { duration } = firstActivity;
             const timeWatched = Number(watchedEpisodes) * Number(duration);
-            // console.log(key, watchedEpisodes, ' episodes | duration:', duration, 'minutes | Time watched:', timeWatched);
+            return { anime: key, timeWatched };
           }
           // Caso 2: Un episodio: progress: '1', como está completo, se resta el número inicial de capítulos al número total de capítulos para tener los capítulos vistos durante el año.
           if (firstActivityProgress && !firstActivityProgress.includes('-')) {
@@ -48,41 +49,84 @@ const AnimeWatchedHours = ({ list }) => {
             const watchedEpisodes = Number(fullEpisodes) - Number(firstWatchedEpisode) + 1;
             const { duration } = firstActivity;
             const timeWatched = Number(watchedEpisodes) * Number(duration);
-            // console.log(key, watchedEpisodes, ' episodes | duration:', duration, 'minutes | Time watched:', timeWatched);
+            return { anime: key, timeWatched };
           }
           // Caso 3: visto de una sentada: status: 'completed', progress: null
           if (firstActivityProgress === null && firstActivity.status === 'completed') {
-            // console.log('🚀 ~ file: AnimeWatchedHours.jsx:38 ~ Object.keys ~ firstActivity:', firstActivity);
             const { episodes } = firstActivity;
             const { duration } = firstActivity;
             const timeWatched = Number(episodes) * Number(duration);
-            // console.log(key, 'de una sentada', episodes, '| duration:', duration, 'minutes | Time watched:', timeWatched);
+            return { anime: key, timeWatched };
           }
         }
-        // TODO: deal with watching titles
+
         if (!isAnimeCompleted) {
-          // console.log(key);
           const { length } = fullActivity;
           const firstActivityIndex = length - 1;
           const firstActivity = fullActivity[firstActivityIndex];
           const firstActivityProgress = firstActivity.progress;
-          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:68 ~ Object.keys ~ firstActivityProgress:', firstActivityProgress);
           const lastActivity = fullActivity[0];
           const lastActivityProgress = lastActivity.progress;
-          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:72 ~ Object.keys ~ lastActivityProgress:', lastActivityProgress);
-          // TODO: Caso 1: Varios episodios: progress: '1 - 6', en inicio y ultimo
+
+          // Caso 1: Varios episodios: progress: '1 - 6', en inicio y ultimo
           if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
-            console.log(key);
-            console.log('🚀 ~ file: AnimeWatchedHours.jsx:75 ~ Object.keys ~ lastActivityProgress:', lastActivityProgress);
-            console.log('🚀 ~ file: AnimeWatchedHours.jsx:75 ~ Object.keys ~ firstActivityProgress:', firstActivityProgress);
+            const firstWatchedEpisode = firstActivityProgress.split(' - ')[0];
+            const lastWatchedEpisode = lastActivityProgress.split(' - ')[1];
+            const watchedEpisodes = Number(lastWatchedEpisode) - Number(firstWatchedEpisode) + 1;
+            const { duration } = firstActivity;
+            const timeWatched = Number(watchedEpisodes) * Number(duration);
+            return { anime: key, timeWatched };
           }
-          // TODO: Caso 2: Un episodio: progress: '1', en inicio y último
-          // TODO: Caso 3: progress: '1 - 6' en primera actividad y progress: '1' en última
-          // TODO: Caso 4: progress: '1' en primera actividad y progress: '1 - 6' en última
-          // TODO: obtener último episodio visto
+          // Caso 2: Un episodio: progress: '1', en inicio y último
+          if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
+            const firstWatchedEpisode = firstActivityProgress;
+            const lastWatchedEpisode = lastActivityProgress;
+            const watchedEpisodes = Number(lastWatchedEpisode) - Number(firstWatchedEpisode) + 1;
+            const { duration } = firstActivity;
+            const timeWatched = Number(watchedEpisodes) * Number(duration);
+            return { anime: key, timeWatched };
+          }
+          // Caso 3: progress: '1 - 6' en primera actividad y progress: '1' en última
+          if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
+            const firstWatchedEpisode = firstActivityProgress.split(' - ')[0];
+            const lastWatchedEpisode = lastActivityProgress;
+            const watchedEpisodes = Number(lastWatchedEpisode) - Number(firstWatchedEpisode) + 1;
+            const { duration } = firstActivity;
+            const timeWatched = Number(watchedEpisodes) * Number(duration);
+            return { anime: key, timeWatched };
+          }
+          // Caso 4: progress: '1' en primera actividad y progress: '1 - 6' en última
+          if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
+            const firstWatchedEpisode = firstActivityProgress;
+            const lastWatchedEpisode = lastActivityProgress.split(' - ')[1];
+            const watchedEpisodes = Number(lastWatchedEpisode) - Number(firstWatchedEpisode) + 1;
+            const { duration } = firstActivity;
+            const timeWatched = Number(watchedEpisodes) * Number(duration);
+            return { anime: key, timeWatched };
+          }
         }
+        return null;
       });
+      const sortedWatchedTimeBySeries = WatchedTimeBySeries.sort((a, b) => b.timeWatched - a.timeWatched);
+      if (sortedWatchedTimeBySeries && Array.isArray(sortedWatchedTimeBySeries)) {
+        setSortedWatchedMinutes(sortedWatchedTimeBySeries);
+      }
     }
   }, [list]);
+  const [totalMinutes, setTotalMinutes] = useState(0);
+  useEffect(() => {
+    if (sortedWatchedMinutes) {
+      const totalTime = sortedWatchedMinutes.reduce((acc, curr) => acc + curr.timeWatched, 0);
+      setTotalMinutes(totalTime);
+    }
+  }, [sortedWatchedMinutes]);
+  return (
+    <div>
+      <p>Total time watched: {totalMinutes} minutes.</p>
+      <ol>
+        {sortedWatchedMinutes.map((anime) => <li>{anime.anime}, {anime.timeWatched} minutes</li>)}
+      </ol>
+    </div>
+  );
 };
 export default AnimeWatchedHours;
