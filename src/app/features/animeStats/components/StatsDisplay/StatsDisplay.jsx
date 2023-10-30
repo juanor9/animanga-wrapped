@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
 import AnimeFormat from '../AnimeFormat/AnimeFormat';
+import LauchYear from '../LauchYear/LauchYear';
 
 const StatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -33,6 +34,7 @@ const StatsDisplay = ({ lists }) => {
       <h3>Anime stats</h3>
       <AnimeWatchedHours list={anime} />
       <AnimeFormat list={anime} />
+      <LauchYear list={anime} />
     </section>
   );
 };
