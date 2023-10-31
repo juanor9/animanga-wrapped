@@ -2,12 +2,13 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Topnav from '../Topnav/Topnav';
+import { useState, useEffect } from 'react';
 import { getUserProfile, getUserData } from '../../services/userPage';
+import AnimeStatsDisplay from '../../../animeStats/components/StatsDisplay/StatsDisplay';
+import Topnav from '../Topnav/Topnav';
 import UserLists from '../UserLists/UserLists';
-import StatsDisplay from '../../../animeStats/components/StatsDisplay/StatsDisplay';
+import MangaStatsDisplay from '../../../mangaStats/components/StatsDisplay/StatsDisplay';
 
 const UserDisplay = () => {
   const [tabValue, setTabValue] = useState('lists');
@@ -55,8 +56,8 @@ const UserDisplay = () => {
       {tabValue === 'lists'
         ? <UserLists lists={lists} />
         : null}
-      {tabValue === 'stats'
-        ? <StatsDisplay lists={lists} />
+      {tabValue === 'stats' // Añadir condición de si hay lista de anime
+        ? <><AnimeStatsDisplay lists={lists} /><MangaStatsDisplay lists={lists} /></>
         : null}
     </>
   );
