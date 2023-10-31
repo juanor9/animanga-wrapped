@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 import ChaptersPerSeries from './ChaptersPerSeries/ChaptersPerSeries';
 
 const MangaChapters = ({ list }) => {
-  // console.log('🚀 ~ file: MangaChapters.jsx:2 ~ MangaChapters ~ list:', list);
   const [sortedChapters, setSortedChapters] = useState(null);
-  // console.log('🚀 ~ file: MangaChapters.jsx:8 ~ MangaChapters ~ sortedChapters:', sortedChapters);
   useEffect(() => {
     if (list) {
       const fullData = list.map((activity) => (
@@ -17,7 +15,6 @@ const MangaChapters = ({ list }) => {
           chapters: activity.media.chapters,
         }
       ));
-      // console.log('🚀 ~ file: MangaChapters.jsx:17 ~ useEffect ~ fullData:', fullData);
       const groupedByManga = fullData.reduce((acc, curr) => {
         if (!acc[curr.manga]) {
           acc[curr.manga] = [];
@@ -25,11 +22,9 @@ const MangaChapters = ({ list }) => {
         acc[curr.manga].push(curr);
         return acc;
       }, {});
-      // console.log('🚀 ~ file: MangaChapters.jsx:25 ~ groupedByManga ~ groupedByManga:', groupedByManga);
 
       const ChaptersBySeries = Object.keys(groupedByManga).map((key) => {
         const fullActivity = groupedByManga[key];
-        // console.log('🚀 ~ file: MangaChapters.jsx:30 ~ ChaptersBySeries ~ fullActivity:', fullActivity);
         const isMangaCompleted = fullActivity.some((e) => e.status === 'completed');
 
         if (isMangaCompleted) {
@@ -106,7 +101,6 @@ const MangaChapters = ({ list }) => {
     }
   }, [list]);
   const [totalChapters, setTotalchapters] = useState(0);
-  console.log('🚀 ~ file: MangaChapters.jsx:108 ~ MangaChapters ~ totalChapters:', totalChapters);
   useEffect(() => {
     if (sortedChapters) {
       const totalChaptersCalc = sortedChapters.reduce((acc, curr) => acc + curr.readChapters, 0);
