@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import MangaChapters from '../MangaChapters/MangaChapters';
+import MangaFormat from '../MangaFormat/MangaFormat';
 
 const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -26,6 +27,7 @@ const MangaStatsDisplay = ({ lists }) => {
     <section>
       <h3>Manga stats</h3>
       <MangaChapters list={manga} />
+      <MangaFormat list={manga} />
     </section>
   );
 };
