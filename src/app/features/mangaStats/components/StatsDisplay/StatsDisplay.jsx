@@ -5,6 +5,7 @@ import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFormat from '../MangaFormat/MangaFormat';
 import ReleaseYear from '../ReleaseYear/ReleaseYear';
 import MangaGenre from '../MangaGenre/MangaGenre';
+import Mangaka from '../Mangaka/Mangaka';
 
 const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -32,6 +33,7 @@ const MangaStatsDisplay = ({ lists }) => {
       <MangaFormat list={manga} />
       <ReleaseYear list={manga} />
       <MangaGenre list={manga} />
+      <Mangaka list={manga} />
     </section>
   );
 };
