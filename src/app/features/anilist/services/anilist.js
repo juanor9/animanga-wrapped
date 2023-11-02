@@ -65,7 +65,7 @@ export async function getAnimeList(userId) {
     const { lastPage } = initialData.data.Page.pageInfo;
     const allData = [initialData.data.Page.activities];
 
-    for (let i = 2; i < lastPage; i++) {
+    for (let i = 2; i <= lastPage; i++) {
       const newVariables = {
         userId,
         page: i,
@@ -75,10 +75,10 @@ export async function getAnimeList(userId) {
         query,
         variables: newVariables,
       });
+      allData.push(newData.data.Page.activities);
       if (!newData.data.Page.pageInfo.hasNextPage) {
         break; // Sale del bucle
       }
-      allData.push(newData.data.Page.activities);
       if (i % 5 === 0) {
         await sleep(60000);
       } else {
@@ -122,10 +122,10 @@ export async function getMangaList(userId) {
         query,
         variables: newVariables,
       });
+      allData.push(newData.data.Page.activities);
       if (!newData.data.Page.pageInfo.hasNextPage) {
         break; // Sale del bucle
       }
-      allData.push(newData.data.Page.activities);
       if (i % 5 === 0) {
         await sleep(60000);
       } else {
