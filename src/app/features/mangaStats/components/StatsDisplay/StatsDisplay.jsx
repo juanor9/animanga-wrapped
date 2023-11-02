@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFormat from '../MangaFormat/MangaFormat';
 import ReleaseYear from '../ReleaseYear/ReleaseYear';
+import MangaGenre from '../MangaGenre/MangaGenre';
 
 const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -30,6 +31,7 @@ const MangaStatsDisplay = ({ lists }) => {
       <MangaChapters list={manga} />
       <MangaFormat list={manga} />
       <ReleaseYear list={manga} />
+      <MangaGenre list={manga} />
     </section>
   );
 };
