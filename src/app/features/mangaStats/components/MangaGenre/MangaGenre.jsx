@@ -30,7 +30,7 @@ const MangaGenre = ({ list }) => {
   }, [list]);
   return (
     <section>
-      <h3>Anime genres</h3>
+      <h3>Manga genres</h3>
       <ol>
         {genreList && genreList.length > 0
           ? genreList.map((item) => (
