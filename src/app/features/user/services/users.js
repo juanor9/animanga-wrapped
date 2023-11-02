@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'https://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'https://localhost:3000';
 
 export const createUser = createAsyncThunk(
   'users/createUser',
