@@ -63,3 +63,21 @@ export async function fetchAnimeList(accessToken, url) {
   const results = await data;
   return results;
 }
+
+export async function fetchMangaList(accessToken, url) {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch manga list: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  const results = await data;
+  return results;
+}

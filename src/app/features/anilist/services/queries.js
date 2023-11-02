@@ -1,5 +1,60 @@
 import { gql } from '@apollo/client';
 
+export const GET_POPULAR_ANIME = gql`
+  query {
+    Page(perPage: 30, page: 1) {
+      media(
+        sort: POPULARITY_DESC
+        type: ANIME
+        seasonYear: 2023
+        isAdult: false
+      ) {
+        id
+        title {
+          romaji
+          native
+        }
+        coverImage {
+          large
+          medium
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POPULAR_MANGA = gql`
+  query {
+    Page(page: 1, perPage: 30) {
+      media(
+        type: MANGA
+        startDate_greater: 20230101
+        startDate_lesser: 20231231
+        sort: POPULARITY_DESC
+        isAdult: false
+      ) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        startDate {
+          year
+          month
+          day
+        }
+        popularity
+        coverImage {
+          large
+        }
+        description
+        genres
+      }
+    }
+  }
+`;
+
 export const GET_VIEWER = gql`
   query {
     Viewer {
@@ -30,9 +85,6 @@ export const GET_ANIME_LIST = gql`
         sort: ID_DESC
       ) {
         ... on ListActivity {
-          user {
-            name
-          }
           createdAt
           type
           progress
@@ -42,24 +94,18 @@ export const GET_ANIME_LIST = gql`
               userPreferred
             }
             id
+            format
+            duration
             coverImage {
               extraLarge
               large
               medium
               color
             }
-            duration
             genres
             tags {
               id
               name
-            }
-            studios(isMain: true) {
-              nodes {
-                id
-                name
-                isAnimationStudio
-              }
             }
             staff {
               nodes {
@@ -75,6 +121,21 @@ export const GET_ANIME_LIST = gql`
                   userPreferred
                 }
               }
+            }
+            startDate {
+              year
+              month
+              day
+            }
+            endDate {
+              year
+              month
+              day
+            }
+            episodes
+            chapters
+            mediaListEntry {
+              score(format: POINT_10)
             }
           }
         }
@@ -101,9 +162,6 @@ export const GET_MANGA_LIST = gql`
         sort: ID_DESC
       ) {
         ... on ListActivity {
-          user {
-            name
-          }
           createdAt
           type
           progress
@@ -113,24 +171,18 @@ export const GET_MANGA_LIST = gql`
               userPreferred
             }
             id
+            format
+            duration
             coverImage {
               extraLarge
               large
               medium
               color
             }
-            duration
             genres
             tags {
               id
               name
-            }
-            studios(isMain: true) {
-              nodes {
-                id
-                name
-                isAnimationStudio
-              }
             }
             staff {
               nodes {
@@ -146,6 +198,21 @@ export const GET_MANGA_LIST = gql`
                   userPreferred
                 }
               }
+            }
+            startDate {
+              year
+              month
+              day
+            }
+            endDate {
+              year
+              month
+              day
+            }
+            episodes
+            chapters
+            mediaListEntry {
+              score(format: POINT_10)
             }
           }
         }

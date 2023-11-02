@@ -1,8 +1,12 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import createUser from '../services/users';
+import { createUser } from '../../services/users';
+import './UserRegistration.scss';
 
 const UserRegistration = () => {
   const dispatch = useDispatch();
@@ -31,28 +35,12 @@ const UserRegistration = () => {
     }
   };
   return (
-    <section>
-      <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="mail">
-          Email
-          <input
-            type="mail"
-            name="mail"
-            id="mail"
-            onChange={handleEmailChange}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={handlePasswordChange}
-          />
-        </label>
-        <button type="submit"> Submit </button>
-      </form>
+    <section className="user-registration">
+      <Link href="/register">
+        <button type="submit" className="user-registration__button">
+          Create user
+        </button>
+      </Link>
     </section>
   );
 };

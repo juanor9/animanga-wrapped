@@ -1,0 +1,14 @@
+@import '../../../../colors';
+
+.user-lists{
+  background-color: $light-black;
+  padding:1em 2em;
+  border-radius:0 0 2em 2em;
+  margin-top: -2px;
+  &__list{
+    font-size: .8em;
+    display: flex;
+    overflow-x: scroll;
+    gap: 1em;
+  }
+}

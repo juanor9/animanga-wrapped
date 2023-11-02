@@ -1,0 +1,29 @@
+@import'../../../../colors';
+
+.user-registration{
+  display: flex;
+  flex-direction: column;
+  &__form{
+    margin-top: 1em;
+    width: 100%;
+  }
+  &__label{
+    display: flex;
+    flex-direction: column;
+  }
+  &__input{
+    border: 0;
+    border-radius: 1em;
+    padding: .5em;
+    font-size: 1.2em;
+  }
+  &__button{
+    margin-top: 1em;
+    background-color: $yellow;
+    border: none;
+    padding: .5em;
+    width: 100%;
+    border-radius: 1em;
+    height: 5em;
+  }
+}

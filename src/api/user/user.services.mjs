@@ -2,22 +2,22 @@
 import User from './user.model.mjs';
 
 // Create user
-export default function createUser(
+export function createUser(
   user,
 ) {
   return User.create(user);
 }
 
-// // Get user by filter
-// export function getUserFilter(filter: FilterQuery<UserDocument>) {
-//   const user = User.findOne(filter);
-//   return user;
-// }
+// Get user by filter
+export function getUserFilter(filter) {
+  const user = User.findOne(filter);
+  return user;
+}
 
-// // get user by id
-// export function getUserById(id: string) {
-//   return User.findById(id).populate("publisher");
-// }
+// get user by id
+export function getUserById(id) {
+  return User.findById(id);
+}
 
 // // Update user
 // export function updateUser
