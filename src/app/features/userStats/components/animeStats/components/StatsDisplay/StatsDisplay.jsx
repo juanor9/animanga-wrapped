@@ -26,7 +26,6 @@ const AnimeStatsDisplay = ({ lists }) => {
 
   return (
     <section>
-      <h2>{`Stats for ${year}`}</h2>
       <h3>Anime stats</h3>
       <AnimeWatchedHours list={anime} />
       <AnimeFormat list={anime} />
