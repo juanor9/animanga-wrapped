@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import MangaStatsDisplay from '../mangaStats/components/StatsDisplay/StatsDisplay';
+import AnimeStatsDisplay from '../animeStats/components/StatsDisplay/StatsDisplay';
 
 const UserStats = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -22,7 +23,7 @@ const UserStats = ({ lists }) => {
     <section>
       <h2>Stats for {year}</h2>
       {anime && anime.length > 0
-        ? <p>Anime activity</p>
+        ? <AnimeStatsDisplay lists={lists} />
         : null}
 
       {manga && manga.length > 0
