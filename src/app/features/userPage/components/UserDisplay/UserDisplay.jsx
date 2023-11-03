@@ -5,10 +5,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getUserProfile, getUserData } from '../../services/userPage';
-import AnimeStatsDisplay from '../../../animeStats/components/StatsDisplay/StatsDisplay';
 import Topnav from '../Topnav/Topnav';
 import UserLists from '../UserLists/UserLists';
-import MangaStatsDisplay from '../../../mangaStats/components/StatsDisplay/StatsDisplay';
+import UserStats from '../../../userStats/components/UserStats/UserStats';
 
 const UserDisplay = () => {
   const [tabValue, setTabValue] = useState('lists');
@@ -57,7 +56,7 @@ const UserDisplay = () => {
         ? <UserLists lists={lists} />
         : null}
       {tabValue === 'stats' // Añadir condición de si hay lista de anime
-        ? <><AnimeStatsDisplay lists={lists} /><MangaStatsDisplay lists={lists} /></>
+        ? <UserStats lists={lists} />
         : null}
     </>
   );

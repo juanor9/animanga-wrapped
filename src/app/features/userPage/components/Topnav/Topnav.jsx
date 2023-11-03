@@ -19,14 +19,6 @@ const Topnav = ({ update }) => (
         >Stats
         </button>
       </li>
-      <li>
-        <button
-          type="button"
-          className="user__top-button"
-          onClick={() => update('settings')}
-        >Settings
-        </button>
-      </li>
     </ul>
   </nav>
 );
