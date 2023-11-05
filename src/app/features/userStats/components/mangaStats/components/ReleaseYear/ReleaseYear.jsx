@@ -1,7 +1,5 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-plusplus */
-/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const ReleaseYear = ({ list }) => {
   const [years, setYears] = useState([]);
@@ -43,6 +41,7 @@ const ReleaseYear = ({ list }) => {
         return acc;
       }, {});
       const yearsArray = Object.entries(yearCounts).map(([year, titles]) => ({
+        id: uuidv4(),
         year: parseInt(year, 10),
         titles,
       }));
@@ -55,7 +54,7 @@ const ReleaseYear = ({ list }) => {
       <ol className="release-year__list">
         {years && years.length > 0
           ? years.map((year) => (
-            <li className="release-year__item">
+            <li className="release-year__item" key={year.id}>
               <strong>{year.year}: </strong>
               {year.titles} titles
             </li>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;

@@ -6,7 +6,6 @@ import UserLogin from '../UserLogin/UserLogin';
 
 const LoginSignup = () => {
   const [tab, setTab] = useState('signup');
-  // console.log('🚀 ~ file: LoginSignup.jsx:5 ~ LoginSignup ~ tab:', tab);
   const handleClick = (tabValue) => {
     setTab(tabValue);
   };

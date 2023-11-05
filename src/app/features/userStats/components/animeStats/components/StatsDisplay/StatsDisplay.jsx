@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
 import AnimeFormat from '../AnimeFormat/AnimeFormat';
