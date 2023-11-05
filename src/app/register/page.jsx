@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 'use client';
 
 import './page.scss';
@@ -16,8 +14,6 @@ import Password from '../features/registration/components/Password/Password';
 
 const Register = () => {
   const [step, setStep] = useState(1);
-  // console.log('🚀 ~ file: page.jsx:17 ~ Register ~ step:', typeof (step));
-  // console.log('🚀 ~ file: page.jsx:17 ~ Register ~ step:', step);
 
   const handleClick = (event) => {
     event.preventDefault();

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import TimePerSeries from './TimePerSeries/TimePerSeries';

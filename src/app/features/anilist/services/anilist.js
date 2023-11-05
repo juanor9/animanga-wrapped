@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 import {
   GET_VIEWER,

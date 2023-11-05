@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-key */
 import { useState, useEffect } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 // TODO: realizar el conteo, no por cantidad de actividades, sino por cantidad de capítulos leídos.
 
 const Mangaka = ({ list }) => {
@@ -35,6 +34,7 @@ const Mangaka = ({ list }) => {
       const result = Object.entries(mangakaCount).map(
         ([mangakaName, count]) => (
           {
+            id: uuidv4(),
             mangaka: mangakaName,
             count,
           }),
@@ -49,7 +49,7 @@ const Mangaka = ({ list }) => {
       <ol>
         {mangakaList
           ? mangakaList.map((item) => (
-            <li>{item.mangaka}</li>
+            <li key={item.id}>{item.mangaka}</li>
           ))
           : null}
       </ol>

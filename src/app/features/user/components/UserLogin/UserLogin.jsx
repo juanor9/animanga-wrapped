@@ -1,4 +1,3 @@
-// Importando las librerías y dependencias necesarias
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -60,7 +59,7 @@ const UserLogin = () => {
             id="mail"
             name="mail"
             onChange={handleEmailChange}
-            type="email" // Mantuve el tipo como 'email' porque es el tipo correcto para este tipo de input
+            type="email"
           />
         </label>
         <label htmlFor="password" className="user-registration__label">

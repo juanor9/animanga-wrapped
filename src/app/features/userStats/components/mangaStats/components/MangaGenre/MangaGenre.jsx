@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-key */
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const MangaGenre = ({ list }) => {
   const [genreList, SetGenreList] = useState([]);
@@ -21,6 +21,7 @@ const MangaGenre = ({ list }) => {
         }, {});
 
       const result = Object.keys(genreCount).map((genre) => ({
+        id: uuidv4(),
         genre,
         count: genreCount[genre],
       }));
@@ -34,7 +35,7 @@ const MangaGenre = ({ list }) => {
       <ol>
         {genreList && genreList.length > 0
           ? genreList.map((item) => (
-            <li>{item.genre}</li>
+            <li key={item.id}>{item.genre}</li>
           ))
           : null}
       </ol>

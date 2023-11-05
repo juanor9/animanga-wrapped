@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFormat from '../MangaFormat/MangaFormat';

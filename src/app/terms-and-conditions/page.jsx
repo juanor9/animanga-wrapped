@@ -53,7 +53,7 @@ const TermsAndConditionsPage = () => (
       and utilize such data in conformity with the prevailing data protection legislations,
       regulatory
       directives, and the intricacies delineated in the Application&apos;s
-      <a href="https://chat.openai.com/#PrivacyPolicyLink">Privacy Policy</a>.
+      <a href="./privavy-policy">Privacy Policy</a>.
     </p>
     <h3>5. Data Safeguarding and Third-Party Disclosures</h3>
     <p>5.1. Personal and usage data entrusted to the Licensor shall be safeguarded with

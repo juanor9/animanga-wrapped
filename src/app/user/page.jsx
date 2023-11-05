@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import './page.scss';
 import UserDisplay from '../features/userPage/components/UserDisplay/UserDisplay';
 
