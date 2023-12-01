@@ -1,13 +1,11 @@
-/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable no-console */
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
-export default function (req, res, next) {
-  console.log('Received request at', req.url);
-
+const MALProxy = (req, res, next) => {
   const proxy = createProxyMiddleware({
-    target: 'https://myanimelist.net',
+    target: 'https://s4.anilist.co/',
     changeOrigin: true,
-    pathRewrite: { '^/net': '' },
+    pathRewrite: { '^/api/al/sources': '' },
     onProxyRes(proxyRes) {
       let body = [];
       proxyRes.on('data', (chunk) => {
@@ -15,9 +13,13 @@ export default function (req, res, next) {
       });
       proxyRes.on('end', () => {
         body = Buffer.concat(body).toString();
+        console.log(`Response from APIMyAnimeList for ${req.url}:`, proxyRes.statusCode, body);
       });
     },
   });
 
+  console.log('Proxying request to', `https://s4.anilist.co/${req.url.replace('/api', '')}`);
   proxy(req, res, next);
-}
+};
+
+export default MALProxy;

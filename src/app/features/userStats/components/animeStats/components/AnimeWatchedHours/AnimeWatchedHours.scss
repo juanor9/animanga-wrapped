@@ -1,0 +1,32 @@
+@import "../../../../../../colors";
+
+.watched-hours {
+  &__story {
+    color: $black;
+    width: 350px;
+    height: 622px;
+    background-color: $orange;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em;
+    &-spotlight {
+      text-align: center;
+      font-size: 1.5em;
+    }
+    &-image {
+      max-width: 60%;
+      margin: auto;
+      display: block;
+      & img {
+        width: 100%;
+      }
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    font-size: 0.55em;
+  }
+}

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AnimeFormat = ({ list }) => {
   const [formatData, setFormatData] = useState({});
+
   useEffect(() => {
     if (list) {
       const fullData = list.map((activity) => (
@@ -22,6 +23,7 @@ const AnimeFormat = ({ list }) => {
       setFormatData(formats);
     }
   }, [list]);
+
   return (
     <section>
       <h3>Anime Format</h3>
