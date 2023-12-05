@@ -26,10 +26,12 @@ const AnimeStatsDisplay = ({ lists }) => {
   return (
     <section>
       <h3>Anime stats</h3>
-      <AnimeWatchedHours list={anime} />
-      <AnimeFormat list={anime} />
-      <LauchYear list={anime} />
-      <AnimeGenre list={anime} />
+      <div id="watched-hours" className="story__container">
+        <AnimeWatchedHours list={anime} />
+        <AnimeFormat list={anime} />
+        <LauchYear list={anime} />
+        <AnimeGenre list={anime} />
+      </div>
     </section>
   );
 };
