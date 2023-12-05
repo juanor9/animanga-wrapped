@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react';
 import { toBlob } from 'html-to-image';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import TimePerSeries from '../../TimePerSeries/TimePerSeries';
 import uploadImage from '../../../../services/upload';
 import './AnimeWatchedHours.scss';
 import 'react-responsive-modal/styles.css';
@@ -174,21 +173,21 @@ const AnimeWatchedHours = ({ list }) => {
   const uploadToCloudinary = async () => {
     if (ref.current) {
       try {
-        console.log('🚀 ~ file: AnimeWatchedHours.jsx:173 ~ uploadToCloudinary ~ ref.current:', ref.current);
+        // console.log('🚀 ~ file: AnimeWatchedHours.jsx:173 ~ uploadToCloudinary ~ ref.current:', ref.current);
 
         const blob = await toBlob(ref.current);
-        console.log('🚀 ~ file: AnimeWatchedHours.jsx:177 ~ uploadToCloudinary ~ blob:', blob);
+        // console.log('🚀 ~ file: AnimeWatchedHours.jsx:177 ~ uploadToCloudinary ~ blob:', blob);
         if (blob) {
           const file = new File([blob], 'anime-watched-hours.png', {
             type: 'image/png',
           });
-          console.log('🚀 ~ file: AnimeWatchedHours.jsx:182 ~ uploadToCloudinary ~ file:', file);
+          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:182 ~ uploadToCloudinary ~ file:', file);
           const uploadedImage = await dispatch(
             uploadImage({ file, listUsername }),
           );
-          console.log('🚀 ~ file: AnimeWatchedHours.jsx:186 ~ uploadToCloudinary ~ uploadedImage:', uploadedImage);
+          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:186 ~ uploadToCloudinary ~ uploadedImage:', uploadedImage);
           const { url } = uploadedImage.payload;
-          console.log('🚀 ~ file: AnimeWatchedHours.jsx:188 ~ uploadToCloudinary ~ url:', url);
+          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:188 ~ uploadToCloudinary ~ url:', url);
           setImageUrl(String(url));
         }
       } catch (err) {
@@ -224,8 +223,6 @@ const AnimeWatchedHours = ({ list }) => {
 
   return (
     <>
-      {/* <TimePerSeries list={sortedWatchedMinutes} /> */}
-      {console.log(sortedWatchedMinutes)}
       <StoryCard key="1" id="1">
         <p>This year you watched {totalMinutes} minutes of anime.</p>
       </StoryCard>
@@ -236,8 +233,10 @@ const AnimeWatchedHours = ({ list }) => {
             ? (
               <>
                 <picture className="story__image">
-                  <img src={sortedWatchedMinutes[0].image} alt="" />
-                </picture><p>{sortedWatchedMinutes[0].anime}</p><p>{sortedWatchedMinutes[0].timeWatched} minutes</p>
+                  <img src={sortedWatchedMinutes[0].image} alt={sortedWatchedMinutes[0].anime} />
+                </picture>
+                <p>{sortedWatchedMinutes[0].anime}</p>
+                <p>{sortedWatchedMinutes[0].timeWatched} minutes</p>
               </>
             )
             : null}

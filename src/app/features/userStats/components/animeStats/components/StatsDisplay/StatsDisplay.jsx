@@ -1,4 +1,11 @@
 import { useState, useEffect } from 'react';
+import {
+  Chart as ChartJS,
+  Title,
+  Legend,
+  ArcElement,
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
 import AnimeFormat from '../AnimeFormat/AnimeFormat';
 import LauchYear from '../LauchYear/LauchYear';
@@ -8,6 +15,13 @@ const AnimeStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
 
   const [anime, setAnime] = useState(null);
+
+  ChartJS.register(
+    Title,
+    Legend,
+    ArcElement,
+    ChartDataLabels,
+  );
 
   useEffect(() => {
     if (lists && Array.isArray(lists)) {
