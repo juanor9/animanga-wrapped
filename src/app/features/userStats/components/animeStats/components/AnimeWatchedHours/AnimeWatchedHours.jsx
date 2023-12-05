@@ -1,23 +1,19 @@
-/* eslint-disable no-debugger */
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import { useEffect, useState, useRef } from 'react';
 import { toBlob } from 'html-to-image';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal } from 'react-responsive-modal';
+import { v4 as uuidv4 } from 'uuid';
 import TimePerSeries from '../../TimePerSeries/TimePerSeries';
 import uploadImage from '../../../../services/upload';
 import './AnimeWatchedHours.scss';
 import 'react-responsive-modal/styles.css';
+import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-
+const year = process.env.NEXT_PUBLIC_YEAR;
 const AnimeWatchedHours = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
-
-  const [open, setOpen] = useState(false);
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
 
   useEffect(() => {
     if (list) {
@@ -227,40 +223,49 @@ const AnimeWatchedHours = ({ list }) => {
   }, [sortedWatchedMinutes]);
 
   return (
-    <div id="watched-hours" className="watched-hours">
-      <p>Total time watched: {totalMinutes} minutes.</p>
-      <TimePerSeries list={sortedWatchedMinutes} />
-      <button type="button" onClick={onOpenModal}>
-        Share image
-      </button>
-        <div id="stories-image" className="watched-hours__story" ref={ref}>
-          {sortedWatchedMinutes && sortedWatchedMinutes.length >= 0 ? (
-            <div>
-              <div className="watched-hours__story-spotlight">
-                <picture className="watched-hours__story-image">
-                  <img src={topImage} alt="" />
-                </picture>
-                <p>{sortedWatchedMinutes[0].anime}</p>
-                <p>{sortedWatchedMinutes[0].timeWatched} minutes</p>
-              </div>
-              <div>
-                <ul>
-                  {sortedWatchedMinutes.slice(0, 4).map((anime) => (
-                    <li key={anime.anime}>
-                      {anime.anime} | {anime.timeWatched} minutes
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ) : null}
-          <p>Total time watched: {totalMinutes / 60} hours.</p>
-          <div className="watched-hours__footer">
-            <p>Anime Anime and Manga Year Wrapped</p>
-            <p>animanga-wrapped.vercel.app/</p>
-          </div>
+    <>
+      {/* <TimePerSeries list={sortedWatchedMinutes} /> */}
+      {console.log(sortedWatchedMinutes)}
+      <StoryCard key="1" id="1">
+        <p>This year you watched {totalMinutes} minutes of anime.</p>
+      </StoryCard>
+      <StoryCard key="2" id="2">
+        <div>
+          <p>Your favorite anime this {year} was:</p>
+          {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
+            ? (
+              <>
+                <picture className="story__image">
+                  <img src={sortedWatchedMinutes[0].image} alt="" />
+                </picture><p>{sortedWatchedMinutes[0].anime}</p><p>{sortedWatchedMinutes[0].timeWatched} minutes</p>
+              </>
+            )
+            : null}
+
         </div>
-    </div>
+      </StoryCard>
+      <StoryCard key="3" id="3">
+        <div>
+          <p>Your main series</p>
+          <ul className="story__list-container">
+            {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
+              ? sortedWatchedMinutes.slice(0, 5).map((item) => (
+                <li key={uuidv4()} className="story__list-item">
+                  <picture>
+                    <img src={item.image} alt="" />
+                  </picture>
+                  <div>
+                    <p>{item.anime}</p>
+                    <p>{item.timeWatched} minutes</p>
+                  </div>
+                </li>
+              ))
+              : null}
+          </ul>
+        </div>
+
+      </StoryCard>
+    </>
   );
 };
 export default AnimeWatchedHours;

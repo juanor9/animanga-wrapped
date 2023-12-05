@@ -8,7 +8,7 @@ import UserLists from '../UserLists/UserLists';
 import UserStats from '../../../userStats/components/UserStats/UserStats';
 
 const UserDisplay = () => {
-  const [tabValue, setTabValue] = useState('lists');
+  const [tabValue, setTabValue] = useState('stats');
   const [userId, setUserId] = useState(null);
   const [userToken, setUserToken] = useState(null);
   const { lists } = useSelector((state) => state.UserReducer.user);
@@ -50,12 +50,13 @@ const UserDisplay = () => {
   return (
     <>
       <Topnav update={setTabValue} />
-      {tabValue === 'lists'
-        ? <UserLists lists={lists} />
-        : null}
       {tabValue === 'stats' // Añadir condición de si hay lista de anime
         ? <UserStats lists={lists} />
         : null}
+      {tabValue === 'lists'
+        ? <UserLists lists={lists} />
+        : null}
+
     </>
   );
 };
