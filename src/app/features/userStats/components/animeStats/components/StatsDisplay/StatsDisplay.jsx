@@ -4,6 +4,9 @@ import {
   Title,
   Legend,
   ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
@@ -21,6 +24,9 @@ const AnimeStatsDisplay = ({ lists }) => {
     Legend,
     ArcElement,
     ChartDataLabels,
+    CategoryScale,
+    LinearScale,
+    BarElement,
   );
 
   useEffect(() => {
