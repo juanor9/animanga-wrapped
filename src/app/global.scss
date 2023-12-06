@@ -31,13 +31,25 @@ h2 {
 
 .story {
   color: $black;
+  background: grey;
   width: 350px;
   height: 622px;
-  background-color: $orange;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2em;
+  &--orange-gradient {
+    background: $orange-gradient;
+  }
+  &--green-gradient {
+    background: $green-gradient;
+  }
+  &--yellow-gradient {
+    background: $yellow-gradient;
+  }
+  &--pink-gradient {
+    background: $pink-gradient;
+  }
   &__container{
     display: flex;
     gap: 2em;

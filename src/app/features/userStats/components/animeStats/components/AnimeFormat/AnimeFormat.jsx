@@ -85,7 +85,7 @@ const AnimeFormat = ({ list }) => {
   };
 
   return (
-    <StoryCard key="4" id="4">
+    <StoryCard key="4" id="4" color="yellow">
       <p>This is how you distributed your formats on {year}:</p>
       <Doughnut
         data={data}

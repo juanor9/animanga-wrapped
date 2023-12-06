@@ -1,11 +1,10 @@
-const StoryCard = ({ children }) => (
-  <div id="series-story" className="story">
+const StoryCard = ({ children, color }) => (
+  <div id="series-story" className={`story story--${color}-gradient`}>
     <div>
       {children}
     </div>
     <div className="story__footer">
-      <p>Anime Anime and Manga Year Wrapped</p>
-      <p>animanga-wrapped.vercel.app/</p>
+      <p>animanga-wrapped.vercel.app</p>
     </div>
   </div>
 );

@@ -223,10 +223,10 @@ const AnimeWatchedHours = ({ list }) => {
 
   return (
     <>
-      <StoryCard key="1" id="1">
+      <StoryCard key="1" id="1" color="orange">
         <p>This year you watched {totalMinutes} minutes of anime.</p>
       </StoryCard>
-      <StoryCard key="2" id="2">
+      <StoryCard key="2" id="2" color="green">
         <div>
           <p>Your favorite anime this {year} was:</p>
           {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
@@ -243,7 +243,7 @@ const AnimeWatchedHours = ({ list }) => {
 
         </div>
       </StoryCard>
-      <StoryCard key="3" id="3">
+      <StoryCard key="3" id="3" color="pink">
         <div>
           <p>Your main series</p>
           <ul className="story__list-container">
