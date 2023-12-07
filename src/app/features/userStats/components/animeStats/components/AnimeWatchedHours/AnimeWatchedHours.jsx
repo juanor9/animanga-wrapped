@@ -251,7 +251,7 @@ const AnimeWatchedHours = ({ list }) => {
               ? sortedWatchedMinutes.slice(0, 5).map((item) => (
                 <li key={uuidv4()} className="story__list-item">
                   <picture>
-                    <img src={item.image} alt="" />
+                    <img src={item.image} alt={item.anime} />
                   </picture>
                   <div>
                     <p>{item.anime}</p>

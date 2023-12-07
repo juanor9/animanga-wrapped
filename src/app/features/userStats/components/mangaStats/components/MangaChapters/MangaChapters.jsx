@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
-import ChaptersPerSeries from './ChaptersPerSeries/ChaptersPerSeries';
+import { v4 as uuidv4 } from 'uuid';
+import StoryCard from '../../../../../../components/Stories/Stories';
+
+const year = process.env.NEXT_PUBLIC_YEAR;
 
 const MangaChapters = ({ list }) => {
   const [sortedChapters, setSortedChapters] = useState(null);
@@ -12,6 +15,7 @@ const MangaChapters = ({ list }) => {
           progress: activity.progress,
           manga: activity.media.title.userPreferred,
           chapters: activity.media.chapters,
+          image: activity.media.coverImage.extraLarge,
         }
       ));
       const groupedByManga = fullData.reduce((acc, curr) => {
@@ -21,6 +25,7 @@ const MangaChapters = ({ list }) => {
         acc[curr.manga].push(curr);
         return acc;
       }, {});
+      // console.log('🚀 ~ file: MangaChapters.jsx:29 ~ groupedByManga ~ groupedByManga:', groupedByManga);
 
       const ChaptersBySeries = Object.keys(groupedByManga).map((key) => {
         const fullActivity = groupedByManga[key];
@@ -37,19 +42,19 @@ const MangaChapters = ({ list }) => {
             const firstReadChapter = firstActivity.progress.split(' - ')[0];
             const fullChapters = firstActivity.chapters;
             const readChapters = Number(fullChapters) - Number(firstReadChapter) + 1;
-            return { manga: key, readChapters };
+            return { manga: key, readChapters, image: firstActivity.image };
           }
           // Caso 2: Un episodio: progress: '1', como está completo, se resta el número inicial de capítulos al número total de capítulos para tener los capítulos vistos durante el año.
           if (firstActivityProgress && !firstActivityProgress.includes('-')) {
             const firstReadChapter = firstActivity.progress;
             const fullChapters = firstActivity.chapters;
             const readChapters = Number(fullChapters) - Number(firstReadChapter) + 1;
-            return { manga: key, readChapters };
+            return { manga: key, readChapters, image: firstActivity.image };
           }
           // Caso 3: visto de una sentada: status: 'completed', progress: null
           if (firstActivityProgress === null && firstActivity.status === 'completed') {
             const { chapters } = firstActivity;
-            return { manga: key, readChapters: chapters };
+            return { manga: key, readChapters: chapters, image: firstActivity.image };
           }
         }
 
@@ -66,39 +71,39 @@ const MangaChapters = ({ list }) => {
             const firstReadChapter = firstActivityProgress.split(' - ')[0];
             const lastReadChapter = lastActivityProgress.split(' - ')[1];
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
-            return { manga: key, readChapters };
+            return { manga: key, readChapters, image: firstActivity.image };
           }
           // Caso 2: Un episodio: progress: '1', en inicio y último
           if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress;
             const lastReadChapter = lastActivityProgress;
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
-            return { manga: key, readChapters };
+            return { manga: key, readChapters, image: firstActivity.image };
           }
           // Caso 3: progress: '1 - 6' en primera actividad y progress: '1' en última
           if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress.split(' - ')[0];
             const lastReadChapter = lastActivityProgress;
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
-            return { manga: key, readChapters };
+            return { manga: key, readChapters, image: firstActivity.image };
           }
           // Caso 4: progress: '1' en primera actividad y progress: '1 - 6' en última
           if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress;
             const lastReadChapter = lastActivityProgress.split(' - ')[1];
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
-            return { anime: key, readChapters };
+            return { manga: key, readChapters, image: firstActivity.image };
           }
         }
         return null;
       });
-      // console.log('🚀 ~ file: MangaChapters.jsx:107 ~ ChaptersBySeries ~ ChaptersBySeries:', ChaptersBySeries);
       const sortedChaptersBySeries = ChaptersBySeries.sort((a, b) => b.readChapters - a.readChapters);
       if (sortedChaptersBySeries && Array.isArray(sortedChaptersBySeries)) {
         setSortedChapters(sortedChaptersBySeries);
       }
     }
   }, [list]);
+
   const [totalChapters, setTotalchapters] = useState(0);
   useEffect(() => {
     if (sortedChapters) {
@@ -106,11 +111,50 @@ const MangaChapters = ({ list }) => {
       setTotalchapters(totalChaptersCalc);
     }
   }, [sortedChapters]);
+
   return (
-    <section>
-      <p>Total of chapters read: {totalChapters} chapters.</p>
-      <ChaptersPerSeries list={sortedChapters} />
-    </section>
+    <>
+      <StoryCard key="7" id="7">
+        <p>This year you&apos;ve read {totalChapters} manga chapters.</p>
+      </StoryCard>
+      <StoryCard key="8" id="8">
+        <div>
+          <p>Your favorite manga this {year} was:</p>
+          {Array.isArray(sortedChapters) && sortedChapters.length > 0
+            ? (
+              <>
+                <picture className="story__image">
+                  <img src={sortedChapters[0].image} alt={sortedChapters[0].manga} />
+                </picture>
+                <p>{sortedChapters[0].manga}</p>
+                <p>{sortedChapters[0].readChapters} chapters</p>
+              </>
+            )
+            : null}
+
+        </div>
+      </StoryCard>
+      <StoryCard key="9" id="9">
+        <div>
+          <p>Your main series</p>
+          <ul className="story__list-container">
+            {Array.isArray(sortedChapters) && sortedChapters.length > 0
+              ? sortedChapters.slice(0, 5).map((item) => (
+                <li key={uuidv4()} className="story__list-item">
+                  <picture>
+                    <img src={item.image} alt={item.manga} />
+                  </picture>
+                  <div>
+                    <p>{item.manga}</p>
+                    <p>{item.readChapters} chapters</p>
+                  </div>
+                </li>
+              ))
+              : null}
+          </ul>
+        </div>
+      </StoryCard>
+    </>
   );
 };
 

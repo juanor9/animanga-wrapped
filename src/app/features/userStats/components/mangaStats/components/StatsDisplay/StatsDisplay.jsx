@@ -27,11 +27,13 @@ const MangaStatsDisplay = ({ lists }) => {
   return (
     <section>
       <h3>Manga stats</h3>
-      <MangaChapters list={manga} />
-      <MangaFormat list={manga} />
-      <ReleaseYear list={manga} />
-      <MangaGenre list={manga} />
-      <Mangaka list={manga} />
+      <div id="watched-hours" className="story__container">
+        <MangaChapters list={manga} />
+        <MangaFormat list={manga} />
+        <ReleaseYear list={manga} />
+        <MangaGenre list={manga} />
+        <Mangaka list={manga} />
+      </div>
     </section>
   );
 };
