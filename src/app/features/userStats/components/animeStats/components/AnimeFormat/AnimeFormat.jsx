@@ -12,7 +12,7 @@ const AnimeFormat = ({ list }) => {
       const fullData = list.map((activity) => (
         {
           anime: activity.media.title.userPreferred,
-          format: activity.media.format,
+          format: activity.media.format.replace('_', ' ').toLowerCase(),
         }
       ));
       const uniqueAnime = fullData.filter((
@@ -86,7 +86,7 @@ const AnimeFormat = ({ list }) => {
 
   return (
     <StoryCard key="4" id="4" color="yellow">
-      <p>This is how you distributed your formats on {year}:</p>
+      <p>This is how you distributed your anime formats on {year}:</p>
       <Doughnut
         data={data}
         options={options}
