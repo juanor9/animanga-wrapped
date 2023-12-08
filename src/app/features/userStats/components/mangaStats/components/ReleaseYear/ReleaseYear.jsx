@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Bar } from 'react-chartjs-2';
+import StoryCard from '../../../../../../components/Stories/Stories';
 
 const ReleaseYear = ({ list }) => {
   const [years, setYears] = useState([]);
@@ -45,23 +47,66 @@ const ReleaseYear = ({ list }) => {
         year: parseInt(year, 10),
         titles,
       }));
-      setYears(yearsArray.sort((a, b) => b.titles - a.titles));
+      setYears(yearsArray.sort((a, b) => b.year - a.year));
     }
   }, [list]);
+
+  const data = {
+    labels: years.map((i) => i.year),
+    datasets: [{
+      label: 'My First Dataset',
+      data: years.map((i) => i.titles),
+      backgroundColor: [
+        'rgba(255,145,255)',
+        'rgba(255,211,25)',
+        'rgba(49,181,122)',
+        'rgba(252, 128,45)',
+      ],
+      borderColor: 'transparent',
+      color: 'rgba(48, 42, 37,1)',
+      barThickness: 16,
+      categoryPercentage: 0.5,
+      barPercentage: 1,
+    }],
+  };
+
+  const options = {
+    indexAxis: 'y',
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      datalabels: {
+        display: false,
+      },
+    },
+    layout: {
+      padding: {
+        top: 10,
+        bottom: 10,
+      },
+    },
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: true,
+      },
+    },
+  };
+
   return (
-    <section className="release-year">
-      <h3>Titles Per Release Year</h3>
-      <ol className="release-year__list">
-        {years && years.length > 0
-          ? years.map((year) => (
-            <li className="release-year__item" key={year.id}>
-              <strong>{year.year}: </strong>
-              {year.titles} titles
-            </li>
-          ))
-          : null}
-      </ol>
-    </section>
+    <StoryCard key="11" id="11">
+      <p>These are the release years of the manga you read this year:</p>
+      <div style={{ height: '400px' }}>
+        <Bar
+          data={data}
+          options={options}
+        />
+      </div>
+    </StoryCard>
   );
 };
 export default ReleaseYear;

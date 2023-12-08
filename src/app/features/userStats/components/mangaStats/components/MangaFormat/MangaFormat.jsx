@@ -83,7 +83,7 @@ const MangaFormat = ({ list }) => {
     cutout: '50%',
   };
   return (
-    <StoryCard key="4" id="4">
+    <StoryCard key="10" id="10">
       <p>This is how you distributed your manga formats on {year}:</p>
       <Doughnut
         data={data}
