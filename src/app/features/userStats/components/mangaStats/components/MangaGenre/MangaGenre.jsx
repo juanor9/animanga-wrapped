@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import StoryCard from '../../../../../../components/Stories/Stories';
 
 const MangaGenre = ({ list }) => {
   const [genreList, SetGenreList] = useState([]);
@@ -30,16 +31,14 @@ const MangaGenre = ({ list }) => {
     }
   }, [list]);
   return (
-    <section>
-      <h3>Manga genres</h3>
+    <StoryCard key="6" id="6">
+      This were your favorite anime genres for this year:
       <ol>
         {genreList && genreList.length > 0
-          ? genreList.map((item) => (
-            <li key={item.id}>{item.genre}</li>
-          ))
+          ? genreList.slice(0, 5).map((item) => <li key={item.id}>{item.genre}</li>)
           : null}
       </ol>
-    </section>
+    </StoryCard>
   );
 };
 export default MangaGenre;
