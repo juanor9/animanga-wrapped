@@ -30,7 +30,6 @@ const AnimeGenre = ({ list }) => {
     }
   }, [list]);
   return (
-
     <StoryCard key="6" id="6">
       This were your favorite anime genres for this year:
       <ol>
