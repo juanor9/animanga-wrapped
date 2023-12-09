@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import StoryCard from '../../../../../../components/Stories/Stories';
 // TODO: realizar el conteo, no por cantidad de actividades, sino por cantidad de capítulos leídos.
 
 const Mangaka = ({ list }) => {
@@ -24,36 +25,46 @@ const Mangaka = ({ list }) => {
       mangakaFilter.forEach((mangaEntry) => {
         mangaEntry.mangaka.forEach((mangaka) => {
           const mangakaName = mangaka.name.userPreferred;
+          const mangakaPic = mangaka.image.large;
           if (!mangakaCount[mangakaName]) {
-            mangakaCount[mangakaName] = 1;
+            mangakaCount[mangakaName] = { titles: 1, image: mangakaPic }; // Initialize the object
           } else {
-            mangakaCount[mangakaName] += 1;
+            mangakaCount[mangakaName].titles += 1;
           }
         });
       });
       const result = Object.entries(mangakaCount).map(
-        ([mangakaName, count]) => (
+        (e) => (
           {
             id: uuidv4(),
-            mangaka: mangakaName,
-            count,
-          }),
+            mangaka: e[0],
+            img: e[1].image,
+            count: e[1].titles,
+          }
+        ),
       );
       const mangakaListSorted = result.sort((a, b) => b.count - a.count);
       SetMangakaList(mangakaListSorted);
     }
   }, [list]);
   return (
-    <section>
+    <StoryCard>
       <h3>Most Read Mangaka</h3>
       <ol>
         {mangakaList
-          ? mangakaList.map((item) => (
-            <li key={item.id}>{item.mangaka}</li>
+          ? mangakaList.slice(0, 5).map((item) => (
+            <li key={item.id}>
+              <picture>
+                <img src={item.img} alt={item.mangaka} />
+              </picture>
+              <div>
+                <p>{item.mangaka}</p>
+              </div>
+            </li>
           ))
           : null}
       </ol>
-    </section>
+    </StoryCard>
   );
 };
 export default Mangaka;
