@@ -114,10 +114,10 @@ const MangaChapters = ({ list }) => {
 
   return (
     <>
-      <StoryCard key="7" id="7">
-        <p>This year you&apos;ve read {totalChapters} manga chapters.</p>
+      <StoryCard key="7" id="7" color="pink">
+        <p>This year you read <span className="story__text-highlight">{totalChapters}</span> manga chapters.</p>
       </StoryCard>
-      <StoryCard key="8" id="8">
+      <StoryCard key="8" id="8" color="yellow">
         <div>
           <p>Your favorite manga this {year} was:</p>
           {Array.isArray(sortedChapters) && sortedChapters.length > 0
@@ -134,7 +134,7 @@ const MangaChapters = ({ list }) => {
 
         </div>
       </StoryCard>
-      <StoryCard key="9" id="9">
+      <StoryCard key="9" id="9" color="orange">
         <div>
           <p>Your main series</p>
           <ul className="story__list-container">

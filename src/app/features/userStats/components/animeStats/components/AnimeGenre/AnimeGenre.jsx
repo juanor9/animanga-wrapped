@@ -30,7 +30,7 @@ const AnimeGenre = ({ list }) => {
     }
   }, [list]);
   return (
-    <StoryCard key="6" id="6">
+    <StoryCard key="6" id="6" color="green">
       This were your favorite anime genres for this year:
       <ol>
         {genreList && genreList.length > 0

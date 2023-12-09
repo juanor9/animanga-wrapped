@@ -99,7 +99,7 @@ const LauchYear = ({ list }) => {
   };
 
   return (
-    <StoryCard key="5" id="5">
+    <StoryCard key="5" id="5" color="orange">
       <p>These are the release years of the anime you watched this year:</p>
       <div style={{ height: '400px' }}>
         <Bar

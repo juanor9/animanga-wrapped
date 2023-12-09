@@ -224,7 +224,7 @@ const AnimeWatchedHours = ({ list }) => {
   return (
     <>
       <StoryCard key="1" id="1" color="orange">
-        <p>This year you watched {totalMinutes} minutes of anime.</p>
+        <p>This year you watched <span className="story__text-highlight">{totalMinutes}</span> minutes of anime.</p>
       </StoryCard>
       <StoryCard key="2" id="2" color="green">
         <div>

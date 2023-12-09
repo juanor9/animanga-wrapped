@@ -32,12 +32,16 @@ h2 {
 .story {
   color: $black;
   background: grey;
-  width: 350px;
-  height: 622px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2em;
+  aspect-ratio: 9/16;
+  flex-grow: 1;
+  width: 400px;
+  overflow: hidden;
+  font-size: 1.3em;
+
   &--orange-gradient {
     background: $orange-gradient;
   }
@@ -50,41 +54,29 @@ h2 {
   &--pink-gradient {
     background: $pink-gradient;
   }
+
   &__container{
-    display: flex;
+    display: grid;
     gap: 2em;
-    overflow-x: scroll;
+    grid-template-columns: 1fr 1fr 1fr;
   }
-  &__spotlight {
+  &__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     text-align: center;
-    font-size: 1.5em;
-    line-height: .1em;
-    & p{
-      margin: 0;
-    }
+    word-wrap: 'break-word';
   }
-  &__image {
-    max-width: 60%;
-    margin: auto;
-    display: block;
-    & img {
-      width: 100%;
-    }
-  }
-  &__list{
-    &-item{
-      display: flex;
-      gap: 1em;
-      & picture{
-        width: 3em;
-        & img {
-          width: 100%;
-        }
-      }
-    }
-    &-container{
-      margin: 0;
-      padding: 0;
+  &__text{
+    &-highlight{
+      display: block;
+      font-weight: 800;
+      font-size: 3em;
+      padding: 0.1em;
+      line-height: 0.8em;
+      padding-bottom: 0;
     }
   }
 
@@ -92,7 +84,14 @@ h2 {
     display: flex;
     justify-content: space-between;
     gap: 2em;
-    font-size: 0.55em;
+    justify-content: space-around;
+    &-link{
+      background-color: $black;
+      color: $yellow;
+      padding: 0.5em 1em;
+      border-radius: 34px;
+      font-size: 0.7em;
+    }
   }
 }
 
