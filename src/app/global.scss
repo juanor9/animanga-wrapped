@@ -42,6 +42,12 @@ h2 {
   overflow: hidden;
   font-size: 1.3em;
 
+  &__main-copy{
+      margin: 0.5em;
+      line-height: 1.2em;
+      margin-bottom: 0.8em;
+  }
+
   &--orange-gradient {
     background: $orange-gradient;
   }
@@ -84,16 +90,63 @@ h2 {
         padding: 0.1em;
         line-height: 0.8em;
         padding-bottom: 0;
-        font-size: 2em;
+        font-size: 1.8em;
         margin: 0;
         margin-top: 0.3em;
+        margin-bottom: 0.3em;
       }
     }
-    &-regular{
+    &-regular {
       margin: 0;
     }
+
   }
 
+  &__list{
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow: hidden;
+      gap: .8em;
+      text-align: left;
+      margin-bottom: 0.8em;
+    }
+    &-item{
+      display: grid;
+      max-width: 100%;
+      grid-template-columns:1fr 3fr ;
+    }
+    &-image{
+      flex-grow: 1;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      & img {
+        width: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+    &-text{
+      &--title{
+        margin: 0;
+        padding: 0;
+        font-weight: 800;
+      }
+      &--time{
+        color: $light-black;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+  }
   &__image {
     &-main {
       max-width: 708px;
@@ -104,8 +157,8 @@ h2 {
       align-content: center;
       & img {
         width: 100%;
-        object-fit:cover;
-  object-position: center;
+        object-fit: contain;
+        object-position: center;
       }
     }
   }

@@ -228,7 +228,7 @@ const AnimeWatchedHours = ({ list }) => {
       </StoryCard>
       <StoryCard key="2" id="2" color="green">
         <>
-          <p>Your favorite anime this year was:</p>
+          <p className="story__main-copy">Your favorite anime this year was:</p>
           {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
             ? (
               <>
@@ -244,24 +244,24 @@ const AnimeWatchedHours = ({ list }) => {
         </>
       </StoryCard>
       <StoryCard key="3" id="3" color="pink">
-        <div>
-          <p>Your main series</p>
-          <ul className="story__list-container">
+        <>
+          <p className="story__main-copy">Your main series</p>
+          <ol className="story__list-container">
             {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
               ? sortedWatchedMinutes.slice(0, 5).map((item) => (
                 <li key={uuidv4()} className="story__list-item">
-                  <picture>
+                  <picture className="story__list-image">
                     <img src={item.image} alt={item.anime} />
                   </picture>
-                  <div>
-                    <p>{item.anime}</p>
-                    <p>{item.timeWatched} minutes</p>
+                  <div className="story__list-text">
+                    <p className="story__list-text--title">{item.anime}</p>
+                    <p className="story__list-text--time">{item.timeWatched} minutes</p>
                   </div>
                 </li>
               ))
               : null}
-          </ul>
-        </div>
+          </ol>
+        </>
 
       </StoryCard>
     </>

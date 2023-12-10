@@ -118,24 +118,24 @@ const MangaChapters = ({ list }) => {
         <p>This year you read <span className="story__text-highlight">{totalChapters}</span> manga chapters.</p>
       </StoryCard>
       <StoryCard key="8" id="8" color="yellow">
-        <div>
+        <>
           <p>Your favorite manga this {year} was:</p>
           {Array.isArray(sortedChapters) && sortedChapters.length > 0
             ? (
               <>
-                <picture className="story__image">
+                <picture className="story__image-main">
                   <img src={sortedChapters[0].image} alt={sortedChapters[0].manga} />
                 </picture>
-                <p>{sortedChapters[0].manga}</p>
-                <p>{sortedChapters[0].readChapters} chapters</p>
+                <p className="story__text-highlight--longer">{sortedChapters[0].manga}</p>
+                <p className="story__text-regular">{sortedChapters[0].readChapters} chapters</p>
               </>
             )
             : null}
 
-        </div>
+        </>
       </StoryCard>
       <StoryCard key="9" id="9" color="orange">
-        <div>
+        <>
           <p>Your main series</p>
           <ul className="story__list-container">
             {Array.isArray(sortedChapters) && sortedChapters.length > 0
@@ -152,7 +152,7 @@ const MangaChapters = ({ list }) => {
               ))
               : null}
           </ul>
-        </div>
+        </>
       </StoryCard>
     </>
   );
