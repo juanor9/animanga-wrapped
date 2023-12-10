@@ -227,21 +227,21 @@ const AnimeWatchedHours = ({ list }) => {
         <p>This year you watched <span className="story__text-highlight">{totalMinutes}</span> minutes of anime.</p>
       </StoryCard>
       <StoryCard key="2" id="2" color="green">
-        <div>
-          <p>Your favorite anime this {year} was:</p>
+        <>
+          <p>Your favorite anime this year was:</p>
           {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
             ? (
               <>
-                <picture className="story__image">
+                <picture className="story__image-main">
                   <img src={sortedWatchedMinutes[0].image} alt={sortedWatchedMinutes[0].anime} />
                 </picture>
-                <p>{sortedWatchedMinutes[0].anime}</p>
-                <p>{sortedWatchedMinutes[0].timeWatched} minutes</p>
+                <p className="story__text-highlight--longer">{sortedWatchedMinutes[0].anime}</p>
+                <p className="story__text-regular">{sortedWatchedMinutes[0].timeWatched} minutes</p>
               </>
             )
             : null}
 
-        </div>
+        </>
       </StoryCard>
       <StoryCard key="3" id="3" color="pink">
         <div>
