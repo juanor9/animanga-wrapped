@@ -88,12 +88,13 @@ h2 {
         display: block;
         font-weight: 800;
         padding: 0.1em;
-        line-height: 0.8em;
+        line-height:0.9em;
         padding-bottom: 0;
-        font-size: 1.8em;
+        font-size: 1.3em;
         margin: 0;
         margin-top: 0.3em;
         margin-bottom: 0.3em;
+        word-wrap: break-word;
       }
     }
     &-regular {
@@ -138,11 +139,14 @@ h2 {
         margin: 0;
         padding: 0;
         font-weight: 800;
+        word-wrap: break-word;
+        font-size: 0.8em;
       }
       &--time{
         color: $light-black;
         margin: 0;
         padding: 0;
+        font-size: 0.7em;
       }
     }
 
