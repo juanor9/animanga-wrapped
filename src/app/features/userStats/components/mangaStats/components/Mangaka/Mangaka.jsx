@@ -48,17 +48,17 @@ const Mangaka = ({ list }) => {
     }
   }, [list]);
   return (
-    <StoryCard>
-      <h3>Most Read Mangaka</h3>
-      <ol>
+    <StoryCard key="13" id="13" color="orange">
+      <p className="story__main-copy">This were the mangaka you most read this year:</p>
+      <ol className="story__list-container">
         {mangakaList
           ? mangakaList.slice(0, 5).map((item) => (
-            <li key={item.id}>
-              <picture>
+            <li key={item.id} className="story__list-item">
+              <picture className="story__list-image">
                 <img src={item.img} alt={item.mangaka} />
               </picture>
-              <div>
-                <p>{item.mangaka}</p>
+              <div className="story__list-text">
+                <p className="story__list-text--title">{item.mangaka}</p>
               </div>
             </li>
           ))

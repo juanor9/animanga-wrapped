@@ -119,6 +119,7 @@ h2 {
       display: grid;
       max-width: 100%;
       grid-template-columns: 1fr 3fr;
+      gap: 1em;
     }
     &-image {
       flex-grow: 1;

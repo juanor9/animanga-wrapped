@@ -31,9 +31,9 @@ const MangaGenre = ({ list }) => {
     }
   }, [list]);
 
-  const backgroundColors = ['pink', 'green', 'yellow', 'light-green', 'light-yellow'];
+  const backgroundColors = ['pink', 'green', 'orange', 'light-green', 'light-orange'];
   return (
-    <StoryCard key="6" id="6" color="orange">
+    <StoryCard key="12" id="12" color="yellow">
       <p className="story__main-copy">This were your favorite anime genres for this year:</p>
       <ul className="story__grid-container">
         {genreList && genreList.length > 0
