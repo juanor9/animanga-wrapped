@@ -64,17 +64,17 @@ const MangaFormat = ({ list }) => {
         color: 'rgba(48, 42, 37,1)',
         formatter: (value) => `${value}`,
         font: {
-          weight: 'bold',
           size: 18,
           align: 'center',
+          family: 'Poppins',
         },
       },
       legend: {
         labels: {
           color: 'rgba(48, 42, 37,1)',
           font: {
-            weight: 'bold',
             size: 18,
+            family: 'Poppins',
           },
         },
       },

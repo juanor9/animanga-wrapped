@@ -57,7 +57,6 @@ const ReleaseYear = ({ list }) => {
       label: 'My First Dataset',
       data: years.map((i) => i.titles),
       backgroundColor: [
-        'rgba(255,145,255)',
         'rgba(255,211,25)',
         'rgba(49,181,122)',
         'rgba(252, 128,45)',
@@ -93,13 +92,19 @@ const ReleaseYear = ({ list }) => {
       },
       y: {
         display: true,
+        ticks: {
+          color: 'rgb(71, 65, 59)',
+          font: {
+            family: 'Poppins',
+          },
+        },
       },
     },
   };
 
   return (
-    <StoryCard key="11" id="11">
-      <p>These are the release years of the manga you read this year:</p>
+    <StoryCard key="11" id="11" color="pink">
+      <p className="story__main-copy">These are the release years of the manga you read this year:</p>
       <div style={{ height: '400px' }}>
         <Bar
           data={data}
