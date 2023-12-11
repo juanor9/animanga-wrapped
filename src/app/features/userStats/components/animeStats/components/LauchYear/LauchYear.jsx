@@ -61,7 +61,6 @@ const LauchYear = ({ list }) => {
         'rgba(255,145,255)',
         'rgba(255,211,25)',
         'rgba(49,181,122)',
-        'rgba(252, 128,45)',
       ],
       borderColor: 'transparent',
       color: 'rgba(48, 42, 37,1)',
@@ -94,13 +93,19 @@ const LauchYear = ({ list }) => {
       },
       y: {
         display: true,
+        ticks: {
+          color: 'rgb(71, 65, 59)',
+          font: {
+            family: 'Poppins',
+          },
+        },
       },
     },
   };
 
   return (
-    <StoryCard key="5" id="5">
-      <p>These are the release years of the anime you watched this year:</p>
+    <StoryCard key="5" id="5" color="orange">
+      <p className="story__main-copy">These are the release years of the anime you watched this year:</p>
       <div style={{ height: '400px' }}>
         <Bar
           data={data}

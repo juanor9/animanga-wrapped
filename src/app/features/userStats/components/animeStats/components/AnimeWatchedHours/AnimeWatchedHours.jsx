@@ -224,44 +224,44 @@ const AnimeWatchedHours = ({ list }) => {
   return (
     <>
       <StoryCard key="1" id="1" color="orange">
-        <p>This year you watched {totalMinutes} minutes of anime.</p>
+        <p>This year you watched <span className="story__text-highlight">{totalMinutes}</span> minutes of anime.</p>
       </StoryCard>
       <StoryCard key="2" id="2" color="green">
-        <div>
-          <p>Your favorite anime this {year} was:</p>
+        <>
+          <p className="story__main-copy">Your favorite anime this year was:</p>
           {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
             ? (
               <>
-                <picture className="story__image">
+                <picture className="story__image-main">
                   <img src={sortedWatchedMinutes[0].image} alt={sortedWatchedMinutes[0].anime} />
                 </picture>
-                <p>{sortedWatchedMinutes[0].anime}</p>
-                <p>{sortedWatchedMinutes[0].timeWatched} minutes</p>
+                <p className="story__text-highlight--longer">{sortedWatchedMinutes[0].anime}</p>
+                <p className="story__text-regular">{sortedWatchedMinutes[0].timeWatched} minutes</p>
               </>
             )
             : null}
 
-        </div>
+        </>
       </StoryCard>
       <StoryCard key="3" id="3" color="pink">
-        <div>
-          <p>Your main series</p>
-          <ul className="story__list-container">
+        <>
+          <p className="story__main-copy">Your main series</p>
+          <ol className="story__list-container">
             {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
               ? sortedWatchedMinutes.slice(0, 5).map((item) => (
                 <li key={uuidv4()} className="story__list-item">
-                  <picture>
+                  <picture className="story__list-image">
                     <img src={item.image} alt={item.anime} />
                   </picture>
-                  <div>
-                    <p>{item.anime}</p>
-                    <p>{item.timeWatched} minutes</p>
+                  <div className="story__list-text">
+                    <p className="story__list-text--title">{item.anime}</p>
+                    <p className="story__list-text--time">{item.timeWatched} minutes</p>
                   </div>
                 </li>
               ))
               : null}
-          </ul>
-        </div>
+          </ol>
+        </>
 
       </StoryCard>
     </>

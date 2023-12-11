@@ -35,7 +35,6 @@ const MangaFormat = ({ list }) => {
       backgroundColor: [
         'rgba(255,145,255)',
         'rgba(255,211,25)',
-        'rgba(49,181,122)',
         'rgba(252, 128,45)',
       ],
       borderColor: 'transparent',
@@ -65,17 +64,17 @@ const MangaFormat = ({ list }) => {
         color: 'rgba(48, 42, 37,1)',
         formatter: (value) => `${value}`,
         font: {
-          weight: 'bold',
           size: 18,
           align: 'center',
+          family: 'Poppins',
         },
       },
       legend: {
         labels: {
           color: 'rgba(48, 42, 37,1)',
           font: {
-            weight: 'bold',
             size: 18,
+            family: 'Poppins',
           },
         },
       },
@@ -83,8 +82,8 @@ const MangaFormat = ({ list }) => {
     cutout: '50%',
   };
   return (
-    <StoryCard key="10" id="10">
-      <p>This is how you distributed your manga formats on {year}:</p>
+    <StoryCard key="10" id="10" color="green">
+      <p className="story__main-copy">This is how you distributed your manga formats on {year}:</p>
       <Doughnut
         data={data}
         options={options}

@@ -26,17 +26,19 @@ const AnimeGenre = ({ list }) => {
         count: genreCount[genre],
       }));
 
-      SetGenreList(result.sort((a, b) => b.genre - a.genre));
+      SetGenreList(result.sort((a, b) => b.count - a.count));
     }
   }, [list]);
+
+  const backgroundColors = ['pink', 'yellow', 'light-pink', 'orange', 'light-orange'];
   return (
-    <StoryCard key="6" id="6">
-      This were your favorite anime genres for this year:
-      <ol>
+    <StoryCard key="6" id="6" color="green">
+      <p className="story__main-copy">This were your favorite anime genres for this year:</p>
+      <ul className="story__grid-container">
         {genreList && genreList.length > 0
-          ? genreList.slice(0, 5).map((item) => <li key={item.id}>{item.genre}</li>)
+          ? genreList.slice(0, 5).map((item, index) => <li key={item.id} className={`story__grid-item story__grid-item--${index + 1} story__grid-item--${backgroundColors[index % backgroundColors.length]}`}>{item.genre}</li>)
           : null}
-      </ol>
+      </ul>
     </StoryCard>
   );
 };

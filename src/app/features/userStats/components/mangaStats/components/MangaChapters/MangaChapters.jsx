@@ -114,45 +114,47 @@ const MangaChapters = ({ list }) => {
 
   return (
     <>
-      <StoryCard key="7" id="7">
-        <p>This year you&apos;ve read {totalChapters} manga chapters.</p>
+      <StoryCard key="7" id="7" color="pink">
+        <p>This year you read <span className="story__text-highlight">{totalChapters}</span> manga chapters.</p>
       </StoryCard>
-      <StoryCard key="8" id="8">
-        <div>
-          <p>Your favorite manga this {year} was:</p>
+      <StoryCard key="8" id="8" color="yellow">
+        <>
+          <p className="story__main-copy">Your favorite manga this {year} was:</p>
           {Array.isArray(sortedChapters) && sortedChapters.length > 0
             ? (
               <>
-                <picture className="story__image">
+                <picture className="story__image-main">
                   <img src={sortedChapters[0].image} alt={sortedChapters[0].manga} />
                 </picture>
-                <p>{sortedChapters[0].manga}</p>
-                <p>{sortedChapters[0].readChapters} chapters</p>
+                <p className="story__text-highlight--longer">
+                  {sortedChapters[0].manga}
+                </p>
+                <p className="story__text-regular">{sortedChapters[0].readChapters} chapters</p>
               </>
             )
             : null}
 
-        </div>
+        </>
       </StoryCard>
-      <StoryCard key="9" id="9">
-        <div>
-          <p>Your main series</p>
+      <StoryCard key="9" id="9" color="orange">
+        <>
+          <p className="story__main-copy">Your main series</p>
           <ul className="story__list-container">
             {Array.isArray(sortedChapters) && sortedChapters.length > 0
               ? sortedChapters.slice(0, 5).map((item) => (
                 <li key={uuidv4()} className="story__list-item">
-                  <picture>
+                  <picture className="story__list-image">
                     <img src={item.image} alt={item.manga} />
                   </picture>
-                  <div>
-                    <p>{item.manga}</p>
-                    <p>{item.readChapters} chapters</p>
+                  <div className="story__list-text">
+                    <p className="story__list-text--title">{item.manga}</p>
+                    <p className="story__list-text--time">{item.readChapters} chapters</p>
                   </div>
                 </li>
               ))
               : null}
           </ul>
-        </div>
+        </>
       </StoryCard>
     </>
   );

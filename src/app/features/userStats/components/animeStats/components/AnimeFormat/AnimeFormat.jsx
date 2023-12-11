@@ -35,7 +35,6 @@ const AnimeFormat = ({ list }) => {
       data: Object.values(formatData),
       backgroundColor: [
         'rgba(255,145,255)',
-        'rgba(255,211,25)',
         'rgba(49,181,122)',
         'rgba(252, 128,45)',
       ],
@@ -66,17 +65,17 @@ const AnimeFormat = ({ list }) => {
         color: 'rgba(48, 42, 37,1)',
         formatter: (value) => `${value}`,
         font: {
-          weight: 'bold',
           size: 18,
           align: 'center',
+          family: 'Poppins',
         },
       },
       legend: {
         labels: {
           color: 'rgba(48, 42, 37,1)',
           font: {
-            weight: 'bold',
             size: 18,
+            family: 'Poppins',
           },
         },
       },
@@ -86,7 +85,7 @@ const AnimeFormat = ({ list }) => {
 
   return (
     <StoryCard key="4" id="4" color="yellow">
-      <p>This is how you distributed your anime formats on {year}:</p>
+      <p className="story__main-copy">This is how you distributed your anime formats on {year}:</p>
       <Doughnut
         data={data}
         options={options}
