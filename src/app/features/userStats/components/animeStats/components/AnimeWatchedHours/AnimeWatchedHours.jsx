@@ -163,64 +163,6 @@ const AnimeWatchedHours = ({ list }) => {
     }
   }, [sortedWatchedMinutes]);
 
-  // CLOUDINARY
-  const [imageUrl, setImageUrl] = useState(null);
-  const { listUsername } = useSelector((state) => state.UserReducer.user);
-  const dispatch = useDispatch();
-  const ref = useRef(null);
-
-  // Función para subir elemento del DOM a cloudinary
-  const uploadToCloudinary = async () => {
-    if (ref.current) {
-      try {
-        // console.log('🚀 ~ file: AnimeWatchedHours.jsx:173 ~ uploadToCloudinary ~ ref.current:', ref.current);
-
-        const blob = await toBlob(ref.current);
-        // console.log('🚀 ~ file: AnimeWatchedHours.jsx:177 ~ uploadToCloudinary ~ blob:', blob);
-        if (blob) {
-          const file = new File([blob], 'anime-watched-hours.png', {
-            type: 'image/png',
-          });
-          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:182 ~ uploadToCloudinary ~ file:', file);
-          const uploadedImage = await dispatch(
-            uploadImage({ file, listUsername }),
-          );
-          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:186 ~ uploadToCloudinary ~ uploadedImage:', uploadedImage);
-          const { url } = uploadedImage.payload;
-          // console.log('🚀 ~ file: AnimeWatchedHours.jsx:188 ~ uploadToCloudinary ~ url:', url);
-          setImageUrl(String(url));
-        }
-      } catch (err) {
-        throw new Error('Oops, something went wrong!', err);
-      }
-    }
-  };
-
-  // Fragmento para traer la imagen del anime No. 1 y guardarla para reutilizarla
-  const [topImage, setTopImage] = useState(null);
-
-  const downloadToCloudinary = async (url) => {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const file = new File([blob], 'anime-watched-image.png', {
-      type: 'image/png',
-    });
-    const uploadedImage = await dispatch(uploadImage({ file, listUsername }));
-    const cloudinaryUrl = uploadedImage.payload.url;
-    setTopImage(cloudinaryUrl);
-  };
-
-  // UseEffect para descargar la imagen y subirla a Cloudinary
-  useEffect(() => {
-    if (sortedWatchedMinutes && Array.isArray(sortedWatchedMinutes)) {
-      const alImage = sortedWatchedMinutes[0].image;
-      const parts = alImage.split('/');
-      const newPath = parts.slice(3).join('/');
-      const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
-      downloadToCloudinary(newUrl);
-    }
-  }, [sortedWatchedMinutes]);
-
   return (
     <>
       <StoryCard key="1" id="1" color="orange">
