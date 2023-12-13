@@ -25,7 +25,24 @@ const StoryCard = ({ children, color }) => {
         document.body.removeChild(link);
       }
     } catch (error) {
-      console.error('Error sharing the story card:', error);
+      throw new Error('Error sharing the story card:', error);
+    }
+  };
+  // Para guardar la imagen
+  const saveStoryCard = async () => {
+    try {
+      const canvas = await html2canvas(storyCardRef.current);
+      const image = canvas.toDataURL('image/png');
+
+      // Crear un enlace para la descarga
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'storycard.png'; // o podrías usar un nombre de archivo dinámico si lo prefieres
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      throw new Error('Error saving the story card:', error);
     }
   };
   return (
@@ -40,7 +57,7 @@ const StoryCard = ({ children, color }) => {
       </div>
       <div className="story__button-container">
         <button type="button" onClick={shareStoryCard} className="story__button">Share</button>
-        <button type="button" className="story__button">Save</button>
+        <button type="button" onClick={saveStoryCard} className="story__button">Save</button>
       </div>
     </div>
   );
