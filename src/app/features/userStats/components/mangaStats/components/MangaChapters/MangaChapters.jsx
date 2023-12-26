@@ -1,12 +1,17 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import uploadImage from '../../../../services/upload';
 import StoryCard from '../../../../../../components/Stories/Stories';
 
 const year = process.env.NEXT_PUBLIC_YEAR;
+const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 const MangaChapters = ({ list }) => {
   const [sortedChapters, setSortedChapters] = useState(null);
+  const dispatch = useDispatch();
+  const { listUsername } = useSelector((state) => state.UserReducer.user);
   useEffect(() => {
     if (list) {
       const fullData = list.map((activity) => (
@@ -112,6 +117,65 @@ const MangaChapters = ({ list }) => {
     }
   }, [sortedChapters]);
 
+  const [topReadChapters, setTopReadChapters] = useState([]);
+  const downloadToCloudinary = async (url, filename) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+
+      const blob = await response.blob();
+      const file = new File([blob], 'anime-watched-image.png', {
+        type: blob.type,
+      });
+
+      const uploadedImageResponse = await dispatch(
+        uploadImage({ file, listUsername, filename }),
+      );
+
+      if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
+        const cloudinaryUrl = uploadedImageResponse.payload.url;
+        return cloudinaryUrl;
+      }
+      throw new Error('Image upload failed');
+    } catch (error) {
+      throw new Error('Error downloading or uploading image:', error);
+    }
+  };
+
+  useEffect(() => {
+    const processImages = async () => {
+      if (sortedChapters && sortedChapters.length > 0) {
+        const rawTopWatchedMinutes = sortedChapters.slice(0, 5);
+
+        const newTopWatchedMinutesPromises = rawTopWatchedMinutes.map(
+          async (element) => {
+            const alImage = element.image;
+            const parts = alImage.split('/');
+            const newPath = parts.slice(3).join('/');
+            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+            const cloudinaryUrl = await downloadToCloudinary(
+              newUrl,
+              element.manga,
+            );
+
+            return {
+              ...element,
+              image: cloudinaryUrl,
+            };
+          },
+        );
+
+        const newTopWatchedMinutes = await Promise.all(
+          newTopWatchedMinutesPromises,
+        );
+
+        setTopReadChapters(newTopWatchedMinutes);
+      }
+    };
+
+    processImages();
+  }, [sortedChapters]);
+
   return (
     <>
       <StoryCard key="7" id="7" color="pink">
@@ -120,16 +184,20 @@ const MangaChapters = ({ list }) => {
       <StoryCard key="8" id="8" color="yellow">
         <>
           <p className="story__main-copy">Your favorite manga this {year} was:</p>
-          {Array.isArray(sortedChapters) && sortedChapters.length > 0
+          {Array.isArray(topReadChapters) && topReadChapters.length > 0
             ? (
               <>
                 <picture className="story__image-main">
-                  <img src={sortedChapters[0].image} alt={sortedChapters[0].manga} />
+                  <div
+                    role="img"
+                    aria-label={topReadChapters[0].manga}
+                    style={{ backgroundImage: `url(${topReadChapters[0]?.image})` }}
+                  />
                 </picture>
                 <p className="story__text-highlight--longer">
-                  {sortedChapters[0].manga}
+                  {topReadChapters[0].manga}
                 </p>
-                <p className="story__text-regular">{sortedChapters[0].readChapters} chapters</p>
+                <p className="story__text-regular">{topReadChapters[0].readChapters} chapters</p>
               </>
             )
             : null}
@@ -140,18 +208,31 @@ const MangaChapters = ({ list }) => {
         <>
           <p className="story__main-copy">Your main series</p>
           <ul className="story__list-container">
-            {Array.isArray(sortedChapters) && sortedChapters.length > 0
-              ? sortedChapters.slice(0, 5).map((item) => (
-                <li key={uuidv4()} className="story__list-item">
-                  <picture className="story__list-image">
-                    <img src={item.image} alt={item.manga} />
-                  </picture>
-                  <div className="story__list-text">
-                    <p className="story__list-text--title">{item.manga}</p>
-                    <p className="story__list-text--time">{item.readChapters} chapters</p>
-                  </div>
-                </li>
-              ))
+
+            {Array.isArray(topReadChapters) && topReadChapters.length > 0
+              ? topReadChapters.slice(0, 5).map((item) => {
+                const url = item.image;
+                const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
+                const parts = url.split('image/upload/');
+                const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
+                return (
+                  <li key={uuidv4()} className="story__list-item">
+                    <picture className="story__list-image">
+                      <div
+                        role="img"
+                        aria-label={item.manga}
+                        style={{ backgroundImage: `url(${image})` }}
+                      />
+                    </picture>
+                    <div className="story__list-text">
+                      <p className="story__list-text--title">{item.manga}</p>
+                      <p className="story__list-text--time">
+                        {item.readChapters} chapters
+                      </p>
+                    </div>
+                  </li>
+                );
+              })
               : null}
           </ul>
         </>

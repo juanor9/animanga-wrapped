@@ -1,12 +1,40 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 
 const StoryCard = ({ children, color }) => {
   // Para compartir como imagen
   const storyCardRef = useRef();
+
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [totalImages, setTotalImages] = useState(0);
+
+  useEffect(() => {
+    const images = storyCardRef.current.getElementsByTagName('img');
+    setTotalImages(images.length);
+
+    Array.from(images).forEach((image) => {
+      if (image.complete && image.naturalHeight !== 0) {
+        setImagesLoaded((loaded) => loaded + 1);
+      } else {
+        image.onload = () => {
+          setImagesLoaded((loaded) => loaded + 1);
+        };
+      }
+    });
+  }, [children]);
+
+  const allImagesLoaded = imagesLoaded === totalImages;
+
   const shareStoryCard = async () => {
     try {
-      const canvas = await html2canvas(storyCardRef.current);
+      const canvas = await html2canvas(storyCardRef.current, {
+        allowTaint: true,
+        scale: 1,
+        useCORS: true,
+        onclone: () => {
+          // Puedes añadir más configuraciones aquí si es necesario
+        },
+      });
       const image = canvas.toDataURL('image/png');
       const blob = await (await fetch(image)).blob();
 
@@ -31,7 +59,14 @@ const StoryCard = ({ children, color }) => {
   // Para guardar la imagen
   const saveStoryCard = async () => {
     try {
-      const canvas = await html2canvas(storyCardRef.current);
+      const canvas = await html2canvas(storyCardRef.current, {
+        allowTaint: true,
+        scale: 1,
+        useCORS: true,
+        onclone: () => {
+          // Puedes añadir más configuraciones aquí si es necesario
+        },
+      });
       const image = canvas.toDataURL('image/png');
 
       // Crear un enlace para la descarga
@@ -55,10 +90,15 @@ const StoryCard = ({ children, color }) => {
           <p className="story__footer-link">animanga-wrapped.vercel.app</p>
         </div>
       </div>
-      <div className="story__button-container">
-        <button type="button" onClick={shareStoryCard} className="story__button">Share</button>
-        <button type="button" onClick={saveStoryCard} className="story__button">Save</button>
-      </div>
+      {allImagesLoaded === true
+        ? (
+          <div className="story__button-container">
+            <button type="button" onClick={shareStoryCard} className="story__button">Share</button>
+            <button type="button" onClick={saveStoryCard} className="story__button">Save</button>
+          </div>
+        )
+        : null}
+
     </div>
   );
 };

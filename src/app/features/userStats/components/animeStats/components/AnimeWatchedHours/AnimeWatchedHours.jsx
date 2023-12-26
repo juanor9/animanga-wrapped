@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
-import { useEffect, useState, useRef } from 'react';
-import { toBlob } from 'html-to-image';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../../../services/upload';
 import './AnimeWatchedHours.scss';
 import 'react-responsive-modal/styles.css';
@@ -11,9 +10,11 @@ import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 const year = process.env.NEXT_PUBLIC_YEAR;
+
 const AnimeWatchedHours = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
-
+  const dispatch = useDispatch();
+  const { listUsername } = useSelector((state) => state.UserReducer.user);
   useEffect(() => {
     if (list) {
       const fullData = list.map((activity) => ({
@@ -163,48 +164,127 @@ const AnimeWatchedHours = ({ list }) => {
     }
   }, [sortedWatchedMinutes]);
 
+  const [topWatchedMinutes, setTopWatchedMinutes] = useState([]);
+  const downloadToCloudinary = async (url, filename) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+
+      const blob = await response.blob();
+      const file = new File([blob], 'anime-watched-image.png', {
+        type: blob.type,
+      });
+
+      const uploadedImageResponse = await dispatch(
+        uploadImage({ file, listUsername, filename }),
+      );
+
+      if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
+        const cloudinaryUrl = uploadedImageResponse.payload.url;
+        return cloudinaryUrl;
+      }
+      throw new Error('Image upload failed');
+    } catch (error) {
+      throw new Error('Error downloading or uploading image:', error);
+    }
+  };
+
+  useEffect(() => {
+    const processImages = async () => {
+      if (sortedWatchedMinutes && sortedWatchedMinutes.length > 0) {
+        const rawTopWatchedMinutes = sortedWatchedMinutes.slice(0, 5);
+
+        const newTopWatchedMinutesPromises = rawTopWatchedMinutes.map(
+          async (element) => {
+            const alImage = element.image;
+            const parts = alImage.split('/');
+            const newPath = parts.slice(3).join('/');
+            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+            const cloudinaryUrl = await downloadToCloudinary(
+              newUrl,
+              element.anime,
+            );
+
+            return {
+              ...element,
+              image: cloudinaryUrl,
+            };
+          },
+        );
+
+        const newTopWatchedMinutes = await Promise.all(
+          newTopWatchedMinutesPromises,
+        );
+
+        setTopWatchedMinutes(newTopWatchedMinutes);
+      }
+    };
+
+    processImages();
+  }, [sortedWatchedMinutes]);
+
   return (
     <>
       <StoryCard key="1" id="1" color="orange">
-        <p>This year you watched <span className="story__text-highlight">{totalMinutes}</span> minutes of anime.</p>
+        <p>
+          This year you watched{' '}
+          <span className="story__text-highlight">{totalMinutes}</span> minutes
+          of anime.
+        </p>
       </StoryCard>
       <StoryCard key="2" id="2" color="green">
         <>
           <p className="story__main-copy">Your favorite anime this year was:</p>
-          {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
-            ? (
-              <>
-                <picture className="story__image-main">
-                  <img src={sortedWatchedMinutes[0].image} alt={sortedWatchedMinutes[0].anime} />
-                </picture>
-                <p className="story__text-highlight--longer">{sortedWatchedMinutes[0].anime}</p>
-                <p className="story__text-regular">{sortedWatchedMinutes[0].timeWatched} minutes</p>
-              </>
-            )
-            : null}
-
+          {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0 ? (
+            <>
+              <picture className="story__image-main">
+                <div
+                  role="img"
+                  aria-label={topWatchedMinutes[0].anime}
+                  style={{ backgroundImage: `url(${topWatchedMinutes[0]?.image})` }}
+                />
+              </picture>
+              <p className="story__text-highlight--longer">
+                {topWatchedMinutes[0].anime}
+              </p>
+              <p className="story__text-regular">
+                {topWatchedMinutes[0].timeWatched} minutes
+              </p>
+            </>
+          ) : null}
         </>
       </StoryCard>
       <StoryCard key="3" id="3" color="pink">
         <>
           <p className="story__main-copy">Your main series</p>
           <ol className="story__list-container">
-            {Array.isArray(sortedWatchedMinutes) && sortedWatchedMinutes.length > 0
-              ? sortedWatchedMinutes.slice(0, 5).map((item) => (
-                <li key={uuidv4()} className="story__list-item">
-                  <picture className="story__list-image">
-                    <img src={item.image} alt={item.anime} />
-                  </picture>
-                  <div className="story__list-text">
-                    <p className="story__list-text--title">{item.anime}</p>
-                    <p className="story__list-text--time">{item.timeWatched} minutes</p>
-                  </div>
-                </li>
-              ))
+            {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0
+              ? topWatchedMinutes.slice(0, 5).map((item) => {
+                const url = item.image;
+                const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
+                const parts = url.split('image/upload/');
+                const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
+                return (
+                  <li key={uuidv4()} className="story__list-item">
+                    <picture className="story__list-image">
+                      <div
+                        role="img"
+                        aria-label={item.anime}
+                        style={{ backgroundImage: `url(${image})` }}
+                      />
+                    </picture>
+                    <div className="story__list-text">
+                      <p className="story__list-text--title">{item.anime}</p>
+                      <p className="story__list-text--time">
+                        {item.timeWatched} minutes
+                      </p>
+                    </div>
+                  </li>
+                );
+              })
               : null}
           </ol>
         </>
-
       </StoryCard>
     </>
   );
