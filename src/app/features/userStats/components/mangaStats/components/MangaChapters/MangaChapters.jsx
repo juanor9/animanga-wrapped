@@ -206,7 +206,7 @@ const MangaChapters = ({ list }) => {
       </StoryCard>
       <StoryCard key="9" id="9" color="orange">
         <>
-          <p className="story__main-copy">Your main series</p>
+          <p className="story__main-copy">Your main series for {year}</p>
           <ul className="story__list-container">
 
             {Array.isArray(topReadChapters) && topReadChapters.length > 0

@@ -256,7 +256,7 @@ const AnimeWatchedHours = ({ list }) => {
       </StoryCard>
       <StoryCard key="3" id="3" color="pink">
         <>
-          <p className="story__main-copy">Your main series</p>
+          <p className="story__main-copy">Your main series for {year}</p>
           <ol className="story__list-container">
             {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0
               ? topWatchedMinutes.slice(0, 5).map((item) => {

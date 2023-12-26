@@ -32,7 +32,6 @@ const StoryCard = ({ children, color }) => {
         scale: 1,
         useCORS: true,
         onclone: () => {
-          // Puedes añadir más configuraciones aquí si es necesario
         },
       });
       const image = canvas.toDataURL('image/png');
@@ -64,7 +63,6 @@ const StoryCard = ({ children, color }) => {
         scale: 1,
         useCORS: true,
         onclone: () => {
-          // Puedes añadir más configuraciones aquí si es necesario
         },
       });
       const image = canvas.toDataURL('image/png');
@@ -72,7 +70,7 @@ const StoryCard = ({ children, color }) => {
       // Crear un enlace para la descarga
       const link = document.createElement('a');
       link.href = image;
-      link.download = 'storycard.png'; // o podrías usar un nombre de archivo dinámico si lo prefieres
+      link.download = 'storycard.png';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -93,8 +91,8 @@ const StoryCard = ({ children, color }) => {
       {allImagesLoaded === true
         ? (
           <div className="story__button-container">
-            <button type="button" onClick={shareStoryCard} className="story__button">Share</button>
-            <button type="button" onClick={saveStoryCard} className="story__button">Save</button>
+            <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
+            <button type="button" onClick={saveStoryCard} className={`story__button story__button--${color}`}>Save</button>
           </div>
         )
         : null}
