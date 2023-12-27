@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../../../services/upload';
 import './AnimeWatchedHours.scss';
@@ -9,7 +7,6 @@ import 'react-responsive-modal/styles.css';
 import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-const year = process.env.NEXT_PUBLIC_YEAR;
 
 const AnimeWatchedHours = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
@@ -222,69 +219,13 @@ const AnimeWatchedHours = ({ list }) => {
   }, [sortedWatchedMinutes]);
 
   return (
-    <>
-      <StoryCard key="1" id="1" color="orange">
-        <p>
-          This year you watched{' '}
-          <span className="story__text-highlight">{totalMinutes}</span> minutes
-          of anime.
-        </p>
-      </StoryCard>
-      {/* <StoryCard key="2" id="2" color="green">
-        <>
-          <p className="story__main-copy">Your favorite anime this year was:</p>
-          {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0 ? (
-            <>
-              <picture className="story__image-main">
-                <div
-                  role="img"
-                  aria-label={topWatchedMinutes[0].anime}
-                  style={{ backgroundImage: `url(${topWatchedMinutes[0]?.image})` }}
-                />
-              </picture>
-              <p className="story__text-highlight--longer">
-                {topWatchedMinutes[0].anime}
-              </p>
-              <p className="story__text-regular">
-                {topWatchedMinutes[0].timeWatched} minutes
-              </p>
-            </>
-          ) : null}
-        </>
-      </StoryCard>
-      <StoryCard key="3" id="3" color="pink">
-        <>
-          <p className="story__main-copy">Your main series for {year}</p>
-          <ol className="story__list-container">
-            {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0
-              ? topWatchedMinutes.slice(0, 5).map((item) => {
-                const url = item.image;
-                const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
-                const parts = url.split('image/upload/');
-                const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
-                return (
-                  <li key={uuidv4()} className="story__list-item">
-                    <picture className="story__list-image">
-                      <div
-                        role="img"
-                        aria-label={item.anime}
-                        style={{ backgroundImage: `url(${image})` }}
-                      />
-                    </picture>
-                    <div className="story__list-text">
-                      <p className="story__list-text--title">{item.anime}</p>
-                      <p className="story__list-text--time">
-                        {item.timeWatched} minutes
-                      </p>
-                    </div>
-                  </li>
-                );
-              })
-              : null}
-          </ol>
-        </>
-      </StoryCard> */}
-    </>
+    <StoryCard key="1" id="1" color="orange">
+      <p>
+        This year you watched{' '}
+        <span className="story__text-highlight">{totalMinutes}</span> minutes
+        of anime.
+      </p>
+    </StoryCard>
   );
 };
 export default AnimeWatchedHours;

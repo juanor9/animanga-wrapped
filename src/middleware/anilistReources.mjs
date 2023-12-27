@@ -13,12 +13,10 @@ const MALProxy = (req, res, next) => {
       });
       proxyRes.on('end', () => {
         body = Buffer.concat(body).toString();
-        console.log(`Response from APIMyAnimeList for ${req.url}:`, proxyRes.statusCode, body);
       });
     },
   });
 
-  console.log('Proxying request to', `https://s4.anilist.co/${req.url.replace('/api', '')}`);
   proxy(req, res, next);
 };
 
