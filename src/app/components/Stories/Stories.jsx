@@ -3,9 +3,7 @@ import html2canvas from 'html2canvas';
 import './Stories.scss';
 
 const StoryCard = ({ children, color }) => {
-  // Para compartir como imagen
   const storyCardRef = useRef();
-
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const [totalImages, setTotalImages] = useState(0);
 
@@ -13,8 +11,7 @@ const StoryCard = ({ children, color }) => {
     allowTaint: true,
     scale: 2.7,
     useCORS: true,
-    onclone: () => {
-    },
+    onclone: () => {},
   };
 
   useEffect(() => {
@@ -34,6 +31,15 @@ const StoryCard = ({ children, color }) => {
 
   const allImagesLoaded = imagesLoaded === totalImages;
 
+  const downloadImage = (imageDataUrl) => {
+    const link = document.createElement('a');
+    link.href = imageDataUrl;
+    link.download = 'storycard.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const shareStoryCard = async () => {
     try {
       const canvas = await html2canvas(storyCardRef.current, captureOptions);
@@ -41,40 +47,25 @@ const StoryCard = ({ children, color }) => {
       const blob = await (await fetch(image)).blob();
 
       if (navigator.share) {
-        await navigator.share({
-          files: [new File([blob], 'storycard.png', { type: 'image/png' })],
-          title: 'Check out my favorite anime genres!',
-        });
+        const file = new File([blob], 'storycard.png', { type: 'image/png' });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: 'Check out my favorite anime genres!',
+            text: 'Here is my story card created using Animanga Wrapped!',
+          });
+        } else {
+          downloadImage(image);
+        }
       } else {
-        // Alternativa para navegadores que no soportan compartir archivos
-        const link = document.createElement('a');
-        link.href = image;
-        link.download = 'storycard.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        downloadImage(image);
       }
     } catch (error) {
-      throw new Error('Error sharing the story card:', error);
+      console.error('Error sharing the story card:', error);
     }
   };
-  // Para guardar la imagen
-  const saveStoryCard = async () => {
-    try {
-      const canvas = await html2canvas(storyCardRef.current, captureOptions);
-      const image = canvas.toDataURL('image/png');
 
-      // Crear un enlace para la descarga
-      const link = document.createElement('a');
-      link.href = image;
-      link.download = 'storycard.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      throw new Error('Error saving the story card:', error);
-    }
-  };
   return (
     <div className="carrusel__item">
       <div>
@@ -86,14 +77,13 @@ const StoryCard = ({ children, color }) => {
             <p className="story__footer-link">animanga-wrapped.vercel.app</p>
           </div>
         </div>
-        {allImagesLoaded === true
-          ? (
-            <div className="story__button-container">
-              <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
-              <button type="button" onClick={saveStoryCard} className={`story__button story__button--${color}`}>Save</button>
-            </div>
-          )
-          : null}
+        {allImagesLoaded
+          && (
+          <div className="story__button-container">
+            <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
+            <button type="button" onClick={() => downloadImage()} className={`story__button story__button--${color}`}>Save</button>
+          </div>
+          )}
       </div>
     </div>
   );

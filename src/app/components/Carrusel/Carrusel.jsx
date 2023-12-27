@@ -15,8 +15,8 @@ const Carrusel = ({ children }) => {
   return (
     <div className="carrusel__container">
       <div className="carrusel__button-container">
-        <button className="carrusel__button" type="button" onClick={goToPrevious}>Anterior</button>
-        <button className="carrusel__button" type="button" onClick={goToNext}>Siguiente</button>
+        <button className="carrusel__button" type="button" onClick={goToPrevious}>Previous</button>
+        <button className="carrusel__button" type="button" onClick={goToNext}>Next</button>
       </div>
       <div className="carrusel__wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {children}
