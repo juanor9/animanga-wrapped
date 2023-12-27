@@ -13,6 +13,9 @@ import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
 import AnimeFormat from '../AnimeFormat/AnimeFormat';
 import LauchYear from '../LauchYear/LauchYear';
 import AnimeGenre from '../AnimeGenre/AnimeGenre';
+import Carrusel from '../../../../../../components/Carrusel/Carrusel';
+import AnimeFav from '../AnimeFav/AnimeFav';
+import AnimeSeries from '../AnimeSeries/AnimeSeries';
 
 const AnimeStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -46,12 +49,15 @@ const AnimeStatsDisplay = ({ lists }) => {
   return (
     <section>
       <h3>Anime stats</h3>
-      <div id="watched-hours" className="story__container">
+      <Carrusel>
         <AnimeWatchedHours list={anime} />
+        <AnimeFav list={anime} />
+        <AnimeSeries list={anime} />
         <AnimeFormat list={anime} />
         <LauchYear list={anime} />
         <AnimeGenre list={anime} />
-      </div>
+
+      </Carrusel>
     </section>
   );
 };
