@@ -22,7 +22,6 @@ const MangaChapters = ({ list }) => {
         acc[curr.manga].push(curr);
         return acc;
       }, {});
-      // console.log('🚀 ~ file: MangaChapters.jsx:29 ~ groupedByManga ~ groupedByManga:', groupedByManga);
 
       const ChaptersBySeries = Object.keys(groupedByManga).map((key) => {
         const fullActivity = groupedByManga[key];

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,7 +12,6 @@ const year = process.env.NEXT_PUBLIC_YEAR;
 
 const AnimeSeries = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
-  // console.log('🚀 ~ file: AnimeSeries.jsx:16 ~ AnimeSeries ~ sortedWatchedMinutes:', sortedWatchedMinutes);
   const dispatch = useDispatch();
   const { listUsername } = useSelector((state) => state.UserReducer.user);
   useEffect(() => {
@@ -146,7 +144,6 @@ const AnimeSeries = ({ list }) => {
       const sortedWatchedTimeBySeries = WatchedTimeBySeries.sort(
         (a, b) => b.timeWatched - a.timeWatched,
       );
-      // console.log('🚀 ~ file: AnimeSeries.jsx:149 ~ useEffect ~ sortedWatchedTimeBySeries:', sortedWatchedTimeBySeries);
       if (
         sortedWatchedTimeBySeries
         && Array.isArray(sortedWatchedTimeBySeries)
@@ -155,16 +152,6 @@ const AnimeSeries = ({ list }) => {
       }
     }
   }, [list]);
-  const [totalMinutes, setTotalMinutes] = useState(0);
-  useEffect(() => {
-    if (sortedWatchedMinutes) {
-      const totalTime = sortedWatchedMinutes.reduce(
-        (acc, curr) => acc + curr.timeWatched,
-        0,
-      );
-      setTotalMinutes(totalTime);
-    }
-  }, [sortedWatchedMinutes]);
 
   const [topWatchedMinutes, setTopWatchedMinutes] = useState([]);
   const downloadToCloudinary = async (url, filename) => {
