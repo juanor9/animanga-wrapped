@@ -4,6 +4,9 @@ import MangaFormat from '../MangaFormat/MangaFormat';
 import ReleaseYear from '../ReleaseYear/ReleaseYear';
 import MangaGenre from '../MangaGenre/MangaGenre';
 import Mangaka from '../Mangaka/Mangaka';
+import Carrusel from '../../../../../../components/Carrusel/Carrusel';
+import MangaFav from '../MangaFav/MangaFav';
+import MangaSeries from '../MangaSeries/MangaSeries';
 
 const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -27,13 +30,15 @@ const MangaStatsDisplay = ({ lists }) => {
   return (
     <section>
       <h3>Manga stats</h3>
-      <div id="watched-hours" className="story__container">
+      <Carrusel>
         <MangaChapters list={manga} />
+        <MangaFav list={manga} />
+        <MangaSeries list={manga} />
         <MangaFormat list={manga} />
         <ReleaseYear list={manga} />
         <MangaGenre list={manga} />
         <Mangaka list={manga} />
-      </div>
+      </Carrusel>
     </section>
   );
 };

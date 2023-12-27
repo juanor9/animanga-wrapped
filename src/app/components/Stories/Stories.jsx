@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
+import './Stories.scss';
 
 const StoryCard = ({ children, color }) => {
   // Para compartir como imagen
@@ -7,6 +8,14 @@ const StoryCard = ({ children, color }) => {
 
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const [totalImages, setTotalImages] = useState(0);
+
+  const captureOptions = {
+    allowTaint: true,
+    scale: 2.7,
+    useCORS: true,
+    onclone: () => {
+    },
+  };
 
   useEffect(() => {
     const images = storyCardRef.current.getElementsByTagName('img');
@@ -27,13 +36,7 @@ const StoryCard = ({ children, color }) => {
 
   const shareStoryCard = async () => {
     try {
-      const canvas = await html2canvas(storyCardRef.current, {
-        allowTaint: true,
-        scale: 1,
-        useCORS: true,
-        onclone: () => {
-        },
-      });
+      const canvas = await html2canvas(storyCardRef.current, captureOptions);
       const image = canvas.toDataURL('image/png');
       const blob = await (await fetch(image)).blob();
 
@@ -58,13 +61,7 @@ const StoryCard = ({ children, color }) => {
   // Para guardar la imagen
   const saveStoryCard = async () => {
     try {
-      const canvas = await html2canvas(storyCardRef.current, {
-        allowTaint: true,
-        scale: 1,
-        useCORS: true,
-        onclone: () => {
-        },
-      });
+      const canvas = await html2canvas(storyCardRef.current, captureOptions);
       const image = canvas.toDataURL('image/png');
 
       // Crear un enlace para la descarga
@@ -79,24 +76,25 @@ const StoryCard = ({ children, color }) => {
     }
   };
   return (
-    <div>
-      <div ref={storyCardRef} id="series-story" className={`story story--${color}-gradient`}>
-        <div className="story__content">
-          {children}
-        </div>
-        <div className="story__footer">
-          <p className="story__footer-link">animanga-wrapped.vercel.app</p>
-        </div>
-      </div>
-      {allImagesLoaded === true
-        ? (
-          <div className="story__button-container">
-            <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
-            <button type="button" onClick={saveStoryCard} className={`story__button story__button--${color}`}>Save</button>
+    <div className="carrusel__item">
+      <div>
+        <div ref={storyCardRef} id="series-story" className={`story story--${color}-gradient`}>
+          <div className="story__content">
+            {children}
           </div>
-        )
-        : null}
-
+          <div className="story__footer">
+            <p className="story__footer-link">animanga-wrapped.vercel.app</p>
+          </div>
+        </div>
+        {allImagesLoaded === true
+          ? (
+            <div className="story__button-container">
+              <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
+              <button type="button" onClick={saveStoryCard} className={`story__button story__button--${color}`}>Save</button>
+            </div>
+          )
+          : null}
+      </div>
     </div>
   );
 };
