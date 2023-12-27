@@ -1,6 +1,6 @@
-/* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { newUser } from '../../../../../redux/features/user';
 import { getMangaList } from '../../services/anilist';
 import ActivityCard from '../ActivityCard/ActivityCard';
@@ -17,7 +17,11 @@ const ALMangaList = ({ userId }) => {
     const fetchMangaList = async () => {
       try {
         const fetch = await getMangaList(userId);
-        setMangaList(fetch);
+        const mangaListWithIds = fetch.map((manga) => ({
+          ...manga,
+          id: uuidv4(),
+        }));
+        setMangaList(mangaListWithIds);
       } catch (error) {
         throw new Error(error);
       }
@@ -75,8 +79,8 @@ const ALMangaList = ({ userId }) => {
         <div className="anime-list__loading">Cargando...</div>
       ) : (
         <article className="anime-list__list-container">
-          {mangaList.map((e, index) => (
-            <ActivityCard activity={e} key={index} />
+          {mangaList.map((e) => (
+            <ActivityCard activity={e} key={e.id} />
           ))}
         </article>
       )}

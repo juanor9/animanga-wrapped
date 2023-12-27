@@ -189,6 +189,10 @@ export const GET_MANGA_LIST = gql`
                 id
                 primaryOccupations
                 gender
+                image {
+                  large
+                  medium
+                }
                 name {
                   first
                   middle

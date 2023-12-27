@@ -21,6 +21,9 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
     "react/function-component-definition": [
       "error",
       {

@@ -2,18 +2,15 @@ import './Footer.scss';
 
 const Footer = () => (
   <footer className="footer">
-    <section>
-      <p>Logo</p>
-      <p>credits</p>
+    <section className="footer__logo-container">
+      <picture className="footer__logo">
+        <img src="/AWM-logo.svg" alt="Animanga Wrappped" />
+      </picture>
+      <p>Animanga Wrapped | All rights reserved | Tanuki SAS</p>
     </section>
-    <section>
-      <p>Links</p>
-      <ul>
-        <li>Terms and Conditions of Use</li>
-        <li>Privacy Policy</li>
-      </ul>
-    </section>
-    <section />
+    <p><a href="./terms-and-conditions">Terms and Conditions</a></p>
+    <p><a href="./privacy-policy">Privacy Policy</a></p>
+
   </footer>
 );
 

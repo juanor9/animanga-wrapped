@@ -1,9 +1,7 @@
 import './PopularItemCard.scss';
 
 const PopularItemCard = ({ item }) => {
-  // console.log('🚀 ~ file: PopularItemCard.jsx:2 ~ PopularItemCard ~ item:', item);
   const title = item.title.romaji;
-  // console.log('🚀 ~ file: PopularItemCard.jsx:4 ~ PopularItemCard ~ title:', title);
   const image = item.coverImage.large;
 
   function truncateString(str, maxLength = 35) {

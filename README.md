@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Animanga Wrapped
 
-## Getting Started
+## Overview
+Animanga Wrapped is a web application providing statistics on anime and manga watched in 2023, based on user activity on AniList. Developed by Tanuki SAS, this app allows users to create an account, link it with AniList, and view statistical charts.
 
-First, run the development server:
+## Features
+- User account creation and AniList integration
+- Graphical display of anime and manga statistics
+- Option to save charts as images or share directly on social media
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Technologies
+This project uses technologies like Next.js, React, Redux, Chart.js, among others detailed in the `package.json` file.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Access
+Animanga Wrapped is available at: [https://animanga-wrapped.vercel.app/](https://animanga-wrapped.vercel.app/)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## License
+All rights reserved. Property of Tanuki SAS.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgements
+Special thanks to all who contributed to the development and maintenance of this project.

@@ -1,0 +1,36 @@
+@import '../../colors';
+
+.carrusel{
+  &__container {
+    width: 100%; /* Ajusta al tamaño que necesites */
+    overflow: hidden;
+  }
+  &__wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  &__item {
+    min-width: 100%;
+    @media (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  &__button{
+    flex-grow: 1;
+    padding: .5em;
+    border-radius: .5em;
+    background-color: $yellow;
+    @media (min-width: 768px) {
+      flex-grow: 0;
+    }
+    &-container{
+      display: flex;
+      gap : 1em;
+      margin: 1em;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

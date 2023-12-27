@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import { useState, useEffect } from 'react';
 import ActivityCard from '../../../anilist/components/ActivityCard/ActivityCard';
 import './UserLists.scss';
@@ -27,7 +25,7 @@ const UserLists = ({ lists }) => {
     <section className="user-lists">
       <h2>{`Activity from ${year}`}</h2>
 
-      {anime
+      {anime && anime.length > 0
         ? (
           <>
             <p>Anime Activity</p>
@@ -38,7 +36,7 @@ const UserLists = ({ lists }) => {
         )
         : null}
 
-      {manga
+      {manga && manga.length > 0
         ? (
           <>
             <p>Manga Activity</p>

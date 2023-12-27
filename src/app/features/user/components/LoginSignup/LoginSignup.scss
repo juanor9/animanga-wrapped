@@ -1,0 +1,16 @@
+@import '../../../../colors';
+
+.loginSignup{
+  &__button{
+    border: none;
+    background-color: $pink;
+    color: $light-black;
+    padding: .5em;
+    flex-grow: 1;
+    border-radius: .5em;
+    &-container{
+      display: flex;
+      gap: 1em;
+    }
+  }
+}

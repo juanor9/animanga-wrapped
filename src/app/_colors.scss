@@ -1,6 +1,13 @@
 $black : rgba(48, 42, 37,1);
 $light-black: rgb(71, 65, 59);
+$lighter-black: rgb(123, 115, 107);
 $pink : rgba(255,145,255,1);
 $yellow : rgba(255,211,25,1);
 $green: rgba(49,181,122,1);
-$orange: rgba(252, 128,45,1)
+$orange: rgba(252, 128,45,1);
+$white: rgba(241, 236, 232, 0.967);
+//Gradients
+$orange-gradient: linear-gradient(180deg, #FC802D 52%, #FCA92D 81%);
+$green-gradient: linear-gradient(180deg, #21AD6F 52%, #5AD75F 81%);
+$yellow-gradient: linear-gradient(180deg, #FFD319 52%, #F9F137 81%);
+$pink-gradient: linear-gradient(180deg, #FF91FF 52%, #FF97C9 81%);
