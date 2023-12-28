@@ -21,6 +21,7 @@ const UserStats = ({ lists }) => {
       }
     }
   }, [lists]);
+  console.log((anime && anime.length > 0) || (manga && manga.length > 0));
   return (
     <section>
       <h2>Stats for {year}</h2>
