@@ -1,4 +1,14 @@
 import { useState, useEffect } from 'react';
+import {
+  Chart as ChartJS,
+  Title,
+  Legend,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFormat from '../MangaFormat/MangaFormat';
 import ReleaseYear from '../ReleaseYear/ReleaseYear';
@@ -12,6 +22,16 @@ const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
 
   const [manga, setManga] = useState(null);
+
+  ChartJS.register(
+    Title,
+    Legend,
+    ArcElement,
+    ChartDataLabels,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+  );
 
   useEffect(() => {
     if (lists && Array.isArray(lists)) {
