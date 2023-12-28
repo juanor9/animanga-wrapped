@@ -1,11 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
+import { useSelector, useDispatch } from 'react-redux';
 import './Stories.scss';
+import uploadImage from '../../features/userStats/services/upload';
+import Spinner from '../Spinner/Spinner';
 
-const StoryCard = ({ children, color }) => {
+const StoryCard = ({ children, color, id }) => {
   const storyCardRef = useRef();
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const [totalImages, setTotalImages] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const { listUsername } = useSelector((state) => state.UserReducer.user);
+  const dispatch = useDispatch();
 
   const captureOptions = {
     allowTaint: true,
@@ -31,60 +37,55 @@ const StoryCard = ({ children, color }) => {
 
   const allImagesLoaded = imagesLoaded === totalImages;
 
-  const downloadImage = (imageDataUrl) => {
-    const link = document.createElement('a');
-    link.href = imageDataUrl;
-    link.download = 'storycard.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const uploadAndSaveStoryCard = async () => {
+    setIsUploading(true); // Comenzar la carga
+    const newTab = window.open('', '_blank');
 
-  const shareStoryCard = async () => {
     try {
       const canvas = await html2canvas(storyCardRef.current, captureOptions);
-      const image = canvas.toDataURL('image/png');
-      const blob = await (await fetch(image)).blob();
-
-      if (navigator.share) {
+      canvas.toBlob(async (blob) => {
         const file = new File([blob], 'storycard.png', { type: 'image/png' });
+        const uploadData = {
+          file,
+          listUsername, // Asegúrate de que listUsername esté definido
+          filename: `${listUsername}-${id}`, // Este es opcional
+        };
+        const resultAction = await dispatch(uploadImage(uploadData));
+        const data = resultAction.payload;
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: 'Check out my favorite anime genres!',
-            text: 'Here is my story card created using Animanga Wrapped!',
-          });
+        if (data && data.url) {
+          newTab.location.href = data.url;
         } else {
-          downloadImage(image);
+          newTab.close(); // Cierra la nueva pestaña si la carga falla
         }
-      } else {
-        downloadImage(image);
-      }
+        setIsUploading(false); // Finalizar la carga
+      });
     } catch (error) {
-      console.error('Error sharing the story card:', error);
+      console.error('Error uploading the story card:', error);
+      newTab.close(); // Asegúrate de cerrar la nueva pestaña si hay un error
+      setIsUploading(false); // Finalizar la carga
     }
   };
 
   return (
     <div className="carrusel__item">
-      <div>
-        <div ref={storyCardRef} id="series-story" className={`story story--${color}-gradient`}>
-          <div className="story__content">
-            {children}
-          </div>
-          <div className="story__footer">
-            <p className="story__footer-link">animanga-wrapped.vercel.app</p>
-          </div>
+      <div ref={storyCardRef} id="series-story" className={`story story--${color}-gradient`}>
+        <div className="story__content">
+          {children}
         </div>
-        {allImagesLoaded
-          && (
-          <div className="story__button-container">
-            <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
-            <button type="button" onClick={() => downloadImage()} className={`story__button story__button--${color}`}>Save</button>
-          </div>
-          )}
+        <div className="story__footer">
+          <p className="story__footer-link">animanga-wrapped.vercel.app</p>
+        </div>
       </div>
+      {allImagesLoaded && (
+        <div className="story__button-container">
+          {isUploading ? (
+            <Spinner />
+          ) : (
+            <button type="button" onClick={uploadAndSaveStoryCard} className={`story__button story__button--${color}`}>Save</button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
