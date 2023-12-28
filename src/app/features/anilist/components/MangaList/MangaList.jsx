@@ -5,6 +5,7 @@ import { newUser } from '../../../../../redux/features/user';
 import { getMangaList } from '../../services/anilist';
 import ActivityCard from '../ActivityCard/ActivityCard';
 import './MangaList.scss';
+import Spinner from '../../../../components/Spinner/Spinner';
 
 const ALMangaList = ({ userId }) => {
   const [mangaList, setMangaList] = useState([]);
@@ -76,7 +77,7 @@ const ALMangaList = ({ userId }) => {
     <section className="anime-list">
       <h2>Manga List Activity</h2>
       {loadingMangaList === 'loading' ? (
-        <div className="anime-list__loading">Cargando...</div>
+        <Spinner />
       ) : (
         <article className="anime-list__list-container">
           {mangaList.map((e) => (
