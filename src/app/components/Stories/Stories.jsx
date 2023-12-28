@@ -61,9 +61,9 @@ const StoryCard = ({ children, color, id }) => {
         setIsUploading(false); // Finalizar la carga
       });
     } catch (error) {
-      console.error('Error uploading the story card:', error);
       newTab.close(); // Asegúrate de cerrar la nueva pestaña si hay un error
       setIsUploading(false); // Finalizar la carga
+      throw new Error('Error uploading the story card:', error);
     }
   };
 
