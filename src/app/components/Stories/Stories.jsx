@@ -34,12 +34,15 @@ const StoryCard = ({ children, color }) => {
   const saveStoryCard = async () => {
     try {
       const canvas = await html2canvas(storyCardRef.current, captureOptions);
-      const image = canvas.toDataURL('image/png');
-      // Mostrar la imagen en una nueva pestaña
-      const newTab = window.open();
-      newTab.document.body.innerHTML = `<img src="${image}" alt="Story Card" style="max-width: 100%; height: auto;">`;
+      // Convertir el lienzo a Blob en lugar de Data URL
+      canvas.toBlob((blob) => {
+        // Crear un objeto URL con el Blob
+        const imageUrl = URL.createObjectURL(blob);
+        // Abrir la imagen en una nueva pestaña
+        window.open(imageUrl);
+      });
     } catch (error) {
-      throw new Error('Error saving the story card:', error);
+      console.error('Error saving the story card:', error);
     }
   };
 
