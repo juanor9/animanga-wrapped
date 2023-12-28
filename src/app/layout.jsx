@@ -1,4 +1,6 @@
 import './global.scss';
+// import { Analytics } from '@vercel/analytics';
+// import { SpeedInsights } from '@vercel/speed-insights';
 import Footer from './components/Footer/Footer';
 import ReduxProvider from './components/Provider/Provider';
 
@@ -29,6 +31,8 @@ const RootLayout = ({ children }) => (
         {children}
       </ReduxProvider>
       <Footer />
+      {/* <SpeedInsights />
+      <Analytics /> */}
     </body>
   </html>
 );
