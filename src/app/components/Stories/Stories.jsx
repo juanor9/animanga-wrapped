@@ -38,7 +38,7 @@ const StoryCard = ({ children, color, id }) => {
   const allImagesLoaded = imagesLoaded === totalImages;
 
   const uploadAndSaveStoryCard = async () => {
-    // Iniciar una nueva pestaña inmediatamente en respuesta al clic del usuario
+    setIsUploading(true); // Comenzar la carga
     const newTab = window.open('', '_blank');
 
     try {
@@ -54,15 +54,16 @@ const StoryCard = ({ children, color, id }) => {
         const data = resultAction.payload;
 
         if (data && data.url) {
-          // Asigna la URL a la nueva pestaña después de que la carga se haya completado
           newTab.location.href = data.url;
         } else {
           newTab.close(); // Cierra la nueva pestaña si la carga falla
         }
+        setIsUploading(false); // Finalizar la carga
       });
     } catch (error) {
       console.error('Error uploading the story card:', error);
       newTab.close(); // Asegúrate de cerrar la nueva pestaña si hay un error
+      setIsUploading(false); // Finalizar la carga
     }
   };
 
