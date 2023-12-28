@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import './Stories.scss';
 
@@ -31,38 +31,15 @@ const StoryCard = ({ children, color }) => {
 
   const allImagesLoaded = imagesLoaded === totalImages;
 
-  const downloadImage = (imageDataUrl) => {
-    const link = document.createElement('a');
-    link.href = imageDataUrl;
-    link.download = 'storycard.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const shareStoryCard = async () => {
+  const saveStoryCard = async () => {
     try {
       const canvas = await html2canvas(storyCardRef.current, captureOptions);
       const image = canvas.toDataURL('image/png');
-      const blob = await (await fetch(image)).blob();
-
-      if (navigator.share) {
-        const file = new File([blob], 'storycard.png', { type: 'image/png' });
-
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: 'Check out my favorite anime genres!',
-            text: 'Here is my story card created using Animanga Wrapped!',
-          });
-        } else {
-          downloadImage(image);
-        }
-      } else {
-        downloadImage(image);
-      }
+      // Mostrar la imagen en una nueva pestaña
+      const newTab = window.open();
+      newTab.document.body.innerHTML = `<img src="${image}" alt="Story Card" style="max-width: 100%; height: auto;">`;
     } catch (error) {
-      console.error('Error sharing the story card:', error);
+      throw new Error('Error saving the story card:', error);
     }
   };
 
@@ -78,12 +55,12 @@ const StoryCard = ({ children, color }) => {
           </div>
         </div>
         {allImagesLoaded
-          && (
-          <div className="story__button-container">
-            <button type="button" onClick={shareStoryCard} className={`story__button story__button--${color}`}>Share</button>
-            <button type="button" onClick={() => downloadImage()} className={`story__button story__button--${color}`}>Save</button>
-          </div>
-          )}
+          ? (
+            <div className="story__button-container">
+              <button type="button" onClick={saveStoryCard} className={`story__button story__button--${color}`}>Save</button>
+            </div>
+          )
+          : null}
       </div>
     </div>
   );
