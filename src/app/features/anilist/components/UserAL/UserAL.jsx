@@ -8,7 +8,7 @@ import ALAnimeList from '../AnimeList/AnimeList';
 import ALMangaList from '../MangaList/MangaList';
 import './UserAL.scss';
 
-const UserAL = ({ settings }) => {
+const UserAL = ({ settings, checkFunc }) => {
   // Estados
   const [accessToken, setAccessToken] = useState('');
   const [viewerData, setViewerData] = useState(null);
@@ -70,10 +70,10 @@ const UserAL = ({ settings }) => {
     <div className="user-al">
       <p>Username: {username}</p>
       {settings.anime && settings.anime === true ? (
-        <ALAnimeList userId={userId} />
+        <ALAnimeList userId={userId} checkFunc={checkFunc} />
       ) : null}
       {settings.manga && settings.manga === true ? (
-        <ALMangaList userId={userId} />
+        <ALMangaList userId={userId} checkFunc={checkFunc} />
       ) : null}
     </div>
   );

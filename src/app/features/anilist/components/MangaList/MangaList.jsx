@@ -7,7 +7,7 @@ import ActivityCard from '../ActivityCard/ActivityCard';
 import './MangaList.scss';
 import Spinner from '../../../../components/Spinner/Spinner';
 
-const ALMangaList = ({ userId }) => {
+const ALMangaList = ({ userId, checkFunc }) => {
   const [mangaList, setMangaList] = useState([]);
   const [loadingMangaList, setLoadingMangaList] = useState('loading');
   const { user } = useSelector((state) => state.UserReducer);
@@ -35,9 +35,11 @@ const ALMangaList = ({ userId }) => {
   useEffect(() => {
     if (!Array.isArray(mangaList) || mangaList.length < 0) {
       setLoadingMangaList('loading');
+      checkFunc(false);
     }
     if (mangaList.length > 0) {
       setLoadingMangaList('loaded');
+      checkFunc(true);
     }
   }, [mangaList]);
 
