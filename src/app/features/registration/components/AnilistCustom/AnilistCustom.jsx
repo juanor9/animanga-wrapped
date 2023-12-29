@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import UserAL from '../../../anilist/components/UserAL/UserAL';
 import './AnilistCustom.scss';
