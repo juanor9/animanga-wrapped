@@ -18,9 +18,12 @@ const AnilistCustom = ({ color, clickFunction }) => {
       [name]: checked,
     }));
   };
+  const [isList, setIsList] = useState(false);
 
   useEffect(() => {
     console.log('🚀 ~ file: AnilistCustom.jsx:12 ~ AnilistCustom ~ selectedLists:', selectedLists);
+    console.log('🚀 ~ file: AnilistCustom.jsx:26 ~ useEffect ~ selectedLists.anime:', selectedLists.anime);
+    console.log('🚀 ~ file: AnilistCustom.jsx:22 ~ AnilistCustom ~ isList:', isList);
   }, [selectedLists]);
 
   return (
@@ -51,10 +54,10 @@ const AnilistCustom = ({ color, clickFunction }) => {
           </label>
         </div>
 
-        <UserAL settings={selectedLists} />
+        <UserAL settings={selectedLists} checkFunc={setIsList} />
         <button
           type="submit"
-          className={`register__button register__button--${color}`}
+          className={`register__button ${!isList ? 'register__button--disabled' : `register__button--${color}`} `}
         >
           Next
         </button>

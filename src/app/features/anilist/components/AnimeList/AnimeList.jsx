@@ -7,8 +7,9 @@ import ActivityCard from '../ActivityCard/ActivityCard';
 import './AnimeList.scss';
 import Spinner from '../../../../components/Spinner/Spinner';
 
-const ALAnimeList = ({ userId }) => {
+const ALAnimeList = ({ userId, checkFunc }) => {
   const [animeList, setAnimeList] = useState([]);
+  console.log('🚀 ~ file: AnimeList.jsx:12 ~ ALAnimeList ~ animeList:', animeList);
   const [loadingAnimeList, setLoadingAnimeList] = useState('loading');
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
@@ -36,9 +37,11 @@ const ALAnimeList = ({ userId }) => {
   useEffect(() => {
     if (!Array.isArray(animeList) || animeList.length < 0) {
       setLoadingAnimeList('loading');
+      checkFunc(false);
     }
     if (animeList.length > 0) {
       setLoadingAnimeList('loaded');
+      checkFunc(true);
     }
   }, [animeList]);
 
