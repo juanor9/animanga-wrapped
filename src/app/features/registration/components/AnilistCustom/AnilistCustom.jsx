@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import UserAL from '../../../anilist/components/UserAL/UserAL';
 import './AnilistCustom.scss';
@@ -17,6 +18,7 @@ const AnilistCustom = ({ color, clickFunction }) => {
       [name]: checked,
     }));
   };
+  const [isList, setIsList] = useState(false);
 
   return (
     <div>
@@ -46,10 +48,10 @@ const AnilistCustom = ({ color, clickFunction }) => {
           </label>
         </div>
 
-        <UserAL settings={selectedLists} />
+        <UserAL settings={selectedLists} checkFunc={setIsList} />
         <button
           type="submit"
-          className={`register__button register__button--${color}`}
+          className={`register__button ${!isList ? 'register__button--disabled' : `register__button--${color}`} `}
         >
           Next
         </button>
