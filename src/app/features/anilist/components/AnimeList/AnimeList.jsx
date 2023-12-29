@@ -9,7 +9,6 @@ import Spinner from '../../../../components/Spinner/Spinner';
 
 const ALAnimeList = ({ userId, checkFunc }) => {
   const [animeList, setAnimeList] = useState([]);
-  console.log('🚀 ~ file: AnimeList.jsx:12 ~ ALAnimeList ~ animeList:', animeList);
   const [loadingAnimeList, setLoadingAnimeList] = useState('loading');
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();

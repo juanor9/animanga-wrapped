@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import UserAL from '../../../anilist/components/UserAL/UserAL';
 import './AnilistCustom.scss';
 
@@ -19,12 +19,6 @@ const AnilistCustom = ({ color, clickFunction }) => {
     }));
   };
   const [isList, setIsList] = useState(false);
-
-  useEffect(() => {
-    console.log('🚀 ~ file: AnilistCustom.jsx:12 ~ AnilistCustom ~ selectedLists:', selectedLists);
-    console.log('🚀 ~ file: AnilistCustom.jsx:26 ~ useEffect ~ selectedLists.anime:', selectedLists.anime);
-    console.log('🚀 ~ file: AnilistCustom.jsx:22 ~ AnilistCustom ~ isList:', isList);
-  }, [selectedLists]);
 
   return (
     <div>
