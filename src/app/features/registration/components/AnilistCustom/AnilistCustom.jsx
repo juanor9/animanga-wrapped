@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserAL from '../../../anilist/components/UserAL/UserAL';
 import './AnilistCustom.scss';
 
@@ -10,7 +10,6 @@ const AnilistCustom = ({ color, clickFunction }) => {
     anime: false,
     manga: false,
   });
-  console.log('🚀 ~ file: AnilistCustom.jsx:12 ~ AnilistCustom ~ selectedLists:', selectedLists);
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -19,6 +18,10 @@ const AnilistCustom = ({ color, clickFunction }) => {
       [name]: checked,
     }));
   };
+
+  useEffect(() => {
+    console.log('🚀 ~ file: AnilistCustom.jsx:12 ~ AnilistCustom ~ selectedLists:', selectedLists);
+  }, [selectedLists]);
 
   return (
     <div>
