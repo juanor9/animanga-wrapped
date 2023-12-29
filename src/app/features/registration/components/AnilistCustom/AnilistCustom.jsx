@@ -9,6 +9,7 @@ const AnilistCustom = ({ color, clickFunction }) => {
     anime: false,
     manga: false,
   });
+  console.log('🚀 ~ file: AnilistCustom.jsx:12 ~ AnilistCustom ~ selectedLists:', selectedLists);
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
