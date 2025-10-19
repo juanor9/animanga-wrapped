@@ -6,7 +6,7 @@ export const GET_POPULAR_ANIME = gql`
       media(
         sort: POPULARITY_DESC
         type: ANIME
-        seasonYear: 2023
+        seasonYear: 2025
         isAdult: false
       ) {
         id
@@ -28,8 +28,8 @@ export const GET_POPULAR_MANGA = gql`
     Page(page: 1, perPage: 30) {
       media(
         type: MANGA
-        startDate_greater: 20230101
-        startDate_lesser: 20231231
+        startDate_greater: 20250101
+        startDate_lesser: 20251231
         sort: POPULARITY_DESC
         isAdult: false
       ) {

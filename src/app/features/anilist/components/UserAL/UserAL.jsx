@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getViewer } from '../../services/anilist';
+import { getViewer } from '../../../../lib/anilist';
 import { newUser } from '../../../../../redux/features/user';
 import ALAnimeList from '../AnimeList/AnimeList';
 import ALMangaList from '../MangaList/MangaList';

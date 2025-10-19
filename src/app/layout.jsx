@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import ReduxProvider from './components/Provider/Provider';
 
 export const metadata = {
+  metadataBase: new URL('https://animanga-wrapped.vercel.app'),
   title: 'Year Anime Manga Wrapped - The Best of Your Year in Anime and Manga',
   description: 'Explore your anime and manga journey in 2023 with Year Anime Manga Wrapped. Connect with Anilist, discover personalized statistics, and share your year’s top anime and manga with friends.',
   keywords: 'anime, manga, year review, Anilist, wrapped, personalized statistics, top anime, top manga, anime fans, manga readers',

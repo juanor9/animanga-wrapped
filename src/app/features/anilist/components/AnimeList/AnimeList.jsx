@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { newUser } from '../../../../../redux/features/user';
-import { getAnimeList } from '../../services/anilist';
+import { getAnimeList } from '../../../../lib/anilist';
 import ActivityCard from '../ActivityCard/ActivityCard';
 import './AnimeList.scss';
 import Spinner from '../../../../components/Spinner/Spinner';

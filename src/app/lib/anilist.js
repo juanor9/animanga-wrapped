@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+import getClient from './apollo-client';
 import {
   GET_VIEWER,
   GET_ANIME_LIST,
@@ -6,7 +7,6 @@ import {
   GET_POPULAR_ANIME,
   GET_POPULAR_MANGA,
 } from './queries';
-import getClient from './client';
 
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -20,7 +20,7 @@ export async function getPopularAnime() {
     const { data } = await getClient().query({ query });
     return data;
   } catch (error) {
-    throw new Error('Error fetching popular anime data:', error);
+    throw new Error(`Error fetching popular anime data: ${error}`);
   }
 }
 
@@ -30,17 +30,24 @@ export async function getPopularManga() {
     const { data } = await getClient().query({ query });
     return data;
   } catch (error) {
-    throw new Error('Error fetching popular manga data:', error);
+    throw new Error(`Error fetching popular manga data: ${error}`);
   }
 }
 
 export async function getViewer(token) {
   try {
     const query = GET_VIEWER;
-    const { data } = await getClient(token).query({ query });
+    const { data } = await getClient().query({
+      query,
+      context: {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    });
     return data;
   } catch (error) {
-    throw new Error('Error fetching viewer data:', error);
+    throw new Error(`Error fetching viewer data: ${error}`);
   }
 }
 
@@ -87,7 +94,7 @@ export async function getAnimeList(userId) {
     const allActivities = allData.flat();
     return allActivities;
   } catch (error) {
-    throw new Error('Error fetching anime list:', error);
+    throw new Error(`Error fetching anime list: ${error}`);
   }
 }
 
@@ -134,6 +141,6 @@ export async function getMangaList(userId) {
     const allActivities = allData.flat();
     return allActivities;
   } catch (error) {
-    throw new Error('Error fetching anime list:', error);
+    throw new Error(`Error fetching manga list: ${error}`);
   }
 }

@@ -1,4 +1,4 @@
-import { getPopularAnime, getPopularManga } from '../../anilist/services/anilist';
+import { getPopularAnime, getPopularManga } from '../../../lib/anilist';
 import PopularItemCard from '../PopularAnimeCard/PopularItemCard';
 import './PopularSlider.scss';
 

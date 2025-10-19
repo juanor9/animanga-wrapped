@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../../../services/upload';
 import './AnimeWatchedHours.scss';
-import 'react-responsive-modal/styles.css';
 import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
