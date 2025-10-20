@@ -6,42 +6,35 @@ import createUser from '../../services/registration';
 import { login } from '../../../user/services/users';
 
 const Password = ({ color }) => {
-  // State y Redux hooks
   const [password, setPassword] = useState(null);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const { user } = useSelector((state) => state.UserReducer);
+  const { userToken, error } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // Gestiona el cambio de valor en el input de contraseña
   const handleChange = (event) => {
     const { value } = event.target;
     setPassword(value);
   };
 
-  // Actualiza Redux con la nueva contraseña
   const updateRedux = () => {
     if (password) {
       dispatch(newUser({ ...user, password }));
     }
   };
 
-  // Crea el nuevo usuario al enviar el formulario
   const createUserAtSubmit = async (newUserToCreate) => {
     const createUserDispatch = await dispatch(createUser(newUserToCreate));
     return createUserDispatch;
   };
 
-  // Inicia sesión del usuario después del registro
-  const loginUserAfterRegistration = async (form, fulfillment) => {
+  const loginUserAfterRegistration = (form, fulfillment) => {
     if (!fulfillment.payload.errors) {
-      dispatch(login(form)).then(() => setShouldRedirect(true));
-    } else {
-      throw new Error(fulfillment.payload.errors.message);
+      dispatch(login(form));
     }
+    // Errors will be handled by the global state and displayed in the UI
   };
 
-  // Gestiona el envío del formulario
   const handleSubmit = async (event) => {
     event.preventDefault();
     updateRedux();
@@ -55,19 +48,17 @@ const Password = ({ color }) => {
     }
   };
 
-  // Redirecciona si el inicio de sesión es exitoso
   useEffect(() => {
-    if (shouldRedirect) {
+    if (userToken) {
       router.push('./user');
     }
-  }, [shouldRedirect]);
+  }, [userToken, router]);
 
   return (
     <div>
       <p>
-        Alright, last piece of the puzzle!
-        Let&apos;s set a sturdy password to safeguard your epic
-        yearly stats. After this, we&apos;ll break down your
+        Alright, last piece of the puzzle! Let&apos;s set a sturdy password to
+        safeguard your epic yearly stats. After this, we&apos;ll break down your
         anime and manga journey for the year!
       </p>
       <form onSubmit={handleSubmit}>
@@ -80,6 +71,7 @@ const Password = ({ color }) => {
             onChange={handleChange}
           />
         </label>
+        {error && <p className="user-registration__error">{error}</p>}
         <button
           type="submit"
           className={`register__button register__button--${color}`}
