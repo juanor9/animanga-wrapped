@@ -11,15 +11,17 @@ const UserLists = ({ lists }) => {
   useEffect(() => {
     if (lists && Array.isArray(lists)) {
       const currentYearList = lists.find((element) => Number(element.year) === year);
-      const { animeList, mangaList } = currentYearList;
-      if (animeList) {
-        setAnime(animeList);
-      }
-      if (mangaList) {
-        setManga(mangaList);
+      if (currentYearList) {
+        const { animeList, mangaList } = currentYearList;
+        if (animeList) {
+          setAnime(animeList);
+        }
+        if (mangaList) {
+          setManga(mangaList);
+        }
       }
     }
-  }, [lists]);
+  }, [lists, year]);
 
   return (
     <section className="user-lists">

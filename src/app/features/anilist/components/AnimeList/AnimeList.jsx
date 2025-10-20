@@ -42,7 +42,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
       setLoadingAnimeList('loaded');
       checkFunc(true);
     }
-  }, [animeList]);
+  }, [animeList, checkFunc]);
 
   useEffect(() => {
     if (loadingAnimeList === 'loaded') {
@@ -73,7 +73,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
         }),
       );
     }
-  }, [loadingAnimeList, animeList]);
+  }, [loadingAnimeList, animeList, dispatch, user, year]);
 
   return (
     <section className="anime-list">

@@ -1,8 +1,7 @@
-
 {
   "extends": [
     "eslint:recommended",
-    "next",
+    "next/core-web-vitals",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
@@ -19,5 +18,10 @@
     "ecmaFeatures": {
       "jsx": true
     }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
   }
 }

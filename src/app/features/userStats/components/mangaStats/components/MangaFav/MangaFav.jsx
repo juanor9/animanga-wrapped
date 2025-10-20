@@ -108,31 +108,31 @@ const MangaFav = ({ list }) => {
   }, [list]);
 
   const [topReadChapters, setTopReadChapters] = useState([]);
-  const downloadToCloudinary = async (url, filename) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
-
-      const blob = await response.blob();
-      const file = new File([blob], 'anime-watched-image.png', {
-        type: blob.type,
-      });
-
-      const uploadedImageResponse = await dispatch(
-        uploadImage({ file, listUsername, filename }),
-      );
-
-      if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
-        const cloudinaryUrl = uploadedImageResponse.payload.url;
-        return cloudinaryUrl;
-      }
-      throw new Error('Image upload failed');
-    } catch (error) {
-      throw new Error('Error downloading or uploading image:', error);
-    }
-  };
 
   useEffect(() => {
+    const downloadToCloudinary = async (url, filename) => {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+    
+          const blob = await response.blob();
+          const file = new File([blob], 'anime-watched-image.png', {
+            type: blob.type,
+          });
+    
+          const uploadedImageResponse = await dispatch(
+            uploadImage({ file, listUsername, filename }),
+          );
+    
+          if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
+            const cloudinaryUrl = uploadedImageResponse.payload.url;
+            return cloudinaryUrl;
+          }
+          throw new Error('Image upload failed');
+        } catch (error) {
+          throw new Error('Error downloading or uploading image:', error);
+        }
+      };
     const processImages = async () => {
       if (sortedChapters && sortedChapters.length > 0) {
         const rawTopWatchedMinutes = sortedChapters.slice(0, 5);
@@ -164,7 +164,7 @@ const MangaFav = ({ list }) => {
     };
 
     processImages();
-  }, [sortedChapters]);
+  }, [sortedChapters, dispatch, listUsername]);
 
   return (
     <StoryCard key="8" id="8" color="yellow">

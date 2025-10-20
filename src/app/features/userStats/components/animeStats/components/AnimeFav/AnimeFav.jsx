@@ -151,31 +151,32 @@ const AnimeFav = ({ list }) => {
   }, [list]);
 
   const [topWatchedMinutes, setTopWatchedMinutes] = useState([]);
-  const downloadToCloudinary = async (url, filename) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
 
-      const blob = await response.blob();
-      const file = new File([blob], 'anime-watched-image.png', {
-        type: blob.type,
-      });
-
-      const uploadedImageResponse = await dispatch(
-        uploadImage({ file, listUsername, filename }),
-      );
-
-      if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
-        const cloudinaryUrl = uploadedImageResponse.payload.url;
-        return cloudinaryUrl;
-      }
-      throw new Error('Image upload failed');
-    } catch (error) {
-      throw new Error('Error downloading or uploading image:', error);
-    }
-  };
 
   useEffect(() => {
+    const downloadToCloudinary = async (url, filename) => {
+        try {
+        const response = await fetch(url);
+        if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+
+        const blob = await response.blob();
+        const file = new File([blob], 'anime-watched-image.png', {
+            type: blob.type,
+        });
+
+        const uploadedImageResponse = await dispatch(
+            uploadImage({ file, listUsername, filename }),
+        );
+
+        if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
+            const cloudinaryUrl = uploadedImageResponse.payload.url;
+            return cloudinaryUrl;
+        }
+        throw new Error('Image upload failed');
+        } catch (error) {
+        throw new Error('Error downloading or uploading image:', error);
+        }
+    };
     const processImages = async () => {
       if (sortedWatchedMinutes && sortedWatchedMinutes.length > 0) {
         const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(
@@ -205,7 +206,7 @@ const AnimeFav = ({ list }) => {
     };
 
     processImages();
-  }, [sortedWatchedMinutes]);
+  }, [sortedWatchedMinutes, dispatch, listUsername]);
 
   return (
     <StoryCard key="2" id="2" color="green">

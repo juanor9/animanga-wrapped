@@ -63,7 +63,7 @@ const UserAL = ({ settings, checkFunc }) => {
         }),
       );
     }
-  }, [username]);
+  }, [username, dispatch, user]);
 
   // Componente de retorno
   return (

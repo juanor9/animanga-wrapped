@@ -5,12 +5,26 @@ import { getUserProfile, getUserData } from '../../app/features/userPage/service
 
 const initialState = {
   user: {},
+  accessToken: null,
+  refreshToken: null,
 };
 
 const UserSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setTokens: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+    },
+    setAccessToken: (state, action) => {
+      state.accessToken = action.payload;
+    },
+    logout: (state) => {
+      state.user = {};
+      state.accessToken = null;
+      state.refreshToken = null;
+    },
     newUser: (state, action) => {
       state.user = action.payload;
     },
@@ -31,6 +45,6 @@ const UserSlice = createSlice({
   },
 });
 
-export const { newUser } = UserSlice.actions;
+export const { setTokens, setAccessToken, logout, newUser } = UserSlice.actions;
 
 export default UserSlice.reducer;
