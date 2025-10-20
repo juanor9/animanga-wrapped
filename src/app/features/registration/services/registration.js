@@ -4,7 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 const createUser = createAsyncThunk(
   'users/createUser',
-  async (data) => {
+  async (data, { rejectWithValue }) => {
     const options = {
       method: 'POST',
       headers: {
@@ -15,6 +15,11 @@ const createUser = createAsyncThunk(
 
     const res = await fetch(`${BASE_URL}/api/user`, options);
     const result = await res.json();
+
+    if (!res.ok) {
+      return rejectWithValue(result);
+    }
+
     return result;
   },
 );

@@ -8,6 +8,7 @@ const initialState = {
   isLocked: false,
   lockoutEndTime: null,
   error: null,
+  infoMessage: null, // Added for non-critical messages
   loading: false,
 };
 
@@ -23,15 +24,31 @@ const usersSlice = createSlice({
         window.localStorage.removeItem('userToken');
       }
     },
+    clearInfoMessage: (state) => {
+      state.infoMessage = null;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(createUser.fulfilled, (state, action) => {
-        state.userData = action.payload;
+        // Check if the payload contains a user object or a message
+        if (action.payload.user) {
+          state.userData = action.payload.user; // Or handle as needed
+          state.infoMessage = null; // Clear previous info messages
+        } else if (action.payload.message) {
+          state.infoMessage = action.payload.message;
+        }
+        state.error = null;
+      })
+      .addCase(createUser.rejected, (state, action) => {
+        // Handle unexpected registration errors
+        state.error = action.payload.message || 'An unexpected error occurred during registration.';
+        state.infoMessage = null;
       })
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.infoMessage = null; // Clear info messages on new login attempt
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
@@ -44,18 +61,19 @@ const usersSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
+        // Generic error handling as per security requirements
         state.error = action.payload.message;
-        if (action.payload.message === 'Invalid password') {
-          state.loginAttempts += 1;
-        }
+        state.loginAttempts += 1;
+
         if (state.loginAttempts >= 5) {
           state.isLocked = true;
           const lockoutDuration = 2 * 60 * 60 * 1000; // 2 hours
           state.lockoutEndTime = new Date().getTime() + lockoutDuration;
         }
+
+        // The server might also send a specific "Account locked" message
         if (action.payload.message === 'Account locked. Try again later.') {
           state.isLocked = true;
-          // If the server says the account is locked, but we don't have a lockout time, set it.
           if (!state.lockoutEndTime || new Date().getTime() > state.lockoutEndTime) {
             const lockoutDuration = 2 * 60 * 60 * 1000; // 2 hours
             state.lockoutEndTime = new Date().getTime() + lockoutDuration;
@@ -64,5 +82,6 @@ const usersSlice = createSlice({
       });
   },
 });
-export const { reset, logout } = usersSlice.actions;
+
+export const { reset, logout, clearInfoMessage } = usersSlice.actions;
 export default usersSlice.reducer;
