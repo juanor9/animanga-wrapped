@@ -27,7 +27,7 @@ const UserDisplay = () => {
         throw new Error(error);
       }
     }
-  }, [userToken]);
+  }, [userToken, dispatch]);
 
   useEffect(() => {
     const userIdData = user._id;
@@ -42,7 +42,7 @@ const UserDisplay = () => {
         throw new Error(error);
       }
     }
-  }, [userToken, userId]);
+  }, [userToken, userId, dispatch]);
 
   return (
 

@@ -1,38 +1,52 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import authFetch from '../../../lib/authFetch';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 export const getUserProfile = createAsyncThunk(
   'users/getUser',
-  async (userToken) => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userToken}`,
-      },
-    };
+  async (_, thunkAPI) => {
+    try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
 
-    const res = await fetch(`${BASE_URL}/api/user`, options);
-    const result = await res.json();
-    return result;
+      const res = await authFetch(`${BASE_URL}/api/user`, options);
+      const result = await res.json();
+
+      if (!res.ok) {
+        return thunkAPI.rejectWithValue(result);
+      }
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   },
 );
 
 export const getUserData = createAsyncThunk(
   'users/getUserData',
-  async (data) => {
-    const { userId, userToken } = data;
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userToken}`,
-      },
-    };
+  async (userId, thunkAPI) => {
+    try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
 
-    const res = await fetch(`${BASE_URL}/api/user/${userId}`, options);
-    const result = await res.json();
-    return result;
+      const res = await authFetch(`${BASE_URL}/api/user/${userId}`, options);
+      const result = await res.json();
+
+      if (!res.ok) {
+        return thunkAPI.rejectWithValue(result);
+      }
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   },
 );

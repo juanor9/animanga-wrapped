@@ -41,7 +41,7 @@ const ALMangaList = ({ userId, checkFunc }) => {
       setLoadingMangaList('loaded');
       checkFunc(true);
     }
-  }, [mangaList]);
+  }, [mangaList, checkFunc]);
 
   useEffect(() => {
     if (loadingMangaList === 'loaded') {
@@ -73,7 +73,7 @@ const ALMangaList = ({ userId, checkFunc }) => {
         lists: updatedLists,
       }));
     }
-  }, [loadingMangaList, mangaList]);
+  }, [loadingMangaList, mangaList, dispatch, user, year]);
 
   return (
     <section className="anime-list">
