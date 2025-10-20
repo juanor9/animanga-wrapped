@@ -5,6 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 const createUser = createAsyncThunk(
   'users/createUser',
+
   async (userData, thunkAPI) => {
     try {
       const options = {

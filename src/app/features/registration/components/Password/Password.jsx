@@ -4,13 +4,19 @@ import { useRouter } from 'next/navigation';
 import { newUser } from '../../../../../redux/features/user';
 import createUser from '../../services/registration';
 import { login } from '../../../user/services/users';
+import { clearInfoMessage } from '../../../user/reducer/userSlice';
 
 const Password = ({ color }) => {
   const [password, setPassword] = useState(null);
   const { user } = useSelector((state) => state.UserReducer);
-  const { userToken, error } = useSelector((state) => state.userData);
+  const { userToken, error, infoMessage } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  // Clear the info message when the component unmounts
+  useEffect(() => () => {
+    dispatch(clearInfoMessage());
+  }, [dispatch]);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -29,10 +35,11 @@ const Password = ({ color }) => {
   };
 
   const loginUserAfterRegistration = (form, fulfillment) => {
-    if (!fulfillment.payload.errors) {
+    // Only login if the user was successfully created
+    if (fulfillment.payload && fulfillment.payload.user) {
       dispatch(login(form));
-    }
-    // Errors will be handled by the global state and displayed in the UI
+    } 
+    // If there's a message (e.g., duplicate email), it will be handled by the global state
   };
 
   const handleSubmit = async (event) => {
@@ -71,6 +78,8 @@ const Password = ({ color }) => {
             onChange={handleChange}
           />
         </label>
+        {/* Display the info message if it exists */}
+        {infoMessage && <p className="user-registration__info">{infoMessage}</p>}
         {error && <p className="user-registration__error">{error}</p>}
         <button
           type="submit"
