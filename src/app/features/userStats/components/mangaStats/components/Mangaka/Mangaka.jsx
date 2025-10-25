@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../../../services/upload';
@@ -55,13 +55,13 @@ const Mangaka = ({ list }) => {
   }, [list]);
 
   const [topMangaka, setTopMangaka] = useState([]);
-  const downloadToCloudinary = async (url, filename) => {
+  const downloadToCloudinary = useCallback(async (url, filename) => {
     try {
       const response = await fetch(url);
       if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
 
       const blob = await response.blob();
-      const file = new File([blob], 'anime-watched-image.png', {
+      const file = new File([blob], 'manga-author-image.png', {
         type: blob.type,
       });
 
@@ -75,9 +75,9 @@ const Mangaka = ({ list }) => {
       }
       throw new Error('Image upload failed');
     } catch (error) {
-      throw new Error('Error downloading or uploading image:', error);
+      throw new Error(`Error downloading or uploading image: ${error}`);
     }
-  };
+  }, [dispatch, listUsername]);
 
   useEffect(() => {
     const processImages = async () => {
@@ -111,7 +111,7 @@ const Mangaka = ({ list }) => {
     };
 
     processImages();
-  }, [mangakaList]);
+  }, [mangakaList, downloadToCloudinary]);
 
   return (
     <StoryCard key="13" id="13" color="orange">

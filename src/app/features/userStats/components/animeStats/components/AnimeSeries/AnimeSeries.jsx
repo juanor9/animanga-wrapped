@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../../../services/upload';
@@ -43,7 +43,6 @@ const AnimeSeries = ({ list }) => {
           const firstActivity = fullActivity[firstActivityIndex];
           const firstActivityProgress = firstActivity.progress;
 
-          // Caso 1: Varios episodios: progress: '1 - 6', como está completo, se extrae el primer capítulo con un split, y se resta el primer capítulo del total de capítulos para tener el total de capítulos vistos durante el año.
           if (firstActivityProgress && firstActivityProgress.includes('-')) {
             const firstWatchedEpisode = firstActivity.progress.split(' - ')[0];
             const fullEpisodes = firstActivity.episodes;
@@ -52,7 +51,6 @@ const AnimeSeries = ({ list }) => {
             const timeWatched = Number(watchedEpisodes) * Number(duration);
             return { anime: key, timeWatched, image: firstActivity.image };
           }
-          // Caso 2: Un episodio: progress: '1', como está completo, se resta el número inicial de capítulos al número total de capítulos para tener los capítulos vistos durante el año.
           if (firstActivityProgress && !firstActivityProgress.includes('-')) {
             const firstWatchedEpisode = firstActivity.progress;
             const fullEpisodes = firstActivity.episodes;
@@ -61,7 +59,6 @@ const AnimeSeries = ({ list }) => {
             const timeWatched = Number(watchedEpisodes) * Number(duration);
             return { anime: key, timeWatched, image: firstActivity.image };
           }
-          // Caso 3: visto de una sentada: status: 'completed', progress: null
           if (
             firstActivityProgress === null
             && firstActivity.status === 'completed'
@@ -81,7 +78,6 @@ const AnimeSeries = ({ list }) => {
           const lastActivity = fullActivity[0];
           const lastActivityProgress = lastActivity.progress;
 
-          // Caso 1: Varios episodios: progress: '1 - 6', en inicio y ultimo
           if (
             firstActivityProgress
             && firstActivityProgress.includes('-')
@@ -95,7 +91,6 @@ const AnimeSeries = ({ list }) => {
             const timeWatched = Number(watchedEpisodes) * Number(duration);
             return { anime: key, timeWatched, image: firstActivity.image };
           }
-          // Caso 2: Un episodio: progress: '1', en inicio y último
           if (
             firstActivityProgress
             && !firstActivityProgress.includes('-')
@@ -109,7 +104,6 @@ const AnimeSeries = ({ list }) => {
             const timeWatched = Number(watchedEpisodes) * Number(duration);
             return { anime: key, timeWatched, image: firstActivity.image };
           }
-          // Caso 3: progress: '1 - 6' en primera actividad y progress: '1' en última
           if (
             firstActivityProgress
             && firstActivityProgress.includes('-')
@@ -123,7 +117,6 @@ const AnimeSeries = ({ list }) => {
             const timeWatched = Number(watchedEpisodes) * Number(duration);
             return { anime: key, timeWatched, image: firstActivity.image };
           }
-          // Caso 4: progress: '1' en primera actividad y progress: '1 - 6' en última
           if (
             firstActivityProgress
             && !firstActivityProgress.includes('-')
@@ -153,7 +146,7 @@ const AnimeSeries = ({ list }) => {
   }, [list]);
 
   const [topWatchedMinutes, setTopWatchedMinutes] = useState([]);
-  const downloadToCloudinary = async (url, filename) => {
+  const downloadToCloudinary = useCallback(async (url, filename) => {
     try {
       const response = await fetch(url);
       if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
@@ -173,9 +166,9 @@ const AnimeSeries = ({ list }) => {
       }
       throw new Error('Image upload failed');
     } catch (error) {
-      throw new Error('Error downloading or uploading image:', error);
+      throw new Error(`Error downloading or uploading image: ${error}`);
     }
-  };
+  }, [dispatch, listUsername]);
 
   useEffect(() => {
     const processImages = async () => {
@@ -206,7 +199,7 @@ const AnimeSeries = ({ list }) => {
     };
 
     processImages();
-  }, [sortedWatchedMinutes]);
+  }, [sortedWatchedMinutes, downloadToCloudinary]);
 
   return (
     <StoryCard key="3" id="3" color="pink">

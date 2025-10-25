@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../../../services/upload';
@@ -12,6 +12,7 @@ const MangaSeries = ({ list }) => {
   const [sortedChapters, setSortedChapters] = useState(null);
   const dispatch = useDispatch();
   const { listUsername } = useSelector((state) => state.UserReducer.user);
+
   useEffect(() => {
     if (list) {
       const fullData = list.map((activity) => (
@@ -41,21 +42,18 @@ const MangaSeries = ({ list }) => {
           const firstActivity = fullActivity[firstActivityIndex];
           const firstActivityProgress = firstActivity.progress;
 
-          // Caso 1: Varios episodios: progress: '1 - 6', como está completo, se extrae el primer capítulo con un split, y se resta el primer capítulo del total de capítulos para tener el total de capítulos vistos durante el año.
           if (firstActivityProgress && firstActivityProgress.includes('-')) {
             const firstReadChapter = firstActivity.progress.split(' - ')[0];
             const fullChapters = firstActivity.chapters;
             const readChapters = Number(fullChapters) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          // Caso 2: Un episodio: progress: '1', como está completo, se resta el número inicial de capítulos al número total de capítulos para tener los capítulos vistos durante el año.
           if (firstActivityProgress && !firstActivityProgress.includes('-')) {
             const firstReadChapter = firstActivity.progress;
             const fullChapters = firstActivity.chapters;
             const readChapters = Number(fullChapters) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          // Caso 3: visto de una sentada: status: 'completed', progress: null
           if (firstActivityProgress === null && firstActivity.status === 'completed') {
             const { chapters } = firstActivity;
             return { manga: key, readChapters: chapters, image: firstActivity.image };
@@ -70,28 +68,24 @@ const MangaSeries = ({ list }) => {
           const lastActivity = fullActivity[0];
           const lastActivityProgress = lastActivity.progress;
 
-          // Caso 1: Varios episodios: progress: '1 - 6', en inicio y ultimo
           if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress.split(' - ')[0];
             const lastReadChapter = lastActivityProgress.split(' - ')[1];
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          // Caso 2: Un episodio: progress: '1', en inicio y último
           if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress;
             const lastReadChapter = lastActivityProgress;
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          // Caso 3: progress: '1 - 6' en primera actividad y progress: '1' en última
           if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress.split(' - ')[0];
             const lastReadChapter = lastActivityProgress;
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          // Caso 4: progress: '1' en primera actividad y progress: '1 - 6' en última
           if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
             const firstReadChapter = firstActivityProgress;
             const lastReadChapter = lastActivityProgress.split(' - ')[1];
@@ -101,7 +95,7 @@ const MangaSeries = ({ list }) => {
         }
         return null;
       });
-      const sortedChaptersBySeries = ChaptersBySeries.sort((a, b) => b.readChapters - a.readChapters);
+      const sortedChaptersBySeries = ChaptersBySeries.filter(Boolean).sort((a, b) => b.readChapters - a.readChapters);
       if (sortedChaptersBySeries && Array.isArray(sortedChaptersBySeries)) {
         setSortedChapters(sortedChaptersBySeries);
       }
@@ -109,13 +103,13 @@ const MangaSeries = ({ list }) => {
   }, [list]);
 
   const [topReadChapters, setTopReadChapters] = useState([]);
-  const downloadToCloudinary = async (url, filename) => {
+  const downloadToCloudinary = useCallback(async (url, filename) => {
     try {
       const response = await fetch(url);
       if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
 
       const blob = await response.blob();
-      const file = new File([blob], 'anime-watched-image.png', {
+      const file = new File([blob], 'manga-series-image.png', {
         type: blob.type,
       });
 
@@ -129,9 +123,9 @@ const MangaSeries = ({ list }) => {
       }
       throw new Error('Image upload failed');
     } catch (error) {
-      throw new Error('Error downloading or uploading image:', error);
+      throw new Error(`Error downloading or uploading image: ${error}`);
     }
-  };
+  }, [dispatch, listUsername]);
 
   useEffect(() => {
     const processImages = async () => {
@@ -165,7 +159,7 @@ const MangaSeries = ({ list }) => {
     };
 
     processImages();
-  }, [sortedChapters]);
+  }, [sortedChapters, downloadToCloudinary]);
 
   return (
     <StoryCard key="9" id="9" color="orange">
