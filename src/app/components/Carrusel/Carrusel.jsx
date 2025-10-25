@@ -13,7 +13,7 @@ const Carrusel = ({ children }) => {
   };
 
   return (
-    <div className="carrusel__container">
+    <div className="carrusel__container" tabIndex="0">
       <div className="carrusel__button-container">
         <button className="carrusel__button" type="button" onClick={goToPrevious}>Previous</button>
         <button className="carrusel__button" type="button" onClick={goToNext}>Next</button>

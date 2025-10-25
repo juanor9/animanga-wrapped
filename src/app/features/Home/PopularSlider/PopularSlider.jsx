@@ -1,6 +1,5 @@
 import { getPopularAnime, getPopularManga } from '../../../lib/anilist';
-import PopularItemCard from '../PopularAnimeCard/PopularItemCard';
-import './PopularSlider.scss';
+import PopularSliderClient from './PopularSliderClient';
 
 const fetchPopularAnime = async () => {
   try {
@@ -10,8 +9,6 @@ const fetchPopularAnime = async () => {
     throw new Error(error);
   }
 };
-const popularAnimeData = await fetchPopularAnime();
-const popularAnime = popularAnimeData.Page.media;
 
 const fetchPopularManga = async () => {
   try {
@@ -21,24 +18,14 @@ const fetchPopularManga = async () => {
     return error;
   }
 };
-const popularMangaData = await fetchPopularManga();
-const popularManga = popularMangaData.Page.media;
 
-const PopularSlider = () => (
-  <section className="slider">
-    <h2>Popular Anime This Year</h2>
-    <div className="slider__container">
-      {popularAnime
-        ? popularAnime.map((anime) => <PopularItemCard key={anime.id} item={anime} />)
-        : null}
-    </div>
-    <h2>Popular Manga This Year</h2>
-    <div className="slider__container">
-      {popularManga
-        ? popularManga.map((manga) => <PopularItemCard key={manga.id} item={manga} />)
-        : null}
-    </div>
-  </section>
-);
+const PopularSlider = async () => {
+  const popularAnimeData = await fetchPopularAnime();
+  const popularAnime = popularAnimeData.Page.media;
+  const popularMangaData = await fetchPopularManga();
+  const popularManga = popularMangaData.Page.media;
+
+  return <PopularSliderClient popularAnime={popularAnime} popularManga={popularManga} />;
+};
 
 export default PopularSlider;
