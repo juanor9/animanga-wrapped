@@ -36,16 +36,20 @@ const MangaStatsDisplay = ({ lists }) => {
   useEffect(() => {
     if (lists && Array.isArray(lists)) {
       const currentYearList = lists.find((element) => Number(element.year) === year);
-      const { mangaList } = currentYearList;
-      const readManga = mangaList.filter((w) => w.status === 'read chapter'
-      || w.status === 'completed'
-      || w.status === 'reread chapter'
-      || w.status === 'reread');
-      if (mangaList) {
-        setManga(readManga);
+      if (currentYearList) {
+        const { mangaList } = currentYearList;
+        const readManga = mangaList.filter(
+          (w) => w.status === 'read chapter'
+            || w.status === 'completed'
+            || w.status === 'reread chapter'
+            || w.status === 'reread',
+        );
+        if (mangaList) {
+          setManga(readManga);
+        }
       }
     }
-  }, [lists]);
+  }, [lists, year]);
 
   return (
     <section>

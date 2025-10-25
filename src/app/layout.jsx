@@ -3,6 +3,7 @@ import './global.scss';
 // import { SpeedInsights } from '@vercel/speed-insights';
 import Footer from './components/Footer/Footer';
 import ReduxProvider from './components/Provider/Provider';
+import AxeDevTool from './components/AxeDevTool/AxeDevTool';
 
 export const metadata = {
   metadataBase: new URL('https://animanga-wrapped.vercel.app'),
@@ -29,6 +30,7 @@ const RootLayout = ({ children }) => (
   <html lang="en">
     <body>
       <ReduxProvider>
+        <AxeDevTool />
         {children}
       </ReduxProvider>
       <Footer />

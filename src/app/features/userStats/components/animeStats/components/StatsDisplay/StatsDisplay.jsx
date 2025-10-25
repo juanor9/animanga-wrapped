@@ -35,16 +35,20 @@ const AnimeStatsDisplay = ({ lists }) => {
   useEffect(() => {
     if (lists && Array.isArray(lists)) {
       const currentYearList = lists.find((element) => Number(element.year) === year);
-      const { animeList } = currentYearList;
-      const watchedAnime = animeList.filter((w) => w.status === 'watched episode'
-      || w.status === 'completed'
-      || w.status === 'rewatched episode'
-      || w.status === 'rewatched');
-      if (animeList) {
-        setAnime(watchedAnime);
+      if (currentYearList) {
+        const { animeList } = currentYearList;
+        const watchedAnime = animeList.filter(
+          (w) => w.status === 'watched episode'
+            || w.status === 'completed'
+            || w.status === 'rewatched episode'
+            || w.status === 'rewatched',
+        );
+        if (animeList) {
+          setAnime(watchedAnime);
+        }
       }
     }
-  }, [lists]);
+  }, [lists, year]);
 
   return (
     <section>
@@ -56,7 +60,6 @@ const AnimeStatsDisplay = ({ lists }) => {
         <AnimeFormat list={anime} />
         <LauchYear list={anime} />
         <AnimeGenre list={anime} />
-
       </Carrusel>
     </section>
   );
