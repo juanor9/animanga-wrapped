@@ -38,32 +38,36 @@ const StoryCard = ({ children, color, id }) => {
   const allImagesLoaded = imagesLoaded === totalImages;
 
   const uploadAndSaveStoryCard = async () => {
-    setIsUploading(true); // Comenzar la carga
+    setIsUploading(true);
     const newTab = window.open('', '_blank');
 
     try {
       const canvas = await html2canvas(storyCardRef.current, captureOptions);
       canvas.toBlob(async (blob) => {
         const file = new File([blob], 'storycard.png', { type: 'image/png' });
+        // Updated uploadData to comply with API v2.0
         const uploadData = {
           file,
-          listUsername, // Asegúrate de que listUsername esté definido
-          filename: `${listUsername}-${id}`, // Este es opcional
+          type: 'stats', // Explicitly setting the type for user-generated statistics
+          listUsername, // The username is required for 'stats' type
+          filename: `${listUsername}-${id}.png`,
         };
+        
         const resultAction = await dispatch(uploadImage(uploadData));
         const data = resultAction.payload;
 
-        if (data && data.url) {
+        if (resultAction.meta.requestStatus === 'fulfilled' && data && data.url) {
           newTab.location.href = data.url;
         } else {
-          newTab.close(); // Cierra la nueva pestaña si la carga falla
+          console.error('Upload failed:', data);
+          newTab.close();
         }
-        setIsUploading(false); // Finalizar la carga
+        setIsUploading(false);
       });
     } catch (error) {
-      newTab.close(); // Asegúrate de cerrar la nueva pestaña si hay un error
-      setIsUploading(false); // Finalizar la carga
-      throw new Error('Error uploading the story card:', error);
+      newTab.close();
+      setIsUploading(false);
+      console.error('Error generating or uploading the story card:', error);
     }
   };
 
