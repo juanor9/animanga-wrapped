@@ -12,7 +12,11 @@ const TimePerSeries = ({ list }) => {
   }, [list]);
   return (
     <ol className="time-watched-list">
-      {orderList.map((anime) => <li key={anime.id} className="time-watched-list__items">{anime.anime}, {anime.timeWatched} minutes</li>)}
+      {orderList.map((anime) => (
+        <li key={anime.id} className="time-watched-list__items">
+          {anime.anime}, {anime.timeWatched} minutes
+        </li>
+      ))}
     </ol>
   );
 };

@@ -6,13 +6,9 @@ import { login } from '../../services/users';
 const UserLogin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const {
-    error,
-    isLocked,
-    lockoutEndTime,
-    loginAttempts,
-    userToken,
-  } = useSelector((state) => state.userData);
+  const { error, isLocked, lockoutEndTime, loginAttempts, userToken } = useSelector(
+    (state) => state.userData
+  );
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

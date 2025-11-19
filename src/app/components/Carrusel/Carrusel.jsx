@@ -1,4 +1,3 @@
-
 import { useState, useCallback, Children } from 'react';
 import './Carrusel.scss';
 
@@ -14,13 +13,16 @@ const Carrusel = ({ children }) => {
     setCurrentIndex((prevIndex) => (prevIndex < count - 1 ? prevIndex + 1 : 0));
   }, [count]);
 
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'ArrowLeft') {
-      goToPrevious();
-    } else if (e.key === 'ArrowRight') {
-      goToNext();
-    }
-  }, [goToPrevious, goToNext]);
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        goToNext();
+      }
+    },
+    [goToPrevious, goToNext]
+  );
 
   return (
     <div className="carrusel__root">
@@ -34,13 +36,20 @@ const Carrusel = ({ children }) => {
         onKeyDown={handleKeyDown}
         aria-label="Carousel"
       >
-        <div className="carrusel__wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        <div
+          className="carrusel__wrapper"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
           {children}
         </div>
       </div>
       <div className="carrusel__button-container">
-        <button className="carrusel__button" type="button" onClick={goToPrevious}>Previous</button>
-        <button className="carrusel__button" type="button" onClick={goToNext}>Next</button>
+        <button className="carrusel__button" type="button" onClick={goToPrevious}>
+          Previous
+        </button>
+        <button className="carrusel__button" type="button" onClick={goToNext}>
+          Next
+        </button>
       </div>
     </div>
   );

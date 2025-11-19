@@ -15,15 +15,13 @@ const MangaSeries = ({ list }) => {
 
   useEffect(() => {
     if (list) {
-      const fullData = list.map((activity) => (
-        {
-          status: activity.status,
-          progress: activity.progress,
-          manga: activity.media.title.userPreferred,
-          chapters: activity.media.chapters,
-          image: activity.media.coverImage.extraLarge,
-        }
-      ));
+      const fullData = list.map((activity) => ({
+        status: activity.status,
+        progress: activity.progress,
+        manga: activity.media.title.userPreferred,
+        chapters: activity.media.chapters,
+        image: activity.media.coverImage.extraLarge,
+      }));
       const groupedByManga = fullData.reduce((acc, curr) => {
         if (!acc[curr.manga]) {
           acc[curr.manga] = [];
@@ -68,25 +66,45 @@ const MangaSeries = ({ list }) => {
           const lastActivity = fullActivity[0];
           const lastActivityProgress = lastActivity.progress;
 
-          if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
+          if (
+            firstActivityProgress &&
+            firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            lastActivityProgress.includes('-')
+          ) {
             const firstReadChapter = firstActivityProgress.split(' - ')[0];
             const lastReadChapter = lastActivityProgress.split(' - ')[1];
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
+          if (
+            firstActivityProgress &&
+            !firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            !lastActivityProgress.includes('-')
+          ) {
             const firstReadChapter = firstActivityProgress;
             const lastReadChapter = lastActivityProgress;
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          if (firstActivityProgress && firstActivityProgress.includes('-') && lastActivityProgress && !lastActivityProgress.includes('-')) {
+          if (
+            firstActivityProgress &&
+            firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            !lastActivityProgress.includes('-')
+          ) {
             const firstReadChapter = firstActivityProgress.split(' - ')[0];
             const lastReadChapter = lastActivityProgress;
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
             return { manga: key, readChapters, image: firstActivity.image };
           }
-          if (firstActivityProgress && !firstActivityProgress.includes('-') && lastActivityProgress && lastActivityProgress.includes('-')) {
+          if (
+            firstActivityProgress &&
+            !firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            lastActivityProgress.includes('-')
+          ) {
             const firstReadChapter = firstActivityProgress;
             const lastReadChapter = lastActivityProgress.split(' - ')[1];
             const readChapters = Number(lastReadChapter) - Number(firstReadChapter) + 1;
@@ -95,7 +113,9 @@ const MangaSeries = ({ list }) => {
         }
         return null;
       });
-      const sortedChaptersBySeries = ChaptersBySeries.filter(Boolean).sort((a, b) => b.readChapters - a.readChapters);
+      const sortedChaptersBySeries = ChaptersBySeries.filter(Boolean).sort(
+        (a, b) => b.readChapters - a.readChapters
+      );
       if (sortedChaptersBySeries && Array.isArray(sortedChaptersBySeries)) {
         setSortedChapters(sortedChaptersBySeries);
       }
@@ -103,56 +123,52 @@ const MangaSeries = ({ list }) => {
   }, [list]);
 
   const [topReadChapters, setTopReadChapters] = useState([]);
-  const downloadToCloudinary = useCallback(async (url, filename) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+  const downloadToCloudinary = useCallback(
+    async (url, filename) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      const blob = await response.blob();
-      const file = new File([blob], 'manga-series-image.png', {
-        type: blob.type,
-      });
+        const blob = await response.blob();
+        const file = new File([blob], 'manga-series-image.png', {
+          type: blob.type,
+        });
 
-      const uploadedImageResponse = await dispatch(
-        uploadImage({ file, listUsername, filename }),
-      );
+        const uploadedImageResponse = await dispatch(uploadImage({ file, listUsername, filename }));
 
-      if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
-        const cloudinaryUrl = uploadedImageResponse.payload.url;
-        return cloudinaryUrl;
+        if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
+          const cloudinaryUrl = uploadedImageResponse.payload.url;
+          return cloudinaryUrl;
+        }
+        throw new Error('Image upload failed');
+      } catch (error) {
+        throw new Error(`Error downloading or uploading image: ${error}`);
       }
-      throw new Error('Image upload failed');
-    } catch (error) {
-      throw new Error(`Error downloading or uploading image: ${error}`);
-    }
-  }, [dispatch, listUsername]);
+    },
+    [dispatch, listUsername]
+  );
 
   useEffect(() => {
     const processImages = async () => {
       if (sortedChapters && sortedChapters.length > 0) {
         const rawTopWatchedMinutes = sortedChapters.slice(0, 5);
 
-        const newTopWatchedMinutesPromises = rawTopWatchedMinutes.map(
-          async (element) => {
-            const alImage = element.image;
-            const parts = alImage.split('/');
-            const newPath = parts.slice(3).join('/');
-            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
-            const cloudinaryUrl = await downloadToCloudinary(
-              newUrl,
-              element.manga,
-            );
+        const newTopWatchedMinutesPromises = rawTopWatchedMinutes.map(async (element) => {
+          const alImage = element.image;
+          const parts = alImage.split('/');
+          const newPath = parts.slice(3).join('/');
+          const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+          const cloudinaryUrl = await downloadToCloudinary(newUrl, element.manga);
 
-            return {
-              ...element,
-              image: cloudinaryUrl,
-            };
-          },
-        );
+          return {
+            ...element,
+            image: cloudinaryUrl,
+          };
+        });
 
-        const newTopWatchedMinutes = await Promise.all(
-          newTopWatchedMinutesPromises,
-        );
+        const newTopWatchedMinutes = await Promise.all(newTopWatchedMinutesPromises);
 
         setTopReadChapters(newTopWatchedMinutes);
       }
@@ -166,31 +182,28 @@ const MangaSeries = ({ list }) => {
       <>
         <p className="story__main-copy">Your main series for {year}</p>
         <ul className="story__list-container">
-
           {Array.isArray(topReadChapters) && topReadChapters.length > 0
             ? topReadChapters.slice(0, 5).map((item) => {
-              const url = item.image;
-              const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
-              const parts = url.split('image/upload/');
-              const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
-              return (
-                <li key={uuidv4()} className="story__list-item">
-                  <picture className="story__list-image">
-                    <div
-                      role="img"
-                      aria-label={item.manga}
-                      style={{ backgroundImage: `url(${image})` }}
-                    />
-                  </picture>
-                  <div className="story__list-text">
-                    <p className="story__list-text--title">{item.manga}</p>
-                    <p className="story__list-text--time">
-                      {item.readChapters} chapters
-                    </p>
-                  </div>
-                </li>
-              );
-            })
+                const url = item.image;
+                const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
+                const parts = url.split('image/upload/');
+                const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
+                return (
+                  <li key={uuidv4()} className="story__list-item">
+                    <picture className="story__list-image">
+                      <div
+                        role="img"
+                        aria-label={item.manga}
+                        style={{ backgroundImage: `url(${image})` }}
+                      />
+                    </picture>
+                    <div className="story__list-text">
+                      <p className="story__list-text--title">{item.manga}</p>
+                      <p className="story__list-text--time">{item.readChapters} chapters</p>
+                    </div>
+                  </li>
+                );
+              })
             : null}
         </ul>
       </>

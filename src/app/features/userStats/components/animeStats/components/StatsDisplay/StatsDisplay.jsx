@@ -29,7 +29,7 @@ const AnimeStatsDisplay = ({ lists }) => {
     ChartDataLabels,
     CategoryScale,
     LinearScale,
-    BarElement,
+    BarElement
   );
 
   useEffect(() => {
@@ -38,10 +38,11 @@ const AnimeStatsDisplay = ({ lists }) => {
       if (currentYearList) {
         const { animeList } = currentYearList;
         const watchedAnime = animeList.filter(
-          (w) => w.status === 'watched episode'
-            || w.status === 'completed'
-            || w.status === 'rewatched episode'
-            || w.status === 'rewatched',
+          (w) =>
+            w.status === 'watched episode' ||
+            w.status === 'completed' ||
+            w.status === 'rewatched episode' ||
+            w.status === 'rewatched'
         );
         if (animeList) {
           setAnime(watchedAnime);

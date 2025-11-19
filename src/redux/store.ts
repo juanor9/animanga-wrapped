@@ -2,8 +2,8 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import MALReducer from './features/MAL';
-import UserReducer from '../app/features/user/reducer/userSlice';
 import UploadsReducer from './features/uploads';
+import UserReducer from '../app/features/user/reducer/userSlice';
 
 export const store = configureStore({
   reducer: {

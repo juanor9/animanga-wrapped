@@ -8,13 +8,7 @@ const CountrySelect = ({ onChange }) => {
     label: country.name,
   }));
 
-  return (
-    <Select
-      options={countryOptions}
-      onChange={onChange}
-      placeholder="Select a country..."
-    />
-  );
+  return <Select options={countryOptions} onChange={onChange} placeholder="Select a country..." />;
 };
 
 export default CountrySelect;

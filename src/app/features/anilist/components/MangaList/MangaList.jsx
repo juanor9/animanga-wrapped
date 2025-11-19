@@ -68,10 +68,12 @@ const ALMangaList = ({ userId, checkFunc }) => {
         });
       }
 
-      dispatch(newUser({
-        ...user,
-        lists: updatedLists,
-      }));
+      dispatch(
+        newUser({
+          ...user,
+          lists: updatedLists,
+        })
+      );
     }
   }, [loadingMangaList, mangaList, dispatch, user, year]);
 

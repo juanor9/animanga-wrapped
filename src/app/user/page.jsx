@@ -1,7 +1,10 @@
 import dynamic from 'next/dynamic';
 import './page.scss';
 
-const UserDisplay = dynamic(() => import('../features/userPage/components/UserDisplay/UserDisplay'), { ssr: false });
+const UserDisplay = dynamic(
+  () => import('../features/userPage/components/UserDisplay/UserDisplay'),
+  { ssr: false }
+);
 
 const UserPage = () => (
   <main className="user">

@@ -14,9 +14,12 @@ const Password = ({ color }) => {
   const router = useRouter();
 
   // Clear the info message when the component unmounts
-  useEffect(() => () => {
-    dispatch(clearInfoMessage());
-  }, [dispatch]);
+  useEffect(
+    () => () => {
+      dispatch(clearInfoMessage());
+    },
+    [dispatch]
+  );
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -38,7 +41,7 @@ const Password = ({ color }) => {
     // Only login if the user was successfully created
     if (fulfillment.payload && fulfillment.payload.user) {
       dispatch(login(form));
-    } 
+    }
     // If there's a message (e.g., duplicate email), it will be handled by the global state
   };
 
@@ -64,27 +67,18 @@ const Password = ({ color }) => {
   return (
     <div>
       <p>
-        Alright, last piece of the puzzle! Let&apos;s set a sturdy password to
-        safeguard your epic yearly stats. After this, we&apos;ll break down your
-        anime and manga journey for the year!
+        Alright, last piece of the puzzle! Let&apos;s set a sturdy password to safeguard your epic
+        yearly stats. After this, we&apos;ll break down your anime and manga journey for the year!
       </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="password">
           Password
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={handleChange}
-          />
+          <input type="password" name="password" id="password" onChange={handleChange} />
         </label>
         {/* Display the info message if it exists */}
         {infoMessage && <p className="user-registration__info">{infoMessage}</p>}
         {error && <p className="user-registration__error">{error}</p>}
-        <button
-          type="submit"
-          className={`register__button register__button--${color}`}
-        >
+        <button type="submit" className={`register__button register__button--${color}`}>
           Save
         </button>
       </form>

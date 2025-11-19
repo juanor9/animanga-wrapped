@@ -27,27 +27,27 @@ const UserLists = ({ lists }) => {
     <section className="user-lists">
       <h2>{`Activity from ${year}`}</h2>
 
-      {anime && anime.length > 0
-        ? (
-          <>
-            <p>Anime Activity</p>
-            <section className="user-lists__list">
-              {anime.map((activity) => <ActivityCard key={activity.id} activity={activity} />)}
-            </section>
-          </>
-        )
-        : null}
+      {anime && anime.length > 0 ? (
+        <>
+          <p>Anime Activity</p>
+          <section className="user-lists__list">
+            {anime.map((activity) => (
+              <ActivityCard key={activity.id} activity={activity} />
+            ))}
+          </section>
+        </>
+      ) : null}
 
-      {manga && manga.length > 0
-        ? (
-          <>
-            <p>Manga Activity</p>
-            <section className="user-lists__list">
-              {manga.map((activity) => <ActivityCard key={activity.id} activity={activity} />)}
-            </section>
-          </>
-        )
-        : null}
+      {manga && manga.length > 0 ? (
+        <>
+          <p>Manga Activity</p>
+          <section className="user-lists__list">
+            {manga.map((activity) => (
+              <ActivityCard key={activity.id} activity={activity} />
+            ))}
+          </section>
+        </>
+      ) : null}
     </section>
   );
 };

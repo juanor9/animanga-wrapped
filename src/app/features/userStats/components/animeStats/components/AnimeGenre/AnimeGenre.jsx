@@ -36,7 +36,14 @@ const AnimeGenre = ({ list }) => {
       <p className="story__main-copy">This were your favorite anime genres for this year:</p>
       <ul className="story__grid-container">
         {genreList && genreList.length > 0
-          ? genreList.slice(0, 5).map((item, index) => <li key={item.id} className={`story__grid-item story__grid-item--${index + 1} story__grid-item--${backgroundColors[index % backgroundColors.length]}`}>{item.genre}</li>)
+          ? genreList.slice(0, 5).map((item, index) => (
+              <li
+                key={item.id}
+                className={`story__grid-item story__grid-item--${index + 1} story__grid-item--${backgroundColors[index % backgroundColors.length]}`}
+              >
+                {item.genre}
+              </li>
+            ))
           : null}
       </ul>
     </StoryCard>

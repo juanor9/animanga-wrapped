@@ -50,9 +50,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
 
       const updatedLists = [...currentLists];
 
-      const existingListIndex = updatedLists.findIndex(
-        (list) => list.year === year,
-      );
+      const existingListIndex = updatedLists.findIndex((list) => list.year === year);
 
       if (existingListIndex !== -1) {
         updatedLists[existingListIndex] = {
@@ -70,7 +68,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
         newUser({
           ...user,
           lists: updatedLists,
-        }),
+        })
       );
     }
   }, [loadingAnimeList, animeList, dispatch, user, year]);

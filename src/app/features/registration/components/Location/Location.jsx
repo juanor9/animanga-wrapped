@@ -33,17 +33,11 @@ const Location = ({ color, step, clickFunction }) => {
   };
   return (
     <div>
-      <p>
-        Where&apos;s your home base? Let us know your country and we&apos;re
-        almost there!
-      </p>
+      <p>Where&apos;s your home base? Let us know your country and we&apos;re almost there!</p>
       <form onSubmit={handleSubmit}>
         <CountrySelect onChange={handleCountryChange} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button
-          type="submit"
-          className={`register__button register__button--${color}`}
-        >
+        <button type="submit" className={`register__button register__button--${color}`}>
           Next
         </button>
       </form>

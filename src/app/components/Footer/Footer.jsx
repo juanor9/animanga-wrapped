@@ -8,9 +8,12 @@ const Footer = () => (
       </picture>
       <p>Animanga Wrapped | All rights reserved | Tanuki SAS</p>
     </section>
-    <p><a href="./terms-and-conditions">Terms and Conditions</a></p>
-    <p><a href="./privacy-policy">Privacy Policy</a></p>
-
+    <p>
+      <a href="./terms-and-conditions">Terms and Conditions</a>
+    </p>
+    <p>
+      <a href="./privacy-policy">Privacy Policy</a>
+    </p>
   </footer>
 );
 

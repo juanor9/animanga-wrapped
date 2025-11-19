@@ -1,11 +1,12 @@
-
-import { store } from '../../redux/store';
 import { setAccessToken, logout } from '../../redux/features/user';
+import { store } from '../../redux/store';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'https://localhost:3000';
 
 const refreshAccessToken = async () => {
-  const { user: { refreshToken } } = store.getState();
+  const {
+    user: { refreshToken },
+  } = store.getState();
 
   if (!refreshToken) {
     store.dispatch(logout());
@@ -33,7 +34,9 @@ const refreshAccessToken = async () => {
 };
 
 const authFetch = async (url, options = {}) => {
-  let { user: { accessToken } } = store.getState();
+  let {
+    user: { accessToken },
+  } = store.getState();
 
   // Create initial headers if they don't exist
   if (!options.headers) {
@@ -52,13 +55,12 @@ const authFetch = async (url, options = {}) => {
   if (response.status === 401) {
     try {
       const newAccessToken = await refreshAccessToken();
-      
+
       // Update the authorization header with the new token
       options.headers.Authorization = `Bearer ${newAccessToken}`;
 
       // Retry the request with the new token
       response = await fetch(url, options);
-
     } catch (error) {
       // If refreshing the token fails, the user is logged out
       // and we throw an error to stop the application flow.

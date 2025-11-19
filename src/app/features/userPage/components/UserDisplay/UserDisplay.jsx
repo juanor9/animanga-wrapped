@@ -44,10 +44,6 @@ const UserDisplay = () => {
     }
   }, [userToken, userId, dispatch]);
 
-  return (
-
-    <UserStats lists={lists} />
-
-  );
+  return <UserStats lists={lists} />;
 };
 export default UserDisplay;

@@ -7,12 +7,7 @@
     "plugin:import/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "react",
-    "jsx-a11y",
-    "import",
-    "prettier"
-  ],
+  "plugins": ["react", "jsx-a11y", "import", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
@@ -22,13 +17,7 @@
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling"],
-          "index"
-        ],
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"], "index"],
         "newlines-between": "never",
         "alphabetize": {
           "order": "asc",

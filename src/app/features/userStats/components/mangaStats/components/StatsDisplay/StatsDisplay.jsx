@@ -30,7 +30,7 @@ const MangaStatsDisplay = ({ lists }) => {
     ChartDataLabels,
     CategoryScale,
     LinearScale,
-    BarElement,
+    BarElement
   );
 
   useEffect(() => {
@@ -39,10 +39,11 @@ const MangaStatsDisplay = ({ lists }) => {
       if (currentYearList) {
         const { mangaList } = currentYearList;
         const readManga = mangaList.filter(
-          (w) => w.status === 'read chapter'
-            || w.status === 'completed'
-            || w.status === 'reread chapter'
-            || w.status === 'reread',
+          (w) =>
+            w.status === 'read chapter' ||
+            w.status === 'completed' ||
+            w.status === 'reread chapter' ||
+            w.status === 'reread'
         );
         if (mangaList) {
           setManga(readManga);

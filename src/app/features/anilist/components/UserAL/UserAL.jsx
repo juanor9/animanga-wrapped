@@ -60,7 +60,7 @@ const UserAL = ({ settings, checkFunc }) => {
         newUser({
           ...user,
           listUsername: username,
-        }),
+        })
       );
     }
   }, [username, dispatch, user]);

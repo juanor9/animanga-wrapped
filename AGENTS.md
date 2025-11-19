@@ -23,27 +23,34 @@ npm run lint:all       # Run all linters
 ## Linting & Formatting
 
 ### ESLint
+
 Checks JavaScript/JSX code quality:
+
 ```bash
 npm run lint        # Check for issues
 npm run lint:fix    # Auto-fix issues
 ```
 
 ### Prettier
+
 Formats code consistently:
+
 ```bash
 npm run format        # Format all files
 npm run format:check  # Check without modifying
 ```
 
 ### Stylelint
+
 Lints CSS/SCSS files:
+
 ```bash
 npm run lint:styles       # Check for issues
 npm run lint:styles:fix   # Auto-fix issues
 ```
 
 ### Run All Linters
+
 ```bash
 npm run lint:all
 ```
@@ -64,6 +71,7 @@ BASE_URL=http://localhost:3000/privacy-policy npm run a11y
 ```
 
 The audit checks for WCAG 2.0/2.1 AA compliance including:
+
 - Color contrast
 - Heading order
 - Image alt text
@@ -108,6 +116,7 @@ src/
 ## Dependencies
 
 ### Linting & Formatting
+
 - `eslint` - JavaScript/JSX linting
 - `eslint-plugin-prettier` - Prettier integration for ESLint
 - `eslint-plugin-import` - Import/export linting
@@ -118,6 +127,7 @@ src/
 - `stylelint-order` - CSS property ordering
 
 ### Accessibility Testing
+
 - `@axe-core/react` - Development-time a11y checking
 - `@axe-core/playwright` - Automated testing
 - `axe-core` - Core accessibility engine

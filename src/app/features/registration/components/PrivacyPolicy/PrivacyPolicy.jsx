@@ -9,9 +9,8 @@ const PrivacyPolicy = ({ color, clickFunction }) => {
   return (
     <div>
       <p>
-        For your own safety groove,
-        take a moment to dive into our
-        Privacy Policy. It&apos;s crucial.
+        For your own safety groove, take a moment to dive into our Privacy Policy. It&apos;s
+        crucial.
       </p>
       <form onSubmit={clickFunction}>
         <label htmlFor="accept">
@@ -26,21 +25,15 @@ const PrivacyPolicy = ({ color, clickFunction }) => {
             onChange={handleCheckboxChange}
           />
           I&apos;ve read and accept the Privacy Policy.
-          {isChecked !== true
-            ? (
-              <button
-                type="submit"
-                className="register__button register__button--disabled"
-              >Next
-              </button>
-            )
-            : (
-              <button
-                type="submit"
-                className={`register__button register__button--${color}`}
-              >Next
-              </button>
-            )}
+          {isChecked !== true ? (
+            <button type="submit" className="register__button register__button--disabled">
+              Next
+            </button>
+          ) : (
+            <button type="submit" className={`register__button register__button--${color}`}>
+              Next
+            </button>
+          )}
         </label>
       </form>
     </div>

@@ -8,12 +8,10 @@ const LauchYear = ({ list }) => {
   const [years, setYears] = useState([]);
   useEffect(() => {
     if (list) {
-      const fullData = list.map((activity) => (
-        {
-          anime: activity.media.title.userPreferred,
-          year: activity.media.startDate.year,
-        }
-      ));
+      const fullData = list.map((activity) => ({
+        anime: activity.media.title.userPreferred,
+        year: activity.media.startDate.year,
+      }));
       const groupedByAnime = fullData.reduce((acc, curr) => {
         if (!acc[curr.anime]) {
           acc[curr.anime] = [];
@@ -54,20 +52,18 @@ const LauchYear = ({ list }) => {
 
   const data = {
     labels: years.map((i) => i.year),
-    datasets: [{
-      label: 'My First Dataset',
-      data: years.map((i) => i.titles),
-      backgroundColor: [
-        'rgba(255,145,255)',
-        'rgba(255,211,25)',
-        'rgba(49,181,122)',
-      ],
-      borderColor: 'transparent',
-      color: 'rgba(48, 42, 37,1)',
-      barThickness: 16,
-      categoryPercentage: 0.5,
-      barPercentage: 1,
-    }],
+    datasets: [
+      {
+        label: 'My First Dataset',
+        data: years.map((i) => i.titles),
+        backgroundColor: ['rgba(255,145,255)', 'rgba(255,211,25)', 'rgba(49,181,122)'],
+        borderColor: 'transparent',
+        color: 'rgba(48, 42, 37,1)',
+        barThickness: 16,
+        categoryPercentage: 0.5,
+        barPercentage: 1,
+      },
+    ],
   };
 
   const options = {
@@ -105,12 +101,11 @@ const LauchYear = ({ list }) => {
 
   return (
     <StoryCard key="5" id="5" color="orange">
-      <p className="story__main-copy">These are the release years of the anime you watched this year:</p>
+      <p className="story__main-copy">
+        These are the release years of the anime you watched this year:
+      </p>
       <div style={{ height: '400px' }}>
-        <Bar
-          data={data}
-          options={options}
-        />
+        <Bar data={data} options={options} />
       </div>
     </StoryCard>
   );

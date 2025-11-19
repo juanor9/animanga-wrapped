@@ -23,28 +23,19 @@ const AnilistCustom = ({ color, clickFunction }) => {
   return (
     <div>
       <p>
-        Next up! Choose which lists you&apos;d like us to analyze:
-        just your anime, only your manga, or both. Once selected,
-        please confirm if the displayed records are correct. Make
-        your pick and let&apos;s continue with the next step.
+        Next up! Choose which lists you&apos;d like us to analyze: just your anime, only your manga,
+        or both. Once selected, please confirm if the displayed records are correct. Make your pick
+        and let&apos;s continue with the next step.
       </p>
       <form onSubmit={clickFunction} className="custom__form">
         <div className="custom__form-checkbox">
           <label htmlFor="anime">
-            <input
-              type="checkbox"
-              name="anime"
-              id="anime"
-              onChange={handleCheckboxChange}
-            /> Anime List
+            <input type="checkbox" name="anime" id="anime" onChange={handleCheckboxChange} /> Anime
+            List
           </label>
           <label htmlFor="manga">
-            <input
-              type="checkbox"
-              name="manga"
-              id="manga"
-              onChange={handleCheckboxChange}
-            /> Manga List
+            <input type="checkbox" name="manga" id="manga" onChange={handleCheckboxChange} /> Manga
+            List
           </label>
         </div>
 
@@ -56,7 +47,6 @@ const AnilistCustom = ({ color, clickFunction }) => {
           Next
         </button>
       </form>
-
     </div>
   );
 };

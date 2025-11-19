@@ -32,92 +32,52 @@ const Register = () => {
     <main className="register">
       <h1>Create User</h1>
       <div className="register__container">
-        {step === 1
-          ? (
-            <section className="register__section register__section--green">
-              <First
-                color="yellow"
-                clickFunction={handleClick}
-              />
-            </section>
-          )
-          : null}
+        {step === 1 ? (
+          <section className="register__section register__section--green">
+            <First color="yellow" clickFunction={handleClick} />
+          </section>
+        ) : null}
 
-        {step === 2
-          ? (
-            <section className="register__section register__section--pink">
-              <TermsAndConditions
-                color="green"
-                clickFunction={handleClick}
-              />
-            </section>
-          )
-          : null}
-        {step === 3
-          ? (
-            <section className="register__section register__section--orange">
-              <PrivacyPolicy
-                color="pink"
-                clickFunction={handleClick}
-              />
-            </section>
-          )
-          : null}
-        {step === 4
-          ? (
-            <section className="register__section register__section--yellow">
-              <Age
-                color="orange"
-                clickFunction={handleClick}
-              />
-            </section>
-          )
-          : null}
-        {step === 5
-          ? (
-            <section className="register__section register__section--green">
-              <AnilistAuth color="pink" step={step} clickFunction={handleClick} />
-            </section>
-          )
-          : null}
-        {step === 6
-          ? (
-            <section className="register__section register__section--yellow">
-              <AnilistCustom color="green" step={step} clickFunction={handleClick} />
-            </section>
-          )
-          : null}
-        {step === 7
-          ? (
-            <section className="register__section register__section--yellow">
-              <Email
-                color="orange"
-                step={step}
-                clickFunction={setStep}
-              />
-            </section>
-          )
-          : null}
-        {step === 8
-          ? (
-            <section className="register__section register__section--orange">
-              <Location
-                color="yellow"
-                step={step}
-                clickFunction={setStep}
-              />
-            </section>
-          )
-          : null}
-        {step === 9
-          ? (
-            <section className="register__section register__section--pink">
-              <Password
-                color="green"
-              />
-            </section>
-          )
-          : null}
+        {step === 2 ? (
+          <section className="register__section register__section--pink">
+            <TermsAndConditions color="green" clickFunction={handleClick} />
+          </section>
+        ) : null}
+        {step === 3 ? (
+          <section className="register__section register__section--orange">
+            <PrivacyPolicy color="pink" clickFunction={handleClick} />
+          </section>
+        ) : null}
+        {step === 4 ? (
+          <section className="register__section register__section--yellow">
+            <Age color="orange" clickFunction={handleClick} />
+          </section>
+        ) : null}
+        {step === 5 ? (
+          <section className="register__section register__section--green">
+            <AnilistAuth color="pink" step={step} clickFunction={handleClick} />
+          </section>
+        ) : null}
+        {step === 6 ? (
+          <section className="register__section register__section--yellow">
+            <AnilistCustom color="green" step={step} clickFunction={handleClick} />
+          </section>
+        ) : null}
+        {step === 7 ? (
+          <section className="register__section register__section--yellow">
+            <Email color="orange" step={step} clickFunction={setStep} />
+          </section>
+        ) : null}
+        {step === 8 ? (
+          <section className="register__section register__section--orange">
+            <Location color="yellow" step={step} clickFunction={setStep} />
+          </section>
+        ) : null}
+        {step === 9 ? (
+          <section className="register__section register__section--pink">
+            <Password color="green" />
+          </section>
+        ) : null}
       </div>
     </main>
   );

@@ -3,12 +3,7 @@ import { gql } from '@apollo/client';
 export const GET_POPULAR_ANIME = gql`
   query {
     Page(perPage: 30, page: 1) {
-      media(
-        sort: POPULARITY_DESC
-        type: ANIME
-        seasonYear: 2025
-        isAdult: false
-      ) {
+      media(sort: POPULARITY_DESC, type: ANIME, seasonYear: 2025, isAdult: false) {
         id
         title {
           romaji

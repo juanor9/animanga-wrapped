@@ -27,20 +27,21 @@ const createUser = createAsyncThunk(
 
       // If registration is successful, the backend should return tokens and user data
       if (result.accessToken && result.refreshToken && result.user) {
-        thunkAPI.dispatch(setTokens({
-          accessToken: result.accessToken,
-          refreshToken: result.refreshToken,
-        }));
+        thunkAPI.dispatch(
+          setTokens({
+            accessToken: result.accessToken,
+            refreshToken: result.refreshToken,
+          })
+        );
         thunkAPI.dispatch(newUser(result.user));
       }
-      
+
       // The thunk should return the user data to be stored in state
       return result.user;
-
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export default createUser;
