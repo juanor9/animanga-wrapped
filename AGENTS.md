@@ -7,12 +7,45 @@ This is a Next.js 14 application (App Router) that provides anime/manga statisti
 ## Development Commands
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint issues
-npm run type-check   # Run TypeScript checks
-npm run a11y         # Run accessibility audit
+npm run dev            # Start development server
+npm run build          # Build for production
+npm run lint           # Run ESLint
+npm run lint:fix       # Fix ESLint issues
+npm run lint:styles    # Run Stylelint for CSS/SCSS
+npm run lint:styles:fix # Fix Stylelint issues
+npm run format         # Format code with Prettier
+npm run format:check   # Check formatting without changes
+npm run type-check     # Run TypeScript checks
+npm run a11y           # Run accessibility audit
+npm run lint:all       # Run all linters
+```
+
+## Linting & Formatting
+
+### ESLint
+Checks JavaScript/JSX code quality:
+```bash
+npm run lint        # Check for issues
+npm run lint:fix    # Auto-fix issues
+```
+
+### Prettier
+Formats code consistently:
+```bash
+npm run format        # Format all files
+npm run format:check  # Check without modifying
+```
+
+### Stylelint
+Lints CSS/SCSS files:
+```bash
+npm run lint:styles       # Check for issues
+npm run lint:styles:fix   # Auto-fix issues
+```
+
+### Run All Linters
+```bash
+npm run lint:all
 ```
 
 ## Accessibility Testing
@@ -74,9 +107,18 @@ src/
 
 ## Dependencies
 
-Key accessibility-related packages:
+### Linting & Formatting
+- `eslint` - JavaScript/JSX linting
+- `eslint-plugin-prettier` - Prettier integration for ESLint
+- `eslint-plugin-import` - Import/export linting
+- `eslint-plugin-jsx-a11y` - Accessibility linting for JSX
+- `prettier` - Code formatting
+- `stylelint` - CSS/SCSS linting
+- `stylelint-config-standard-scss` - SCSS standard config
+- `stylelint-order` - CSS property ordering
+
+### Accessibility Testing
 - `@axe-core/react` - Development-time a11y checking
 - `@axe-core/playwright` - Automated testing
 - `axe-core` - Core accessibility engine
-- `eslint-plugin-jsx-a11y` - Static analysis for JSX
 - `jsdom` - Server-side DOM for testing
