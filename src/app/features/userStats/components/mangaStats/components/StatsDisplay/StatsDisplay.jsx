@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  Chart as ChartJS,
-  Title,
-  Legend,
   ArcElement,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import MangaChapters from '../MangaChapters/MangaChapters';
-import MangaFormat from '../MangaFormat/MangaFormat';
-import ReleaseYear from '../ReleaseYear/ReleaseYear';
-import MangaGenre from '../MangaGenre/MangaGenre';
-import Mangaka from '../Mangaka/Mangaka';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
+import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFav from '../MangaFav/MangaFav';
+import MangaFormat from '../MangaFormat/MangaFormat';
+import MangaGenre from '../MangaGenre/MangaGenre';
 import MangaSeries from '../MangaSeries/MangaSeries';
+import Mangaka from '../Mangaka/Mangaka';
+import ReleaseYear from '../ReleaseYear/ReleaseYear';
 
 const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);

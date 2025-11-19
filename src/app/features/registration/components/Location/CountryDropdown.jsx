@@ -1,6 +1,6 @@
+import { countries } from 'countries-list';
 import React from 'react';
 import Select from 'react-select';
-import { countries } from 'countries-list';
 
 const CountrySelect = ({ onChange }) => {
   const countryOptions = Object.entries(countries).map(([code, country]) => ({

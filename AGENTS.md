@@ -86,6 +86,37 @@ The `AxeDevTool` component in `src/app/components/AxeDevTool/` automatically run
 
 ## Code Standards
 
+### Import Order (CRITICAL)
+
+This project enforces strict import ordering with ESLint. **NEVER skip or downgrade this rule** - always fix imports properly.
+
+**Order of groups:**
+
+1. builtin (Node.js modules)
+2. external (npm packages)
+3. internal (absolute imports)
+4. parent/sibling (relative imports)
+5. index (stylesheets like `./styles.scss`)
+
+**Rules:**
+
+- Alphabetize within each group (case-insensitive)
+- Named imports must be alphabetized: `{ useCallback, useEffect, useState }`
+- Stylesheets always go last
+
+**Example:**
+
+```javascript
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { newUser } from '../../../../../redux/features/user';
+import Component from '../Component/Component';
+import './styles.scss';
+```
+
+See `CLAUDE.md` for detailed examples and common mistakes.
+
 ### Accessibility Requirements
 
 1. **Headings**: Follow proper hierarchy (h1 -> h2 -> h3), never skip levels

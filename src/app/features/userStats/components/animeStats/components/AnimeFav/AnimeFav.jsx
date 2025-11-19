@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 import './AnimeFav.scss';
-import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 

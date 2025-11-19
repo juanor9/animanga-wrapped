@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Bar } from 'react-chartjs-2';
+import { v4 as uuidv4 } from 'uuid';
 import StoryCard from '../../../../../../components/Stories/Stories';
 
 const ReleaseYear = ({ list }) => {

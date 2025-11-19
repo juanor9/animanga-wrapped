@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { newUser } from '../../../../../redux/features/user';
-import createUser from '../../services/registration';
-import { login } from '../../../user/services/users';
 import { clearInfoMessage } from '../../../user/reducer/userSlice';
+import { login } from '../../../user/services/users';
+import createUser from '../../services/registration';
 
 const Password = ({ color }) => {
   const [password, setPassword] = useState(null);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Bar } from 'react-chartjs-2';
-import './LaunchYear.scss';
+import { v4 as uuidv4 } from 'uuid';
 import StoryCard from '../../../../../../components/Stories/Stories';
+import './LaunchYear.scss';
 
 const LauchYear = ({ list }) => {
   const [years, setYears] = useState([]);

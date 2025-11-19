@@ -1,9 +1,9 @@
-import './global.scss';
 // import { Analytics } from '@vercel/analytics';
 // import { SpeedInsights } from '@vercel/speed-insights';
+import AxeDevTool from './components/AxeDevTool/AxeDevTool';
 import Footer from './components/Footer/Footer';
 import ReduxProvider from './components/Provider/Provider';
-import AxeDevTool from './components/AxeDevTool/AxeDevTool';
+import './global.scss';
 
 export const metadata = {
   metadataBase: new URL('https://animanga-wrapped.vercel.app'),

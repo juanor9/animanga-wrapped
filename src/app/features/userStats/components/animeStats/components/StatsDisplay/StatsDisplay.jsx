@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  Chart as ChartJS,
-  Title,
-  Legend,
   ArcElement,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
-import AnimeFormat from '../AnimeFormat/AnimeFormat';
-import LauchYear from '../LauchYear/LauchYear';
-import AnimeGenre from '../AnimeGenre/AnimeGenre';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import AnimeFav from '../AnimeFav/AnimeFav';
+import AnimeFormat from '../AnimeFormat/AnimeFormat';
+import AnimeGenre from '../AnimeGenre/AnimeGenre';
 import AnimeSeries from '../AnimeSeries/AnimeSeries';
+import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
+import LauchYear from '../LauchYear/LauchYear';
 
 const AnimeStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);

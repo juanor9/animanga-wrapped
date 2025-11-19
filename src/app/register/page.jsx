@@ -1,16 +1,16 @@
 'use client';
 
-import './page.scss';
-import { useState, useEffect } from 'react';
-import First from '../features/registration/components/First/First';
-import Email from '../features/registration/components/Email/Email';
-import TermsAndConditions from '../features/registration/components/TermsAndConditions/TermsAndConditions';
-import PrivacyPolicy from '../features/registration/components/PrivacyPolicy/PrivacyPolicy';
+import { useEffect, useState } from 'react';
 import Age from '../features/registration/components/Age/Age';
 import AnilistAuth from '../features/registration/components/AnilistAuth/AnilistAuth';
 import AnilistCustom from '../features/registration/components/AnilistCustom/AnilistCustom';
+import Email from '../features/registration/components/Email/Email';
+import First from '../features/registration/components/First/First';
 import Location from '../features/registration/components/Location/Location';
 import Password from '../features/registration/components/Password/Password';
+import PrivacyPolicy from '../features/registration/components/PrivacyPolicy/PrivacyPolicy';
+import TermsAndConditions from '../features/registration/components/TermsAndConditions/TermsAndConditions';
+import './page.scss';
 
 const Register = () => {
   const [step, setStep] = useState(1);

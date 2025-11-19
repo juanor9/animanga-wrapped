@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import UserRegistration from '../UserRegistration/UserRegistration';
 import UserLogin from '../UserLogin/UserLogin';
+import UserRegistration from '../UserRegistration/UserRegistration';
 import './LoginSignup.scss';
 
 const LoginSignup = () => {

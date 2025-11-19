@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
-import { useSelector, useDispatch } from 'react-redux';
-import './Stories.scss';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../features/userStats/services/upload';
 import Spinner from '../Spinner/Spinner';
+import './Stories.scss';
 
 const StoryCard = ({ children, color, id }) => {
   const storyCardRef = useRef();
