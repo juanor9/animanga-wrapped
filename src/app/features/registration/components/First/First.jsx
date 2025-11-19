@@ -1,6 +1,6 @@
 const First = ({ color, clickFunction }) => (
   <div>
-    <h3>Welcome!</h3>
+    <h2>Welcome!</h2>
     <p>
 
       Hey there! Thanks for jumping on board with us.

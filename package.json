@@ -9,15 +9,20 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "a11y": "node scripts/axe-audit.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@axe-core/react": "^4.11.0",
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
+    "@playwright/test": "^1.56.1",
+    "axe-core": "^4.11.0",
     "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.3"
+    "eslint-config-next": "14.2.3",
+    "jsdom": "^27.2.0"
   },
   "dependencies": {
     "@apollo/client": "^3.10.0",

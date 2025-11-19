@@ -1,9 +1,9 @@
 const TermsAndConditionsPage = () => (
-  <section>
-    <h2>TERMS AND CONDITIONS OF USE FOR &ldquo;YOUR ANIME AND MANGA
+  <main>
+    <h1>TERMS AND CONDITIONS OF USE FOR &ldquo;YOUR ANIME AND MANGA
       YEAR WRAPPED&ldquo;
-    </h2>
-    <h3>PREAMBLE</h3>
+    </h1>
+    <h2>PREAMBLE</h2>
     <p>This Agreement (hereinafter referred to as &ldquo;the Agreement&ldquo;)
       outlines the terms and conditions governing the use of the
       software application named &ldquo;Your Anime and Manga Year Wrapped&ldquo;
@@ -13,7 +13,7 @@ const TermsAndConditionsPage = () => (
       (hereinafter referred
       to as &ldquo;the Licensor&ldquo; or &ldquo;the Company&ldquo;).
     </p>
-    <h3>1. Purpose and Binding Effect</h3>
+    <h2>1. Purpose and Binding Effect</h2>
     <p>1.1. This Agreement establishes the foundational terms, conditions,
       rights, obligations, and understandings between the User (hereinafter
       referred to as &ldquo;the Licensee&ldquo;) and the Licensor regarding the utilization
@@ -23,7 +23,7 @@ const TermsAndConditionsPage = () => (
       the functionalities offered by the Application, acknowledges, agrees, and
       binds themselves to the stipulations set forth herein.
     </p>
-    <h3>2. Scope and Modification of Services</h3>
+    <h2>2. Scope and Modification of Services</h2>
     <p>2.1. The Application, in its core essence, furnishes the Licensee with an
       intricate and detailed statistical analysis predicated upon their manga and
       anime consumption metrics as recorded on Anilist within the designated fiscal year.
@@ -37,14 +37,14 @@ const TermsAndConditionsPage = () => (
       Application&apos;s core functionalities will be duly communicated to Licensees via electronic
       mail.
     </p>
-    <h3>3. Licensee&apos;s Representations, Warranties, and Covenants</h3>
+    <h2>3. Licensee&apos;s Representations, Warranties, and Covenants</h2>
     <p>3.1. The Licensee solemnly covenants to utilize the Application in strict adherence
       to the extant legal framework, established societal moralities, and universally accepted
       norms of good conduct. Any usage for illicit, unauthorized, or prohibited purposes,
       or in contravention of the stipulations of this Agreement, shall be deemed
       a breach hereof.
     </p>
-    <h3>4. Registration, Data Processing, and Privacy Considerations</h3>
+    <h2>4. Registration, Data Processing, and Privacy Considerations</h2>
     <p>4.1. Licensees intending to avail themselves of the complete spectrum of services offered
       by the Application are mandatorily required to register, furnishing accurate, current,
       and verifiable personal data.
@@ -55,7 +55,7 @@ const TermsAndConditionsPage = () => (
       directives, and the intricacies delineated in the Application&apos;s
       <a href="./privacy-policy">Privacy Policy</a>.
     </p>
-    <h3>5. Data Safeguarding and Third-Party Disclosures</h3>
+    <h2>5. Data Safeguarding and Third-Party Disclosures</h2>
     <p>5.1. Personal and usage data entrusted to the Licensor shall be safeguarded with
       paramount attention to security, confidentiality, and integrity, leveraging
       state-of-the-art protective measures, including but not limited to those offered
@@ -67,12 +67,12 @@ const TermsAndConditionsPage = () => (
       time for every acquisition of data and are proscribed from disseminating this data
       outside their organizational confines.
     </p>
-    <h3>6. Digital Footprints and Cookies</h3>
+    <h2>6. Digital Footprints and Cookies</h2>
     <p>6.1. The Application, in its operational design, utilizes digital cookies to record and
       store rudimentary access information of the Licensee, the primary intent of which is to
       expedite and enhance the user experience by hastening Application load times.
     </p>
-    <h3>7. Data Upload and Storage Policy</h3>
+    <h2>7. Data Upload and Storage Policy</h2>
     <p>7.1. To enhance performance and reduce redundant data storage, the Application has implemented a differentiated storage system for user-uploaded images. When a user generates content, such as a statistical summary image (&ldquo;Story Card&ldquo;), this content is uploaded to our secure cloud storage provider (Cloudinary).</p>
     <p>7.2. Upload Classification: All image uploads are categorized by a mandatory &apos;type&apos; field to determine the handling logic:</p>
     <ul>
@@ -80,7 +80,7 @@ const TermsAndConditionsPage = () => (
       <li><strong>Type &apos;stats&apos;:</strong> This category is for unique, user-specific generated images, such as personalized statistical charts and graphics. These images are uploaded directly to a private folder designated for the specific user (&apos;animanga-wrapped/users/username/&apos;), ensuring user data is isolated and not duplicated.</li>
     </ul>
     <p>7.3. All uploaded images are accessible only via a secure URL (HTTPS) provided by the service upon a successful upload.</p>
-    <h3>8. Intellectual Property and Copyright Concerns</h3>
+    <h2>8. Intellectual Property and Copyright Concerns</h2>
     <p>8.1. The Licensor retains full, exclusive, and unalienable rights over the source code,
       design paradigms, architectural schemas, and other proprietary elements of the Application.
     </p>
@@ -94,7 +94,7 @@ const TermsAndConditionsPage = () => (
       vested with the Licensor.
       Reproductions in physical formats are strictly proscribed.
     </p>
-    <h3>9. Limitation of Liability, Indemnification, and Warranties</h3>
+    <h2>9. Limitation of Liability, Indemnification, and Warranties</h2>
     <p>9.1. The Licensor does not furnish any warranty or guarantee regarding the Application&apos;s
       uninterrupted availability or operational consistency.
     </p>
@@ -106,7 +106,7 @@ const TermsAndConditionsPage = () => (
       liabilities, or legal ramifications arising from misuse or unauthorized utilization
       of the Application.
     </p>
-    <h3>10. Compliance with AniList API Terms</h3>
+    <h2>10. Compliance with AniList API Terms</h2>
     <p>10.1. The Application&apos;s operational mechanics are intertwined with the AniList API.
       Licensees hereby acknowledge and accede to the terms stipulated by AniList, which
       include prohibitions on data storage, mass collection, and the mandated adherence to
@@ -126,7 +126,7 @@ const TermsAndConditionsPage = () => (
       engage in direct correspondence with AniList representatives at the furnished
       contact details.
     </p>
-    <h3>11. Governing Law and Jurisdiction</h3>
+    <h2>11. Governing Law and Jurisdiction</h2>
     <p>11.1. This Agreement, in its entirety, is governed by and construed in accordance
       with the substantive and procedural laws of the Republic of Colombia.
     </p>
@@ -134,6 +134,6 @@ const TermsAndConditionsPage = () => (
       related to the Application, the Licensor, or this Agreement shall be adjudicated
       exclusively by the competent courts of the Republic of Colombia.
     </p>
-  </section>
+  </main>
 );
 export default TermsAndConditionsPage;
