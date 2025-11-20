@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   ArcElement,
   BarElement,
@@ -9,13 +8,14 @@ import {
   Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useEffect, useState } from 'react';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFav from '../MangaFav/MangaFav';
 import MangaFormat from '../MangaFormat/MangaFormat';
 import MangaGenre from '../MangaGenre/MangaGenre';
-import MangaSeries from '../MangaSeries/MangaSeries';
 import Mangaka from '../Mangaka/Mangaka';
+import MangaSeries from '../MangaSeries/MangaSeries';
 import ReleaseYear from '../ReleaseYear/ReleaseYear';
 
 const MangaStatsDisplay = ({ lists }) => {

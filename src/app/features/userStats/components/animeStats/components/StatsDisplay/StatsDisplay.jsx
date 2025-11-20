@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   ArcElement,
   BarElement,
@@ -9,6 +8,7 @@ import {
   Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useEffect, useState } from 'react';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import AnimeFav from '../AnimeFav/AnimeFav';
 import AnimeFormat from '../AnimeFormat/AnimeFormat';

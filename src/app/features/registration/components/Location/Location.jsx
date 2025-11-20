@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newUser } from '../../../../../redux/features/user';
 import CountrySelect from './CountryDropdown';
+import { newUser } from '../../../../../redux/features/user';
 
 const Location = ({ color, step, clickFunction }) => {
   const { user } = useSelector((state) => state.UserReducer);

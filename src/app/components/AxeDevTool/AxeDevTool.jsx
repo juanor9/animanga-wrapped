@@ -40,12 +40,14 @@ const AxeDevTool = () => {
           });
 
           // Log that axe-core is running
+          // eslint-disable-next-line no-console
           console.log(
             '%c[axe-core] Accessibility testing enabled',
             'color: #4CAF50; font-weight: bold;'
           );
         })
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.error('[axe-core] Failed to load:', error);
         });
     }
