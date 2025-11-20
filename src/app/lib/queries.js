@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
 
+const year = process.env.NEXT_PUBLIC_YEAR;
+
 export const GET_POPULAR_ANIME = gql`
   query {
     Page(perPage: 30, page: 1) {
-      media(sort: POPULARITY_DESC, type: ANIME, seasonYear: 2025, isAdult: false) {
+      media(sort: POPULARITY_DESC, type: ANIME, seasonYear: ${year}, isAdult: false) {
         id
         title {
           romaji
@@ -23,8 +25,8 @@ export const GET_POPULAR_MANGA = gql`
     Page(page: 1, perPage: 30) {
       media(
         type: MANGA
-        startDate_greater: 20250101
-        startDate_lesser: 20251231
+        startDate_greater: ${year}0101
+        startDate_lesser: ${year}1231
         sort: POPULARITY_DESC
         isAdult: false
       ) {
@@ -62,6 +64,9 @@ export const GET_VIEWER = gql`
   }
 `;
 
+const startTimestamp = Math.floor(new Date(`${year}-01-01T00:00:00Z`).getTime() / 1000);
+const endTimestamp = Math.floor(new Date(`${year}-12-31T23:59:59Z`).getTime() / 1000);
+
 export const GET_ANIME_LIST = gql`
   query ($page: Int, $perPage: Int, $userId: Int) {
     Page(page: $page, perPage: $perPage) {
@@ -75,8 +80,8 @@ export const GET_ANIME_LIST = gql`
       activities(
         userId: $userId
         type: ANIME_LIST
-        createdAt_greater: 1672531200
-        createdAt_lesser: 1704067199
+        createdAt_greater: ${startTimestamp}
+        createdAt_lesser: ${endTimestamp}
         sort: ID_DESC
       ) {
         ... on ListActivity {
@@ -152,8 +157,8 @@ export const GET_MANGA_LIST = gql`
       activities(
         userId: $userId
         type: MANGA_LIST
-        createdAt_greater: 1672531200
-        createdAt_lesser: 1704067199
+        createdAt_greater: ${startTimestamp}
+        createdAt_lesser: ${endTimestamp}
         sort: ID_DESC
       ) {
         ... on ListActivity {
