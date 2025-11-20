@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import createuser from '../../app/features/registration/services/registration';
-import { getUserProfile, getUserData } from '../../app/features/userPage/services/userPage';
+import createuser from '../../app/[locale]/features/registration/services/registration';
+import { getUserData, getUserProfile } from '../../app/[locale]/features/userPage/services/userPage';
 
 const initialState = {
   user: {},

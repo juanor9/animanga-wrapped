@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setTokens, newUser } from '../../../../redux/features/user';
+import { newUser, setTokens } from '../../../../../redux/features/user';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 

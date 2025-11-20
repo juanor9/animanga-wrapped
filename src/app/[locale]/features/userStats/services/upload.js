@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authFetch from '../../../lib/authFetch';
+import authFetch from '../../../../lib/authFetch';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'http://localhost:3000';
 

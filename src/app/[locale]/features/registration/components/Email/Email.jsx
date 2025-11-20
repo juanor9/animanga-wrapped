@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newUser } from '../../../../../redux/features/user';
+import { newUser } from '../../../../../../redux/features/user';
 
 const Email = ({ color, step, clickFunction }) => {
   const { user } = useSelector((state) => state.UserReducer);

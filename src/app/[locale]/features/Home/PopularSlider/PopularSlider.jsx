@@ -1,5 +1,5 @@
+import { getPopularAnime, getPopularManga } from '../../../../lib/anilist';
 import PopularSliderClient from './PopularSliderClient';
-import { getPopularAnime, getPopularManga } from '../../../lib/anilist';
 
 const fetchPopularAnime = async () => {
   try {

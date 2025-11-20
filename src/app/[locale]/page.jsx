@@ -1,6 +1,6 @@
-import './app.scss';
 import Hero from './features/Home/Hero/Hero';
 import PopularSlider from './features/Home/PopularSlider/PopularSlider';
+import '../app.scss';
 
 const Home = () => (
   <main className="home">
