@@ -1,0 +1,110 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../services/users';
+
+const UserLogin = () => {
+  const t = useTranslations('auth');
+  const tCommon = useTranslations('common');
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { error, isLocked, lockoutEndTime, loginAttempts, userToken } = useSelector(
+    (state) => state.userData
+  );
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [remainingTime, setRemainingTime] = useState(null);
+
+  useEffect(() => {
+    if (userToken) {
+      router.push('./user');
+    }
+  }, [userToken, router]);
+
+  useEffect(() => {
+    let interval;
+    if (isLocked && lockoutEndTime) {
+      const updateRemainingTime = () => {
+        const now = new Date().getTime();
+        const difference = lockoutEndTime - now;
+        if (difference > 0) {
+          const minutes = Math.floor((difference / 1000 / 60) % 60);
+          const seconds = Math.floor((difference / 1000) % 60);
+          setRemainingTime(`${minutes}m ${seconds}s`);
+        } else {
+          setRemainingTime(null);
+          // Optionally dispatch an action to reset lock state
+          clearInterval(interval);
+        }
+      };
+
+      interval = setInterval(updateRemainingTime, 1000);
+      updateRemainingTime(); // Initial call
+    }
+
+    return () => clearInterval(interval);
+  }, [isLocked, lockoutEndTime]);
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(login({ email, password }));
+  };
+
+  return (
+    <section className="user-registration">
+      {isLocked ? (
+        <div className="user-registration__locked-account">
+          <h2>{t('accountLocked')}</h2>
+          <p>{t('accountLockedMessage')}</p>
+          {remainingTime && <p>{t('tryAgainIn', { time: remainingTime })}</p>}
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="user-registration__form">
+          <label htmlFor="mail" className="user-registration__label">
+            {tCommon('email')}
+            <input
+              className="user-registration__input"
+              id="mail"
+              name="mail"
+              onChange={handleEmailChange}
+              type="email"
+              disabled={isLocked}
+            />
+          </label>
+          <label htmlFor="password" className="user-registration__label">
+            {tCommon('password')}
+            <input
+              className="user-registration__input"
+              id="password"
+              name="password"
+              onChange={handlePasswordChange}
+              type="password"
+              disabled={isLocked}
+            />
+          </label>
+          {error && <p className="user-registration__error">{error}</p>}
+          {loginAttempts === 4 && (
+            <p className="user-registration__warning">{t('lastAttemptWarning')}</p>
+          )}
+          <button type="submit" className="user-registration__button" disabled={isLocked}>
+            {tCommon('login')}
+          </button>
+        </form>
+      )}
+    </section>
+  );
+};
+
+export default UserLogin;

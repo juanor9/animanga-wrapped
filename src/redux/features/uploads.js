@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import uploadImage from '../../app/features/userStats/services/upload';
+import uploadImage from '../../app/[locale]/features/userStats/services/upload';
 
 const initialState = {
   uploads: [],
