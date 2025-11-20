@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
-import { useEffect, useState, useCallback } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 import './AnimeSeries.scss';
-import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 const year = process.env.NEXT_PUBLIC_YEAR;
@@ -33,9 +33,7 @@ const AnimeSeries = ({ list }) => {
 
       const WatchedTimeBySeries = Object.keys(groupedByAnime).map((key) => {
         const fullActivity = groupedByAnime[key];
-        const isAnimeCompleted = fullActivity.some(
-          (e) => e.status === 'completed',
-        );
+        const isAnimeCompleted = fullActivity.some((e) => e.status === 'completed');
 
         if (isAnimeCompleted) {
           const { length } = fullActivity;
@@ -59,10 +57,7 @@ const AnimeSeries = ({ list }) => {
             const timeWatched = Number(watchedEpisodes) * Number(duration);
             return { anime: key, timeWatched, image: firstActivity.image };
           }
-          if (
-            firstActivityProgress === null
-            && firstActivity.status === 'completed'
-          ) {
+          if (firstActivityProgress === null && firstActivity.status === 'completed') {
             const { episodes } = firstActivity;
             const { duration } = firstActivity;
             const timeWatched = Number(episodes) * Number(duration);
@@ -79,10 +74,10 @@ const AnimeSeries = ({ list }) => {
           const lastActivityProgress = lastActivity.progress;
 
           if (
-            firstActivityProgress
-            && firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress.split(' - ')[0];
             const lastWatchedEpisode = lastActivityProgress.split(' - ')[1];
@@ -92,10 +87,10 @@ const AnimeSeries = ({ list }) => {
             return { anime: key, timeWatched, image: firstActivity.image };
           }
           if (
-            firstActivityProgress
-            && !firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && !lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            !firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            !lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress;
             const lastWatchedEpisode = lastActivityProgress;
@@ -105,10 +100,10 @@ const AnimeSeries = ({ list }) => {
             return { anime: key, timeWatched, image: firstActivity.image };
           }
           if (
-            firstActivityProgress
-            && firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && !lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            !lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress.split(' - ')[0];
             const lastWatchedEpisode = lastActivityProgress;
@@ -118,10 +113,10 @@ const AnimeSeries = ({ list }) => {
             return { anime: key, timeWatched, image: firstActivity.image };
           }
           if (
-            firstActivityProgress
-            && !firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            !firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress;
             const lastWatchedEpisode = lastActivityProgress.split(' - ')[1];
@@ -134,66 +129,59 @@ const AnimeSeries = ({ list }) => {
         return null;
       });
       const sortedWatchedTimeBySeries = WatchedTimeBySeries.sort(
-        (a, b) => b.timeWatched - a.timeWatched,
+        (a, b) => b.timeWatched - a.timeWatched
       );
-      if (
-        sortedWatchedTimeBySeries
-        && Array.isArray(sortedWatchedTimeBySeries)
-      ) {
+      if (sortedWatchedTimeBySeries && Array.isArray(sortedWatchedTimeBySeries)) {
         setSortedWatchedMinutes(sortedWatchedTimeBySeries);
       }
     }
   }, [list]);
 
   const [topWatchedMinutes, setTopWatchedMinutes] = useState([]);
-  const downloadToCloudinary = useCallback(async (url, filename) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+  const downloadToCloudinary = useCallback(
+    async (url, filename) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      const blob = await response.blob();
-      const file = new File([blob], 'anime-watched-image.png', {
-        type: blob.type,
-      });
+        const blob = await response.blob();
+        const file = new File([blob], 'anime-watched-image.png', {
+          type: blob.type,
+        });
 
-      const uploadedImageResponse = await dispatch(
-        uploadImage({ file, listUsername, filename }),
-      );
+        const uploadedImageResponse = await dispatch(uploadImage({ file, listUsername, filename }));
 
-      if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
-        const cloudinaryUrl = uploadedImageResponse.payload.url;
-        return cloudinaryUrl;
+        if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
+          const cloudinaryUrl = uploadedImageResponse.payload.url;
+          return cloudinaryUrl;
+        }
+        throw new Error('Image upload failed');
+      } catch (error) {
+        throw new Error(`Error downloading or uploading image: ${error}`);
       }
-      throw new Error('Image upload failed');
-    } catch (error) {
-      throw new Error(`Error downloading or uploading image: ${error}`);
-    }
-  }, [dispatch, listUsername]);
+    },
+    [dispatch, listUsername]
+  );
 
   useEffect(() => {
     const processImages = async () => {
       if (sortedWatchedMinutes && sortedWatchedMinutes.length > 0) {
-        const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(
-          async (element) => {
-            const alImage = element.image;
-            const parts = alImage.split('/');
-            const newPath = parts.slice(3).join('/');
-            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
-            const cloudinaryUrl = await downloadToCloudinary(
-              newUrl,
-              element.anime,
-            );
+        const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(async (element) => {
+          const alImage = element.image;
+          const parts = alImage.split('/');
+          const newPath = parts.slice(3).join('/');
+          const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+          const cloudinaryUrl = await downloadToCloudinary(newUrl, element.anime);
 
-            return {
-              ...element,
-              image: cloudinaryUrl,
-            };
-          },
-        );
+          return {
+            ...element,
+            image: cloudinaryUrl,
+          };
+        });
 
-        const newTopWatchedMinutes = await Promise.all(
-          newTopWatchedMinutesPromises,
-        );
+        const newTopWatchedMinutes = await Promise.all(newTopWatchedMinutesPromises);
         setTopWatchedMinutes(newTopWatchedMinutes);
       }
     };
@@ -208,28 +196,26 @@ const AnimeSeries = ({ list }) => {
         <ol className="story__list-container">
           {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0
             ? topWatchedMinutes.slice(0, 5).map((item) => {
-              const url = item.image;
-              const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
-              const parts = url.split('image/upload/');
-              const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
-              return (
-                <li key={uuidv4()} className="story__list-item">
-                  <picture className="story__list-image">
-                    <div
-                      role="img"
-                      aria-label={item.anime}
-                      style={{ backgroundImage: `url(${image})` }}
-                    />
-                  </picture>
-                  <div className="story__list-text">
-                    <p className="story__list-text--title">{item.anime}</p>
-                    <p className="story__list-text--time">
-                      {item.timeWatched} minutes
-                    </p>
-                  </div>
-                </li>
-              );
-            })
+                const url = item.image;
+                const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
+                const parts = url.split('image/upload/');
+                const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
+                return (
+                  <li key={uuidv4()} className="story__list-item">
+                    <picture className="story__list-image">
+                      <div
+                        role="img"
+                        aria-label={item.anime}
+                        style={{ backgroundImage: `url(${image})` }}
+                      />
+                    </picture>
+                    <div className="story__list-text">
+                      <p className="story__list-text--title">{item.anime}</p>
+                      <p className="story__list-text--time">{item.timeWatched} minutes</p>
+                    </div>
+                  </li>
+                );
+              })
             : null}
         </ol>
       </>

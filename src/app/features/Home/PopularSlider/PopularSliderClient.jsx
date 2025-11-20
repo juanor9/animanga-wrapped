@@ -88,7 +88,9 @@ const PopularSliderClient = ({ popularAnime, popularManga }) => {
         aria-valuemax={animeScroll.max}
         aria-valuenow={animeScroll.now}
       >
-        {popularAnime?.map((anime) => <PopularItemCard key={anime.id} item={anime} />)}
+        {popularAnime?.map((anime) => (
+          <PopularItemCard key={anime.id} item={anime} />
+        ))}
       </div>
       <h2>Popular Manga This Year</h2>
       <div
@@ -101,7 +103,9 @@ const PopularSliderClient = ({ popularAnime, popularManga }) => {
         aria-valuemax={mangaScroll.max}
         aria-valuenow={mangaScroll.now}
       >
-        {popularManga?.map((manga) => <PopularItemCard key={manga.id} item={manga} />)}
+        {popularManga?.map((manga) => (
+          <PopularItemCard key={manga.id} item={manga} />
+        ))}
       </div>
     </section>
   );

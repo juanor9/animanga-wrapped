@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
 import {
-  Chart as ChartJS,
-  Title,
-  Legend,
   ArcElement,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
-import AnimeFormat from '../AnimeFormat/AnimeFormat';
-import LauchYear from '../LauchYear/LauchYear';
-import AnimeGenre from '../AnimeGenre/AnimeGenre';
+import { useEffect, useState } from 'react';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import AnimeFav from '../AnimeFav/AnimeFav';
+import AnimeFormat from '../AnimeFormat/AnimeFormat';
+import AnimeGenre from '../AnimeGenre/AnimeGenre';
 import AnimeSeries from '../AnimeSeries/AnimeSeries';
+import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
+import LauchYear from '../LauchYear/LauchYear';
 
 const AnimeStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -29,7 +29,7 @@ const AnimeStatsDisplay = ({ lists }) => {
     ChartDataLabels,
     CategoryScale,
     LinearScale,
-    BarElement,
+    BarElement
   );
 
   useEffect(() => {
@@ -38,10 +38,11 @@ const AnimeStatsDisplay = ({ lists }) => {
       if (currentYearList) {
         const { animeList } = currentYearList;
         const watchedAnime = animeList.filter(
-          (w) => w.status === 'watched episode'
-            || w.status === 'completed'
-            || w.status === 'rewatched episode'
-            || w.status === 'rewatched',
+          (w) =>
+            w.status === 'watched episode' ||
+            w.status === 'completed' ||
+            w.status === 'rewatched episode' ||
+            w.status === 'rewatched'
         );
         if (animeList) {
           setAnime(watchedAnime);

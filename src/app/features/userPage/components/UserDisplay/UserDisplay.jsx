@@ -1,9 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { getUserProfile, getUserData } from '../../services/userPage';
 import UserStats from '../../../userStats/components/UserStats/UserStats';
+import { getUserData, getUserProfile } from '../../services/userPage';
 
 const UserDisplay = () => {
   const [userId, setUserId] = useState(null);
@@ -44,10 +44,6 @@ const UserDisplay = () => {
     }
   }, [userToken, userId, dispatch]);
 
-  return (
-
-    <UserStats lists={lists} />
-
-  );
+  return <UserStats lists={lists} />;
 };
 export default UserDisplay;

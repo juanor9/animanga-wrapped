@@ -1,18 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../services/users';
 
 const UserLogin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const {
-    error,
-    isLocked,
-    lockoutEndTime,
-    loginAttempts,
-    userToken,
-  } = useSelector((state) => state.userData);
+  const { error, isLocked, lockoutEndTime, loginAttempts, userToken } = useSelector(
+    (state) => state.userData
+  );
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

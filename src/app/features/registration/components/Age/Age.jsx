@@ -21,22 +21,15 @@ const Age = ({ color, clickFunction }) => {
             onChange={handleCheckboxChange}
           />
           Yes. I&apos;m 18 or older
-          {isChecked !== true
-            ? (
-              <button
-                type="submit"
-                className="register__button register__button--disabled"
-              >Next
-              </button>
-            )
-            : (
-              <button
-                type="submit"
-                className={`register__button register__button--${color}`}
-              >Next
-              </button>
-            )}
-
+          {isChecked !== true ? (
+            <button type="submit" className="register__button register__button--disabled">
+              Next
+            </button>
+          ) : (
+            <button type="submit" className={`register__button register__button--${color}`}>
+              Next
+            </button>
+          )}
         </label>
       </form>
     </div>

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
-import { useSelector, useDispatch } from 'react-redux';
-import './Stories.scss';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import uploadImage from '../../features/userStats/services/upload';
 import Spinner from '../Spinner/Spinner';
+import './Stories.scss';
 
 const StoryCard = ({ children, color, id }) => {
   const storyCardRef = useRef();
@@ -52,7 +52,7 @@ const StoryCard = ({ children, color, id }) => {
           listUsername, // The username is required for 'stats' type
           filename: `${listUsername}-${id}.png`,
         };
-        
+
         const resultAction = await dispatch(uploadImage(uploadData));
         const data = resultAction.payload;
 
@@ -74,9 +74,7 @@ const StoryCard = ({ children, color, id }) => {
   return (
     <div className="carrusel__item">
       <div ref={storyCardRef} id="series-story" className={`story story--${color}-gradient`}>
-        <div className="story__content">
-          {children}
-        </div>
+        <div className="story__content">{children}</div>
         <div className="story__footer">
           <p className="story__footer-link">animanga-wrapped.vercel.app</p>
         </div>
@@ -86,7 +84,13 @@ const StoryCard = ({ children, color, id }) => {
           {isUploading ? (
             <Spinner />
           ) : (
-            <button type="button" onClick={uploadAndSaveStoryCard} className={`story__button story__button--${color}`}>Save</button>
+            <button
+              type="button"
+              onClick={uploadAndSaveStoryCard}
+              className={`story__button story__button--${color}`}
+            >
+              Save
+            </button>
           )}
         </div>
       )}

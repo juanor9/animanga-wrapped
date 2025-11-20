@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
 import {
-  Chart as ChartJS,
-  Title,
-  Legend,
   ArcElement,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useEffect, useState } from 'react';
+import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import MangaChapters from '../MangaChapters/MangaChapters';
+import MangaFav from '../MangaFav/MangaFav';
 import MangaFormat from '../MangaFormat/MangaFormat';
-import ReleaseYear from '../ReleaseYear/ReleaseYear';
 import MangaGenre from '../MangaGenre/MangaGenre';
 import Mangaka from '../Mangaka/Mangaka';
-import Carrusel from '../../../../../../components/Carrusel/Carrusel';
-import MangaFav from '../MangaFav/MangaFav';
 import MangaSeries from '../MangaSeries/MangaSeries';
+import ReleaseYear from '../ReleaseYear/ReleaseYear';
 
 const MangaStatsDisplay = ({ lists }) => {
   const year = Number(process.env.NEXT_PUBLIC_YEAR);
@@ -30,7 +30,7 @@ const MangaStatsDisplay = ({ lists }) => {
     ChartDataLabels,
     CategoryScale,
     LinearScale,
-    BarElement,
+    BarElement
   );
 
   useEffect(() => {
@@ -39,10 +39,11 @@ const MangaStatsDisplay = ({ lists }) => {
       if (currentYearList) {
         const { mangaList } = currentYearList;
         const readManga = mangaList.filter(
-          (w) => w.status === 'read chapter'
-            || w.status === 'completed'
-            || w.status === 'reread chapter'
-            || w.status === 'reread',
+          (w) =>
+            w.status === 'read chapter' ||
+            w.status === 'completed' ||
+            w.status === 'reread chapter' ||
+            w.status === 'reread'
         );
         if (mangaList) {
           setManga(readManga);

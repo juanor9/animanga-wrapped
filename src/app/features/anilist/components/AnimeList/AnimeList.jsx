@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { newUser } from '../../../../../redux/features/user';
+import Spinner from '../../../../components/Spinner/Spinner';
 import { getAnimeList } from '../../../../lib/anilist';
 import ActivityCard from '../ActivityCard/ActivityCard';
 import './AnimeList.scss';
-import Spinner from '../../../../components/Spinner/Spinner';
 
 const ALAnimeList = ({ userId, checkFunc }) => {
   const [animeList, setAnimeList] = useState([]);
@@ -50,9 +50,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
 
       const updatedLists = [...currentLists];
 
-      const existingListIndex = updatedLists.findIndex(
-        (list) => list.year === year,
-      );
+      const existingListIndex = updatedLists.findIndex((list) => list.year === year);
 
       if (existingListIndex !== -1) {
         updatedLists[existingListIndex] = {
@@ -70,7 +68,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
         newUser({
           ...user,
           lists: updatedLists,
-        }),
+        })
       );
     }
   }, [loadingAnimeList, animeList, dispatch, user, year]);

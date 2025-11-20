@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 import './AnimeFav.scss';
-import StoryCard from '../../../../../../components/Stories/Stories';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
@@ -31,9 +31,7 @@ const AnimeFav = ({ list }) => {
 
       const WatchedTimeBySeries = Object.keys(groupedByAnime).map((key) => {
         const fullActivity = groupedByAnime[key];
-        const isAnimeCompleted = fullActivity.some(
-          (e) => e.status === 'completed',
-        );
+        const isAnimeCompleted = fullActivity.some((e) => e.status === 'completed');
 
         if (isAnimeCompleted) {
           const { length } = fullActivity;
@@ -60,10 +58,7 @@ const AnimeFav = ({ list }) => {
             return { anime: key, timeWatched, image: firstActivity.image };
           }
           // Caso 3: visto de una sentada: status: 'completed', progress: null
-          if (
-            firstActivityProgress === null
-            && firstActivity.status === 'completed'
-          ) {
+          if (firstActivityProgress === null && firstActivity.status === 'completed') {
             const { episodes } = firstActivity;
             const { duration } = firstActivity;
             const timeWatched = Number(episodes) * Number(duration);
@@ -81,10 +76,10 @@ const AnimeFav = ({ list }) => {
 
           // Caso 1: Varios episodios: progress: '1 - 6', en inicio y ultimo
           if (
-            firstActivityProgress
-            && firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress.split(' - ')[0];
             const lastWatchedEpisode = lastActivityProgress.split(' - ')[1];
@@ -95,10 +90,10 @@ const AnimeFav = ({ list }) => {
           }
           // Caso 2: Un episodio: progress: '1', en inicio y último
           if (
-            firstActivityProgress
-            && !firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && !lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            !firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            !lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress;
             const lastWatchedEpisode = lastActivityProgress;
@@ -109,10 +104,10 @@ const AnimeFav = ({ list }) => {
           }
           // Caso 3: progress: '1 - 6' en primera actividad y progress: '1' en última
           if (
-            firstActivityProgress
-            && firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && !lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            !lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress.split(' - ')[0];
             const lastWatchedEpisode = lastActivityProgress;
@@ -123,10 +118,10 @@ const AnimeFav = ({ list }) => {
           }
           // Caso 4: progress: '1' en primera actividad y progress: '1 - 6' en última
           if (
-            firstActivityProgress
-            && !firstActivityProgress.includes('-')
-            && lastActivityProgress
-            && lastActivityProgress.includes('-')
+            firstActivityProgress &&
+            !firstActivityProgress.includes('-') &&
+            lastActivityProgress &&
+            lastActivityProgress.includes('-')
           ) {
             const firstWatchedEpisode = firstActivityProgress;
             const lastWatchedEpisode = lastActivityProgress.split(' - ')[1];
@@ -139,12 +134,9 @@ const AnimeFav = ({ list }) => {
         return null;
       });
       const sortedWatchedTimeBySeries = WatchedTimeBySeries.sort(
-        (a, b) => b.timeWatched - a.timeWatched,
+        (a, b) => b.timeWatched - a.timeWatched
       );
-      if (
-        sortedWatchedTimeBySeries
-        && Array.isArray(sortedWatchedTimeBySeries)
-      ) {
+      if (sortedWatchedTimeBySeries && Array.isArray(sortedWatchedTimeBySeries)) {
         setSortedWatchedMinutes(sortedWatchedTimeBySeries);
       }
     }
@@ -152,54 +144,46 @@ const AnimeFav = ({ list }) => {
 
   const [topWatchedMinutes, setTopWatchedMinutes] = useState([]);
 
-
   useEffect(() => {
     const downloadToCloudinary = async (url, filename) => {
-        try {
+      try {
         const response = await fetch(url);
-        if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const blob = await response.blob();
         const file = new File([blob], 'anime-watched-image.png', {
-            type: blob.type,
+          type: blob.type,
         });
 
-        const uploadedImageResponse = await dispatch(
-            uploadImage({ file, listUsername, filename }),
-        );
+        const uploadedImageResponse = await dispatch(uploadImage({ file, listUsername, filename }));
 
         if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
-            const cloudinaryUrl = uploadedImageResponse.payload.url;
-            return cloudinaryUrl;
+          const cloudinaryUrl = uploadedImageResponse.payload.url;
+          return cloudinaryUrl;
         }
         throw new Error('Image upload failed');
-        } catch (error) {
+      } catch (error) {
         throw new Error('Error downloading or uploading image:', error);
-        }
+      }
     };
     const processImages = async () => {
       if (sortedWatchedMinutes && sortedWatchedMinutes.length > 0) {
-        const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(
-          async (element) => {
-            const alImage = element.image;
-            const parts = alImage.split('/');
-            const newPath = parts.slice(3).join('/');
-            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
-            const cloudinaryUrl = await downloadToCloudinary(
-              newUrl,
-              element.anime,
-            );
+        const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(async (element) => {
+          const alImage = element.image;
+          const parts = alImage.split('/');
+          const newPath = parts.slice(3).join('/');
+          const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+          const cloudinaryUrl = await downloadToCloudinary(newUrl, element.anime);
 
-            return {
-              ...element,
-              image: cloudinaryUrl,
-            };
-          },
-        );
+          return {
+            ...element,
+            image: cloudinaryUrl,
+          };
+        });
 
-        const newTopWatchedMinutes = await Promise.all(
-          newTopWatchedMinutesPromises,
-        );
+        const newTopWatchedMinutes = await Promise.all(newTopWatchedMinutesPromises);
 
         setTopWatchedMinutes(newTopWatchedMinutes);
       }
@@ -221,12 +205,8 @@ const AnimeFav = ({ list }) => {
                 style={{ backgroundImage: `url(${topWatchedMinutes[0]?.image})` }}
               />
             </picture>
-            <p className="story__text-highlight--longer">
-              {topWatchedMinutes[0].anime}
-            </p>
-            <p className="story__text-regular">
-              {topWatchedMinutes[0].timeWatched} minutes
-            </p>
+            <p className="story__text-highlight--longer">{topWatchedMinutes[0].anime}</p>
+            <p className="story__text-regular">{topWatchedMinutes[0].timeWatched} minutes</p>
           </>
         ) : null}
       </>

@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { newUser } from '../../../../../redux/features/user';
 
 const Email = ({ color, step, clickFunction }) => {
@@ -27,28 +27,18 @@ const Email = ({ color, step, clickFunction }) => {
   return (
     <div>
       <p>
-        Just pop in your email for us.
-        Don&apos;t worry, we&apos;ll treat it like a
-        limited edition manga – with utmost care.
-
+        Just pop in your email for us. Don&apos;t worry, we&apos;ll treat it like a limited edition
+        manga – with utmost care.
       </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email
-          <input
-            type="email"
-            name="email"
-            id="email"
-            onChange={handleOnChange}
-          />
+          <input type="email" name="email" id="email" onChange={handleOnChange} />
         </label>
-        <button
-          type="submit"
-          className={`register__button register__button--${color}`}
-        >Submit
+        <button type="submit" className={`register__button register__button--${color}`}>
+          Submit
         </button>
       </form>
-
     </div>
   );
 };

@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Bar } from 'react-chartjs-2';
+import { v4 as uuidv4 } from 'uuid';
 import StoryCard from '../../../../../../components/Stories/Stories';
 
 const ReleaseYear = ({ list }) => {
   const [years, setYears] = useState([]);
   useEffect(() => {
     if (list) {
-      const fullData = list.map((activity) => (
-        {
-          manga: activity.media.title.userPreferred,
-          year: activity.media.startDate.year,
-        }
-      ));
+      const fullData = list.map((activity) => ({
+        manga: activity.media.title.userPreferred,
+        year: activity.media.startDate.year,
+      }));
       const groupedByManga = fullData.reduce((acc, curr) => {
         if (!acc[curr.manga]) {
           acc[curr.manga] = [];
@@ -53,20 +51,18 @@ const ReleaseYear = ({ list }) => {
 
   const data = {
     labels: years.map((i) => i.year),
-    datasets: [{
-      label: 'My First Dataset',
-      data: years.map((i) => i.titles),
-      backgroundColor: [
-        'rgba(255,211,25)',
-        'rgba(49,181,122)',
-        'rgba(252, 128,45)',
-      ],
-      borderColor: 'transparent',
-      color: 'rgba(48, 42, 37,1)',
-      barThickness: 16,
-      categoryPercentage: 0.5,
-      barPercentage: 1,
-    }],
+    datasets: [
+      {
+        label: 'My First Dataset',
+        data: years.map((i) => i.titles),
+        backgroundColor: ['rgba(255,211,25)', 'rgba(49,181,122)', 'rgba(252, 128,45)'],
+        borderColor: 'transparent',
+        color: 'rgba(48, 42, 37,1)',
+        barThickness: 16,
+        categoryPercentage: 0.5,
+        barPercentage: 1,
+      },
+    ],
   };
 
   const options = {
@@ -104,12 +100,11 @@ const ReleaseYear = ({ list }) => {
 
   return (
     <StoryCard key="11" id="11" color="pink">
-      <p className="story__main-copy">These are the release years of the manga you read this year:</p>
+      <p className="story__main-copy">
+        These are the release years of the manga you read this year:
+      </p>
       <div style={{ height: '400px' }}>
-        <Bar
-          data={data}
-          options={options}
-        />
+        <Bar data={data} options={options} />
       </div>
     </StoryCard>
   );

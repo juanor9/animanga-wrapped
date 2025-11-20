@@ -13,11 +13,11 @@ const ActivityCard = ({ activity }) => {
   const image = media.coverImage.medium;
 
   if (
-    status === 'plans to watch'
-    || status === 'plans to read'
-    || status === 'paused watching'
-    || status === 'dropped'
-    || status === 'paused reading'
+    status === 'plans to watch' ||
+    status === 'plans to read' ||
+    status === 'paused watching' ||
+    status === 'dropped' ||
+    status === 'paused reading'
   ) {
     return null;
   }
