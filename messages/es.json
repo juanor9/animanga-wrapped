@@ -1,0 +1,102 @@
+{
+  "common": {
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "save": "Guardar",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "loading": "Cargando..."
+  },
+  "hero": {
+    "title": "Tu Año de Anime y Manga en Resumen",
+    "subtitle": "Obtén estadísticas relevantes sobre el anime que viste o el manga que leíste. Comparte con todos lo que es importante para ti"
+  },
+  "auth": {
+    "loginTab": "Iniciar sesión",
+    "signupTab": "Registrarse",
+    "createUser": "Crear usuario",
+    "loginWithAnilist": "Iniciar sesión con AniList",
+    "loginWithMAL": "Iniciar sesión con MyAnimeList",
+    "accountLocked": "Cuenta Bloqueada",
+    "accountLockedMessage": "Tu cuenta ha sido bloqueada temporalmente debido a demasiados intentos de inicio de sesión fallidos.",
+    "tryAgainIn": "Por favor, inténtalo de nuevo en: {time}",
+    "lastAttemptWarning": "Te queda 1 intento antes de que tu cuenta sea bloqueada temporalmente."
+  },
+  "registration": {
+    "welcome": {
+      "title": "¡Bienvenido!",
+      "message": "¡Hola! Gracias por unirte a nosotros. Estamos emocionados de crear un resumen increíble de todo el anime que viste y las páginas de manga que leíste este año. Pero primero, conozcámonos un poco. Prometemos que será fácil.",
+      "button": "¡Comencemos!"
+    },
+    "age": {
+      "question": "¡Hey! Verificación rápida: ¿Tienes 18 años o más? Solo queremos asegurarnos antes de continuar.",
+      "confirmation": "Sí. Tengo 18 años o más"
+    },
+    "email": {
+      "label": "Correo electrónico"
+    },
+    "location": {
+      "question": "¿Dónde está tu base de operaciones?",
+      "placeholder": "Selecciona tu país"
+    },
+    "password": {
+      "label": "Contraseña",
+      "button": "Guardar"
+    },
+    "anilist": {
+      "loginButton": "Iniciar sesión con AniList",
+      "customAuth": "O autenticarse manualmente"
+    }
+  },
+  "stats": {
+    "title": "Estadísticas de {year}",
+    "saveAndShare": "¡Guarda y Comparte tus Favoritos!",
+    "instructions": {
+      "pc": "📷 ¿En PC? Click derecho → Guardar imagen",
+      "android": "📱 ¿Android? Mantén presionado → Descargar",
+      "ios": "🍎 ¿iPhone/iPad? Mantén presionado → Añadir a Fotos"
+    },
+    "noData": "No registraste ninguna lista para nosotros...",
+    "anime": {
+      "title": "Estadísticas de anime",
+      "watchedMinutes": "Este año viste {minutes} minutos de anime",
+      "watchedHours": "Este año viste {hours} horas de anime",
+      "favoriteAnime": "Tu anime favorito este año fue:",
+      "mainSeries": "Tu serie principal de {year}",
+      "formats": "Así es como distribuiste tus formatos de anime en {year}:",
+      "releaseYears": "Estos son los años de lanzamiento del anime que viste este año:",
+      "genres": "Estos fueron tus géneros de anime favoritos este año:"
+    },
+    "manga": {
+      "title": "Estadísticas de manga",
+      "chaptersRead": "Este año leíste {chapters} capítulos de manga",
+      "favoriteManga": "Tu manga favorito este año fue:",
+      "mainSeries": "Tu serie principal de {year}",
+      "formats": "Así es como distribuiste tus formatos de manga en {year}:",
+      "releaseYears": "Estos son los años de lanzamiento del manga que leíste este año:",
+      "genres": "Estos fueron tus géneros de manga favoritos este año:",
+      "favoriteMangaka": "Tu mangaka favorito este año:"
+    }
+  },
+  "footer": {
+    "copyright": "Animanga Wrapped | Todos los derechos reservados | Tanuki SAS",
+    "termsAndConditions": "Términos y Condiciones",
+    "privacyPolicy": "Política de Privacidad",
+    "logoAlt": "Animanga Wrapped"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "register": "Registrarse",
+    "userStats": "Estadísticas de Usuario",
+    "privacyPolicy": "Política de Privacidad",
+    "termsAndConditions": "Términos y Condiciones"
+  },
+  "errors": {
+    "generic": "Ocurrió un error. Por favor, inténtalo de nuevo.",
+    "invalidCredentials": "Correo electrónico o contraseña inválidos",
+    "networkError": "Error de red. Por favor, verifica tu conexión.",
+    "serverError": "Error del servidor. Por favor, inténtalo más tarde."
+  }
+}

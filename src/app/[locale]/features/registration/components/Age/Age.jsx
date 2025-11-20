@@ -1,6 +1,11 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const Age = ({ color, clickFunction }) => {
+  const t = useTranslations('registration.age');
+  const tCommon = useTranslations('common');
   const [isChecked, setChecked] = useState(false);
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
@@ -8,9 +13,7 @@ const Age = ({ color, clickFunction }) => {
 
   return (
     <div>
-      <p>
-        Hey! Quick check-in: You&apos;re 18 or older, right? Just making sure before we dive deeper.
-      </p>
+      <p>{t('question')}</p>
       <form onSubmit={clickFunction}>
         <label htmlFor="accept">
           <input
@@ -20,14 +23,14 @@ const Age = ({ color, clickFunction }) => {
             className="register__checkbox"
             onChange={handleCheckboxChange}
           />
-          Yes. I&apos;m 18 or older
+          {t('confirmation')}
           {isChecked !== true ? (
             <button type="submit" className="register__button register__button--disabled">
-              Next
+              {tCommon('next')}
             </button>
           ) : (
             <button type="submit" className={`register__button register__button--${color}`}>
-              Next
+              {tCommon('next')}
             </button>
           )}
         </label>

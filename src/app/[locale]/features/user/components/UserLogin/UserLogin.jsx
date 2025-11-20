@@ -1,9 +1,14 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../services/users';
 
 const UserLogin = () => {
+  const t = useTranslations('auth');
+  const tCommon = useTranslations('common');
   const dispatch = useDispatch();
   const router = useRouter();
   const { error, isLocked, lockoutEndTime, loginAttempts, userToken } = useSelector(
@@ -61,14 +66,14 @@ const UserLogin = () => {
     <section className="user-registration">
       {isLocked ? (
         <div className="user-registration__locked-account">
-          <h2>Account Locked</h2>
-          <p>Your account has been temporarily locked due to too many failed login attempts.</p>
-          {remainingTime && <p>Please try again in: {remainingTime}</p>}
+          <h2>{t('accountLocked')}</h2>
+          <p>{t('accountLockedMessage')}</p>
+          {remainingTime && <p>{t('tryAgainIn', { time: remainingTime })}</p>}
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="user-registration__form">
           <label htmlFor="mail" className="user-registration__label">
-            Email
+            {tCommon('email')}
             <input
               className="user-registration__input"
               id="mail"
@@ -79,7 +84,7 @@ const UserLogin = () => {
             />
           </label>
           <label htmlFor="password" className="user-registration__label">
-            Password
+            {tCommon('password')}
             <input
               className="user-registration__input"
               id="password"
@@ -91,12 +96,10 @@ const UserLogin = () => {
           </label>
           {error && <p className="user-registration__error">{error}</p>}
           {loginAttempts === 4 && (
-            <p className="user-registration__warning">
-              You have 1 attempt left before your account is temporarily locked.
-            </p>
+            <p className="user-registration__warning">{t('lastAttemptWarning')}</p>
           )}
           <button type="submit" className="user-registration__button" disabled={isLocked}>
-            Login
+            {tCommon('login')}
           </button>
         </form>
       )}
