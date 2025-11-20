@@ -1,6 +1,6 @@
+import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import AxeDevTool from './components/AxeDevTool/AxeDevTool';
 import Footer from './components/Footer/Footer';
 import ReduxProvider from './components/Provider/Provider';
@@ -12,7 +12,7 @@ export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
 }
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata() {
   return {
     metadataBase: new URL('https://animanga-wrapped.vercel.app'),
     title: 'Year Anime Manga Wrapped - The Best of Your Year in Anime and Manga',
