@@ -4,6 +4,8 @@
 
 **NEVER skip linting rules.** Always fix errors properly instead of downgrading rules from "error" to "warn" or disabling them.
 
+**DO NOT MODIFY i18n CONFIGURATION.** The `next-intl` setup (v3.26.0) is fragile due to version compatibility. See `I18N_CONFIG.md` before touching `src/middleware.js`, `i18n.js`, or `next.config.js`.
+
 ## Import Order
 
 This project uses ESLint's `import/order` rule with strict alphabetical ordering. When writing or modifying imports, follow this order:

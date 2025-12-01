@@ -12,7 +12,7 @@ const UserLogin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { error, isLocked, lockoutEndTime, loginAttempts, userToken } = useSelector(
-    (state) => state.userData
+    (state) => state.user
   );
 
   const [email, setEmail] = useState('');

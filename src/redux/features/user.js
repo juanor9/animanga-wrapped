@@ -1,11 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import createuser from '../../app/[locale]/features/registration/services/registration';
-import {
-  getUserData,
-  getUserProfile,
-} from '../../app/[locale]/features/userPage/services/userPage';
-
 const initialState = {
   user: {},
   accessToken: null,
@@ -33,13 +27,13 @@ const UserSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createuser.fulfilled, (state, action) => {
+    // builder.addCase(createuser.fulfilled, (state, action) => {
+    //   state.user = action.payload;
+    // });
+    builder.addCase('users/getUser/fulfilled', (state, action) => {
       state.user = action.payload;
     });
-    builder.addCase(getUserProfile.fulfilled, (state, action) => {
-      state.user = action.payload;
-    });
-    builder.addCase(getUserData.fulfilled, (state, action) => {
+    builder.addCase('users/getUserData/fulfilled', (state, action) => {
       state.user = action.payload;
     });
     // builder.addCase(getLibrariesByFilter.fulfilled, (state, action) => {

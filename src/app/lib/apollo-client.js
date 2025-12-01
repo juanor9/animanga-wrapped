@@ -7,7 +7,13 @@ const getClient = cache(
       link: new HttpLink({
         uri: 'https://graphql.anilist.co',
       }),
-      cache: new InMemoryCache(),
+      cache: new InMemoryCache({
+        typePolicies: {
+          Page: {
+            keyFields: [],
+          },
+        },
+      }),
     })
 );
 
