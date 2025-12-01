@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import { yearString } from '@/app/lib/constants/year';
 import StoryCard from '../../../../../../components/Stories/Stories';
-
-const year = process.env.NEXT_PUBLIC_YEAR;
 
 const MangaFormat = ({ list }) => {
   const [formatData, setFormatData] = useState({});
@@ -77,7 +76,7 @@ const MangaFormat = ({ list }) => {
   };
   return (
     <StoryCard key="10" id="10" color="green">
-      <p className="story__main-copy">This is how you distributed your manga formats on {year}:</p>
+      <p className="story__main-copy">This is how you distributed your manga formats on {yearString}:</p>
       <Doughnut data={data} options={options} />
     </StoryCard>
   );

@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { yearNumber } from '@/app/lib/constants/year';
 import ActivityCard from '../../../anilist/components/ActivityCard/ActivityCard';
 import './UserLists.scss';
 
 const UserLists = ({ lists }) => {
-  const year = Number(process.env.NEXT_PUBLIC_YEAR);
+  const year = yearNumber;
 
   const [anime, setAnime] = useState(null);
   const [manga, setManga] = useState(null);

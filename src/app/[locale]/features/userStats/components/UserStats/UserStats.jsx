@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+
+import { yearNumber } from '@/app/lib/constants/year';
 import AnimeStatsDisplay from '../animeStats/components/StatsDisplay/StatsDisplay';
 import MangaStatsDisplay from '../mangaStats/components/StatsDisplay/StatsDisplay';
 
 const UserStats = ({ lists }) => {
-  const year = Number(process.env.NEXT_PUBLIC_YEAR);
+  const year = yearNumber;
   const [anime, setAnime] = useState(null);
   const [manga, setManga] = useState(null);
 

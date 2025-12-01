@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useEffect, useState } from 'react';
+import { yearNumber } from '@/app/lib/constants/year';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import AnimeFav from '../AnimeFav/AnimeFav';
 import AnimeFormat from '../AnimeFormat/AnimeFormat';
@@ -18,7 +19,7 @@ import AnimeWatchedHours from '../AnimeWatchedHours/AnimeWatchedHours';
 import LauchYear from '../LauchYear/LauchYear';
 
 const AnimeStatsDisplay = ({ lists }) => {
-  const year = Number(process.env.NEXT_PUBLIC_YEAR);
+  const year = yearNumber;
 
   const [anime, setAnime] = useState(null);
 

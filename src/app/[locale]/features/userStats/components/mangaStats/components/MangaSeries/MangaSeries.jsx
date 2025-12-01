@@ -2,10 +2,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { yearString } from '@/app/lib/constants/year';
 import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 
-const year = process.env.NEXT_PUBLIC_YEAR;
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 const MangaSeries = ({ list }) => {
@@ -180,7 +180,7 @@ const MangaSeries = ({ list }) => {
   return (
     <StoryCard key="9" id="9" color="orange">
       <>
-        <p className="story__main-copy">Your main series for {year}</p>
+        <p className="story__main-copy">Your main series for {yearString}</p>
         <ul className="story__list-container">
           {Array.isArray(topReadChapters) && topReadChapters.length > 0
             ? topReadChapters.slice(0, 5).map((item) => {

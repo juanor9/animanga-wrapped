@@ -2,7 +2,7 @@
 
 ## Overview
 
-Animanga Wrapped is a web application providing statistics on anime and manga watched in 2023, based on user activity on AniList. Developed by Tanuki SAS, this app allows users to create an account, link it with AniList, and view statistical charts.
+Animanga Wrapped is a web application providing statistics on anime and manga watched in the configured wrapped year, based on user activity on AniList. Developed by Tanuki SAS, this app allows users to create an account, link it with AniList, and view statistical charts.
 
 ## Features
 
