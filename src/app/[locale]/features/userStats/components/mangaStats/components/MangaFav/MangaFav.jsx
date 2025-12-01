@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { yearString } from '@/app/lib/constants/year';
 import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 
-const year = process.env.NEXT_PUBLIC_YEAR;
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 const MangaFav = ({ list }) => {
@@ -182,7 +182,7 @@ const MangaFav = ({ list }) => {
   return (
     <StoryCard key="8" id="8" color="yellow">
       <>
-        <p className="story__main-copy">Your favorite manga this {year} was:</p>
+        <p className="story__main-copy">Your favorite manga this {yearString} was:</p>
         {Array.isArray(topReadChapters) && topReadChapters.length > 0 ? (
           <>
             <picture className="story__image-main">

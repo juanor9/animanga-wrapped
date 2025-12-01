@@ -2,12 +2,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { yearString } from '@/app/lib/constants/year';
 import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 import './AnimeSeries.scss';
 
 const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-const year = process.env.NEXT_PUBLIC_YEAR;
 
 const AnimeSeries = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);
@@ -192,7 +192,7 @@ const AnimeSeries = ({ list }) => {
   return (
     <StoryCard key="3" id="3" color="pink">
       <>
-        <p className="story__main-copy">Your main series for {year}</p>
+        <p className="story__main-copy">Your main series for {yearString}</p>
         <ol className="story__list-container">
           {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0
             ? topWatchedMinutes.slice(0, 5).map((item) => {

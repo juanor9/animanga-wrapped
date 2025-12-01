@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { yearString } from '@/app/lib/constants/year';
 import { newUser } from '../../../../../../redux/features/user';
 import { getAnimeList } from '../../../../../lib/anilist';
 import Spinner from '../../../../components/Spinner/Spinner';
@@ -13,7 +14,7 @@ const ALAnimeList = ({ userId, checkFunc }) => {
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
 
-  const year = process.env.NEXT_PUBLIC_YEAR;
+  const year = yearString;
 
   useEffect(() => {
     const fetchAnimeList = async () => {

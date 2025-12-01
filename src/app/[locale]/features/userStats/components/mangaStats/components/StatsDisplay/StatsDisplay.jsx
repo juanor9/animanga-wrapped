@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useEffect, useState } from 'react';
+import { yearNumber } from '@/app/lib/constants/year';
 import Carrusel from '../../../../../../components/Carrusel/Carrusel';
 import MangaChapters from '../MangaChapters/MangaChapters';
 import MangaFav from '../MangaFav/MangaFav';
@@ -19,7 +20,7 @@ import MangaSeries from '../MangaSeries/MangaSeries';
 import ReleaseYear from '../ReleaseYear/ReleaseYear';
 
 const MangaStatsDisplay = ({ lists }) => {
-  const year = Number(process.env.NEXT_PUBLIC_YEAR);
+  const year = yearNumber;
 
   const [manga, setManga] = useState(null);
 

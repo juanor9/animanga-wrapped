@@ -149,7 +149,12 @@ const TermsAndConditionsPage = () => (
       10.1. The Application&apos;s operational mechanics are intertwined with the AniList API.
       Licensees hereby acknowledge and accede to the terms stipulated by AniList, which include
       prohibitions on data storage, mass collection, and the mandated adherence to naming
-      conventions.
+      conventions. The authoritative reference for these conditions is the AniList API documentation
+      available at
+      <a href="https://anilist.gitbook.io/anilist-apiv2-docs/" rel="noreferrer" target="_blank">
+        https://anilist.gitbook.io/anilist-apiv2-docs/
+      </a>
+      .
     </p>
     <p>
       10.2. To ensure full compliance with AniList&apos;s terms of service, the Application
