@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import './page.scss';
 
 const UserDisplay = dynamic(
@@ -6,11 +7,14 @@ const UserDisplay = dynamic(
   { ssr: false }
 );
 
-const UserPage = () => (
-  <main className="user">
-    <h1>Your Anime and Manga Year Wrapped</h1>
-    <UserDisplay />
-  </main>
-);
+const UserPage = ({ params: { locale } }) => {
+  unstable_setRequestLocale(locale);
+  return (
+    <main className="user">
+      <h1>Your Anime and Manga Year Wrapped</h1>
+      <UserDisplay />
+    </main>
+  );
+};
 
 export default UserPage;

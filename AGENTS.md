@@ -127,7 +127,7 @@ See `CLAUDE.md` for detailed examples and common mistakes.
 
 ### File Structure
 
-```
+```text
 src/
 ├── app/
 │   ├── components/     # Reusable UI components
@@ -146,7 +146,7 @@ src/
 
 ## Dependencies
 
-### Linting & Formatting
+### Linting & Formatting Dependencies
 
 - `eslint` - JavaScript/JSX linting
 - `eslint-plugin-prettier` - Prettier integration for ESLint
@@ -157,9 +157,22 @@ src/
 - `stylelint-config-standard-scss` - SCSS standard config
 - `stylelint-order` - CSS property ordering
 
-### Accessibility Testing
+### Accessibility Testing Dependencies
 
 - `@axe-core/react` - Development-time a11y checking
 - `@axe-core/playwright` - Automated testing
 - `axe-core` - Core accessibility engine
 - `jsdom` - Server-side DOM for testing
+
+## Critical Configuration (DO NOT TOUCH)
+
+### Internationalization (i18n)
+
+This project has a specific configuration for `next-intl` that **MUST NOT BE CHANGED** without careful verification.
+
+- **Version**: `next-intl@3.26.0` (v4 is incompatible with current Next.js setup)
+- **Middleware**: Uses `createMiddleware.default` to handle CJS/ESM interop.
+- **Config Location**: `i18n.js` and `messages/` must be in the **root** directory.
+- **Layout**: `src/app/[locale]/layout.jsx` handles the `NextIntlClientProvider`.
+
+**SEE `I18N_CONFIG.md` FOR FULL DETAILS.**
