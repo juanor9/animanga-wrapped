@@ -6,7 +6,7 @@
 
 - **Next.js**: `14.2.33` (App Router)
 - **next-intl**: `3.26.0` (Strict requirement)
-  - *Note*: Version 4.x is currently incompatible with this specific Next.js setup, causing persistent 500 errors.
+  - _Note_: Version 4.x is currently incompatible with this specific Next.js setup, causing persistent 500 errors.
 
 ## 2. File Structure
 
@@ -29,6 +29,7 @@ The location of configuration files is **mandatory**:
 ## 3. Configuration Files
 
 ### A. `next.config.js`
+
 Must use a relative path to `i18n.js`. Absolute paths or `path.resolve` can cause issues with the plugin's file resolution in some environments.
 
 ```javascript
@@ -46,6 +47,7 @@ export default withNextIntl(nextConfig);
 ```
 
 ### B. `i18n.js`
+
 Defines how messages are loaded. Must handle the import asynchronously.
 
 ```javascript
@@ -65,6 +67,7 @@ export default getRequestConfig(async ({ locale }) => {
 ```
 
 ### C. `src/middleware.js`
+
 **CRITICAL FIX**: Due to a CommonJS/ESM interop issue in `next-intl` v3, we must access the `.default` property of `createMiddleware`.
 
 ```javascript
@@ -85,6 +88,7 @@ export const config = {
 ```
 
 ### D. `src/app/[locale]/layout.jsx`
+
 Handles the client provider and global styles.
 
 1. **Style Import Order**: `global.scss` MUST be imported **first** to ensure it overrides browser defaults and isn't overwritten by component styles.
@@ -112,9 +116,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {/* App Content */}
-        </NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>{/* App Content */}</NextIntlClientProvider>
       </body>
     </html>
   );
@@ -124,18 +126,33 @@ export default async function LocaleLayout({ children, params: { locale } }) {
 ## 4. Troubleshooting
 
 ### "Couldn't find next-intl config file" (500 Error)
+
 - **Cause**: `i18n.js` is in the wrong place or `next.config.js` has a bad path.
 - **Fix**: Ensure `i18n.js` is in root and `next.config.js` uses `./i18n.js`.
 - **Action**: Restart server (`rm -rf .next && npm run dev`).
 
 ### "createMiddleware is not a function"
+
 - **Cause**: `next-intl` v3 ESM import issue.
 - **Fix**: Change `createMiddleware({...})` to `createMiddleware.default({...})` in `src/middleware.js`.
 
 ### Styles not applying / Broken layout
+
 - **Cause**: CSS import order.
 - **Fix**: Move `import '../global.scss'` to the very top of `src/app/[locale]/layout.jsx`.
 
-### "unstable_setRequestLocale is not a function"
-- **Cause**: Using v4 API methods in v3.
-- **Fix**: Remove `unstable_setRequestLocale` calls. They are not needed for standard runtime translation in v3.
+### "unstable_setRequestLocale"
+
+- **Requirement**: For static generation (`output: 'export'` or default SSG), you **MUST** call `unstable_setRequestLocale(locale)` in every page and layout that receives `params`.
+- **Implementation**:
+
+  ```javascript
+  import { unstable_setRequestLocale } from 'next-intl/server';
+
+  export default function Page({ params: { locale } }) {
+    unstable_setRequestLocale(locale);
+    return ...;
+  }
+  ```
+
+- **Client Components**: If a page is a Client Component (`'use client'`), you must wrap it in a Server Component that calls `unstable_setRequestLocale` and then renders the Client Component.

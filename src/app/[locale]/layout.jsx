@@ -1,7 +1,7 @@
 import '../global.scss';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { yearString } from '@/app/lib/constants/year';
 import AxeDevTool from './components/AxeDevTool/AxeDevTool';
 import Footer from './components/Footer/Footer';
@@ -41,12 +41,12 @@ export async function generateMetadata({ params: { locale } }) {
 
 export default async function LocaleLayout({ children, params: { locale } }) {
   // Validate locale
-  const validLocales = ['en', 'es'];
-  if (!validLocales.includes(locale)) {
-    notFound();
-  }
+  if (!['en', 'es'].includes(locale)) notFound();
 
-  // Get messages for the locale
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
+
+  // Load messages
   const messages = await getMessages();
 
   return (
