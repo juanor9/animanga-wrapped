@@ -78,7 +78,9 @@ const AnimeFormat = ({ list }) => {
 
   return (
     <StoryCard key="4" id="4" color="yellow">
-      <p className="story__main-copy">This is how you distributed your anime formats on {yearString}:</p>
+      <p className="story__main-copy">
+        This is how you distributed your anime formats on {yearString}:
+      </p>
       <Doughnut data={data} options={options} />
     </StoryCard>
   );

@@ -2,12 +2,13 @@
 
 .loginSignup{
   &__button{
-    border: none;
     background-color: $pink;
-    color: $light-black;
-    padding: .5em;
-    flex-grow: 1;
+    border: none;
     border-radius: .5em;
+    color: $light-black;
+    flex-grow: 1;
+    padding: .5em;
+
     &-container{
       display: flex;
       gap: 1em;

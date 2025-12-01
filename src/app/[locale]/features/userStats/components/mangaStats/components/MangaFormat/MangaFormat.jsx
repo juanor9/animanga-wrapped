@@ -76,7 +76,9 @@ const MangaFormat = ({ list }) => {
   };
   return (
     <StoryCard key="10" id="10" color="green">
-      <p className="story__main-copy">This is how you distributed your manga formats on {yearString}:</p>
+      <p className="story__main-copy">
+        This is how you distributed your manga formats on {yearString}:
+      </p>
       <Doughnut data={data} options={options} />
     </StoryCard>
   );

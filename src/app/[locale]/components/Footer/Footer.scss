@@ -1,23 +1,26 @@
 .footer{
-  display: flex;
-  gap: 1em;
-  padding: 1em 2em;
-  font-size: .8em;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: .8em;
+  gap: 1em;
+  justify-content: center;
+  padding: 1em 2em;
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     flex-direction: row;
     justify-content: space-between;
     margin-top:3em ;
   }
+
   &__logo{
-    max-width: 150px;
     flex-shrink: 0;
+    max-width: 150px;
+
     &-container{
       max-width: 150px;
     }
+
     & img{
       max-width: 100%;
     }

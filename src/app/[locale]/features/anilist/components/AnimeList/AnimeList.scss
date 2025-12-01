@@ -1,12 +1,14 @@
 .anime-list{
   font-size: 0.8em;
+
   &__loading{
     color: aquamarine;
   }
+
   &__list-container{
     display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
     gap: 1em;
+    overflow-x: scroll;
+    overflow-y: hidden;
   }
 }

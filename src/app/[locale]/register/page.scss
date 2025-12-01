@@ -1,81 +1,98 @@
 @import '../../colors';
 
 .register{
-  padding: 1em;
   min-height: 100vh;
+  padding: 1em;
+
   &__section{
-    padding: 2em;
     border-radius: 2em;
     color: $black;
     min-width: 100%;
+    padding: 2em;
+
     &--green{
       background-color: $green;
     }
+
     &--orange{
       background-color: $orange;
     }
+
     &--yellow{
       background-color: $yellow;
     }
+
     &--pink{
       background-color: $pink;
     }
   }
+
   &__container{
     display: flex;
     gap: 1em;
     transition: transform 0.3s ease-out;
   }
+
   &__button{
-    color: $black;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    padding: 1em;
     border: 0;
     border-radius: 1em;
-    width: 100%;
+    color: $black;
+    display: block;
     margin-top: 1em;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+
     &--disabled{
-      pointer-events: none;
-      background-color:rgb(189, 189, 189);
+      background-color:rgb(189 189 189);
       color: white;
+      pointer-events: none;
     }
+
     &--green{
       background-color: $green;
     }
+
     &--orange{
       background-color: $orange;
     }
+
     &--yellow{
       background-color: $yellow;
     }
+
     &--pink{
       background-color: $pink;
     }
   }
+
   &__formal-text{
-    font-size: 12px;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgb(255 255 255 / 60%);
     color: black !important;
-    padding: 1em;
-    overflow-y: scroll;
-    max-height: 25em;
+    font-size: 12px;
     margin-bottom: 1em;
+    max-height: 25em;
+    overflow-y: scroll;
+    padding: 1em;
+
     & h2{
       color: black;
     }
+
     & a{
-      color: rgba(0, 0, 0, 0.6);
+      color: rgb(0 0 0 / 60%);
     }
   }
+
   &__checkbox{
+    height: 1em;
     margin: 0 .5em 0 0;
     width: 1em;
-    height: 1em;
+
     &:checked + label::before {
-      border-color: green;
       background-color: #d4ffd4;  /* Un verde claro */
+      border-color: green;
   }
   }
 }

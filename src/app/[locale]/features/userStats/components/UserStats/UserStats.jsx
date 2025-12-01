@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import { yearNumber } from '@/app/lib/constants/year';
 import AnimeStatsDisplay from '../animeStats/components/StatsDisplay/StatsDisplay';
 import MangaStatsDisplay from '../mangaStats/components/StatsDisplay/StatsDisplay';
