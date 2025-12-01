@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-
 import { yearNumber, yearString } from './constants/year';
 
 export const GET_POPULAR_ANIME = gql`
