@@ -1,9 +1,11 @@
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CountrySelect from './CountryDropdown';
 import { newUser } from '../../../../../../redux/features/user';
 
 const Location = ({ color, step, clickFunction }) => {
+  const t = useTranslations('registration.location');
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ const Location = ({ color, step, clickFunction }) => {
     event.preventDefault();
 
     if (!country) {
-      setErrorMessage('Please select a country.');
+      setErrorMessage(t('error'));
       return;
     }
 
@@ -33,12 +35,12 @@ const Location = ({ color, step, clickFunction }) => {
   };
   return (
     <div>
-      <p>Where&apos;s your home base? Let us know your country and we&apos;re almost there!</p>
+      <p>{t('message')}</p>
       <form onSubmit={handleSubmit}>
-        <CountrySelect onChange={handleCountryChange} />
+        <CountrySelect onChange={handleCountryChange} placeholder={t('placeholder')} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <button type="submit" className={`register__button register__button--${color}`}>
-          Next
+          {t('button')}
         </button>
       </form>
     </div>

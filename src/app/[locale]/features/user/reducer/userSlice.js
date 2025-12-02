@@ -42,7 +42,10 @@ const usersSlice = createSlice({
       })
       .addCase(createUser.rejected, (state, action) => {
         // Handle unexpected registration errors
-        state.error = action.payload.message || 'An unexpected error occurred during registration.';
+        state.error =
+          action.payload?.message ||
+          action.error.message ||
+          'An unexpected error occurred during registration.';
         state.infoMessage = null;
       })
       .addCase(login.pending, (state) => {
@@ -62,7 +65,7 @@ const usersSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         // Generic error handling as per security requirements
-        state.error = action.payload.message;
+        state.error = action.payload?.message || action.error.message || 'Login failed';
         state.loginAttempts += 1;
 
         if (state.loginAttempts >= 5) {

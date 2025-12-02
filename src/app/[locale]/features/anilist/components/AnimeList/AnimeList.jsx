@@ -48,29 +48,37 @@ const ALAnimeList = ({ userId, checkFunc }) => {
   useEffect(() => {
     if (loadingAnimeList === 'loaded') {
       const currentLists = user.lists || [];
+      const existingListIndex = currentLists.findIndex((list) => list.year === year);
+      const currentAnimeList =
+        existingListIndex !== -1 ? currentLists[existingListIndex].animeList : null;
 
-      const updatedLists = [...currentLists];
+      // Check if update is needed (simple reference check might not be enough if objects are recreated,
+      // but let's try to avoid dispatch if the length and first item ID are the same as a proxy for "same list"
+      // or just check if we just did this).
+      // Better: check if the list in redux is already the same as the local state list.
 
-      const existingListIndex = updatedLists.findIndex((list) => list.year === year);
+      if (currentAnimeList !== animeList) {
+        const updatedLists = [...currentLists];
 
-      if (existingListIndex !== -1) {
-        updatedLists[existingListIndex] = {
-          ...updatedLists[existingListIndex],
-          animeList,
-        };
-      } else {
-        updatedLists.push({
-          year,
-          animeList,
-        });
+        if (existingListIndex !== -1) {
+          updatedLists[existingListIndex] = {
+            ...updatedLists[existingListIndex],
+            animeList,
+          };
+        } else {
+          updatedLists.push({
+            year,
+            animeList,
+          });
+        }
+
+        dispatch(
+          newUser({
+            ...user,
+            lists: updatedLists,
+          })
+        );
       }
-
-      dispatch(
-        newUser({
-          ...user,
-          lists: updatedLists,
-        })
-      );
     }
   }, [loadingAnimeList, animeList, dispatch, user, year]);
 

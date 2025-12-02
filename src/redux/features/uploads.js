@@ -16,7 +16,9 @@ const UserSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(uploadImage.fulfilled, (state, action) => {
-      state.user = action.payload;
+      if (action.payload) {
+        state.user = action.payload;
+      }
     });
   },
 });

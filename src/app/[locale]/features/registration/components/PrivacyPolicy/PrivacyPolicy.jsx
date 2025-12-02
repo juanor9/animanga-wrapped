@@ -1,21 +1,20 @@
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import PrivacyPolicyPage from '../../../../privacy-policy/page';
+import PrivacyPolicyContent from '../../../../privacy-policy/PrivacyPolicyContent';
 
 const PrivacyPolicy = ({ color, clickFunction }) => {
+  const t = useTranslations('registration.privacy');
   const [isChecked, setChecked] = useState(false);
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
   };
   return (
     <div>
-      <p>
-        For your own safety groove, take a moment to dive into our Privacy Policy. It&apos;s
-        crucial.
-      </p>
+      <p>{t('message')}</p>
       <form onSubmit={clickFunction}>
         <label htmlFor="accept">
           <div className="register__formal-text">
-            <PrivacyPolicyPage />
+            <PrivacyPolicyContent />
           </div>
           <input
             type="checkbox"
@@ -24,14 +23,14 @@ const PrivacyPolicy = ({ color, clickFunction }) => {
             className="register__checkbox"
             onChange={handleCheckboxChange}
           />
-          I&apos;ve read and accept the Privacy Policy.
+          {t('checkbox')}
           {isChecked !== true ? (
             <button type="submit" className="register__button register__button--disabled">
-              Next
+              {t('button')}
             </button>
           ) : (
             <button type="submit" className={`register__button register__button--${color}`}>
-              Next
+              {t('button')}
             </button>
           )}
         </label>
