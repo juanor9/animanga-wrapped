@@ -1,44 +1,14 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@animanga-wrapped.com';
+const EMAIL_FROM = process.env.EMAIL_FROM || 'onboarding@resend.dev';
 
-// Create transporter
-const createTransporter = () => {
-  // Check if using SendGrid
-  if (process.env.SENDGRID_API_KEY) {
-    return nodemailer.createTransporter({
-      host: 'smtp.sendgrid.net',
-      port: 587,
-      auth: {
-        user: 'apikey',
-        pass: process.env.SENDGRID_API_KEY,
-      },
-    });
-  }
-
-  // Use SMTP (Gmail, Outlook, etc.)
-  return nodemailer.createTransporter({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-};
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendMagicLink(email, token) {
   const magicLink = `${BASE_URL}/auth/verify?token=${token}`;
 
-  const transporter = createTransporter();
-
-  const mailOptions = {
-    from: `"Animanga Wrapped" <${EMAIL_FROM}>`,
-    to: email,
-    subject: 'Login to Animanga Wrapped',
-    html: `
+  const html = `
       <!DOCTYPE html>
       <html>
         <head>
@@ -100,8 +70,9 @@ export async function sendMagicLink(email, token) {
           </div>
         </body>
       </html>
-    `,
-    text: `
+    `;
+
+  const text = `
 Login to Animanga Wrapped
 
 Click the link below to log in:
@@ -110,11 +81,23 @@ ${magicLink}
 This link expires in 15 minutes.
 
 If you didn't request this, ignore this email.
-    `,
-  };
+    `;
 
   try {
-    await transporter.sendMail(mailOptions);
+    const { error } = await resend.emails.send({
+      from: EMAIL_FROM,
+      to: email,
+      subject: 'Login to Animanga Wrapped',
+      html,
+      text,
+    });
+
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error sending magic link:', error);
+      throw new Error('Failed to send magic link email');
+    }
+
     // eslint-disable-next-line no-console
     console.log(`Magic link sent to ${email}`);
   } catch (error) {
