@@ -15,7 +15,9 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "type-check": "tsc --noEmit",
     "a11y": "node scripts/axe-audit.mjs",
-    "lint:all": "npm run lint && npm run lint:styles && npm run format:check"
+    "lint:all": "npm run lint && npm run lint:styles && npm run format:check",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.0",
@@ -24,6 +26,10 @@
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
     "@playwright/test": "^1.56.1",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/nextjs": "^8.4.7",
+    "@storybook/testing-library": "^0.2.2",
     "axe-core": "^4.11.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
@@ -31,6 +37,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "jsdom": "^27.2.0",
     "prettier": "^3.6.2",
+    "storybook": "^8.4.7",
     "stylelint": "^16.25.0",
     "stylelint-config-standard-scss": "^16.0.0",
     "stylelint-order": "^7.0.0"

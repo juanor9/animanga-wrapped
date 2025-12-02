@@ -4,16 +4,23 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import './LanguageSwitcher.scss';
 
-const LanguageSwitcher = () => {
-  const locale = useLocale();
+const LanguageSwitcher = ({ locale: localeProp, pathname: pathnameProp, onNavigate }) => {
+  const locale = localeProp ?? useLocale();
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = pathnameProp ?? usePathname();
+
   const switchLanguage = (newLocale) => {
-    // Remove the current locale from the pathname
     const pathWithoutLocale = pathname.replace(`/${locale}`, '');
-    // Navigate to the new locale
-    router.push(`/${newLocale}${pathWithoutLocale || '/'}`);
+    const nextPath = `/${newLocale}${pathWithoutLocale || '/'}`;
+
+    if (onNavigate) {
+      onNavigate(nextPath);
+      return;
+    }
+
+    router.push(nextPath);
   };
+
   return (
     <div className="language-switcher">
       <button
@@ -35,4 +42,5 @@ const LanguageSwitcher = () => {
     </div>
   );
 };
+
 export default LanguageSwitcher;
