@@ -21,7 +21,7 @@ const popularManga = [
 
 test('PopularSliderClient renders anime and manga lists', () => {
   const html = renderToString(
-    <PopularSliderClient popularAnime={popularAnime} popularManga={popularManga} />, 
+    <PopularSliderClient popularAnime={popularAnime} popularManga={popularManga} />
   );
 
   assert.ok(html.includes('Popular Anime This Year'));

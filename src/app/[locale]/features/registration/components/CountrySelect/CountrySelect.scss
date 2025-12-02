@@ -1,9 +1,11 @@
+@use 'sass:color';
+
 .country-select {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 500px;
   margin: 0 auto;
+  max-width: 500px;
   padding: 30px;
 
   h2 {
@@ -12,9 +14,9 @@
   }
 
   &__description {
+    color: #666;
     font-size: 16px;
     line-height: 1.6;
-    color: #666;
     margin-bottom: 10px;
   }
 
@@ -30,25 +32,25 @@
     gap: 8px;
 
     label {
+      color: #333;
       font-size: 14px;
       font-weight: 600;
-      color: #333;
     }
   }
 
   &__input,
   &__select {
-    padding: 12px 16px;
-    font-size: 16px;
     border: 2px solid #ddd;
     border-radius: 8px;
-    transition: all 0.3s ease;
     font-family: inherit;
+    font-size: 16px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
 
     &:focus {
-      outline: none;
       border-color: var(--primary-color, #e43543);
-      box-shadow: 0 0 0 3px rgba(228, 53, 67, 0.1);
+      box-shadow: 0 0 0 3px rgb(228 53 67 / 10%);
+      outline: none;
     }
 
     &::placeholder {
@@ -57,26 +59,26 @@
   }
 
   &__select {
-    cursor: pointer;
     background: white;
+    cursor: pointer;
   }
 
   &__button {
-    padding: 14px 28px;
     background: var(--primary-color, #e43543);
-    color: white;
     border: none;
     border-radius: 8px;
+    color: white;
+    cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
     margin-top: 10px;
+    padding: 14px 28px;
+    transition: all 0.3s ease;
 
     &:hover:not(:disabled) {
-      background: darken(#e43543, 10%);
+      background: color.adjust(#e43543, $lightness: -10%);
+      box-shadow: 0 4px 12px rgb(228 53 67 / 30%);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(228, 53, 67, 0.3);
     }
 
     &:disabled {

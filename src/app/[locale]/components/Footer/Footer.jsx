@@ -7,7 +7,8 @@ import './Footer.scss';
 const getTranslator = (translations) => (key) => translations?.[key] ?? key;
 
 const Footer = ({ translations }) => {
-  const t = translations ? getTranslator(translations) : useTranslations('footer');
+  const tHook = useTranslations('footer');
+  const t = translations ? getTranslator(translations) : tHook;
 
   return (
     <footer className="footer">

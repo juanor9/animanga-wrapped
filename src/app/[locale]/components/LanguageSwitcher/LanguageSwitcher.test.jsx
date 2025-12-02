@@ -4,9 +4,7 @@ import { renderToString } from 'react-dom/server';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const renderSwitcher = (locale = 'en', pathname = '/en/demo') =>
-  renderToString(
-    <LanguageSwitcher locale={locale} pathname={pathname} onNavigate={() => {}} />
-  );
+  renderToString(<LanguageSwitcher locale={locale} pathname={pathname} onNavigate={() => {}} />);
 
 test('LanguageSwitcher renders both language buttons', () => {
   const html = renderSwitcher('en', '/en/example');

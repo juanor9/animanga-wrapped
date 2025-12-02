@@ -41,7 +41,11 @@ const AxeDevTool = () => {
     }
   }, []);
 
-  return <span aria-hidden="true" className="axe-devtool__message">Axe DevTool Active</span>;
+  return (
+    <span aria-hidden="true" className="axe-devtool__message">
+      Axe DevTool Active
+    </span>
+  );
 };
 
 export default AxeDevTool;

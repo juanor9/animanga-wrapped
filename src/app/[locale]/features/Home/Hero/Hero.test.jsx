@@ -15,7 +15,7 @@ test('Hero renders translated headline and subtitle', () => {
   const html = renderToString(
     <NextIntlClientProvider locale="en" messages={messages}>
       <Hero />
-    </NextIntlClientProvider>,
+    </NextIntlClientProvider>
   );
 
   assert.ok(html.includes('Hero Title'));

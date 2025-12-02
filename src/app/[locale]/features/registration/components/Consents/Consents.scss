@@ -1,9 +1,11 @@
+@use 'sass:color';
+
 .consents {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 500px;
   margin: 0 auto;
+  max-width: 500px;
   padding: 30px;
 
   h2 {
@@ -12,9 +14,9 @@
   }
 
   &__description {
+    color: #666;
     font-size: 16px;
     line-height: 1.6;
-    color: #666;
     margin-bottom: 10px;
   }
 
@@ -25,28 +27,28 @@
   }
 
   &__checkbox {
-    display: flex;
     align-items: flex-start;
-    gap: 12px;
-    cursor: pointer;
-    padding: 16px;
     border: 2px solid #ddd;
     border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    padding: 16px;
     transition: all 0.3s ease;
 
     &:hover {
-      border-color: var(--primary-color, #e43543);
       background: #fafafa;
+      border-color: var(--primary-color, #e43543);
     }
   }
 
   &__input {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
     accent-color: var(--primary-color, #e43543);
+    cursor: pointer;
     flex-shrink: 0;
+    height: 20px;
     margin-top: 2px;
+    width: 20px;
   }
 
   &__label {
@@ -57,8 +59,8 @@
 
   &__link {
     color: var(--primary-color, #e43543);
-    text-decoration: underline;
     font-weight: 600;
+    text-decoration: underline;
 
     &:hover {
       text-decoration: none;
@@ -68,26 +70,26 @@
   &__error {
     color: var(--primary-color, #e43543);
     font-size: 14px;
-    text-align: center;
     margin: 0;
+    text-align: center;
   }
 
   &__button {
-    padding: 14px 28px;
     background: var(--primary-color, #e43543);
-    color: white;
     border: none;
     border-radius: 8px;
+    color: white;
+    cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
     margin-top: 10px;
+    padding: 14px 28px;
+    transition: all 0.3s ease;
 
     &:hover:not(:disabled) {
-      background: darken(#e43543, 10%);
+      background: color.adjust(#e43543, $lightness: -10%);
+      box-shadow: 0 4px 12px rgb(228 53 67 / 30%);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(228, 53, 67, 0.3);
     }
 
     &:disabled {

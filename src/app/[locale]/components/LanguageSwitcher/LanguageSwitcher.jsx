@@ -5,9 +5,12 @@ import { useLocale } from 'next-intl';
 import './LanguageSwitcher.scss';
 
 const LanguageSwitcher = ({ locale: localeProp, pathname: pathnameProp, onNavigate }) => {
-  const locale = localeProp ?? useLocale();
+  const localeHook = useLocale();
+  const pathnameHook = usePathname();
+
+  const locale = localeProp ?? localeHook;
   const router = useRouter();
-  const pathname = pathnameProp ?? usePathname();
+  const pathname = pathnameProp ?? pathnameHook;
 
   const switchLanguage = (newLocale) => {
     const pathWithoutLocale = pathname.replace(`/${locale}`, '');
