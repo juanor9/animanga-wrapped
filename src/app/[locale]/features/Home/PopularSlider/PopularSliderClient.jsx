@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import PopularItemCard from '../PopularAnimeCard/PopularItemCard';
+import { useEffect, useRef, useState } from 'react';
+import PopularAnimeCard from '../PopularAnimeCard/PopularAnimeCard';
 import './PopularSlider.scss';
 
 const PopularSliderClient = ({ popularAnime, popularManga }) => {
@@ -89,7 +89,7 @@ const PopularSliderClient = ({ popularAnime, popularManga }) => {
         aria-valuenow={animeScroll.now}
       >
         {popularAnime?.map((anime) => (
-          <PopularItemCard key={anime.id} item={anime} />
+          <PopularAnimeCard key={anime.id} item={anime} />
         ))}
       </div>
       <h2>Popular Manga This Year</h2>
@@ -104,7 +104,7 @@ const PopularSliderClient = ({ popularAnime, popularManga }) => {
         aria-valuenow={mangaScroll.now}
       >
         {popularManga?.map((manga) => (
-          <PopularItemCard key={manga.id} item={manga} />
+          <PopularAnimeCard key={manga.id} item={manga} />
         ))}
       </div>
     </section>

@@ -1,6 +1,6 @@
 @import '../../../../colors';
 
-.card{
+.card {
   align-items: center;
   background-color: $green;
   border-radius: 1em;
@@ -13,20 +13,20 @@
   padding: 1em;
   text-align: center;
 
-  &__image{
+  &__image {
     max-width: 100%;
 
-    & img{
-      border-radius: .5em;
+    & img {
+      border-radius: 0.5em;
       width: 100%;
     }
   }
 
-  &__title{
+  &__title {
     color: $black;
     height: 4em;
     margin: 0;
-    margin-bottom: .5em;
-    margin-top: .5em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
   }
 }

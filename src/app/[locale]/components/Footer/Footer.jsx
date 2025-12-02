@@ -4,8 +4,11 @@ import { useTranslations } from 'next-intl';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import './Footer.scss';
 
-const Footer = () => {
-  const t = useTranslations('footer');
+const getTranslator = (translations) => (key) => translations?.[key] ?? key;
+
+const Footer = ({ translations }) => {
+  const tHook = useTranslations('footer');
+  const t = translations ? getTranslator(translations) : tHook;
 
   return (
     <footer className="footer">
