@@ -18,7 +18,29 @@ npm run format:check   # Check formatting without changes
 npm run type-check     # Run TypeScript checks
 npm run a11y           # Run accessibility audit
 npm run lint:all       # Run all linters
+npm run test           # Run all tests (Jest + Mocha)
+npm run test:jest      # Run Jest tests
+npm run test:mocha     # Run Mocha tests
 ```
+
+## Testing
+
+### Unit & Integration Tests
+
+Run the full test suite:
+
+```bash
+npm run test
+```
+
+Or run specific test runners:
+
+```bash
+npm run test:jest   # Jest tests (components, logic)
+npm run test:mocha  # Mocha tests (legacy/specific logic)
+```
+
+**Note:** Test files (`tests/**/*.js`) have specific ESLint overrides to disable strict import ordering and enable Jest/Mocha globals.
 
 ## Linting & Formatting
 

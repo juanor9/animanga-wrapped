@@ -12,8 +12,18 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "prettier/prettier": "error",
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -44,5 +54,18 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["tests/**/*.js"],
+      "env": {
+        "jest": true,
+        "mocha": true
+      },
+      "rules": {
+        "import/order": "off",
+        "no-undef": "off"
+      }
+    }
+  ]
 }
