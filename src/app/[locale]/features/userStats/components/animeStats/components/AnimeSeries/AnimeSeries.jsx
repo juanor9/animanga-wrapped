@@ -151,7 +151,9 @@ const AnimeSeries = ({ list }) => {
           type: blob.type,
         });
 
-        const uploadedImageResponse = await dispatch(uploadImage({ file, listUsername, filename }));
+        const uploadedImageResponse = await dispatch(
+          uploadImage({ file, type: 'stats', listUsername, filename })
+        );
 
         if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
           const cloudinaryUrl = uploadedImageResponse.payload.url;

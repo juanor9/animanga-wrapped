@@ -5,10 +5,8 @@ import './UserRegistration.scss';
 
 const UserRegistration = () => (
   <section className="user-registration">
-    <Link href="/register">
-      <button type="submit" className="user-registration__button">
-        Create user
-      </button>
+    <Link href="/register" className="user-registration__button">
+      Create user
     </Link>
   </section>
 );

@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 const Age = ({ color, clickFunction }) => {
   const t = useTranslations('registration.age');
-  const tCommon = useTranslations('common');
   const [isChecked, setChecked] = useState(false);
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
@@ -26,11 +25,11 @@ const Age = ({ color, clickFunction }) => {
           {t('confirmation')}
           {isChecked !== true ? (
             <button type="submit" className="register__button register__button--disabled">
-              {tCommon('next')}
+              {t('button')}
             </button>
           ) : (
             <button type="submit" className={`register__button register__button--${color}`}>
-              {tCommon('next')}
+              {t('button')}
             </button>
           )}
         </label>

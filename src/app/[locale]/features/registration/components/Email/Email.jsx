@@ -1,8 +1,10 @@
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newUser } from '../../../../../../redux/features/user';
 
 const Email = ({ color, step, clickFunction }) => {
+  const t = useTranslations('registration.email');
   const { user } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
 
@@ -26,17 +28,14 @@ const Email = ({ color, step, clickFunction }) => {
 
   return (
     <div>
-      <p>
-        Just pop in your email for us. Don&apos;t worry, we&apos;ll treat it like a limited edition
-        manga – with utmost care.
-      </p>
+      <p>{t('message')}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
-          Email
+          {t('label')}
           <input type="email" name="email" id="email" onChange={handleOnChange} />
         </label>
         <button type="submit" className={`register__button register__button--${color}`}>
-          Submit
+          {t('button')}
         </button>
       </form>
     </div>

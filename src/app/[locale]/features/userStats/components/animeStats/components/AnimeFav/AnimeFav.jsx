@@ -157,25 +157,38 @@ const AnimeFav = ({ list }) => {
           type: blob.type,
         });
 
-        const uploadedImageResponse = await dispatch(uploadImage({ file, listUsername, filename }));
+        const uploadedImageResponse = await dispatch(
+          uploadImage({ file, type: 'stats', listUsername, filename })
+        );
 
         if (uploadedImageResponse.type === 'uploads/uploadImage/fulfilled') {
           const cloudinaryUrl = uploadedImageResponse.payload.url;
           return cloudinaryUrl;
         }
-        throw new Error('Image upload failed');
+        return null;
       } catch (error) {
-        throw new Error('Error downloading or uploading image:', error);
+        // eslint-disable-next-line no-console
+        console.warn('Error downloading or uploading image:', error);
+        return null;
       }
     };
     const processImages = async () => {
       if (sortedWatchedMinutes && sortedWatchedMinutes.length > 0) {
         const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(async (element) => {
-          const alImage = element.image;
-          const parts = alImage.split('/');
-          const newPath = parts.slice(3).join('/');
-          const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
-          const cloudinaryUrl = await downloadToCloudinary(newUrl, element.anime);
+          let cloudinaryUrl = element.image;
+          try {
+            const alImage = element.image;
+            const parts = alImage.split('/');
+            const newPath = parts.slice(3).join('/');
+            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+            const uploadedUrl = await downloadToCloudinary(newUrl, element.anime);
+            if (uploadedUrl) {
+              cloudinaryUrl = uploadedUrl;
+            }
+          } catch (error) {
+            // eslint-disable-next-line no-console
+            console.warn('Image processing failed, using original image:', error);
+          }
 
           return {
             ...element,

@@ -55,7 +55,7 @@ const UserAL = ({ settings, checkFunc }) => {
   }, [viewerData]);
 
   useEffect(() => {
-    if (username) {
+    if (username && user && user.listUsername !== username) {
       dispatch(
         newUser({
           ...user,

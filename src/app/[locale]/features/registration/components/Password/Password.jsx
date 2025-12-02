@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newUser } from '../../../../../../redux/features/user';
@@ -7,7 +8,10 @@ import { login } from '../../../user/services/users';
 import createUser from '../../services/registration';
 
 const Password = ({ color }) => {
+  const t = useTranslations('registration.password');
+  const tCommon = useTranslations('common');
   const [password, setPassword] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useSelector((state) => state.UserReducer);
   const { userToken, error, infoMessage } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
@@ -47,14 +51,24 @@ const Password = ({ color }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     updateRedux();
 
     if (password) {
-      const updatedUser = { ...user, password };
-      const newUserFulfilled = await createUserAtSubmit(updatedUser);
-      const { email } = updatedUser;
-      const form = { email, password };
-      loginUserAfterRegistration(form, newUserFulfilled);
+      try {
+        const updatedUser = { ...user, password };
+        const newUserFulfilled = await createUserAtSubmit(updatedUser);
+        const { email } = updatedUser;
+        const form = { email, password };
+        loginUserAfterRegistration(form, newUserFulfilled);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setIsLoading(false);
     }
   };
 
@@ -66,20 +80,27 @@ const Password = ({ color }) => {
 
   return (
     <div>
-      <p>
-        Alright, last piece of the puzzle! Let&apos;s set a sturdy password to safeguard your epic
-        yearly stats. After this, we&apos;ll break down your anime and manga journey for the year!
-      </p>
+      <p>{t('message')}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="password">
-          Password
-          <input type="password" name="password" id="password" onChange={handleChange} />
+          {t('label')}
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleChange}
+            autoComplete="new-password"
+          />
         </label>
         {/* Display the info message if it exists */}
         {infoMessage && <p className="user-registration__info">{infoMessage}</p>}
         {error && <p className="user-registration__error">{error}</p>}
-        <button type="submit" className={`register__button register__button--${color}`}>
-          Save
+        <button
+          type="submit"
+          className={`register__button register__button--${color}`}
+          disabled={isLoading}
+        >
+          {isLoading ? tCommon('loading') : t('button')}
         </button>
       </form>
     </div>

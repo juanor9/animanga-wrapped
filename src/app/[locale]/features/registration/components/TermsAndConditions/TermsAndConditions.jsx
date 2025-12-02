@@ -1,8 +1,10 @@
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import TermsAndConditionsPage from '../../../../terms-and-conditions/page';
+import TermsContent from '../../../../terms-and-conditions/TermsContent';
 import './TermsAndConditions.scss';
 
 const TermsAndConditions = ({ color, clickFunction }) => {
+  const t = useTranslations('registration.terms');
   const [isChecked, setChecked] = useState(false);
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
@@ -10,12 +12,9 @@ const TermsAndConditions = ({ color, clickFunction }) => {
 
   return (
     <div>
-      <p>
-        Alright, time for the epic saga: our Terms & Conditions. Yeah, it&apos;s a bit of a read,
-        but it&apos;s worth the journey. Check &apos;em out.
-      </p>
+      <p>{t('message')}</p>
       <div className="register__formal-text">
-        <TermsAndConditionsPage />
+        <TermsContent />
       </div>
       <form onSubmit={clickFunction}>
         <label htmlFor="accept">
@@ -26,14 +25,14 @@ const TermsAndConditions = ({ color, clickFunction }) => {
             className="register__checkbox"
             onChange={handleCheckboxChange}
           />
-          I&apos;ve read and accept the Terms and Conditions.
+          {t('checkbox')}
           {isChecked !== true ? (
             <button type="submit" className="register__button register__button--disabled">
-              Next
+              {t('button')}
             </button>
           ) : (
             <button type="submit" className={`register__button register__button--${color}`}>
-              Next
+              {t('button')}
             </button>
           )}
         </label>

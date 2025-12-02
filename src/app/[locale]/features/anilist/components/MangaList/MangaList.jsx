@@ -48,33 +48,35 @@ const ALMangaList = ({ userId, checkFunc }) => {
     if (loadingMangaList === 'loaded') {
       // Verificar si user.lists existe y es un array, si no, usar un array vacío
       const currentLists = user.lists || [];
+      const existingListIndex = currentLists.findIndex((list) => list.year === year);
+      const currentMangaList =
+        existingListIndex !== -1 ? currentLists[existingListIndex].mangaList : null;
 
-      // Copia de la lista actual
-      const updatedLists = [...currentLists];
+      if (currentMangaList !== mangaList) {
+        // Copia de la lista actual
+        const updatedLists = [...currentLists];
 
-      // Buscar si ya existe una lista para ese año
-      const existingListIndex = updatedLists.findIndex((list) => list.year === year);
+        if (existingListIndex !== -1) {
+          // Si existe, actualizamos
+          updatedLists[existingListIndex] = {
+            ...updatedLists[existingListIndex],
+            mangaList,
+          };
+        } else {
+          // Si no existe, añadimos una nueva
+          updatedLists.push({
+            year,
+            mangaList,
+          });
+        }
 
-      if (existingListIndex !== -1) {
-        // Si existe, actualizamos
-        updatedLists[existingListIndex] = {
-          ...updatedLists[existingListIndex],
-          mangaList,
-        };
-      } else {
-        // Si no existe, añadimos una nueva
-        updatedLists.push({
-          year,
-          mangaList,
-        });
+        dispatch(
+          newUser({
+            ...user,
+            lists: updatedLists,
+          })
+        );
       }
-
-      dispatch(
-        newUser({
-          ...user,
-          lists: updatedLists,
-        })
-      );
     }
   }, [loadingMangaList, mangaList, dispatch, user, year]);
 

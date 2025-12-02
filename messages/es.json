@@ -30,18 +30,44 @@
       "message": "¡Hola! Gracias por unirte a nosotros. Estamos emocionados de crear un resumen increíble de todo el anime que viste y las páginas de manga que leíste este año. Pero primero, conozcámonos un poco. Prometemos que será fácil.",
       "button": "¡Comencemos!"
     },
+    "terms": {
+      "message": "Muy bien, hora de la saga épica: nuestros Términos y Condiciones. Sí, es un poco largo, pero vale la pena el viaje. Échales un vistazo.",
+      "checkbox": "He leído y acepto los Términos y Condiciones.",
+      "button": "Siguiente"
+    },
+    "privacy": {
+      "message": "Para tu propia seguridad, tómate un momento para sumergirte en nuestra Política de Privacidad. Es crucial.",
+      "checkbox": "He leído y acepto la Política de Privacidad.",
+      "button": "Siguiente"
+    },
     "age": {
       "question": "¡Hey! Verificación rápida: ¿Tienes 18 años o más? Solo queremos asegurarnos antes de continuar.",
-      "confirmation": "Sí. Tengo 18 años o más"
+      "confirmation": "Sí. Tengo 18 años o más",
+      "button": "Siguiente"
+    },
+    "anilistAuth": {
+      "message": "¡Sigamos adelante! Vincula tu cuenta de AniList y empecemos la fiesta.",
+      "button": "Sincronizar con AniList"
+    },
+    "anilistCustom": {
+      "message": "¡Siguiente! Elige qué listas te gustaría que analicemos: solo tu anime, solo tu manga, o ambos. Una vez seleccionado, por favor confirma si los registros mostrados son correctos. Haz tu elección y continuemos con el siguiente paso.",
+      "animeList": "Lista de Anime",
+      "mangaList": "Lista de Manga",
+      "button": "Siguiente"
     },
     "email": {
-      "label": "Correo electrónico"
+      "message": "Solo ingresa tu correo electrónico para nosotros. No te preocupes, lo trataremos como un manga de edición limitada – con sumo cuidado.",
+      "label": "Correo electrónico",
+      "button": "Enviar"
     },
     "location": {
-      "question": "¿Dónde está tu base de operaciones?",
-      "placeholder": "Selecciona tu país"
+      "message": "¿Dónde está tu base de operaciones? ¡Haznos saber tu país y ya casi estamos!",
+      "placeholder": "Selecciona tu país",
+      "button": "Siguiente",
+      "error": "Por favor selecciona un país."
     },
     "password": {
+      "message": "¡Muy bien, la última pieza del rompecabezas! Establezcamos una contraseña segura para proteger tus estadísticas anuales épicas. ¡Después de esto, desglosaremos tu viaje de anime y manga del año!",
       "label": "Contraseña",
       "button": "Guardar"
     },
