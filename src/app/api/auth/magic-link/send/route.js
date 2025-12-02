@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
 import crypto from 'crypto';
+import { NextResponse } from 'next/server';
 import connectDB from '../../../lib/db';
+import { sendMagicLink } from '../../../lib/email';
 import MagicLink from '../../../models/MagicLink';
 import User from '../../../models/User';
-import { sendMagicLink } from '../../../lib/email';
 
 export async function POST(request) {
   try {

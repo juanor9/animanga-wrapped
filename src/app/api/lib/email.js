@@ -115,8 +115,10 @@ If you didn't request this, ignore this email.
 
   try {
     await transporter.sendMail(mailOptions);
+    // eslint-disable-next-line no-console
     console.log(`Magic link sent to ${email}`);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error sending magic link:', error);
     throw new Error('Failed to send magic link email');
   }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(request) {
+export async function POST(_request) {
   try {
     // In a production environment, you might want to:
     // 1. Blacklist the refresh token in the database

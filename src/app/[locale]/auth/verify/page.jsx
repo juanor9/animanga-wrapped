@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'use';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
-export default function VerifyMagicLink() {
+function VerifyContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [status, setStatus] = useState('verifying'); // verifying, success, error
@@ -110,6 +110,7 @@ export default function VerifyMagicLink() {
         </>
       )}
 
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>{`
         @keyframes spin {
           0% {
@@ -121,5 +122,13 @@ export default function VerifyMagicLink() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function VerifyMagicLink() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyContent />
+    </Suspense>
   );
 }

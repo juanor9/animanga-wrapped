@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
+import { generateAccessToken, generateRefreshToken } from '../../../lib/auth';
 import connectDB from '../../../lib/db';
 import MagicLink from '../../../models/MagicLink';
 import User from '../../../models/User';
-import { generateAccessToken, generateRefreshToken } from '../../../lib/auth';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
   try {

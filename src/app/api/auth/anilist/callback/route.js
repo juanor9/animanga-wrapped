@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import { ApolloClient, InMemoryCache, HttpLink, gql } from '@apollo/client';
+import { NextResponse } from 'next/server';
 
 const GET_VIEWER = gql`
   query {
