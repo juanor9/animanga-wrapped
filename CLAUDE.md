@@ -65,9 +65,11 @@ import './styles.scss';
    ```
 
 3. **Wrong**: Unalphabetized named imports
+
    ```javascript
    // BAD
    import { useState, useEffect, useCallback } from 'react';
+
    // GOOD
    import { useCallback, useEffect, useState } from 'react';
    ```
@@ -80,13 +82,23 @@ Always run these commands before committing:
 npm run format      # Format all files
 npm run lint        # Check for errors
 npm run lint:styles # Check CSS/SCSS
+npm run test        # Run tests
 ```
 
 Or run all at once:
 
 ```bash
-npm run lint:all
+npm run lint:all && npm run test
 ```
+
+## Testing
+
+- **Jest**: Used for React components and general logic (`npm run test:jest`)
+- **Mocha**: Used for specific backend/legacy logic (`npm run test:mocha`)
+- **Configuration**:
+  - Jest config: `jest.config.cjs`
+  - Babel config: `babel.config.json` (required for Next.js + Jest)
+  - Test files have ESLint overrides for import order and globals.
 
 ## Accessibility
 
