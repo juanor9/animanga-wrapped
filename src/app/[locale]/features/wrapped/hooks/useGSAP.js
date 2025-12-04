@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useEffect, useRef } from 'react';
 
 /**
  * Hook for GSAP animations with cleanup
@@ -61,7 +61,7 @@ export function useSlideAnimation(slideRef, isActive, animationType = 'fade') {
               opacity: 1,
               duration: 0.5,
               ease: 'power2.out',
-            },
+            }
           );
           break;
         case 'slide-up':
@@ -73,7 +73,7 @@ export function useSlideAnimation(slideRef, isActive, animationType = 'fade') {
               opacity: 1,
               duration: 0.6,
               ease: 'power3.out',
-            },
+            }
           );
           break;
         case 'slide-left':
@@ -85,7 +85,7 @@ export function useSlideAnimation(slideRef, isActive, animationType = 'fade') {
               opacity: 1,
               duration: 0.6,
               ease: 'power3.out',
-            },
+            }
           );
           break;
         case 'scale':
@@ -97,7 +97,7 @@ export function useSlideAnimation(slideRef, isActive, animationType = 'fade') {
               opacity: 1,
               duration: 0.6,
               ease: 'back.out(1.7)',
-            },
+            }
           );
           break;
         default:
@@ -117,12 +117,7 @@ export function useSlideAnimation(slideRef, isActive, animationType = 'fade') {
 /**
  * Hook for counter animation
  */
-export function useCounterAnimation(
-  elementRef,
-  targetValue,
-  duration = 2,
-  decimals = 0,
-) {
+export function useCounterAnimation(elementRef, targetValue, duration = 2, decimals = 0) {
   useEffect(() => {
     if (!elementRef.current || targetValue === undefined) return;
 

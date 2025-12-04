@@ -59,8 +59,8 @@ const S14_ClubReveal = ({ club }) => {
         </p>
 
         <p ref={percentageRef} className="club-percentage">
-          Tienes buena compañía: <strong>{club.percentage}%</strong> de los
-          usuarios comparten tu club
+          Tienes buena compañía: <strong>{club.percentage}%</strong> de los usuarios comparten tu
+          club
         </p>
 
         <div ref={ctaRef}>

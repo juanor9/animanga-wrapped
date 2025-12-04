@@ -14,11 +14,7 @@ export function fadeIn(element, options = {}) {
     opacity: 1,
   };
 
-  return gsap.fromTo(
-    element,
-    { opacity: 0 },
-    { ...defaults, ...options, opacity: 1 },
-  );
+  return gsap.fromTo(element, { opacity: 0 }, { ...defaults, ...options, opacity: 1 });
 }
 
 /**
@@ -32,11 +28,7 @@ export function slideUp(element, options = {}) {
     opacity: 1,
   };
 
-  return gsap.fromTo(
-    element,
-    { y: 100, opacity: 0 },
-    { ...defaults, ...options },
-  );
+  return gsap.fromTo(element, { y: 100, opacity: 0 }, { ...defaults, ...options });
 }
 
 /**
@@ -50,11 +42,7 @@ export function slideLeft(element, options = {}) {
     opacity: 1,
   };
 
-  return gsap.fromTo(
-    element,
-    { x: 100, opacity: 0 },
-    { ...defaults, ...options },
-  );
+  return gsap.fromTo(element, { x: 100, opacity: 0 }, { ...defaults, ...options });
 }
 
 /**
@@ -68,11 +56,7 @@ export function scaleIn(element, options = {}) {
     opacity: 1,
   };
 
-  return gsap.fromTo(
-    element,
-    { scale: 0.8, opacity: 0 },
-    { ...defaults, ...options },
-  );
+  return gsap.fromTo(element, { scale: 0.8, opacity: 0 }, { ...defaults, ...options });
 }
 
 /**
@@ -87,11 +71,7 @@ export function staggerIn(elements, options = {}) {
     opacity: 1,
   };
 
-  return gsap.fromTo(
-    elements,
-    { y: 50, opacity: 0 },
-    { ...defaults, ...options },
-  );
+  return gsap.fromTo(elements, { y: 50, opacity: 0 }, { ...defaults, ...options });
 }
 
 /**
@@ -129,11 +109,7 @@ export function bounce(element, options = {}) {
     scale: 1,
   };
 
-  return gsap.fromTo(
-    element,
-    { scale: 0 },
-    { ...defaults, ...options, scale: 1 },
-  );
+  return gsap.fromTo(element, { scale: 0 }, { ...defaults, ...options, scale: 1 });
 }
 
 /**
@@ -166,10 +142,7 @@ export function createSlideTimeline() {
  * Entrance sequence for typical slide
  * Title -> Big number -> Description -> CTA
  */
-export function slideEntranceSequence(
-  timeline,
-  { title, number, description, cta },
-) {
+export function slideEntranceSequence(timeline, { title, number, description, cta }) {
   if (title) {
     timeline.add(fadeIn(title, { duration: 0.5 }), 0);
   }

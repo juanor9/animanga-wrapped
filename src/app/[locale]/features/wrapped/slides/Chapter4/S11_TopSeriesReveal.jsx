@@ -57,9 +57,7 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
             <span className="anime-stats__label">vistas</span>
           </div>
           <div className="anime-stats__item">
-            <span className="anime-stats__value">
-              {topSeries.episodesWatched}
-            </span>
+            <span className="anime-stats__value">{topSeries.episodesWatched}</span>
             <span className="anime-stats__label">episodios</span>
           </div>
         </div>

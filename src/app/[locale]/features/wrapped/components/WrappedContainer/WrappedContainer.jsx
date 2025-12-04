@@ -27,7 +27,7 @@ const WrappedContainer = ({
         onProgress(index);
       }
     },
-    [totalSlides, onProgress],
+    [totalSlides, onProgress]
   );
 
   const goToNext = useCallback(() => {
@@ -56,7 +56,7 @@ const WrappedContainer = ({
         goToNext();
       }
     },
-    [goToPrevious, goToNext],
+    [goToPrevious, goToNext]
   );
 
   const handleKeyDown = useCallback(
@@ -72,7 +72,7 @@ const WrappedContainer = ({
         }
       }
     },
-    [goToPrevious, goToNext, canSkip, onComplete],
+    [goToPrevious, goToNext, canSkip, onComplete]
   );
 
   const handleTouchStart = useCallback((e) => {
@@ -96,7 +96,7 @@ const WrappedContainer = ({
 
       setTouchStart(null);
     },
-    [touchStart, goToNext, goToPrevious],
+    [touchStart, goToNext, goToPrevious]
   );
 
   useEffect(() => {

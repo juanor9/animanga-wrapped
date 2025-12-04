@@ -40,17 +40,12 @@ const S12_TopSeriesList = ({ topSeries = [] }) => {
               className="series-list__item"
             >
               {series.coverImage && (
-                <img
-                  src={series.coverImage}
-                  alt={series.title}
-                  className="series-list__cover"
-                />
+                <img src={series.coverImage} alt={series.title} className="series-list__cover" />
               )}
               <div className="series-list__info">
                 <h4 className="series-list__title">{series.title}</h4>
                 <p className="series-list__stats">
-                  {series.episodesWatched} eps •{' '}
-                  {Math.floor(series.minutesWatched / 60)}h
+                  {series.episodesWatched} eps • {Math.floor(series.minutesWatched / 60)}h
                 </p>
               </div>
             </div>

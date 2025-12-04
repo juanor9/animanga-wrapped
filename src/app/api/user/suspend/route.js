@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
+import { getUserFromRequest } from '../../lib/auth';
 import connectDB from '../../lib/db';
 import User from '../../models/User';
-import { getUserFromRequest } from '../../lib/auth';
 
 /**
  * PUT /api/user/suspend

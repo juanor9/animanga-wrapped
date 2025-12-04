@@ -25,9 +25,7 @@ const WrappedClient = ({ anilistId, userName }) => {
       }
 
       try {
-        const progressRes = await fetch(
-          `/api/wrapped?anilistId=${anilistId}&year=${year}`,
-        );
+        const progressRes = await fetch(`/api/wrapped?anilistId=${anilistId}&year=${year}`);
 
         if (!progressRes.ok) {
           throw new Error('Failed to fetch progress');
@@ -53,44 +51,20 @@ const WrappedClient = ({ anilistId, userName }) => {
     return [
       () => <Slides.S01_Opening userName={userName} year={year} />,
       () => <Slides.S02_YouWatched />,
-      () => (
-        <Slides.S03_TotalMinutes
-          totalMinutes={wrappedData.totalMinutesWatched || 0}
-        />
-      ),
+      () => <Slides.S03_TotalMinutes totalMinutes={wrappedData.totalMinutesWatched || 0} />,
       () => <Slides.S04_GenresIntro />,
-      () => (
-        <Slides.S05_GenresCount
-          genresCount={wrappedData.genresBreakdown?.length || 0}
-        />
-      ),
-      () => (
-        <Slides.S06_TopGenres topGenres={wrappedData.genresBreakdown || []} />
-      ),
-      () => (
-        <Slides.S07_GenresCard topGenres={wrappedData.genresBreakdown || []} />
-      ),
+      () => <Slides.S05_GenresCount genresCount={wrappedData.genresBreakdown?.length || 0} />,
+      () => <Slides.S06_TopGenres topGenres={wrappedData.genresBreakdown || []} />,
+      () => <Slides.S07_GenresCard topGenres={wrappedData.genresBreakdown || []} />,
       () => <Slides.S08_AgeIntro />,
-      () => (
-        <Slides.S09_OtakuAge weightedYear={wrappedData.weightedYear || 2020} />
-      ),
-      () => (
-        <Slides.S10_EpisodesTotal
-          totalEpisodes={wrappedData.totalEpisodesWatched || 0}
-        />
-      ),
-      () => (
-        <Slides.S11_TopSeriesReveal
-          topSeries={wrappedData.topAnimeByMinutes}
-        />
-      ),
+      () => <Slides.S09_OtakuAge weightedYear={wrappedData.weightedYear || 2020} />,
+      () => <Slides.S10_EpisodesTotal totalEpisodes={wrappedData.totalEpisodesWatched || 0} />,
+      () => <Slides.S11_TopSeriesReveal topSeries={wrappedData.topAnimeByMinutes} />,
       () => <Slides.S12_TopSeriesList topSeries={wrappedData.topSeries || []} />,
       () => <Slides.S13_ClubIntro />,
       () => <Slides.S14_ClubReveal club={wrappedData.club} />,
       () => <Slides.S15_ThankYou year={year} />,
-      () => (
-        <Slides.S16_Summary wrappedData={wrappedData} onComplete={handleComplete} />
-      ),
+      () => <Slides.S16_Summary wrappedData={wrappedData} onComplete={handleComplete} />,
     ];
   }, [wrappedData, userName, year]);
 
@@ -116,7 +90,7 @@ const WrappedClient = ({ anilistId, userName }) => {
         console.error('Error updating progress:', err);
       }
     },
-    [anilistId, progress, year],
+    [anilistId, progress, year]
   );
 
   const handleComplete = useCallback(async () => {

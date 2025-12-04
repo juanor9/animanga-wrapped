@@ -38,7 +38,13 @@ const ProgressBar = ({ totalSlides, currentSlide, onSegmentClick }) => {
   }, [currentSlide]);
 
   return (
-    <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax={totalSlides} aria-valuenow={currentSlide + 1}>
+    <div
+      className="progress-bar"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax={totalSlides}
+      aria-valuenow={currentSlide + 1}
+    >
       {Array.from({ length: totalSlides }).map((_, index) => (
         <button
           key={index}

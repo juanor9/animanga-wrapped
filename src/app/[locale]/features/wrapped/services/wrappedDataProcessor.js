@@ -6,8 +6,7 @@ const CLUBS = {
   marathon: {
     id: 'marathon',
     name: 'Club Maratón Nocturno',
-    description:
-      'Tu club maratonea series largas y vive pegado a los opening y ending.',
+    description: 'Tu club maratonea series largas y vive pegado a los opening y ending.',
     favoriteAnime: [
       { title: 'One Piece', coverImage: '/placeholder.jpg' },
       { title: 'Naruto', coverImage: '/placeholder.jpg' },
@@ -27,8 +26,7 @@ const CLUBS = {
   collector: {
     id: 'collector',
     name: 'Club Coleccionista',
-    description:
-      'Terminas más series que la mayoría. Tu lista está siempre al día.',
+    description: 'Terminas más series que la mayoría. Tu lista está siempre al día.',
     favoriteAnime: [
       { title: 'Fullmetal Alchemist', coverImage: '/placeholder.jpg' },
       { title: 'Code Geass', coverImage: '/placeholder.jpg' },
@@ -38,8 +36,7 @@ const CLUBS = {
   seasonal: {
     id: 'seasonal',
     name: 'Club Seasonal',
-    description:
-      'Siempre estás al día con lo último. Las temporadas no se te escapan.',
+    description: 'Siempre estás al día con lo último. Las temporadas no se te escapan.',
     favoriteAnime: [
       { title: 'Jujutsu Kaisen', coverImage: '/placeholder.jpg' },
       { title: 'Demon Slayer', coverImage: '/placeholder.jpg' },
@@ -55,8 +52,7 @@ const ROLES = {
   },
   variety_seeker: {
     role: 'Explorador de Géneros',
-    description:
-      'Saltas entre géneros y formatos sin quedarte en tu zona de confort.',
+    description: 'Saltas entre géneros y formatos sin quedarte en tu zona de confort.',
   },
   completionist: {
     role: 'Coleccionista',
@@ -72,16 +68,9 @@ const ROLES = {
  * Determines user's club based on viewing patterns
  */
 function determineClub(stats) {
-  const {
-    totalSeries,
-    totalEpisodesWatched,
-    genresBreakdown,
-    formatsBreakdown,
-    topSeries,
-  } = stats;
+  const { totalSeries, totalEpisodesWatched, genresBreakdown, topSeries } = stats;
 
-  const avgEpisodesPerSeries =
-    totalSeries > 0 ? totalEpisodesWatched / totalSeries : 0;
+  const avgEpisodesPerSeries = totalSeries > 0 ? totalEpisodesWatched / totalSeries : 0;
   const genreCount = genresBreakdown.length;
   const hasLongSeries = topSeries.some((s) => s.episodesWatched > 50);
 
@@ -104,9 +93,7 @@ function determineClub(stats) {
   }
 
   const currentYear = new Date().getFullYear();
-  const recentSeriesCount = topSeries.filter(
-    (s) => s.startYear >= currentYear - 1,
-  ).length;
+  const recentSeriesCount = topSeries.filter((s) => s.startYear >= currentYear - 1).length;
 
   if (recentSeriesCount >= topSeries.length * 0.6) {
     return {
@@ -166,26 +153,17 @@ export function processWrappedData(animeList, year) {
     }
 
     if (anime.format) {
-      formatsMap.set(
-        anime.format,
-        (formatsMap.get(anime.format) || 0) + minutes,
-      );
+      formatsMap.set(anime.format, (formatsMap.get(anime.format) || 0) + minutes);
     }
 
     if (anime.startDate?.year) {
-      yearsMap.set(
-        anime.startDate.year,
-        (yearsMap.get(anime.startDate.year) || 0) + minutes,
-      );
+      yearsMap.set(anime.startDate.year, (yearsMap.get(anime.startDate.year) || 0) + minutes);
     }
 
     if (anime.studios?.nodes) {
       anime.studios.nodes.forEach((studio) => {
         if (studio.name) {
-          studiosMap.set(
-            studio.name,
-            (studiosMap.get(studio.name) || 0) + minutes,
-          );
+          studiosMap.set(studio.name, (studiosMap.get(studio.name) || 0) + minutes);
         }
       });
     }
@@ -195,10 +173,8 @@ export function processWrappedData(animeList, year) {
       if (!monthlyMap.has(month) || monthlyMap.get(month).minutes < minutes) {
         monthlyMap.set(month, {
           month,
-          topSeriesTitle:
-            anime.title?.romaji || anime.title?.english || 'Unknown',
-          topSeriesCover:
-            anime.coverImage?.large || anime.coverImage?.medium || '',
+          topSeriesTitle: anime.title?.romaji || anime.title?.english || 'Unknown',
+          topSeriesCover: anime.coverImage?.large || anime.coverImage?.medium || '',
           minutesWatched: minutes,
         });
       }
@@ -240,15 +216,13 @@ export function processWrappedData(animeList, year) {
 
   const topAnimeByMinutes = topSeries[0] || null;
 
-  const monthlyHighlights = Array.from(monthlyMap.values()).sort(
-    (a, b) => a.month - b.month,
-  );
+  const monthlyHighlights = Array.from(monthlyMap.values()).sort((a, b) => a.month - b.month);
 
   let weightedYear = 0;
   if (totalMinutesWatched > 0) {
     const totalWeightedYears = Array.from(yearsMap.entries()).reduce(
       (sum, [year, minutes]) => sum + year * minutes,
-      0,
+      0
     );
     weightedYear = Math.round(totalWeightedYears / totalMinutesWatched);
   }
@@ -347,9 +321,7 @@ export async function fetchAndProcessWrappedData(anilistUsername, year) {
     data.data.MediaListCollection.lists.forEach((list) => {
       list.entries.forEach((entry) => {
         const updatedDate = new Date(entry.updatedAt * 1000);
-        const completedDate = entry.completedAt
-          ? new Date(entry.completedAt * 1000)
-          : null;
+        const completedDate = entry.completedAt ? new Date(entry.completedAt * 1000) : null;
 
         animeList.push({
           id: entry.media.id,

@@ -75,11 +75,7 @@ const S16_Summary = ({ wrappedData, onComplete }) => {
 
         <div ref={ctaRef} className="summary-actions">
           <ShareButton targetRef={shareRef} fileName="wrapped-summary" />
-          <button
-            onClick={handleGoToDashboard}
-            className="dashboard-button"
-            type="button"
-          >
+          <button onClick={handleGoToDashboard} className="dashboard-button" type="button">
             Ir a mi panel
           </button>
         </div>
