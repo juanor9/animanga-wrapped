@@ -67,6 +67,16 @@ const UserSchema = new mongoose.Schema({
   },
   lockoutUntil: Date,
 
+  // Account status
+  status: {
+    type: String,
+    enum: ['active', 'suspended', 'deleted'],
+    default: 'active',
+  },
+  suspendedAt: Date,
+  suspendedReason: String,
+  deletedAt: Date,
+
   createdAt: {
     type: Date,
     default: Date.now,
