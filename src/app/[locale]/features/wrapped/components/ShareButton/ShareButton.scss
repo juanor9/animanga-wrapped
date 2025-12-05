@@ -1,0 +1,26 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.share-button {
+  @include wrapped-button;
+  display: flex;
+  align-items: center;
+  gap: $wrapped-space-xs;
+  font-size: $wrapped-text-sm;
+  padding: $wrapped-space-sm $wrapped-space-md;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.share-button__icon {
+  font-size: $wrapped-text-base;
+  line-height: 1;
+}

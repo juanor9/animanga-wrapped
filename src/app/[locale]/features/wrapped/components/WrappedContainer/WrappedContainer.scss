@@ -1,0 +1,60 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.wrapped-container {
+  @include story-container;
+  position: relative;
+  background: $wrapped-bg-darker;
+  user-select: none;
+
+  &:focus-visible {
+    outline: 2px solid $wrapped-accent-primary;
+    outline-offset: 4px;
+  }
+}
+
+.wrapped-container__content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.wrapped-container__close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: $wrapped-z-controls;
+  width: 40px;
+  height: 40px;
+  border-radius: $wrapped-radius-full;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: $wrapped-text-primary;
+  font-size: $wrapped-text-lg;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $wrapped-duration-normal $wrapped-ease-out;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $wrapped-text-primary;
+    outline-offset: 2px;
+  }
+}

@@ -1,0 +1,355 @@
+@import '../../../../../_colors.scss';
+
+.profile {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-color: $black;
+
+  &__loading,
+  &__error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    color: $white;
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: $orange;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &__section {
+    background-color: $light-black;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &--danger {
+      border: 2px solid $pink;
+    }
+  }
+
+  &__section-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $white;
+    margin-bottom: 1.5rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  &__avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid $orange;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $orange-gradient;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  &__details {
+    flex: 1;
+  }
+
+  &__username {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $orange;
+    margin-bottom: 1rem;
+  }
+
+  &__field {
+    font-size: 1rem;
+    color: $white;
+    margin-bottom: 0.75rem;
+
+    strong {
+      color: $orange;
+      font-weight: 600;
+    }
+  }
+
+  &__form {
+    flex: 1;
+    width: 100%;
+  }
+
+  &__form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: $white;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid $lighter-black;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: $black;
+      color: $white;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: $orange;
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+  }
+
+  &__form-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &--primary {
+      background: $orange-gradient;
+      color: white;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    &--secondary {
+      background-color: $lighter-black;
+      color: white;
+
+      &:hover {
+        background-color: $light-black;
+      }
+    }
+
+    &--warning {
+      background: $yellow-gradient;
+      color: $black;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    &--danger {
+      background: $pink-gradient;
+      color: white;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &__history {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  &__year-card {
+    background-color: $black;
+    border: 2px solid $lighter-black;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      border-color: $orange;
+    }
+  }
+
+  &__year-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $orange;
+    margin-bottom: 1rem;
+  }
+
+  &__year-section {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__category-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $white;
+    margin-bottom: 0.5rem;
+  }
+
+  &__count {
+    font-size: 1rem;
+    color: $lighter-black;
+  }
+
+  &__no-history {
+    text-align: center;
+    color: $lighter-black;
+    font-size: 1.125rem;
+    padding: 2rem;
+  }
+
+  &__danger-zone {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__danger-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__danger-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $pink;
+    margin-bottom: 0.5rem;
+  }
+
+  &__danger-description {
+    font-size: 0.95rem;
+    color: $lighter-black;
+  }
+
+  &__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  &__modal-content {
+    background-color: $light-black;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  &__modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 1rem;
+  }
+
+  &__modal-description {
+    font-size: 1rem;
+    color: $lighter-black;
+    margin-bottom: 1.5rem;
+  }
+
+  &__modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  &__toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: $pink;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1001;
+
+    p {
+      margin: 0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

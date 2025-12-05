@@ -6,7 +6,8 @@ const fetchPopularAnime = async () => {
     const fetch = await getPopularAnime();
     return fetch;
   } catch (error) {
-    throw new Error(error);
+    console.error('Error fetching popular anime data:', error);
+    return { Page: { media: [] } };
   }
 };
 
@@ -15,7 +16,8 @@ const fetchPopularManga = async () => {
     const fetch = await getPopularManga();
     return fetch;
   } catch (error) {
-    return error;
+    console.error('Error fetching popular manga data:', error);
+    return { Page: { media: [] } };
   }
 };
 
