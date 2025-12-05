@@ -18,7 +18,7 @@ This project uses technologies like Next.js, React, Redux, Chart.js, among other
 
 ## Access
 
-Animanga Wrapped is available at: [https://animanga-wrapped.vercel.app/](https://animanga-wrapped.vercel.app/)
+Animanga Wrapped is available at: https://animanga-wrapped.vercel.app/
 
 ## License
 

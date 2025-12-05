@@ -5,7 +5,10 @@ import { yearString } from '@/app/lib/constants/year';
 import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 
-const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
+const serverUrl =
+  typeof window !== 'undefined'
+    ? window.location.origin
+    : process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'http://localhost:3000';
 
 const MangaFav = ({ list }) => {
   const [sortedChapters, setSortedChapters] = useState(null);

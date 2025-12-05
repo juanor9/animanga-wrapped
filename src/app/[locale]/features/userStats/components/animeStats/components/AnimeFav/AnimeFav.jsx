@@ -5,7 +5,10 @@ import StoryCard from '../../../../../../components/Stories/Stories';
 import uploadImage from '../../../../services/upload';
 import './AnimeFav.scss';
 
-const serverUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
+const serverUrl =
+  typeof window !== 'undefined'
+    ? window.location.origin
+    : process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'http://localhost:3000';
 
 const AnimeFav = ({ list }) => {
   const [sortedWatchedMinutes, setSortedWatchedMinutes] = useState(null);

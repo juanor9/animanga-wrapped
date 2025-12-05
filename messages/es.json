@@ -1,7 +1,6 @@
 {
   "common": {
     "email": "Correo electrónico",
-    "password": "Contraseña",
     "next": "Siguiente",
     "submit": "Enviar",
     "save": "Guardar",
@@ -19,12 +18,49 @@
     "createUser": "Crear usuario",
     "loginWithAnilist": "Iniciar sesión con AniList",
     "loginWithMAL": "Iniciar sesión con MyAnimeList",
-    "accountLocked": "Cuenta Bloqueada",
-    "accountLockedMessage": "Tu cuenta ha sido bloqueada temporalmente debido a demasiados intentos de inicio de sesión fallidos.",
-    "tryAgainIn": "Por favor, inténtalo de nuevo en: {time}",
-    "lastAttemptWarning": "Te queda 1 intento antes de que tu cuenta sea bloqueada temporalmente."
+    "loginTitle": "Iniciar Sesión",
+    "loginDescription": "Ingresa tu correo electrónico y te enviaremos un enlace mágico para iniciar sesión.",
+    "sendMagicLink": "Enviar enlace de inicio de sesión",
+    "checkYourEmail": "¡Revisa tu correo!",
+    "magicLinkSent": "Te hemos enviado un enlace de inicio de sesión a {email}",
+    "magicLinkHelp": "El enlace expira en 15 minutos. Si no ves el correo, revisa tu carpeta de spam.",
+    "verifyingLogin": "Verificando tu inicio de sesión...",
+    "pleaseWait": "Por favor espera un momento...",
+    "loginSuccess": "¡Inicio de sesión exitoso!",
+    "redirecting": "Redirigiendo a tu panel...",
+    "verificationFailed": "Verificación fallida",
+    "invalidLink": "Enlace inválido",
+    "invalidLinkMessage": "Este enlace de inicio de sesión no es válido o ha expirado.",
+    "backToLogin": "Volver al inicio de sesión"
   },
   "registration": {
+    "consentAndAge": {
+      "title": "¡Bienvenido a Animanga Wrapped!",
+      "subtitle": "Antes de comenzar, por favor revisa y acepta lo siguiente:",
+      "termsLabel": "He leído y acepto los",
+      "termsLink": "Términos y Condiciones",
+      "privacyLabel": "He leído y acepto la",
+      "privacyLink": "Política de Privacidad",
+      "ageLabel": "Confirmo que tengo 18 años o más",
+      "button": "Continuar"
+    },
+    "registrationForm": {
+      "title": "Conecta tu Cuenta de AniList",
+      "description": "Usaremos tus datos de AniList para crear tus estadísticas personalizadas de anime y manga del año.",
+      "anilistButton": "Conectar con AniList",
+      "titleForm": "Completa tu Registro",
+      "descriptionForm": "¡Solo unos detalles más y estarás listo!",
+      "listsLabel": "¿Qué listas te gustaría que analicemos?",
+      "animeList": "Lista de Anime",
+      "mangaList": "Lista de Manga",
+      "emailLabel": "Correo Electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "emailHelp": "Te enviaremos un enlace mágico para iniciar sesión la próxima vez (¡no necesitas contraseña!).",
+      "countryLabel": "País",
+      "countryPlaceholder": "Selecciona tu país",
+      "submitButton": "Completar Registro",
+      "errorGeneric": "Ocurrió un error. Por favor, inténtalo de nuevo."
+    },
     "welcome": {
       "title": "¡Bienvenido!",
       "message": "¡Hola! Gracias por unirte a nosotros. Estamos emocionados de crear un resumen increíble de todo el anime que viste y las páginas de manga que leíste este año. Pero primero, conozcámonos un poco. Prometemos que será fácil.",

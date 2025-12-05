@@ -10,7 +10,6 @@ import './UserAL.scss';
 
 const UserAL = ({ settings, checkFunc }) => {
   // Estados
-  const [accessToken, setAccessToken] = useState('');
   const [viewerData, setViewerData] = useState(null);
   const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState(null);
@@ -19,40 +18,51 @@ const UserAL = ({ settings, checkFunc }) => {
 
   const dispatch = useDispatch();
 
-  // Efecto para obtener el token de acceso
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hashFragment = window.location.hash;
-      const params = new URLSearchParams(hashFragment.substring(1));
-      const newAccessToken = params.get('access_token');
-      setAccessToken(newAccessToken);
-    }
-  }, []);
+  // Get access token from Redux (already stored by RegisterClient)
+  const accessToken = user?.anilistAccessToken;
 
-  // Efecto para obtener los datos del espectador
+  // If we already have user data from Redux, use it
+  useEffect(() => {
+    if (user?.anilistId && user?.anilistUsername) {
+      setUserId(user.anilistId);
+      setUsername(user.anilistUsername);
+      // Create a viewer data object from Redux data
+      setViewerData({
+        Viewer: {
+          id: user.anilistId,
+          name: user.anilistUsername,
+          avatar: user.anilistAvatar,
+        },
+      });
+    }
+  }, [user]);
+
+  // Fallback: Efecto para obtener los datos del espectador si no están en Redux
   useEffect(() => {
     const fetchViewerData = async () => {
       try {
         const viewer = await getViewer(accessToken);
         setViewerData(viewer);
       } catch (error) {
-        throw new Error('Error fetching viewer data:', error);
+        // eslint-disable-next-line no-console
+        console.error('Error fetching viewer data:', error);
       }
     };
 
-    if (accessToken) {
+    // Only fetch if we don't have data in Redux but have a token
+    if (accessToken && !user?.anilistId) {
       fetchViewerData();
     }
-  }, [accessToken]);
+  }, [accessToken, user]);
 
   // Efecto para establecer el ID y nombre del usuario
   useEffect(() => {
-    if (viewerData) {
+    if (viewerData && !userId) {
       const { Viewer } = viewerData;
       setUserId(Viewer.id);
       setUsername(Viewer.name);
     }
-  }, [viewerData]);
+  }, [viewerData, userId]);
 
   useEffect(() => {
     if (username && user && user.listUsername !== username) {

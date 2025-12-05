@@ -83,7 +83,13 @@ This link expires in 15 minutes.
 If you didn't request this, ignore this email.
     `;
 
-  try {
+  // Skip actual email sending in development (non‑production) environments or when using localhost
+  if (process.env.NODE_ENV !== 'production' || (BASE_URL && BASE_URL.includes('localhost'))) {
+    // eslint-disable-next-line no-console
+    console.log('🔧 Development mode: skipping Resend email send. Magic link would be:', magicLink);
+    return; // exit without calling Resend
+  }
+
     const { error } = await resend.emails.send({
       from: EMAIL_FROM,
       to: email,

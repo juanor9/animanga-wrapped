@@ -7,6 +7,10 @@ export async function POST(request) {
   try {
     await connectDB();
 
+    const requestBody = await request.json();
+
+    console.log('🔍 API received data:', requestBody);
+
     const {
       // AniList OAuth data
       anilistId,
@@ -21,7 +25,9 @@ export async function POST(request) {
       // Consents
       termsAccepted,
       privacyAccepted,
-    } = await request.json();
+      // Lists preference
+      lists,
+    } = requestBody;
 
     // Validate required fields
     if (!anilistId || !anilistUsername || !email || !country) {
@@ -72,7 +78,7 @@ export async function POST(request) {
 
     // Create user
     const now = new Date();
-    const user = await User.create({
+    const userDataToCreate = {
       anilistId,
       anilistUsername,
       anilistAvatar,
@@ -87,8 +93,12 @@ export async function POST(request) {
         privacyAccepted,
         privacyAcceptedAt: now,
       },
-      lists: [],
-    });
+      lists: lists || [],
+    };
+
+    console.log('🔍 Creating user with data:', userDataToCreate);
+
+    const user = await User.create(userDataToCreate);
 
     // Generate JWT tokens
     const accessToken = generateAccessToken(user._id.toString());

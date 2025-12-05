@@ -46,8 +46,8 @@ const ALAnimeList = ({ userId, checkFunc }) => {
   }, [animeList, checkFunc]);
 
   useEffect(() => {
-    if (loadingAnimeList === 'loaded') {
-      const currentLists = user.lists || [];
+    if (loadingAnimeList === 'loaded' && user) {
+      const currentLists = Array.isArray(user.lists) ? user.lists : [];
       const existingListIndex = currentLists.findIndex((list) => list.year === year);
       const currentAnimeList =
         existingListIndex !== -1 ? currentLists[existingListIndex].animeList : null;

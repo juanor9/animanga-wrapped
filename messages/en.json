@@ -1,7 +1,6 @@
 {
   "common": {
     "email": "Email",
-    "password": "Password",
     "next": "Next",
     "submit": "Submit",
     "save": "Save",
@@ -19,12 +18,49 @@
     "createUser": "Create user",
     "loginWithAnilist": "Login with AniList",
     "loginWithMAL": "Login with MyAnimeList",
-    "accountLocked": "Account Locked",
-    "accountLockedMessage": "Your account has been temporarily locked due to too many failed login attempts.",
-    "tryAgainIn": "Please try again in: {time}",
-    "lastAttemptWarning": "You have 1 attempt left before your account is temporarily locked."
+    "loginTitle": "Log In",
+    "loginDescription": "Enter your email and we'll send you a magic link to log in.",
+    "sendMagicLink": "Send login link",
+    "checkYourEmail": "Check Your Email!",
+    "magicLinkSent": "We've sent a login link to {email}",
+    "magicLinkHelp": "The link expires in 15 minutes. If you don't see the email, check your spam folder.",
+    "verifyingLogin": "Verifying your login...",
+    "pleaseWait": "Please wait a moment...",
+    "loginSuccess": "Login successful!",
+    "redirecting": "Redirecting to your dashboard...",
+    "verificationFailed": "Verification Failed",
+    "invalidLink": "Invalid Link",
+    "invalidLinkMessage": "This login link is invalid or has expired.",
+    "backToLogin": "Back to login"
   },
   "registration": {
+    "consentAndAge": {
+      "title": "Welcome to Animanga Wrapped!",
+      "subtitle": "Before we begin, please review and accept the following:",
+      "termsLabel": "I have read and accept the",
+      "termsLink": "Terms and Conditions",
+      "privacyLabel": "I have read and accept the",
+      "privacyLink": "Privacy Policy",
+      "ageLabel": "I confirm that I am 18 years or older",
+      "button": "Continue"
+    },
+    "registrationForm": {
+      "title": "Connect Your AniList Account",
+      "description": "We'll use your AniList data to create your personalized anime and manga statistics for the year.",
+      "anilistButton": "Connect with AniList",
+      "titleForm": "Complete Your Registration",
+      "descriptionForm": "Just a few more details and you're all set!",
+      "listsLabel": "Which lists would you like us to analyze?",
+      "animeList": "Anime List",
+      "mangaList": "Manga List",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "emailHelp": "We'll send you a magic link to log in next time (no password needed!).",
+      "countryLabel": "Country",
+      "countryPlaceholder": "Select your country",
+      "submitButton": "Complete Registration",
+      "errorGeneric": "An error occurred. Please try again."
+    },
     "welcome": {
       "title": "Welcome!",
       "message": "Hey there! Thanks for jumping on board with us. We're stoked to whip up an awesome recap of all the anime you've binged and the manga pages you've flipped through this year. But first, let's get to know each other a bit. Promise, it'll be a breeze.",

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { logout, newUser, setTokens } from '../../../../../redux/features/user';
 
-const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'https://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL || 'http://localhost:3000';
 
 export const createUser = createAsyncThunk('users/createUser', async (user, thunkAPI) => {
   const options = {
@@ -29,33 +29,47 @@ export const createUser = createAsyncThunk('users/createUser', async (user, thun
   return result;
 });
 
-export const login = createAsyncThunk('users/login', async (form, thunkAPI) => {
+export const sendMagicLink = createAsyncThunk('users/sendMagicLink', async (email, thunkAPI) => {
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(form),
+    body: JSON.stringify({ email: email.toLowerCase() }),
   };
 
-  const res = await fetch(`${BASE_URL}/auth/local/login`, options);
+  const res = await fetch(`${BASE_URL}/api/auth/magic-link/send`, options);
   const result = await res.json();
 
-  if (res.ok) {
-    // Dispatch actions to store tokens and user data in Redux state
-    thunkAPI.dispatch(
-      setTokens({
-        accessToken: result.accessToken,
-        refreshToken: result.refreshToken,
-      })
-    );
-    thunkAPI.dispatch(newUser(result.user));
-    return result.user;
+  if (!res.ok) {
+    return thunkAPI.rejectWithValue(result);
   }
 
-  // Let the reducer handle the error case
-  return thunkAPI.rejectWithValue(result);
+  return { ...result, email: email.toLowerCase() };
 });
+
+export const verifyMagicLink = createAsyncThunk(
+  'users/verifyMagicLink',
+  async (token, thunkAPI) => {
+    const res = await fetch(`${BASE_URL}/api/auth/magic-link/verify?token=${token}`);
+    const result = await res.json();
+
+    if (res.ok) {
+      // Dispatch actions to store tokens and user data in Redux state
+      thunkAPI.dispatch(
+        setTokens({
+          accessToken: result.accessToken,
+          refreshToken: result.refreshToken,
+        })
+      );
+      thunkAPI.dispatch(newUser(result.user));
+      return result;
+    }
+
+    // Let the reducer handle the error case
+    return thunkAPI.rejectWithValue(result);
+  }
+);
 
 export const logoutUser = createAsyncThunk('users/logout', async (_, thunkAPI) => {
   const {
