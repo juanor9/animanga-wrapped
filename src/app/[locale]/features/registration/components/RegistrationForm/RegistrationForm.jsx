@@ -30,9 +30,7 @@ const RegistrationForm = ({ color }) => {
   });
   const [isListValid, setIsListValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isRedirecting, setIsRedirecting] = useState(false);
   const [error, setError] = useState('');
-
   // Check if user has AniList data (coming back from OAuth)
   useEffect(() => {
     if (user?.anilistId) {
@@ -42,7 +40,6 @@ const RegistrationForm = ({ color }) => {
 
   const handleAnilistClick = () => {
     if (window !== undefined) {
-      setIsRedirecting(true);
       window.localStorage.setItem('registrationStep', '2');
       window.location.href = anilistUrl;
     }

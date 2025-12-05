@@ -90,6 +90,7 @@ If you didn't request this, ignore this email.
     return; // exit without calling Resend
   }
 
+  try {
     const { error } = await resend.emails.send({
       from: EMAIL_FROM,
       to: email,
