@@ -1,0 +1,73 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.chapter8-slide {
+  color: $wrapped-text-primary;
+}
+
+.club-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $wrapped-space-md;
+  padding: $wrapped-space-xl;
+  margin: $wrapped-space-lg 0;
+}
+
+.club-badge__icon {
+  font-size: 80px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.club-badge__name {
+  font-size: $wrapped-text-2xl;
+  font-weight: $wrapped-font-black;
+  margin: 0;
+  text-align: center;
+  @include text-with-shadow('lg');
+}
+
+.club-role {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $wrapped-space-xs;
+  margin: $wrapped-space-xl 0 $wrapped-space-md;
+}
+
+.club-role__label {
+  font-size: $wrapped-text-base;
+  font-weight: $wrapped-font-medium;
+  opacity: 0.9;
+}
+
+.club-role__value {
+  font-size: $wrapped-text-xl;
+  font-weight: $wrapped-font-bold;
+  color: $wrapped-accent-primary;
+  @include text-with-shadow('md');
+}
+
+.club-role-desc {
+  font-size: $wrapped-text-base;
+  font-weight: $wrapped-font-normal;
+  max-width: 80%;
+  margin: 0 auto $wrapped-space-lg;
+  opacity: 0.9;
+  @include text-with-shadow('sm');
+}
+
+.club-percentage {
+  font-size: $wrapped-text-base;
+  font-weight: $wrapped-font-medium;
+  margin: $wrapped-space-xl 0;
+  max-width: 85%;
+  @include text-with-shadow('sm');
+
+  strong {
+    font-weight: $wrapped-font-black;
+    color: $wrapped-accent-success;
+    font-size: $wrapped-text-lg;
+  }
+}

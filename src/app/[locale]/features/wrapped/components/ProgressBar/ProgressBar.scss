@@ -1,0 +1,58 @@
+@use '../../styles/tokens' as *;
+
+.progress-bar {
+  position: fixed;
+  top: $wrapped-safe-zone-top - 60px;
+  left: 0;
+  right: 0;
+  z-index: $wrapped-z-progress;
+  display: flex;
+  gap: 4px;
+  padding: 0 $wrapped-safe-zone-horizontal;
+  max-width: $wrapped-story-width;
+  margin: 0 auto;
+}
+
+.progress-bar__segment {
+  flex: 1;
+  height: 3px;
+  background: transparent;
+  border: none;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: opacity $wrapped-duration-fast;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $wrapped-text-primary;
+    outline-offset: 2px;
+  }
+}
+
+.progress-bar__track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $wrapped-text-primary;
+  transform-origin: left;
+  transform: scaleX(0);
+  border-radius: 2px;
+}
+
+.progress-bar__segment--completed .progress-bar__fill {
+  transform: scaleX(1);
+}
