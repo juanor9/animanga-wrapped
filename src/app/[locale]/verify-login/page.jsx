@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from '../../../components/Spinner/Spinner';
+import Spinner from '../components/Spinner/Spinner';
 import { verifyMagicLink } from '../features/user/services/users';
 
 export default function VerifyLogin() {
