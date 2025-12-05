@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+/* eslint-disable import/no-named-as-default */
 import gsap from 'gsap';
-
+import { useEffect, useRef } from 'react';
 import './ProgressBar.scss';
-
 const ProgressBar = ({ totalSlides, currentSlide, onSegmentClick }) => {
   const segmentsRef = useRef([]);
 

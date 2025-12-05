@@ -19,7 +19,6 @@ jest.mock('../../../models/User', () => ({
   },
 }));
 
-const connectDB = require('../../../lib/db').default;
 const { getUserFromRequest } = require('../../../lib/auth');
 const User = require('../../../models/User').default;
 

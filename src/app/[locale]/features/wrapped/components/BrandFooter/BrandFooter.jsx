@@ -1,7 +1,6 @@
 'use client';
 
 import './BrandFooter.scss';
-
 const BrandFooter = () => {
   return (
     <div className="brand-footer">

@@ -1,10 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import html2canvas from 'html2canvas';
-
+import { useState } from 'react';
 import './ShareButton.scss';
-
 const ShareButton = ({ targetRef, fileName = 'animanga-wrapped' }) => {
   const [isSharing, setIsSharing] = useState(false);
 

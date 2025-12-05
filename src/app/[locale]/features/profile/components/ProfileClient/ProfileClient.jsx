@@ -1,18 +1,18 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from '../../../../components/Spinner/Spinner';
 import { logout } from '../../../../../../redux/features/user';
+import Spinner from '../../../../components/Spinner/Spinner';
 import './ProfileClient.scss';
 
 const ProfileClient = () => {
   const t = useTranslations('profile');
   const router = useRouter();
   const dispatch = useDispatch();
-  const { user, accessToken } = useSelector((state) => state.user);
+  const { accessToken } = useSelector((state) => state.user);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

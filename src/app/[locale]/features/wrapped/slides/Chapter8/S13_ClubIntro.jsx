@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { slideUp } from '../../utils/animations';
 import './Chapter8.scss';
-
 const S13_ClubIntro = () => {
   const textRef = useRef(null);
 

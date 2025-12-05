@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, slideUp, staggerIn } from '../../utils/animations';
 import './Chapter2.scss';
-
 const S06_TopGenres = ({ topGenres = [] }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);

@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter1.scss';
-
 const S01_Opening = ({ userName, year = 2025 }) => {
   const titleRef = useRef(null);
   const messageRef = useRef(null);

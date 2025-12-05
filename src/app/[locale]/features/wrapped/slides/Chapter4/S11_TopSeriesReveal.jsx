@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter4.scss';
-
 const S11_TopSeriesReveal = ({ topSeries }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
@@ -15,15 +13,16 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
   const statsRef = useRef(null);
   const ctaRef = useRef(null);
 
-  if (!topSeries) return null;
-
   useEffect(() => {
+    if (!topSeries) return;
     slideUp(titleRef.current, { delay: 0.2 });
     scaleIn(coverRef.current, { delay: 0.6 });
     fadeIn(seriesTitleRef.current, { delay: 1 });
     slideUp(statsRef.current, { delay: 1.3 });
     fadeIn(ctaRef.current, { delay: 1.8 });
-  }, []);
+  }, [topSeries]);
+
+  if (!topSeries) return null;
 
   const hours = Math.floor(topSeries.minutesWatched / 60);
 

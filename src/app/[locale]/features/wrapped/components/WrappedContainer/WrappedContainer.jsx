@@ -1,11 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-
 import BrandFooter from '../BrandFooter/BrandFooter';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import './WrappedContainer.scss';
-
 const WrappedContainer = ({
   slides,
   onComplete,
@@ -121,7 +119,8 @@ const WrappedContainer = ({
         onClick={handleClick}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        role="region"
+        onKeyDown={handleKeyDown}
+        role="button"
         aria-label="Wrapped story viewer"
         tabIndex={0}
       >

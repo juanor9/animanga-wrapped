@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { slideUp } from '../../utils/animations';
 import './Chapter3.scss';
-
 const S08_AgeIntro = () => {
   const line1Ref = useRef(null);
   const line2Ref = useRef(null);

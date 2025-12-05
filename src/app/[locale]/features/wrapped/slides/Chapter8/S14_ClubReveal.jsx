@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter8.scss';
-
 const S14_ClubReveal = ({ club }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
@@ -17,9 +15,8 @@ const S14_ClubReveal = ({ club }) => {
   const percentageRef = useRef(null);
   const ctaRef = useRef(null);
 
-  if (!club) return null;
-
   useEffect(() => {
+    if (!club) return;
     slideUp(titleRef.current, { delay: 0.2 });
     scaleIn(nameRef.current, { delay: 0.6 });
     fadeIn(descRef.current, { delay: 1 });
@@ -27,7 +24,9 @@ const S14_ClubReveal = ({ club }) => {
     fadeIn(roleDescRef.current, { delay: 1.7 });
     fadeIn(percentageRef.current, { delay: 2 });
     fadeIn(ctaRef.current, { delay: 2.4 });
-  }, []);
+  }, [club]);
+
+  if (!club) return null;
 
   return (
     <SlideBase

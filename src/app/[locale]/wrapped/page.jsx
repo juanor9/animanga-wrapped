@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
-
 import WrappedClient from './WrappedClient';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Animanga Wrapped 2025',

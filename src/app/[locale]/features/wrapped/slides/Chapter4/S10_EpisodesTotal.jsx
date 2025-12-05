@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { useCounterAnimation } from '../../hooks/useGSAP';
 import { fadeIn, slideUp } from '../../utils/animations';
 import './Chapter4.scss';
-
 const S10_EpisodesTotal = ({ totalEpisodes }) => {
   const titleRef = useRef(null);
   const numberRef = useRef(null);

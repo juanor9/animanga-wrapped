@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 
@@ -17,6 +18,7 @@ export function useGSAPAnimation(animationFn, dependencies = []) {
         animationRef.current.kill();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
   return animationRef;
@@ -38,6 +40,7 @@ export function useGSAPContext(containerRef, dependencies = []) {
         ctx.current.revert();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
   return ctx;
@@ -111,7 +114,7 @@ export function useSlideAnimation(slideRef, isActive, animationType = 'fade') {
         ease: 'power2.in',
       });
     }
-  }, [isActive, animationType]);
+  }, [isActive, animationType, slideRef]);
 }
 
 /**
@@ -133,5 +136,5 @@ export function useCounterAnimation(elementRef, targetValue, duration = 2, decim
         }
       },
     });
-  }, [targetValue, duration, decimals]);
+  }, [targetValue, duration, decimals, elementRef]);
 }

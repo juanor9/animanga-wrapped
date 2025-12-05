@@ -1,12 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Spinner from '../components/Spinner/Spinner';
 import WrappedContainer from '../features/wrapped/components/WrappedContainer/WrappedContainer';
 import * as Slides from '../features/wrapped/slides';
-
 const WrappedClient = ({ anilistId, userName }) => {
   const router = useRouter();
   const [wrappedData, setWrappedData] = useState(null);
@@ -66,7 +64,7 @@ const WrappedClient = ({ anilistId, userName }) => {
       () => <Slides.S15_ThankYou year={year} />,
       () => <Slides.S16_Summary wrappedData={wrappedData} onComplete={handleComplete} />,
     ];
-  }, [wrappedData, userName, year]);
+  }, [wrappedData, userName, year, handleComplete]);
 
   const handleProgress = useCallback(
     async (slideIndex) => {

@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn } from '../../utils/animations';
 import './Chapter9.scss';
-
 const S15_ThankYou = ({ year = 2025 }) => {
   const textRef = useRef(null);
   const yearRef = useRef(null);

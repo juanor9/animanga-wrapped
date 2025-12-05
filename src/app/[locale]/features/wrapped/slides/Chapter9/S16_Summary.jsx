@@ -1,13 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { useEffect, useRef } from 'react';
 import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, staggerIn } from '../../utils/animations';
 import './Chapter9.scss';
-
 const S16_Summary = ({ wrappedData, onComplete }) => {
   const router = useRouter();
   const shareRef = useRef(null);

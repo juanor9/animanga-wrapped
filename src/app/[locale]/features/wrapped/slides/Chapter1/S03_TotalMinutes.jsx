@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { useCounterAnimation } from '../../hooks/useGSAP';
 import { fadeIn, slideUp } from '../../utils/animations';
 import './Chapter1.scss';
-
 const S03_TotalMinutes = ({ totalMinutes }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);

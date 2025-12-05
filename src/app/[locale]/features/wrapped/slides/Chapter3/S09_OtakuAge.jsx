@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter3.scss';
-
 const S09_OtakuAge = ({ weightedYear }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
