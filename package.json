@@ -65,6 +65,7 @@
     "eslint-plugin-react": "^7.37.5",
     "framer-motion": "^12.23.25",
     "graphql": "^16.11.0",
+    "gsap": "^3.13.0",
     "html2canvas": "^1.4.1",
     "http-proxy-middleware": "^3.0.5",
     "jsonwebtoken": "^9.0.2",

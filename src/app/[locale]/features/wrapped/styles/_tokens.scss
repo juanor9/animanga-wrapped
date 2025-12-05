@@ -1,0 +1,101 @@
+// Wrapped Design Tokens
+// DO NOT MODIFY - These are the design tokens for Animanga Wrapped
+
+// Story dimensions (9:16 ratio)
+$wrapped-story-width: 1080px;
+$wrapped-story-height: 1920px;
+$wrapped-story-ratio: calc(9 / 16);
+
+// Safe zones (Instagram Stories safe area)
+$wrapped-safe-zone-top: 80px;
+$wrapped-safe-zone-bottom: 120px;
+$wrapped-safe-zone-horizontal: 60px;
+
+// Colors - Base palette
+$wrapped-bg-dark: #0d0d0d;
+$wrapped-bg-darker: #000000;
+$wrapped-text-primary: #ffffff;
+$wrapped-text-secondary: #b3b3b3;
+$wrapped-accent-primary: #ff6b9d;
+$wrapped-accent-secondary: #4fc3f7;
+$wrapped-accent-tertiary: #9c27b0;
+$wrapped-accent-success: #66bb6a;
+
+// Chapter color themes
+$wrapped-chapter-1-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$wrapped-chapter-2-bg: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+$wrapped-chapter-3-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+$wrapped-chapter-4-bg: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+$wrapped-chapter-5-bg: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+$wrapped-chapter-6-bg: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+$wrapped-chapter-7-bg: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+$wrapped-chapter-8-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+$wrapped-chapter-9-bg: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+
+// Typography
+$wrapped-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
+  'Helvetica Neue', arial, sans-serif;
+$wrapped-font-display: 'Arial Black', 'Arial Bold', gadget, sans-serif;
+
+// Font sizes
+$wrapped-text-xs: 14px;
+$wrapped-text-sm: 18px;
+$wrapped-text-base: 24px;
+$wrapped-text-lg: 32px;
+$wrapped-text-xl: 48px;
+$wrapped-text-2xl: 64px;
+$wrapped-text-3xl: 96px;
+$wrapped-text-4xl: 128px;
+
+// Font weights
+$wrapped-font-light: 300;
+$wrapped-font-normal: 400;
+$wrapped-font-medium: 500;
+$wrapped-font-semibold: 600;
+$wrapped-font-bold: 700;
+$wrapped-font-black: 900;
+
+// Spacing
+$wrapped-space-xs: 8px;
+$wrapped-space-sm: 16px;
+$wrapped-space-md: 24px;
+$wrapped-space-lg: 32px;
+$wrapped-space-xl: 48px;
+$wrapped-space-2xl: 64px;
+$wrapped-space-3xl: 96px;
+
+// Border radius
+$wrapped-radius-sm: 8px;
+$wrapped-radius-md: 16px;
+$wrapped-radius-lg: 24px;
+$wrapped-radius-xl: 32px;
+$wrapped-radius-full: 9999px;
+
+// Shadows
+$wrapped-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$wrapped-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+$wrapped-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+$wrapped-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.4);
+
+// Animation timings
+$wrapped-duration-fast: 0.2s;
+$wrapped-duration-normal: 0.3s;
+$wrapped-duration-slow: 0.5s;
+$wrapped-duration-slower: 0.8s;
+
+// Easing functions
+$wrapped-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$wrapped-ease-out: cubic-bezier(0, 0, 0.2, 1);
+$wrapped-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$wrapped-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// Z-index layers
+$wrapped-z-base: 1;
+$wrapped-z-content: 10;
+$wrapped-z-controls: 100;
+$wrapped-z-progress: 200;
+$wrapped-z-modal: 1000;
+
+// Branding
+$wrapped-brand-height: 40px;
+$wrapped-brand-position-bottom: $wrapped-safe-zone-bottom;

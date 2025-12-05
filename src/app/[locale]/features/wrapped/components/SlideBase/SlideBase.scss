@@ -1,0 +1,22 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.slide-base {
+  @include full-slide;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.slide-base__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: $wrapped-space-lg;
+}

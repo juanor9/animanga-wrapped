@@ -1,0 +1,128 @@
+@use './tokens' as *;
+
+// Story container mixin
+@mixin story-container {
+  position: relative;
+  width: 100%;
+  max-width: $wrapped-story-width;
+  aspect-ratio: $wrapped-story-ratio;
+  margin: 0 auto;
+  overflow: hidden;
+  background: $wrapped-bg-darker;
+}
+
+// Safe area content
+@mixin safe-area-content {
+  padding-top: $wrapped-safe-zone-top;
+  padding-bottom: $wrapped-safe-zone-bottom;
+  padding-left: $wrapped-safe-zone-horizontal;
+  padding-right: $wrapped-safe-zone-horizontal;
+}
+
+// Centered content
+@mixin center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+// Full story slide
+@mixin full-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include safe-area-content;
+}
+
+// Text with shadow for readability
+@mixin text-with-shadow($size: 'md') {
+  @if $size == 'sm' {
+    text-shadow: $wrapped-shadow-sm;
+  } @else if $size == 'lg' {
+    text-shadow: $wrapped-shadow-lg;
+  } @else {
+    text-shadow: $wrapped-shadow-md;
+  }
+}
+
+// Gradient background
+@mixin gradient-bg($gradient) {
+  background: $gradient;
+  background-size: 100% 100%;
+}
+
+// Animated background
+@mixin animated-bg {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Number display
+@mixin big-number {
+  font-family: $wrapped-font-display;
+  font-size: $wrapped-text-4xl;
+  font-weight: $wrapped-font-black;
+  line-height: 1;
+  color: $wrapped-text-primary;
+  @include text-with-shadow('lg');
+}
+
+// Button styles
+@mixin wrapped-button {
+  padding: $wrapped-space-sm $wrapped-space-lg;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid $wrapped-text-primary;
+  border-radius: $wrapped-radius-full;
+  color: $wrapped-text-primary;
+  font-size: $wrapped-text-base;
+  font-weight: $wrapped-font-semibold;
+  cursor: pointer;
+  transition: all $wrapped-duration-normal $wrapped-ease-out;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Glass card effect
+@mixin glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $wrapped-radius-lg;
+  box-shadow: $wrapped-shadow-xl;
+}
+
+// Cover image
+@mixin cover-image($width: 200px, $height: 280px) {
+  width: $width;
+  height: $height;
+  object-fit: cover;
+  border-radius: $wrapped-radius-md;
+  box-shadow: $wrapped-shadow-lg;
+}

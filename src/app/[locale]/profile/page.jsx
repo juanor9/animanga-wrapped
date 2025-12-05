@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import ProfileClient from '../features/profile/components/ProfileClient/ProfileClient';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params: { locale } }) {
   const t = await getTranslations({ locale, namespace: 'profile' });
 

@@ -1,0 +1,75 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.chapter9-slide {
+  color: $wrapped-text-primary;
+}
+
+.slide-year-large {
+  @include big-number;
+  font-size: 200px;
+  margin-top: $wrapped-space-2xl;
+  opacity: 0.2;
+}
+
+.summary-title {
+  font-size: $wrapped-text-xl;
+  font-weight: $wrapped-font-black;
+  margin: 0 0 $wrapped-space-xl;
+  @include text-with-shadow('lg');
+}
+
+.summary-card {
+  @include glass-card;
+  padding: $wrapped-space-xl;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: $wrapped-space-md;
+}
+
+.summary-card__item {
+  display: flex;
+  flex-direction: column;
+  gap: $wrapped-space-xs;
+  padding: $wrapped-space-md;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.summary-card__label {
+  font-size: $wrapped-text-sm;
+  font-weight: $wrapped-font-medium;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.summary-card__value {
+  font-size: $wrapped-text-lg;
+  font-weight: $wrapped-font-bold;
+  color: $wrapped-text-primary;
+}
+
+.summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $wrapped-space-md;
+  margin-top: $wrapped-space-xl;
+}
+
+.dashboard-button {
+  @include wrapped-button;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-color: rgba(255, 255, 255, 0.9);
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+  }
+}
