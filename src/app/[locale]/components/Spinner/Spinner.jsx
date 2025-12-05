@@ -1,5 +1,5 @@
 import './Spinner.scss';
 
-const Spinner = () => <div className="spinner" />;
+const Spinner = ({ className = '' }) => <div className={`spinner ${className}`} />;
 
 export default Spinner;

@@ -52,4 +52,14 @@
       opacity: 0.5;
     }
   }
+
+  &__spinner {
+    height: 20px !important;
+    width: 20px !important;
+    border-width: 2px !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    border-left-color: #000 !important;
+    margin: 0 auto;
+    display: block;
+  }
 }

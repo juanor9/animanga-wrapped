@@ -45,9 +45,9 @@ const ALMangaList = ({ userId, checkFunc }) => {
   }, [mangaList, checkFunc]);
 
   useEffect(() => {
-    if (loadingMangaList === 'loaded') {
+    if (loadingMangaList === 'loaded' && user) {
       // Verificar si user.lists existe y es un array, si no, usar un array vacío
-      const currentLists = user.lists || [];
+      const currentLists = Array.isArray(user.lists) ? user.lists : [];
       const existingListIndex = currentLists.findIndex((list) => list.year === year);
       const currentMangaList =
         existingListIndex !== -1 ? currentLists[existingListIndex].mangaList : null;

@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { newUser, setTokens } from '../../../../../redux/features/user';
 
-const BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-
 const createUser = createAsyncThunk(
   'users/createUser',
 
@@ -16,7 +14,7 @@ const createUser = createAsyncThunk(
         body: JSON.stringify(userData),
       };
 
-      const res = await fetch(`${BASE_URL}/api/users`, options);
+      const res = await fetch('/api/users', options);
       const result = await res.json();
 
       if (!res.ok) {

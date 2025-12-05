@@ -60,23 +60,6 @@ const UserSchema = new mongoose.Schema({
     default: [],
   },
 
-  // Security
-  loginAttempts: {
-    type: Number,
-    default: 0,
-  },
-  lockoutUntil: Date,
-
-  // Account status
-  status: {
-    type: String,
-    enum: ['active', 'suspended', 'deleted'],
-    default: 'active',
-  },
-  suspendedAt: Date,
-  suspendedReason: String,
-  deletedAt: Date,
-
   createdAt: {
     type: Date,
     default: Date.now,
@@ -88,9 +71,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Update timestamp on save
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', async function () {
   this.updatedAt = Date.now();
-  next();
 });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);

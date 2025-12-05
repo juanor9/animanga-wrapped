@@ -23,7 +23,7 @@ const UserSlice = createSlice({
       state.refreshToken = null;
     },
     newUser: (state, action) => {
-      state.user = action.payload;
+      state.user = { ...state.user, ...action.payload };
     },
   },
   extraReducers: (builder) => {

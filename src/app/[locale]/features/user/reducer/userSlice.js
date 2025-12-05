@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createUser, login } from '../services/users';
+import { createUser, sendMagicLink, verifyMagicLink } from '../services/users';
 
 const initialState = {
   userData: null,
   userToken: null,
-  loginAttempts: 0,
-  isLocked: false,
-  lockoutEndTime: null,
+  magicLinkSent: false,
+  magicLinkEmail: null,
   error: null,
-  infoMessage: null, // Added for non-critical messages
+  infoMessage: null,
   loading: false,
 };
 
@@ -48,40 +47,39 @@ const usersSlice = createSlice({
           'An unexpected error occurred during registration.';
         state.infoMessage = null;
       })
-      .addCase(login.pending, (state) => {
+      .addCase(sendMagicLink.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.infoMessage = null; // Clear info messages on new login attempt
+        state.magicLinkSent = false;
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(sendMagicLink.fulfilled, (state, action) => {
         state.loading = false;
-        state.userData = action.payload.profile;
-        state.userToken = action.payload.userToken;
-        state.loginAttempts = 0;
-        state.isLocked = false;
-        state.lockoutEndTime = null;
+        state.magicLinkSent = true;
+        state.magicLinkEmail = action.payload.email;
+        state.error = null;
+        state.infoMessage = action.payload.message;
+      })
+      .addCase(sendMagicLink.rejected, (state, action) => {
+        state.loading = false;
+        state.magicLinkSent = false;
+        state.error = action.payload?.error || action.error.message || 'Failed to send magic link';
+      })
+      .addCase(verifyMagicLink.pending, (state) => {
+        state.loading = true;
         state.error = null;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(verifyMagicLink.fulfilled, (state, action) => {
         state.loading = false;
-        // Generic error handling as per security requirements
-        state.error = action.payload?.message || action.error.message || 'Login failed';
-        state.loginAttempts += 1;
-
-        if (state.loginAttempts >= 5) {
-          state.isLocked = true;
-          const lockoutDuration = 2 * 60 * 60 * 1000; // 2 hours
-          state.lockoutEndTime = new Date().getTime() + lockoutDuration;
-        }
-
-        // The server might also send a specific "Account locked" message
-        if (action.payload.message === 'Account locked. Try again later.') {
-          state.isLocked = true;
-          if (!state.lockoutEndTime || new Date().getTime() > state.lockoutEndTime) {
-            const lockoutDuration = 2 * 60 * 60 * 1000; // 2 hours
-            state.lockoutEndTime = new Date().getTime() + lockoutDuration;
-          }
-        }
+        state.userData = action.payload.user;
+        state.userToken = action.payload.accessToken;
+        state.error = null;
+        state.magicLinkSent = false;
+        state.magicLinkEmail = null;
+      })
+      .addCase(verifyMagicLink.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          action.payload?.error || action.error.message || 'Failed to verify magic link';
       });
   },
 });

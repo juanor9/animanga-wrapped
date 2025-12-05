@@ -33,6 +33,32 @@
     transition: transform 0.3s ease-out;
   }
 
+  &__loading {
+    text-align: center;
+    padding: 3em 2em;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1em;
+
+    p {
+      font-size: 1.2em;
+      margin: 0;
+    }
+  }
+
+  &__error {
+    padding: 1em;
+    background-color: rgba(255, 59, 48, 0.1);
+    border: 2px solid rgba(255, 59, 48, 0.5);
+    border-radius: 1em;
+    color: #ff3b30;
+    margin-bottom: 1em;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+
   &__button {
     border: 0;
     border-radius: 1em;
