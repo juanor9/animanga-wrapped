@@ -26,14 +26,10 @@ const S03_TotalMinutes = ({ totalMinutes }) => {
   useCounterAnimation(numberRef, totalMinutes, 1.5, 0);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      className="chapter1-slide"
-      shareRef={shareRef}
-    >
+    <SlideBase background="#2c2c2c" className="chapter1-slide with-arcs" shareRef={shareRef}>
       <div className="slide-content">
         <h2 ref={titleRef} className="slide-label">
-          Este año viste
+          Minutos escuchados
         </h2>
 
         <div ref={numberRef} className="slide-big-number">

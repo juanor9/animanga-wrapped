@@ -3,80 +3,138 @@
 
 .chapter4-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Diagonal stripes decoration for light backgrounds
+  &.with-stripes {
+    @include diagonal-stripes;
+  }
+
+  // Purple arcs for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
 }
 
 .slide-question {
-  font-size: $wrapped-text-lg;
-  font-weight: $wrapped-font-medium;
-  margin: $wrapped-space-lg 0;
-  opacity: 0.9;
+  @include type-heading-m;
 
-  @include text-with-shadow('md');
+  margin: $wrapped-space-xl 0;
+  opacity: 0.85;
 }
 
 .anime-cover {
   @include cover-image(250px, 350px);
 
-  margin: $wrapped-space-md 0;
+  margin: $wrapped-space-l 0;
+
+  @media (width <= 768px) {
+    @include cover-image(200px, 280px);
+  }
 }
 
 .anime-title {
-  font-size: $wrapped-text-xl;
-  font-weight: $wrapped-font-bold;
-  margin: $wrapped-space-md 0;
-  max-width: 80%;
+  @include type-hero;
 
-  @include text-with-shadow('lg');
+  margin: $wrapped-space-l 0;
+  max-width: 85%;
+  text-align: center;
+
+  @media (width <= 768px) {
+    font-size: $wrapped-text-xl;
+  }
 }
 
 .anime-stats {
   display: flex;
-  gap: $wrapped-space-xl;
-  margin: $wrapped-space-lg 0;
+  gap: $wrapped-space-2xl;
+  margin: $wrapped-space-xl 0;
+
+  @media (width <= 768px) {
+    gap: $wrapped-space-xl;
+  }
 }
 
 .anime-stats__item {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: $wrapped-space-xs;
+  gap: $wrapped-space-s;
 }
 
 .anime-stats__value {
-  font-size: $wrapped-text-2xl;
-  font-weight: $wrapped-font-black;
+  @include type-hero;
 
-  @include text-with-shadow('md');
+  @media (width <= 768px) {
+    font-size: $wrapped-text-2xl;
+  }
 }
 
 .anime-stats__label {
-  font-size: $wrapped-text-sm;
-  opacity: 0.8;
+  @include type-body-m;
+
+  opacity: 0.75;
 }
 
+// Spotify Wrapped style ranked list
 .series-list {
   display: flex;
   flex-direction: column;
-  gap: $wrapped-space-md;
-  margin: $wrapped-space-lg 0;
-  max-width: 600px;
+  gap: $wrapped-space-l;
+  margin: $wrapped-space-2xl 0;
+  max-width: 700px;
+  padding: 0 $wrapped-space-l;
+  position: relative;
   width: 100%;
+  z-index: 1;
+
+  @media (width <= 768px) {
+    gap: $wrapped-space-md;
+    max-width: 90%;
+    padding: 0;
+  }
 }
 
 .series-list__item {
-  align-items: center;
-  backdrop-filter: blur(10px);
-  background: rgb(255 255 255 / 10%);
-  border-radius: $wrapped-radius-md;
-  display: flex;
-  gap: $wrapped-space-md;
-  padding: $wrapped-space-md;
+  @include ranked-list-item;
+
+  background: transparent;
+  position: relative;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateX(8px);
+  }
+
+  @media (width <= 768px) {
+    gap: $wrapped-space-m;
+  }
+}
+
+.series-list__rank {
+  flex-shrink: 0;
+  font-size: $aw-type-heading-l-size;
+  font-weight: $aw-font-black;
+  width: 50px;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-heading-m-size;
+    width: 40px;
+  }
 }
 
 .series-list__cover {
-  @include cover-image(80px, 112px);
-
+  border-radius: $aw-radius-s;
   flex-shrink: 0;
+  height: 120px;
+  object-fit: cover;
+  width: 85px;
+
+  @media (width <= 768px) {
+    height: 100px;
+    width: 70px;
+  }
 }
 
 .series-list__info {
@@ -85,14 +143,23 @@
 }
 
 .series-list__title {
-  font-size: $wrapped-text-base;
-  font-weight: $wrapped-font-bold;
+  @include type-heading-s;
+
   line-height: 1.3;
   margin: 0 0 $wrapped-space-xs;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-body-l-size;
+  }
 }
 
 .series-list__stats {
-  font-size: $wrapped-text-sm;
+  @include type-body-m;
+
   margin: 0;
-  opacity: 0.8;
+  opacity: 0.75;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-body-s-size;
+  }
 }

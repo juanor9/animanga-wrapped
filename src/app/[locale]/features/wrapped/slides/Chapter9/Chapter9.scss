@@ -3,22 +3,44 @@
 
 .chapter9-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Purple arcs decoration for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
+
+  // Geometric lines for light backgrounds
+  &.with-lines {
+    @include geometric-lines;
+  }
 }
 
 .slide-year-large {
-  @include big-number;
+  @include type-mega;
 
-  font-size: 200px;
-  margin-top: $wrapped-space-2xl;
-  opacity: 0.2;
+  font-size: 240px;
+  margin-top: $wrapped-space-3xl;
+  opacity: 0.15;
+
+  @media (width <= 768px) {
+    font-size: 160px;
+  }
+
+  @media (width <= 480px) {
+    font-size: 120px;
+  }
 }
 
 .summary-title {
-  font-size: $wrapped-text-xl;
-  font-weight: $wrapped-font-black;
-  margin: 0 0 $wrapped-space-xl;
+  @include type-hero;
 
-  @include text-with-shadow('lg');
+  margin: 0 0 $wrapped-space-2xl;
+
+  @media (width <= 768px) {
+    font-size: $wrapped-text-xl;
+  }
 }
 
 .summary-card {

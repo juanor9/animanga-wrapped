@@ -3,30 +3,50 @@
 
 .chapter8-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Purple arcs decoration for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
+
+  // Club pattern background
+  &.with-club-pattern {
+    @include club-pattern-bg;
+  }
 }
 
 .club-badge {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: $wrapped-space-md;
-  margin: $wrapped-space-lg 0;
-  padding: $wrapped-space-xl;
+  gap: $wrapped-space-l;
+  margin: $wrapped-space-2xl 0;
+  padding: $wrapped-space-2xl;
+  position: relative;
+  z-index: 1;
 }
 
 .club-badge__icon {
-  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 30%));
-  font-size: 80px;
+  filter: drop-shadow(0 8px 16px rgb(0 0 0 / 40%));
+  font-size: 100px;
   line-height: 1;
+
+  @media (width <= 768px) {
+    font-size: 80px;
+  }
 }
 
 .club-badge__name {
-  font-size: $wrapped-text-2xl;
-  font-weight: $wrapped-font-black;
+  @include type-hero;
+
   margin: 0;
   text-align: center;
 
-  @include text-with-shadow('lg');
+  @media (width <= 768px) {
+    font-size: $wrapped-text-2xl;
+  }
 }
 
 .club-role {

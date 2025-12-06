@@ -542,6 +542,279 @@
   width: $width;
 }
 
+// Spotify Wrapped style circular image frame
+@mixin circular-image-frame($size: 300px, $border-width: 4px, $border-color: $aw-accent-purple-arc) {
+  align-items: center;
+  display: flex;
+  height: $size;
+  justify-content: center;
+  position: relative;
+  width: $size;
+
+  img {
+    border: $border-width solid $border-color;
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+// ============================================================================
+// 14. SPOTIFY WRAPPED STYLE - GEOMETRIC DECORATIONS
+// ============================================================================
+
+// Purple circular arcs (top decoration)
+@mixin purple-arcs-decoration {
+  &::before {
+    border: 3px solid $aw-accent-purple-arc;
+    border-radius: 50%;
+    content: '';
+    height: 600px;
+    left: 50%;
+    opacity: 0.6;
+    pointer-events: none;
+    position: absolute;
+    top: -300px;
+    transform: translateX(-50%);
+    width: 600px;
+  }
+
+  &::after {
+    border: 3px solid $aw-accent-purple-arc;
+    border-radius: 50%;
+    content: '';
+    height: 500px;
+    left: 50%;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    top: -250px;
+    transform: translateX(-50%);
+    width: 500px;
+  }
+}
+
+// Diagonal stripes decoration
+@mixin diagonal-stripes($color1: $aw-accent-yellow-line, $color2: $aw-accent-white-line) {
+  &::before {
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0.15;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  // Yellow stripe
+  .stripe-yellow {
+    background: $color1;
+    height: 200%;
+    left: -10%;
+    opacity: 0.2;
+    position: absolute;
+    top: -50%;
+    transform: rotate(-45deg);
+    width: 80px;
+  }
+
+  // White stripes
+  .stripe-white {
+    background: $color2;
+    height: 200%;
+    opacity: 0.15;
+    position: absolute;
+    top: -50%;
+    transform: rotate(-45deg);
+    width: 60px;
+
+    &:nth-child(2) {
+      left: 5%;
+    }
+
+    &:nth-child(3) {
+      left: 15%;
+    }
+
+    &:nth-child(4) {
+      left: 25%;
+    }
+  }
+}
+
+// Decorative black circles (for light backgrounds)
+@mixin decorative-circles {
+  .circle-decoration {
+    background: $aw-accent-black-circle;
+    border-radius: 50%;
+    position: absolute;
+
+    &.circle-sm {
+      height: 60px;
+      width: 60px;
+    }
+
+    &.circle-md {
+      height: 100px;
+      width: 100px;
+    }
+
+    &.circle-lg {
+      height: 150px;
+      width: 150px;
+    }
+
+    &.top-left {
+      left: -30px;
+      top: -30px;
+    }
+
+    &.top-right {
+      right: -30px;
+      top: -30px;
+    }
+
+    &.bottom-left {
+      bottom: -30px;
+      left: -30px;
+    }
+
+    &.bottom-right {
+      bottom: -30px;
+      right: -30px;
+    }
+  }
+}
+
+// Abstract geometric lines
+@mixin geometric-lines {
+  .geometric-line {
+    background: currentcolor;
+    height: 2px;
+    opacity: 0.2;
+    position: absolute;
+    transform-origin: center;
+
+    &.line-1 {
+      left: 10%;
+      top: 20%;
+      transform: rotate(-45deg);
+      width: 100px;
+    }
+
+    &.line-2 {
+      right: 10%;
+      top: 60%;
+      transform: rotate(30deg);
+      width: 150px;
+    }
+
+    &.line-3 {
+      bottom: 15%;
+      left: 5%;
+      transform: rotate(-20deg);
+      width: 80px;
+    }
+  }
+}
+
+// ============================================================================
+// 15. SPOTIFY WRAPPED STYLE - TYPOGRAPHY
+// ============================================================================
+
+// Mega text (for main artist names, numbers)
+@mixin type-mega {
+  font-family: $aw-font-display;
+  font-size: $aw-type-mega-size;
+  font-weight: $aw-font-black;
+  letter-spacing: -0.03em;
+  line-height: $aw-type-mega-line;
+  text-transform: uppercase;
+
+  @media (width <= 768px) {
+    font-size: 80px;
+    line-height: 75px;
+  }
+
+  @media (width <= 480px) {
+    font-size: 60px;
+    line-height: 55px;
+  }
+}
+
+// Hero text (for secondary emphasis)
+@mixin type-hero {
+  font-family: $aw-font-display;
+  font-size: $aw-type-hero-size;
+  font-weight: $aw-font-black;
+  letter-spacing: -0.02em;
+  line-height: $aw-type-hero-line;
+
+  @media (width <= 768px) {
+    font-size: 60px;
+    line-height: 60px;
+  }
+
+  @media (width <= 480px) {
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+
+// ============================================================================
+// 16. SPOTIFY WRAPPED STYLE - LAYOUTS
+// ============================================================================
+
+// Bordered content box (like "Mi artista principal")
+@mixin spotify-content-box {
+  border: 3px solid currentcolor;
+  border-radius: $aw-radius-m;
+  padding: $aw-space-xl $aw-space-2xl;
+  text-align: center;
+}
+
+// Ranked list item (for top artists, songs, etc.)
+@mixin ranked-list-item {
+  align-items: center;
+  display: flex;
+  gap: $aw-space-l;
+  margin-bottom: $aw-space-l;
+
+  .rank-number {
+    flex-shrink: 0;
+    font-size: $aw-type-heading-l-size;
+    font-weight: $aw-font-black;
+    width: 60px;
+  }
+
+  .item-image {
+    border-radius: $aw-radius-s;
+    flex-shrink: 0;
+    height: 100px;
+    object-fit: cover;
+    width: 100px;
+  }
+
+  .item-info {
+    flex: 1;
+    text-align: left;
+
+    .item-title {
+      font-size: $aw-type-heading-s-size;
+      font-weight: $aw-font-bold;
+      margin-bottom: $aw-space-xs;
+    }
+
+    .item-subtitle {
+      font-size: $aw-type-body-m-size;
+      opacity: 0.8;
+    }
+  }
+}
+
 // ============================================================================
 // RETROCOMPATIBILIDAD - Mixins para código existente
 // ============================================================================

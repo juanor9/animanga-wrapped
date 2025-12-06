@@ -18,14 +18,10 @@ const S12_TopSeriesList = ({ topSeries = [] }) => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-      className="chapter4-slide"
-      shareRef={shareRef}
-    >
+    <SlideBase background="#e8e2d5" className="chapter4-slide with-stripes" shareRef={shareRef}>
       <div className="slide-content">
-        <h2 ref={titleRef} className="slide-label">
-          Estas fueron tus series principales
+        <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
+          Mis series principales
         </h2>
 
         <div className="series-list">
@@ -36,7 +32,9 @@ const S12_TopSeriesList = ({ topSeries = [] }) => {
                 listRef.current[index] = el;
               }}
               className="series-list__item"
+              style={{ color: '#111' }}
             >
+              <div className="series-list__rank">{index + 1}</div>
               {series.coverImage && (
                 <img src={series.coverImage} alt={series.title} className="series-list__cover" />
               )}

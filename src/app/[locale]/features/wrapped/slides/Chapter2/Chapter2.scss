@@ -3,45 +3,71 @@
 
 .chapter2-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Purple arcs decoration for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
+
+  // Geometric lines for light backgrounds
+  &.with-lines {
+    @include geometric-lines;
+  }
 }
 
 .genre-list {
   list-style: none;
-  margin: $wrapped-space-lg 0;
-  max-width: 600px;
+  margin: $wrapped-space-xl 0;
+  max-width: 700px;
   padding: 0;
+  position: relative;
   width: 100%;
+  z-index: 1;
 }
 
 .genre-list__item {
-  align-items: center;
-  backdrop-filter: blur(10px);
-  background: rgb(255 255 255 / 10%);
-  border-radius: $wrapped-radius-md;
-  display: flex;
-  font-size: $wrapped-text-lg;
-  font-weight: $wrapped-font-semibold;
-  gap: $wrapped-space-md;
-  margin-bottom: $wrapped-space-sm;
-  padding: $wrapped-space-md;
+  @include ranked-list-item;
 
-  @include text-with-shadow('sm');
+  background: transparent;
+  border-bottom: 2px solid currentcolor;
+  margin-bottom: $wrapped-space-m;
+  opacity: 0.9;
+  padding-bottom: $wrapped-space-m;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: translateX(8px);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .genre-list__number {
-  align-items: center;
-  background: rgb(255 255 255 / 20%);
-  border-radius: $wrapped-radius-full;
-  display: flex;
+  @include type-heading-l;
+
   flex-shrink: 0;
-  font-weight: $wrapped-font-bold;
-  height: 40px;
-  justify-content: center;
-  width: 40px;
+  font-weight: $wrapped-font-black;
+  width: 50px;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-heading-m-size;
+    width: 40px;
+  }
 }
 
 .genre-list__name {
+  @include type-heading-s;
+
   flex: 1;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-body-l-size;
+  }
 }
 
 .genres-card {

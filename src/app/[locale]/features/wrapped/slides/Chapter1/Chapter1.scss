@@ -3,37 +3,48 @@
 
 .chapter1-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Purple arcs decoration for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
+
+  // Geometric lines for light backgrounds
+  &.with-lines {
+    @include geometric-lines;
+  }
 }
 
 .slide-content {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: $wrapped-space-lg;
+  gap: $wrapped-space-xl;
   justify-content: center;
-  padding: $wrapped-space-xl;
+  padding: $wrapped-space-3xl $wrapped-space-xl;
+  position: relative;
+  z-index: 1;
 
   // Responsive padding for mobile
   @media (width <= 768px) {
-    gap: $wrapped-space-md;
-    padding: $wrapped-space-md;
+    gap: $wrapped-space-lg;
+    padding: $wrapped-space-2xl $wrapped-space-md;
   }
 }
 
 .slide-title {
-  font-size: $wrapped-text-xl;
-  font-weight: $wrapped-font-bold;
-  line-height: 1.2;
+  @include type-heading-l;
+
   margin: 0;
 
-  @include text-with-shadow('lg');
-
   @media (width <= 768px) {
-    font-size: $wrapped-text-lg; // 32px instead of 48px
+    font-size: $wrapped-text-lg;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-base; // 24px on very small screens
+    font-size: $wrapped-text-base;
   }
 }
 
@@ -43,127 +54,133 @@
 }
 
 .slide-message {
-  font-size: $wrapped-text-lg;
-  font-weight: $wrapped-font-medium;
+  @include type-heading-m;
+
   margin: 0;
   opacity: 0.9;
 
-  @include text-with-shadow('md');
-
   @media (width <= 768px) {
-    font-size: $wrapped-text-base; // 24px instead of 32px
+    font-size: $wrapped-text-base;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-sm; // 18px on very small screens
+    font-size: $wrapped-text-sm;
   }
 }
 
 .slide-year {
-  @include big-number;
+  @include type-mega;
 
-  font-size: $wrapped-text-3xl;
   margin-top: $wrapped-space-xl;
 
   @media (width <= 768px) {
-    font-size: min(15vw, 64px);
+    font-size: min(15vw, 80px);
     margin-top: $wrapped-space-md;
   }
 }
 
 .slide-statement {
-  font-size: $wrapped-text-2xl;
-  font-weight: $wrapped-font-black;
-  line-height: 1.3;
-  margin: 0;
+  @include type-hero;
 
-  @include text-with-shadow('lg');
+  line-height: 1.2;
+  margin: 0;
+  max-width: 80%;
+  text-align: center;
 
   @media (width <= 768px) {
-    font-size: $wrapped-text-xl; // 48px instead of 64px
+    font-size: $wrapped-text-xl;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-lg; // 32px on very small screens
+    font-size: $wrapped-text-lg;
+    max-width: 90%;
   }
 }
 
 .slide-statement--secondary {
-  font-size: $wrapped-text-xl;
-  font-weight: $wrapped-font-semibold;
+  @include type-heading-l;
+
   opacity: 0.95;
 
   @media (width <= 768px) {
-    font-size: $wrapped-text-lg; // 32px instead of 48px
+    font-size: $wrapped-text-lg;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-base; // 24px on very small screens
+    font-size: $wrapped-text-base;
   }
 }
 
 .slide-label {
-  font-size: $wrapped-text-lg;
-  font-weight: $wrapped-font-medium;
-  margin: 0;
-  opacity: 0.9;
+  @include type-heading-m;
 
-  @include text-with-shadow('md');
+  letter-spacing: 0.02em;
+  margin: 0;
+  opacity: 0.85;
+  text-transform: none;
 
   @media (width <= 768px) {
-    font-size: $wrapped-text-base; // 24px instead of 32px
+    font-size: $wrapped-text-base;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-sm; // 18px on very small screens
+    font-size: $wrapped-text-sm;
   }
 }
 
 .slide-big-number {
-  @include big-number;
+  @include type-mega;
 
-  margin: $wrapped-space-md 0;
+  margin: $wrapped-space-l 0;
 
   @media (width <= 768px) {
-    margin: $wrapped-space-sm 0;
+    margin: $wrapped-space-m 0;
   }
 }
 
 .slide-description {
-  font-size: $wrapped-text-xl;
-  font-weight: $wrapped-font-semibold;
+  @include type-heading-l;
+
   margin: 0;
 
-  @include text-with-shadow('md');
-
   @media (width <= 768px) {
-    font-size: $wrapped-text-lg; // 32px instead of 48px
+    font-size: $wrapped-text-lg;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-base; // 24px on very small screens
+    font-size: $wrapped-text-base;
   }
 }
 
 .slide-equivalent {
-  font-size: $wrapped-text-base;
-  font-weight: $wrapped-font-normal;
-  margin: $wrapped-space-lg 0;
-  opacity: 0.9;
+  @include type-body-l;
 
-  @include text-with-shadow('sm');
+  margin: $wrapped-space-xl 0;
+  opacity: 0.85;
 
   @media (width <= 768px) {
-    font-size: $wrapped-text-sm; // 18px instead of 24px
-    margin: $wrapped-space-md 0;
+    font-size: $wrapped-text-sm;
+    margin: $wrapped-space-lg 0;
   }
 
   @media (width <= 480px) {
-    font-size: $wrapped-text-xs; // 14px on very small screens
+    font-size: $wrapped-text-xs;
   }
 
   strong {
-    color: $wrapped-accent-success;
     font-weight: $wrapped-font-bold;
+  }
+}
+
+// Spotify-style content box
+.spotify-box {
+  @include spotify-content-box;
+
+  margin: $wrapped-space-2xl 0;
+  max-width: 90%;
+
+  @media (width <= 768px) {
+    margin: $wrapped-space-xl 0;
+    padding: $wrapped-space-l;
   }
 }

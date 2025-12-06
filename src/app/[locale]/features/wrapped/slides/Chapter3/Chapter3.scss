@@ -3,4 +3,21 @@
 
 .chapter3-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Purple arcs decoration for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
+
+  // Geometric lines for light backgrounds
+  &.with-lines {
+    @include geometric-lines;
+  }
+
+  // Diagonal stripes
+  &.with-stripes {
+    @include diagonal-stripes;
+  }
 }
