@@ -18,20 +18,21 @@ const S05_GenresCount = ({ genresCount }) => {
   useCounterAnimation(numberRef, genresCount, 1.2, 0);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-      className="chapter2-slide"
-    >
+    <SlideBase background="#e8e2d5" className="chapter2-slide with-lines">
       <div className="slide-content">
-        <h2 ref={titleRef} className="slide-label">
+        <div className="geometric-line line-1"></div>
+        <div className="geometric-line line-2"></div>
+        <div className="geometric-line line-3"></div>
+
+        <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Viste anime de
         </h2>
 
-        <div ref={numberRef} className="slide-big-number">
+        <div ref={numberRef} className="slide-big-number" style={{ color: '#111' }}>
           {genresCount}
         </div>
 
-        <p ref={descRef} className="slide-description">
+        <p ref={descRef} className="slide-description" style={{ color: '#111' }}>
           géneros diferentes
         </p>
       </div>

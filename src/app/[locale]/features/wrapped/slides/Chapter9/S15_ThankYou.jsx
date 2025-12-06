@@ -14,10 +14,7 @@ const S15_ThankYou = ({ year = 2025 }) => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)"
-      className="chapter9-slide"
-    >
+    <SlideBase background="#2c2c2c" className="chapter9-slide with-arcs">
       <div className="slide-content">
         <h1 ref={textRef} className="slide-statement">
           Gracias por compartir tu año en anime con nosotros

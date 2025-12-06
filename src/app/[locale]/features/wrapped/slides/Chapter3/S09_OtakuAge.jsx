@@ -22,21 +22,22 @@ const S09_OtakuAge = ({ weightedYear }) => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-      className="chapter3-slide"
-      shareRef={shareRef}
-    >
+    <SlideBase background="#e8e2d5" className="chapter3-slide with-stripes" shareRef={shareRef}>
       <div className="slide-content">
-        <h2 ref={titleRef} className="slide-label">
+        <div className="stripe-yellow"></div>
+        <div className="stripe-white"></div>
+        <div className="stripe-white"></div>
+        <div className="stripe-white"></div>
+
+        <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Tu edad otaku es
         </h2>
 
-        <div ref={yearRef} className="slide-big-number">
+        <div ref={yearRef} className="slide-big-number" style={{ color: '#111' }}>
           {decade}s
         </div>
 
-        <p ref={descRef} className="slide-description">
+        <p ref={descRef} className="slide-description" style={{ color: '#111' }}>
           Porque la mayoría del anime que viste se estrenó en esa década
         </p>
 

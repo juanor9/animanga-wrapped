@@ -27,13 +27,13 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
   const hours = Math.floor(topSeries.minutesWatched / 60);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-      className="chapter4-slide"
-      shareRef={shareRef}
-    >
+    <SlideBase background="#e8e2d5" className="chapter4-slide with-lines" shareRef={shareRef}>
       <div className="slide-content">
-        <h2 ref={titleRef} className="slide-label">
+        <div className="geometric-line line-1"></div>
+        <div className="geometric-line line-2"></div>
+        <div className="geometric-line line-3"></div>
+
+        <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Tu serie principal fue
         </h2>
 
@@ -46,11 +46,11 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
           />
         )}
 
-        <h3 ref={seriesTitleRef} className="anime-title">
+        <h3 ref={seriesTitleRef} className="anime-title" style={{ color: '#111' }}>
           {topSeries.title}
         </h3>
 
-        <div ref={statsRef} className="anime-stats">
+        <div ref={statsRef} className="anime-stats" style={{ color: '#111' }}>
           <div className="anime-stats__item">
             <span className="anime-stats__value">{hours}h</span>
             <span className="anime-stats__label">vistas</span>

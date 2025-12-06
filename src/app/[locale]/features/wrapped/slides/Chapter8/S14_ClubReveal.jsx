@@ -30,34 +30,36 @@ const S14_ClubReveal = ({ club }) => {
 
   return (
     <SlideBase
-      background="linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"
-      className="chapter8-slide"
+      background="#e8e2d5"
+      className="chapter8-slide with-club-pattern"
       shareRef={shareRef}
     >
       <div className="slide-content">
-        <h2 ref={titleRef} className="slide-label">
+        <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Tu club
         </h2>
 
         <div ref={nameRef} className="club-badge">
           <div className="club-badge__icon">🎌</div>
-          <h3 className="club-badge__name">{club.name}</h3>
+          <h3 className="club-badge__name" style={{ color: '#111' }}>
+            {club.name}
+          </h3>
         </div>
 
-        <p ref={descRef} className="slide-description">
+        <p ref={descRef} className="slide-description" style={{ color: '#111' }}>
           {club.description}
         </p>
 
-        <div ref={roleRef} className="club-role">
+        <div ref={roleRef} className="club-role" style={{ color: '#111' }}>
           <span className="club-role__label">Tu rol:</span>
           <span className="club-role__value">{club.role}</span>
         </div>
 
-        <p ref={roleDescRef} className="club-role-desc">
+        <p ref={roleDescRef} className="club-role-desc" style={{ color: '#111' }}>
           {club.roleDescription}
         </p>
 
-        <p ref={percentageRef} className="club-percentage">
+        <p ref={percentageRef} className="club-percentage" style={{ color: '#111' }}>
           Tienes buena compañía: <strong>{club.percentage}%</strong> de los usuarios comparten tu
           club
         </p>

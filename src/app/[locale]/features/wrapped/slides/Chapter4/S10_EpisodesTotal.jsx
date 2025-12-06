@@ -20,10 +20,7 @@ const S10_EpisodesTotal = ({ totalEpisodes }) => {
   useCounterAnimation(numberRef, totalEpisodes, 1.5, 0);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-      className="chapter4-slide"
-    >
+    <SlideBase background="#2c2c2c" className="chapter4-slide with-arcs">
       <div className="slide-content">
         <h2 ref={titleRef} className="slide-label">
           Viste

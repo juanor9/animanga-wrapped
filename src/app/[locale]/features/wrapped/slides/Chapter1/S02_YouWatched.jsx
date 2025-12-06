@@ -14,16 +14,21 @@ const S02_YouWatched = () => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      className="chapter1-slide"
-    >
+    <SlideBase background="#e8e2d5" className="chapter1-slide with-lines">
       <div className="slide-content">
-        <h1 ref={line1Ref} className="slide-statement">
+        <div className="geometric-line line-1"></div>
+        <div className="geometric-line line-2"></div>
+        <div className="geometric-line line-3"></div>
+
+        <h1 ref={line1Ref} className="slide-statement" style={{ color: '#111' }}>
           Tú viste anime.
         </h1>
 
-        <h2 ref={line2Ref} className="slide-statement slide-statement--secondary">
+        <h2
+          ref={line2Ref}
+          className="slide-statement slide-statement--secondary"
+          style={{ color: '#111' }}
+        >
           Nosotros llevamos la cuenta.
         </h2>
       </div>

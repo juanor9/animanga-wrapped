@@ -16,23 +16,25 @@ const S07_GenresCard = ({ topGenres = [] }) => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-      className="chapter2-slide"
-      shareRef={shareRef}
-    >
+    <SlideBase background="#e8e2d5" className="chapter2-slide with-lines" shareRef={shareRef}>
       <div className="slide-content">
+        <div className="geometric-line line-1"></div>
+        <div className="geometric-line line-2"></div>
+        <div className="geometric-line line-3"></div>
+
         <div ref={cardRef} className="genres-card">
-          <h3 className="genres-card__title">Mis Géneros 2025</h3>
+          <h3 className="genres-card__title" style={{ color: '#111' }}>
+            Mis Géneros 2025
+          </h3>
           <ul className="genres-card__list">
             {topGenres.slice(0, 5).map((genre, index) => (
-              <li key={genre.genre} className="genres-card__item">
+              <li key={genre.genre} className="genres-card__item" style={{ color: '#111' }}>
                 <span className="genres-card__number">{index + 1}.</span>
                 <span className="genres-card__name">{genre.genre}</span>
               </li>
             ))}
           </ul>
-          <div className="genres-card__footer">
+          <div className="genres-card__footer" style={{ color: '#111' }}>
             <span>animanga-wrapped.vercel.app</span>
           </div>
         </div>

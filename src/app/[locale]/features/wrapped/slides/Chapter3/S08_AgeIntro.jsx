@@ -14,10 +14,7 @@ const S08_AgeIntro = () => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-      className="chapter3-slide"
-    >
+    <SlideBase background="#2c2c2c" className="chapter3-slide with-arcs">
       <div className="slide-content">
         <h1 ref={line1Ref} className="slide-statement">
           La edad otaku es solo un número.

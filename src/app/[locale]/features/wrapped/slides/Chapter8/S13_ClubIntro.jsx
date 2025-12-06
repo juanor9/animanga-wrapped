@@ -12,10 +12,7 @@ const S13_ClubIntro = () => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"
-      className="chapter8-slide"
-    >
+    <SlideBase background="#2c2c2c" className="chapter8-slide with-arcs">
       <div className="slide-content">
         <h1 ref={textRef} className="slide-statement">
           La forma en que viste anime te hizo parte de algo más grande.

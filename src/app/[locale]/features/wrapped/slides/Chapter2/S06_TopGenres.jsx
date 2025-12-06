@@ -18,14 +18,10 @@ const S06_TopGenres = ({ topGenres = [] }) => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-      className="chapter2-slide"
-      shareRef={shareRef}
-    >
+    <SlideBase background="#2c2c2c" className="chapter2-slide with-arcs" shareRef={shareRef}>
       <div className="slide-content">
         <h2 ref={titleRef} className="slide-label">
-          Tus géneros principales fueron:
+          Mis géneros principales
         </h2>
 
         <ol className="genre-list">

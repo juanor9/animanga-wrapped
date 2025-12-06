@@ -14,10 +14,7 @@ const S04_GenresIntro = () => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-      className="chapter2-slide"
-    >
+    <SlideBase background="#2c2c2c" className="chapter2-slide with-arcs">
       <div className="slide-content">
         <h1 ref={line1Ref} className="slide-statement">
           Tus gustos en anime no se pueden definir.
