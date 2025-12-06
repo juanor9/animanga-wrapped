@@ -54,12 +54,12 @@
   }
 
   &__spinner {
-    height: 20px !important;
-    width: 20px !important;
-    border-width: 2px !important;
-    border-color: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgb(0 0 0 / 10%) !important;
     border-left-color: #000 !important;
-    margin: 0 auto;
+    border-width: 2px !important;
     display: block;
+    height: 20px !important;
+    margin: 0 auto;
+    width: 20px !important;
   }
 }

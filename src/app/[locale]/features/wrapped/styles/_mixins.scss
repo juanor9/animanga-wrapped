@@ -2,40 +2,41 @@
 
 // Story container mixin
 @mixin story-container {
+  aspect-ratio: $wrapped-story-ratio;
+  background: $wrapped-bg-darker;
+  margin: 0 auto;
+  max-width: $wrapped-story-width;
+  overflow: hidden;
   position: relative;
   width: 100%;
-  max-width: $wrapped-story-width;
-  aspect-ratio: $wrapped-story-ratio;
-  margin: 0 auto;
-  overflow: hidden;
-  background: $wrapped-bg-darker;
 }
 
 // Safe area content
 @mixin safe-area-content {
-  padding-top: $wrapped-safe-zone-top;
   padding-bottom: $wrapped-safe-zone-bottom;
   padding-left: $wrapped-safe-zone-horizontal;
   padding-right: $wrapped-safe-zone-horizontal;
+  padding-top: $wrapped-safe-zone-top;
 }
 
 // Centered content
 @mixin center-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
+  justify-content: center;
   text-align: center;
 }
 
 // Full story slide
 @mixin full-slide {
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+
   @include safe-area-content;
 }
 
@@ -58,8 +59,8 @@
 
 // Animated background
 @mixin animated-bg {
-  background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
 }
 
 @keyframes gradient-shift {
@@ -78,29 +79,39 @@
 
 // Number display
 @mixin big-number {
+  color: $wrapped-text-primary;
   font-family: $wrapped-font-display;
-  font-size: $wrapped-text-4xl;
+  font-size: $wrapped-text-4xl; // 128px - too large for mobile
   font-weight: $wrapped-font-black;
   line-height: 1;
-  color: $wrapped-text-primary;
+
   @include text-with-shadow('lg');
+
+  // Responsive sizes for smaller screens
+  @media (width <= 768px) {
+    font-size: min(20vw, 80px); // Scale down, max 80px
+  }
+
+  @media (width <= 480px) {
+    font-size: min(18vw, 64px); // Even smaller on very small screens
+  }
 }
 
 // Button styles
 @mixin wrapped-button {
-  padding: $wrapped-space-sm $wrapped-space-lg;
-  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  background: rgb(255 255 255 / 10%);
   border: 2px solid $wrapped-text-primary;
   border-radius: $wrapped-radius-full;
   color: $wrapped-text-primary;
+  cursor: pointer;
   font-size: $wrapped-text-base;
   font-weight: $wrapped-font-semibold;
-  cursor: pointer;
+  padding: $wrapped-space-sm $wrapped-space-lg;
   transition: all $wrapped-duration-normal $wrapped-ease-out;
-  backdrop-filter: blur(10px);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(255 255 255 / 20%);
     transform: scale(1.05);
   }
 
@@ -111,18 +122,18 @@
 
 // Glass card effect
 @mixin glass-card {
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 20%);
   border-radius: $wrapped-radius-lg;
   box-shadow: $wrapped-shadow-xl;
 }
 
 // Cover image
 @mixin cover-image($width: 200px, $height: 280px) {
-  width: $width;
-  height: $height;
-  object-fit: cover;
   border-radius: $wrapped-radius-md;
   box-shadow: $wrapped-shadow-lg;
+  height: $height;
+  object-fit: cover;
+  width: $width;
 }

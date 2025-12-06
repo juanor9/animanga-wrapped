@@ -7,6 +7,7 @@
 
 .slide-year-large {
   @include big-number;
+
   font-size: 200px;
   margin-top: $wrapped-space-2xl;
   opacity: 0.2;
@@ -16,25 +17,27 @@
   font-size: $wrapped-text-xl;
   font-weight: $wrapped-font-black;
   margin: 0 0 $wrapped-space-xl;
+
   @include text-with-shadow('lg');
 }
 
 .summary-card {
   @include glass-card;
-  padding: $wrapped-space-xl;
-  width: 100%;
-  max-width: 500px;
+
   display: flex;
   flex-direction: column;
   gap: $wrapped-space-md;
+  max-width: 500px;
+  padding: $wrapped-space-xl;
+  width: 100%;
 }
 
 .summary-card__item {
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
   display: flex;
   flex-direction: column;
   gap: $wrapped-space-xs;
   padding: $wrapped-space-md;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   &:last-child {
     border-bottom: none;
@@ -44,15 +47,15 @@
 .summary-card__label {
   font-size: $wrapped-text-sm;
   font-weight: $wrapped-font-medium;
+  letter-spacing: 1px;
   opacity: 0.8;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .summary-card__value {
+  color: $wrapped-text-primary;
   font-size: $wrapped-text-lg;
   font-weight: $wrapped-font-bold;
-  color: $wrapped-text-primary;
 }
 
 .summary-actions {
@@ -64,12 +67,13 @@
 
 .dashboard-button {
   @include wrapped-button;
-  background: rgba(255, 255, 255, 0.9);
+
+  background: rgb(255 255 255 / 90%);
+  border-color: rgb(255 255 255 / 90%);
   color: #333;
-  border-color: rgba(255, 255, 255, 0.9);
 
   &:hover {
-    background: rgba(255, 255, 255, 1);
+    background: rgb(255 255 255 / 100%);
     color: #000;
   }
 }

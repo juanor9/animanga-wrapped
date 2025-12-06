@@ -1,25 +1,25 @@
 @use '../../styles/tokens' as *;
 
 .progress-bar {
-  position: fixed;
-  top: $wrapped-safe-zone-top - 60px;
-  left: 0;
-  right: 0;
-  z-index: $wrapped-z-progress;
   display: flex;
   gap: 4px;
-  padding: 0 $wrapped-safe-zone-horizontal;
-  max-width: $wrapped-story-width;
+  left: 0;
   margin: 0 auto;
+  max-width: $wrapped-story-width;
+  padding: 0 $wrapped-safe-zone-horizontal;
+  position: fixed;
+  right: 0;
+  top: $wrapped-safe-zone-top - 60px;
+  z-index: $wrapped-z-progress;
 }
 
 .progress-bar__segment {
-  flex: 1;
-  height: 3px;
   background: transparent;
   border: none;
-  padding: 8px 0;
   cursor: pointer;
+  flex: 1;
+  height: 3px;
+  padding: 8px 0;
   transition: opacity $wrapped-duration-fast;
 
   &:hover {
@@ -33,24 +33,24 @@
 }
 
 .progress-bar__track {
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(255 255 255 / 30%);
   border-radius: 2px;
+  height: 3px;
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .progress-bar__fill {
+  background: $wrapped-text-primary;
+  border-radius: 2px;
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: $wrapped-text-primary;
-  transform-origin: left;
   transform: scaleX(0);
-  border-radius: 2px;
+  transform-origin: left;
+  width: 100%;
 }
 
 .progress-bar__segment--completed .progress-bar__fill {

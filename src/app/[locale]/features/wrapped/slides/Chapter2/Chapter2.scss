@@ -7,36 +7,37 @@
 
 .genre-list {
   list-style: none;
-  padding: 0;
   margin: $wrapped-space-lg 0;
-  width: 100%;
   max-width: 600px;
+  padding: 0;
+  width: 100%;
 }
 
 .genre-list__item {
-  display: flex;
   align-items: center;
-  gap: $wrapped-space-md;
-  padding: $wrapped-space-md;
-  margin-bottom: $wrapped-space-sm;
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+  background: rgb(255 255 255 / 10%);
   border-radius: $wrapped-radius-md;
+  display: flex;
   font-size: $wrapped-text-lg;
   font-weight: $wrapped-font-semibold;
+  gap: $wrapped-space-md;
+  margin-bottom: $wrapped-space-sm;
+  padding: $wrapped-space-md;
+
   @include text-with-shadow('sm');
 }
 
 .genre-list__number {
-  display: flex;
   align-items: center;
+  background: rgb(255 255 255 / 20%);
+  border-radius: $wrapped-radius-full;
+  display: flex;
+  flex-shrink: 0;
+  font-weight: $wrapped-font-bold;
+  height: 40px;
   justify-content: center;
   width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: $wrapped-radius-full;
-  font-weight: $wrapped-font-bold;
-  flex-shrink: 0;
 }
 
 .genre-list__name {
@@ -45,33 +46,34 @@
 
 .genres-card {
   @include glass-card;
-  padding: $wrapped-space-xl;
-  width: 100%;
+
   max-width: 500px;
+  padding: $wrapped-space-xl;
   text-align: center;
+  width: 100%;
 }
 
 .genres-card__title {
+  color: $wrapped-text-primary;
   font-size: $wrapped-text-xl;
   font-weight: $wrapped-font-bold;
   margin: 0 0 $wrapped-space-lg;
-  color: $wrapped-text-primary;
 }
 
 .genres-card__list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
   text-align: left;
 }
 
 .genres-card__item {
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
   display: flex;
-  gap: $wrapped-space-sm;
-  padding: $wrapped-space-sm 0;
   font-size: $wrapped-text-base;
   font-weight: $wrapped-font-medium;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: $wrapped-space-sm;
+  padding: $wrapped-space-sm 0;
 
   &:last-child {
     border-bottom: none;
@@ -79,8 +81,8 @@
 }
 
 .genres-card__number {
-  font-weight: $wrapped-font-bold;
   color: $wrapped-accent-secondary;
+  font-weight: $wrapped-font-bold;
 }
 
 .genres-card__name {
@@ -88,9 +90,9 @@
 }
 
 .genres-card__footer {
-  margin-top: $wrapped-space-lg;
-  padding-top: $wrapped-space-md;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgb(255 255 255 / 10%);
   font-size: $wrapped-text-sm;
+  margin-top: $wrapped-space-lg;
   opacity: 0.7;
+  padding-top: $wrapped-space-md;
 }

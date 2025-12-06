@@ -108,9 +108,8 @@ const WrappedProgressSchema = new mongoose.Schema({
 WrappedProgressSchema.index({ anilistId: 1, year: 1 }, { unique: true });
 
 // Update timestamp on save
-WrappedProgressSchema.pre('save', function (next) {
+WrappedProgressSchema.pre('save', async function () {
   this.updatedAt = Date.now();
-  next();
 });
 
 export default mongoose.models.WrappedProgress ||

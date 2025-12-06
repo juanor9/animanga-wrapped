@@ -13,8 +13,8 @@ $wrapped-safe-zone-horizontal: 60px;
 
 // Colors - Base palette
 $wrapped-bg-dark: #0d0d0d;
-$wrapped-bg-darker: #000000;
-$wrapped-text-primary: #ffffff;
+$wrapped-bg-darker: #000;
+$wrapped-text-primary: #fff;
 $wrapped-text-secondary: #b3b3b3;
 $wrapped-accent-primary: #ff6b9d;
 $wrapped-accent-secondary: #4fc3f7;
@@ -72,10 +72,10 @@ $wrapped-radius-xl: 32px;
 $wrapped-radius-full: 9999px;
 
 // Shadows
-$wrapped-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-$wrapped-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-$wrapped-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-$wrapped-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.4);
+$wrapped-shadow-sm: 0 2px 8px rgb(0 0 0 / 10%);
+$wrapped-shadow-md: 0 4px 16px rgb(0 0 0 / 20%);
+$wrapped-shadow-lg: 0 8px 32px rgb(0 0 0 / 30%);
+$wrapped-shadow-xl: 0 12px 48px rgb(0 0 0 / 40%);
 
 // Animation timings
 $wrapped-duration-fast: 0.2s;

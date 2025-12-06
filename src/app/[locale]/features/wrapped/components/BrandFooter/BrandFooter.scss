@@ -1,22 +1,22 @@
 @use '../../styles/tokens' as *;
 
 .brand-footer {
-  position: fixed;
+  align-items: center;
   bottom: $wrapped-brand-position-bottom;
+  display: flex;
+  height: $wrapped-brand-height;
+  justify-content: center;
   left: 0;
+  pointer-events: none;
+  position: fixed;
   right: 0;
   z-index: $wrapped-z-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: $wrapped-brand-height;
-  pointer-events: none;
 }
 
 .brand-footer__text {
+  color: rgb(255 255 255 / 80%);
   font-size: $wrapped-text-sm;
   font-weight: $wrapped-font-medium;
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 30%);
 }

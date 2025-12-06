@@ -25,13 +25,17 @@ const ALMangaList = ({ userId, checkFunc }) => {
         }));
         setMangaList(mangaListWithIds);
       } catch (error) {
-        throw new Error(error);
+        // Log error but don't throw - this prevents breaking the component tree
+        console.error('Error fetching manga list:', error);
+        // Set loading state to 'error' to show error UI
+        setLoadingMangaList('error');
+        checkFunc(false);
       }
     };
     if (userId) {
       fetchMangaList();
     }
-  }, [userId]);
+  }, [userId, checkFunc]);
 
   useEffect(() => {
     if (!Array.isArray(mangaList) || mangaList.length < 0) {
@@ -85,6 +89,10 @@ const ALMangaList = ({ userId, checkFunc }) => {
       <h2>Manga List Activity</h2>
       {loadingMangaList === 'loading' ? (
         <Spinner />
+      ) : loadingMangaList === 'error' ? (
+        <div className="anime-list__error">
+          <p>⚠️ Unable to load manga list. Please try again later.</p>
+        </div>
       ) : (
         <article className="anime-list__list-container">
           {mangaList.map((e) => (
