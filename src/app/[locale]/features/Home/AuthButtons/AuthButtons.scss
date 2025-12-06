@@ -1,9 +1,49 @@
+@use '../../../../tokens' as *;
+@use '../../../../mixins' as *;
+@use '../../../../colors' as *;
+
 .auth-buttons {
   display: flex;
-  gap: 1rem;
-}
+  flex-direction: column;
+  gap: $space-4;
+  width: 100%;
 
-.auth-buttons__link {
-  color: inherit;
-  text-decoration: none;
+  @media (min-width: $breakpoint-sm) {
+    gap: $space-3;
+  }
+
+  &__link {
+    @include button-primary;
+
+    width: 100%;
+    padding: $space-4 $space-6;
+    font-size: $text-lg;
+    font-weight: $font-bold;
+    text-align: center;
+    transition: all $duration-normal $ease-out;
+
+    &:first-child {
+      background: $teal;
+      border-color: $teal;
+
+      &:hover {
+        background: lighten($teal, 8%);
+        box-shadow: 0 0 20px rgba($teal, 0.5);
+      }
+    }
+
+    &:last-child {
+      background: $pink;
+      border-color: $pink;
+
+      &:hover {
+        background: lighten($pink, 8%);
+        box-shadow: 0 0 20px rgba($pink, 0.5);
+      }
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
 }

@@ -1,28 +1,88 @@
-.footer{
-  align-items: center;
+@use '../../../tokens' as *;
+@use '../../../mixins' as *;
+@use '../../../colors' as *;
+
+.footer {
   display: flex;
   flex-direction: column;
-  font-size: .8em;
-  gap: 1em;
+  align-items: center;
   justify-content: center;
-  padding: 1em 2em;
+  gap: $space-6;
+  padding: $space-12 $space-6;
+  margin-top: $space-20;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba($light-black, 0.5) 100%
+  );
+  border-top: 1px solid rgba($yellow, 0.1);
+  font-size: $text-sm;
 
-  @media (width >= 768px) {
+  @media (min-width: $breakpoint-md) {
     flex-direction: row;
     justify-content: space-between;
-    margin-top:3em ;
+    padding: $space-12;
   }
 
-  &__logo{
+  &__logo {
     flex-shrink: 0;
     max-width: 150px;
+    transition: transform $duration-normal $ease-out;
 
-    &-container{
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $space-2;
       max-width: 150px;
+
+      p {
+        margin: 0;
+        font-size: $text-xs;
+        color: $text-muted;
+        text-align: center;
+      }
     }
 
-    & img{
+    img {
       max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba($yellow, 0.3));
     }
+  }
+
+  a {
+    color: $yellow;
+    text-decoration: none;
+    transition: all $duration-fast $ease-out;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: $yellow;
+      transition: width $duration-normal $ease-out;
+    }
+
+    &:hover {
+      color: lighten($yellow, 10%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    color: $text-secondary;
   }
 }
