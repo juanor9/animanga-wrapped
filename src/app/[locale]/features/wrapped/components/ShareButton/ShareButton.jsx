@@ -2,9 +2,11 @@
 
 import html2canvas from 'html2canvas';
 import { useState } from 'react';
+import Toast from '../Toast/Toast';
 import './ShareButton.scss';
 const ShareButton = ({ targetRef, fileName = 'animanga-wrapped' }) => {
   const [isSharing, setIsSharing] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const handleShare = async () => {
     if (!targetRef.current) return;
@@ -36,13 +38,16 @@ const ShareButton = ({ targetRef, fileName = 'animanga-wrapped' }) => {
               title: 'Animanga Wrapped 2025',
               text: 'Check out my Animanga Wrapped!',
             });
+            setShowToast(true);
           } catch (error) {
             if (error.name !== 'AbortError') {
               downloadImage(blob, fileName);
+              setShowToast(true);
             }
           }
         } else {
           downloadImage(blob, fileName);
+          setShowToast(true);
         }
 
         setIsSharing(false);
@@ -65,25 +70,36 @@ const ShareButton = ({ targetRef, fileName = 'animanga-wrapped' }) => {
   };
 
   return (
-    <button
-      className="share-button"
-      onClick={handleShare}
-      disabled={isSharing}
-      type="button"
-      aria-label="Share this story"
-    >
-      {isSharing ? (
-        <>
-          <span className="share-button__icon">⏳</span>
-          <span>Preparing...</span>
-        </>
-      ) : (
-        <>
-          <span className="share-button__icon">📤</span>
-          <span>Share</span>
-        </>
+    <>
+      <button
+        className="share-button"
+        onClick={handleShare}
+        disabled={isSharing}
+        type="button"
+        aria-label="Share this story"
+      >
+        {isSharing ? (
+          <>
+            <span className="share-button__icon">⏳</span>
+            <span>Preparando...</span>
+          </>
+        ) : (
+          <>
+            <span className="share-button__icon">📤</span>
+            <span>Compartir esta historia</span>
+          </>
+        )}
+      </button>
+
+      {showToast && (
+        <Toast
+          message="¡Historia compartida!"
+          icon="✓"
+          onClose={() => setShowToast(false)}
+          duration={3000}
+        />
       )}
-    </button>
+    </>
   );
 };
 

@@ -1,27 +1,280 @@
-// Wrapped Design Tokens
-// DO NOT MODIFY - These are the design tokens for Animanga Wrapped
+// ============================================================================
+// Animanga Wrapped 2025 - Design System Tokens
+// ============================================================================
+// Sistema de diseño completo para experiencia tipo "stories" 9:16
+// Basado en la estética de Spotify Wrapped
+
+// ============================================================================
+// 1. VIEWPORT Y LAYOUT
+// ============================================================================
 
 // Story dimensions (9:16 ratio)
-$wrapped-story-width: 1080px;
-$wrapped-story-height: 1920px;
-$wrapped-story-ratio: calc(9 / 16);
+$aw-story-width: 1080px;
+$aw-story-height: 1920px;
+$aw-story-ratio: calc(9 / 16);
 
-// Safe zones (Instagram Stories safe area)
+// Safe areas (margen mínimo para textos y CTAs)
+$aw-safe-margin-horizontal: 60px; // 6-8% del ancho
+$aw-safe-margin-vertical: 24px;
+$aw-safe-margin-bottom-cta: 24px;
+
+// Zonas de layout de historia
+$aw-progress-bar-height: 4px;
+$aw-progress-bar-spacing: 12px;
+$aw-content-zone-height: 75%; // 70-80% de altura
+$aw-actions-zone-height: 12%; // 10-15% de altura
+
+// ============================================================================
+// 2. COLORES - FONDOS PRINCIPALES
+// ============================================================================
+
+$aw-bg-orange: #ff7a3c;
+$aw-bg-pink: #ff5ed9;
+$aw-bg-yellow: #ffd64d;
+$aw-bg-lime: #c7f464;
+$aw-bg-teal: #16e0bd;
+$aw-bg-purple: #7b5cff;
+$aw-bg-deep-navy: #050816;
+
+// ============================================================================
+// 3. COLORES - TEXTO
+// ============================================================================
+
+$aw-text-on-light: #111111;
+$aw-text-on-dark: #ffffff;
+$aw-text-muted-light: #f5f5f5;
+$aw-text-muted-dark: #3d3d3d;
+
+// ============================================================================
+// 4. COLORES - ACENTOS
+// ============================================================================
+
+$aw-accent-cream: #fff5d6;
+$aw-accent-cyan: #33e1ff;
+$aw-accent-hot-pink: #ff3ba7;
+$aw-accent-lime-neon: #b6ff3b;
+$aw-accent-violet-deep: #3b14a7;
+
+// ============================================================================
+// 5. COLORES - CTA, PILLS Y TOASTS
+// ============================================================================
+
+// Botón "Compartir esta historia"
+$aw-cta-bg: #111111;
+$aw-cta-text: #ffffff;
+$aw-cta-border: #ffd64d;
+
+// Pill dominio (animanga-wrapped.vercel.app)
+$aw-pill-bg: #111111;
+$aw-pill-text: #ffd64d;
+
+// Toast / mensaje flotante
+$aw-toast-bg: rgba(30, 30, 30, 0.92);
+$aw-toast-text: #ffffff;
+$aw-toast-accent: #16e0bd;
+
+// ============================================================================
+// 6. COLORES - GRÁFICOS
+// ============================================================================
+
+// Donut de formatos
+$aw-chart-format-1: #ff5ed9;
+$aw-chart-format-2: #33e1ff;
+$aw-chart-format-3: #c7f464;
+$aw-chart-format-4: #ff7a3c;
+$aw-chart-format-5: #7b5cff;
+
+// Barras de años
+$aw-chart-year-bar: #16e0bd;
+$aw-chart-year-highlight: #ff5ed9;
+
+// ============================================================================
+// 7. COLORES - CLUB/PERSONA
+// ============================================================================
+
+// Patrón de fondo
+$aw-club-line: rgba(255, 255, 255, 0.12);
+$aw-club-block: rgba(59, 20, 167, 0.18);
+
+// Emblema hexagonal
+$aw-club-hex-border: #b6ff3b;
+$aw-club-hex-fill: #111111;
+$aw-club-icon-main: #7b5cff;
+$aw-club-icon-detail-1: #ff5ed9;
+$aw-club-icon-detail-2: #33e1ff;
+
+// Banda nombre del club
+$aw-club-banner-bg: #b6ff3b;
+$aw-club-banner-text: #111111;
+
+// ============================================================================
+// 8. COLORES - OVERLAYS
+// ============================================================================
+
+$aw-overlay-darken: rgba(0, 0, 0, 0.18);
+$aw-overlay-lighten: rgba(255, 255, 255, 0.08);
+$aw-overlay-bg-pattern: rgba(0, 0, 0, 0.06); // Números gigantes de fondo
+
+// ============================================================================
+// 9. TIPOGRAFÍA - JERARQUÍA DE TAMAÑOS
+// ============================================================================
+
+// Font families
+$aw-font-family: 'Poppins', -apple-system, blinkmacsystemfont, 'Segoe UI',
+  roboto, 'Helvetica Neue', arial, sans-serif;
+
+// Display / Frases grandes
+$aw-type-display-size: 40px;
+$aw-type-display-line: 44px;
+
+// Headings
+$aw-type-heading-l-size: 32px;
+$aw-type-heading-l-line: 36px;
+$aw-type-heading-m-size: 28px;
+$aw-type-heading-m-line: 32px;
+$aw-type-heading-s-size: 24px;
+$aw-type-heading-s-line: 28px;
+
+// Cuerpo
+$aw-type-body-l-size: 18px;
+$aw-type-body-l-line: 24px;
+$aw-type-body-m-size: 16px;
+$aw-type-body-m-line: 22px;
+$aw-type-body-s-size: 14px;
+$aw-type-body-s-line: 20px;
+
+// Caption
+$aw-type-caption-size: 12px;
+$aw-type-caption-line: 16px;
+
+// Font weights
+$aw-font-light: 300;
+$aw-font-regular: 400;
+$aw-font-medium: 500;
+$aw-font-semibold: 600;
+$aw-font-bold: 700;
+$aw-font-black: 900;
+
+// ============================================================================
+// 10. ESPACIADO
+// ============================================================================
+
+$aw-space-xxs: 4px;
+$aw-space-xs: 8px;
+$aw-space-s: 12px;
+$aw-space-m: 16px;
+$aw-space-l: 24px;
+$aw-space-xl: 32px;
+$aw-space-2xl: 40px;
+$aw-space-3xl: 48px;
+$aw-space-4xl: 64px;
+
+// ============================================================================
+// 11. BORDES Y RADIOS
+// ============================================================================
+
+$aw-radius-s: 8px;
+$aw-radius-m: 16px;
+$aw-radius-pill: 9999px;
+
+// ============================================================================
+// 12. SOMBRAS
+// ============================================================================
+
+// Shadow 1 - Para botones, pill
+$aw-shadow-1-y: 4px;
+$aw-shadow-1-blur: 12px;
+$aw-shadow-1-color: rgba(0, 0, 0, 0.18);
+$aw-shadow-1: 0 #{$aw-shadow-1-y} #{$aw-shadow-1-blur} #{$aw-shadow-1-color};
+
+// Shadow 2 - Para tarjeta exportable
+$aw-shadow-2-y: 8px;
+$aw-shadow-2-blur: 24px;
+$aw-shadow-2-color: rgba(0, 0, 0, 0.24);
+$aw-shadow-2: 0 #{$aw-shadow-2-y} #{$aw-shadow-2-blur} #{$aw-shadow-2-color};
+
+// ============================================================================
+// 13. MOTION - ANIMACIONES
+// ============================================================================
+
+// Curvas de animación
+$aw-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$aw-ease-out: cubic-bezier(0, 0, 0.2, 1);
+$aw-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Duraciones
+$aw-duration-transition: 300ms; // Transición entre pantallas (250-350ms)
+$aw-duration-stagger: 100ms; // Stagger listas (80-120ms)
+$aw-duration-counter: 700ms; // Contador numérico (600-800ms)
+$aw-duration-chart: 500ms; // Animación gráficos (400-600ms)
+$aw-duration-tap: 180ms; // Feedback de tap (150-200ms)
+
+// ============================================================================
+// 14. INTERACCIÓN - ZONAS TÁCTILES
+// ============================================================================
+
+$aw-tap-zone-side: 25%; // 25% lateral para navegación
+$aw-tap-zone-center: 50%; // 50% centro sin acción
+$aw-tap-feedback-overlay: rgba(0, 0, 0, 0.1);
+
+// ============================================================================
+// 15. COMPONENTES - DIMENSIONES ESPECÍFICAS
+// ============================================================================
+
+// Botón CTA
+$aw-cta-min-height: 48px;
+$aw-cta-padding-h: $aw-space-l;
+$aw-cta-padding-v: $aw-space-s;
+$aw-cta-border-width: 1px;
+$aw-cta-scale-pressed: 0.97;
+
+// Pill dominio
+$aw-pill-padding-h: $aw-space-l;
+$aw-pill-padding-v: $aw-space-xs;
+
+// Toast
+$aw-toast-padding-h: $aw-space-m;
+$aw-toast-padding-v: $aw-space-s;
+$aw-toast-duration: 3s;
+
+// Donut chart
+$aw-donut-thickness: 22%; // 20-25% del radio
+
+// Z-index layers
+$aw-z-base: 1;
+$aw-z-content: 10;
+$aw-z-progress: 50;
+$aw-z-controls: 100;
+$aw-z-toast: 500;
+$aw-z-modal: 1000;
+
+// ============================================================================
+// RETROCOMPATIBILIDAD - Aliases para código existente
+// ============================================================================
+// Estas variables mantienen compatibilidad con el código existente
+// mientras migramos al nuevo sistema de diseño
+
+// Story dimensions (mantener compatibilidad)
+$wrapped-story-width: $aw-story-width;
+$wrapped-story-height: $aw-story-height;
+$wrapped-story-ratio: $aw-story-ratio;
+
+// Safe zones (mantener compatibilidad)
 $wrapped-safe-zone-top: 80px;
 $wrapped-safe-zone-bottom: 120px;
-$wrapped-safe-zone-horizontal: 60px;
+$wrapped-safe-zone-horizontal: $aw-safe-margin-horizontal;
 
-// Colors - Base palette
+// Colores base (mapear a nuevos colores)
 $wrapped-bg-dark: #0d0d0d;
-$wrapped-bg-darker: #000000;
-$wrapped-text-primary: #ffffff;
+$wrapped-bg-darker: $aw-bg-deep-navy;
+$wrapped-text-primary: $aw-text-on-dark;
 $wrapped-text-secondary: #b3b3b3;
-$wrapped-accent-primary: #ff6b9d;
-$wrapped-accent-secondary: #4fc3f7;
-$wrapped-accent-tertiary: #9c27b0;
+$wrapped-accent-primary: $aw-accent-hot-pink;
+$wrapped-accent-secondary: $aw-accent-cyan;
+$wrapped-accent-tertiary: $aw-bg-purple;
 $wrapped-accent-success: #66bb6a;
 
-// Chapter color themes
+// Chapter color themes (mantener gradientes existentes)
 $wrapped-chapter-1-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 $wrapped-chapter-2-bg: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 $wrapped-chapter-3-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -32,46 +285,45 @@ $wrapped-chapter-7-bg: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 $wrapped-chapter-8-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
 $wrapped-chapter-9-bg: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
 
-// Typography
-$wrapped-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
-  'Helvetica Neue', arial, sans-serif;
+// Font family
+$wrapped-font-family: $aw-font-family;
 $wrapped-font-display: 'Arial Black', 'Arial Bold', gadget, sans-serif;
 
-// Font sizes
-$wrapped-text-xs: 14px;
-$wrapped-text-sm: 18px;
-$wrapped-text-base: 24px;
-$wrapped-text-lg: 32px;
+// Font sizes (mapear a nuevo sistema)
+$wrapped-text-xs: $aw-type-body-s-size;
+$wrapped-text-sm: $aw-type-body-l-size;
+$wrapped-text-base: $aw-type-heading-s-size;
+$wrapped-text-lg: $aw-type-heading-l-size;
 $wrapped-text-xl: 48px;
 $wrapped-text-2xl: 64px;
 $wrapped-text-3xl: 96px;
 $wrapped-text-4xl: 128px;
 
 // Font weights
-$wrapped-font-light: 300;
-$wrapped-font-normal: 400;
-$wrapped-font-medium: 500;
-$wrapped-font-semibold: 600;
-$wrapped-font-bold: 700;
-$wrapped-font-black: 900;
+$wrapped-font-light: $aw-font-light;
+$wrapped-font-normal: $aw-font-regular;
+$wrapped-font-medium: $aw-font-medium;
+$wrapped-font-semibold: $aw-font-semibold;
+$wrapped-font-bold: $aw-font-bold;
+$wrapped-font-black: $aw-font-black;
 
-// Spacing
-$wrapped-space-xs: 8px;
-$wrapped-space-sm: 16px;
-$wrapped-space-md: 24px;
-$wrapped-space-lg: 32px;
-$wrapped-space-xl: 48px;
-$wrapped-space-2xl: 64px;
+// Spacing (mapear a nuevo sistema)
+$wrapped-space-xs: $aw-space-xs;
+$wrapped-space-sm: $aw-space-m;
+$wrapped-space-md: $aw-space-l;
+$wrapped-space-lg: $aw-space-xl;
+$wrapped-space-xl: $aw-space-3xl;
+$wrapped-space-2xl: $aw-space-4xl;
 $wrapped-space-3xl: 96px;
 
 // Border radius
-$wrapped-radius-sm: 8px;
-$wrapped-radius-md: 16px;
+$wrapped-radius-sm: $aw-radius-s;
+$wrapped-radius-md: $aw-radius-m;
 $wrapped-radius-lg: 24px;
 $wrapped-radius-xl: 32px;
-$wrapped-radius-full: 9999px;
+$wrapped-radius-full: $aw-radius-pill;
 
-// Shadows
+// Shadows (mapear a nuevo sistema)
 $wrapped-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
 $wrapped-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
 $wrapped-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -79,23 +331,23 @@ $wrapped-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.4);
 
 // Animation timings
 $wrapped-duration-fast: 0.2s;
-$wrapped-duration-normal: 0.3s;
+$wrapped-duration-normal: $aw-duration-transition;
 $wrapped-duration-slow: 0.5s;
 $wrapped-duration-slower: 0.8s;
 
 // Easing functions
-$wrapped-ease-in: cubic-bezier(0.4, 0, 1, 1);
-$wrapped-ease-out: cubic-bezier(0, 0, 0.2, 1);
-$wrapped-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$wrapped-ease-in: $aw-ease-in;
+$wrapped-ease-out: $aw-ease-out;
+$wrapped-ease-in-out: $aw-ease-in-out;
 $wrapped-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-// Z-index layers
-$wrapped-z-base: 1;
-$wrapped-z-content: 10;
-$wrapped-z-controls: 100;
-$wrapped-z-progress: 200;
-$wrapped-z-modal: 1000;
+// Z-index layers (mapear a nuevo sistema)
+$wrapped-z-base: $aw-z-base;
+$wrapped-z-content: $aw-z-content;
+$wrapped-z-controls: $aw-z-controls;
+$wrapped-z-progress: $aw-z-progress;
+$wrapped-z-modal: $aw-z-modal;
 
 // Branding
 $wrapped-brand-height: 40px;
-$wrapped-brand-position-bottom: $wrapped-safe-zone-bottom;
+$wrapped-brand-position-bottom: 120px;

@@ -1,26 +1,37 @@
-@use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
+@use '../../styles/tokens' as *;
 
 .share-button {
-  @include wrapped-button;
+  @include cta-button;
+
+  // Posición fija en la zona inferior de la historia
+  position: fixed;
+  bottom: calc($aw-safe-margin-bottom-cta + 60px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: $aw-z-controls;
+
   display: flex;
   align-items: center;
-  gap: $wrapped-space-xs;
-  font-size: $wrapped-text-sm;
-  padding: $wrapped-space-sm $wrapped-space-md;
+  gap: $aw-space-xs;
+
+  @media (min-width: #{$aw-story-width}) {
+    bottom: calc($aw-safe-margin-bottom-cta + 80px);
+  }
 
   &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-
     &:hover {
-      transform: none;
-      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(-50%);
+      background: #3c3c3c;
+    }
+
+    &:active {
+      transform: translateX(-50%);
     }
   }
 }
 
 .share-button__icon {
-  font-size: $wrapped-text-base;
+  font-size: 20px;
   line-height: 1;
 }

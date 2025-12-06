@@ -1,22 +1,25 @@
 # Authentication Module Technical Documentation
 
 ## Overview
+
 This document describes the **registration** and **login** flows for the Animanga Wrapped application, which uses a **password‑less magic‑link** authentication system.
 
 ---
 
 ## 1. Environment Variables
-| Variable | Description | Example |
-|----------|-------------|---------|
+
+| Variable                         | Description                                                                                    | Example                 |
+| -------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------- |
 | `NEXT_PUBLIC_REACT_APP_BASE_URL` | Base URL used to generate the magic‑link. In development it should be `http://localhost:3000`. | `http://localhost:3000` |
-| `RESEND_API_KEY` | API key for the Resend email service. **Never commit** this value. | `re_********` |
-| `EMAIL_FROM` | Sender address used by Resend. | `onboarding@resend.dev` |
+| `RESEND_API_KEY`                 | API key for the Resend email service. **Never commit** this value.                             | `re_********`           |
+| `EMAIL_FROM`                     | Sender address used by Resend.                                                                 | `onboarding@resend.dev` |
 
 > **Note:** The `.env` file is confidential. See `claude.md` and `agents.md` for the policy.
 
 ---
 
 ## 2. Data Model (`src/app/api/models/User.js`)
+
 ```js
 const UserSchema = new mongoose.Schema({
   // AniList OAuth data
@@ -45,11 +48,13 @@ const UserSchema = new mongoose.Schema({
   timestamps …
 });
 ```
+
 The `lists` field stores an array of objects, each containing a `year` and optionally `animeList` and/or `mangaList` depending on the user’s selection.
 
 ---
 
 ## 3. Registration Flow (`/api/users` – `src/app/api/users/route.js`)
+
 1. **Frontend** (`RegistrationForm.jsx`)
    - Collects AniList OAuth data, email, country, age consent, terms/privacy consent, and **selectedLists** (`{ anime: true/false, manga: true/false }`).
    - Builds `userData`:
@@ -71,8 +76,11 @@ The `lists` field stores an array of objects, each containing a `year` and optio
 ---
 
 ## 4. Login Flow (Magic‑Link) – Two Endpoints
+
 ### 4.1 Send Magic‑Link (`POST /api/auth/magic-link/send`)
+
 File: `src/app/api/auth/magic-link/send/route.js`
+
 ```js
 export async function POST(request) {
   const { email } = await request.json();
@@ -84,10 +92,13 @@ export async function POST(request) {
   // Return { message: 'Magic link sent to your email' }
 }
 ```
+
 **Development shortcut:** `src/app/api/lib/email.js` contains a guard that returns early when `process.env.NODE_ENV !== 'production'` **or** when `BASE_URL` contains `localhost`. It logs the link instead of contacting Resend.
 
 ### 4.2 Verify Magic‑Link (`GET /api/auth/magic-link/verify`)
+
 File: `src/app/api/auth/magic-link/verify/route.js`
+
 1. Extract `token` from query string.
 2. Look up the token in `MagicLink` collection, ensure it is not expired.
 3. Find the associated user, mark `emailVerified` if needed.
@@ -98,6 +109,7 @@ File: `src/app/api/auth/magic-link/verify/route.js`
 ---
 
 ## 5. Email Sending (`src/app/api/lib/email.js`)
+
 ```js
 export async function sendMagicLink(email, token) {
   const magicLink = `${BASE_URL}/auth/verify?token=${token}`;
@@ -107,14 +119,22 @@ export async function sendMagicLink(email, token) {
     return;
   }
   // Otherwise call Resend API
-  await resend.emails.send({ from: EMAIL_FROM, to: email, subject: 'Login to Animanga Wrapped', html, text });
+  await resend.emails.send({
+    from: EMAIL_FROM,
+    to: email,
+    subject: 'Login to Animanga Wrapped',
+    html,
+    text,
+  });
 }
 ```
+
 The guard prevents the 403 domain‑verification error during local development.
 
 ---
 
 ## 6. Front‑End Integration
+
 - **Hero** (`Hero.jsx`) renders `<LoginSignup />`.
 - **LoginSignup** toggles between `UserRegistration` and `UserLogin`.
 - **UserLogin** dispatches `sendMagicLink(email)` and reacts to `magicLinkSent`, `loading`, and `error` from the `userData` slice.
@@ -123,16 +143,18 @@ The guard prevents the 403 domain‑verification error during local development.
 ---
 
 ## 7. Testing Notes
+
 - **Axe accessibility** warnings are unrelated to auth; they can be ignored for now.
 - Ensure `process.env.NODE_ENV` is set to `production` only in the deployed environment; otherwise the magic‑link will only be logged to the console.
 
 ---
 
 ## 8. Future Improvements
+
 - Add a UI component that displays the generated magic‑link in development mode for easier testing.
 - Implement rate‑limiting on the `/send` endpoint to prevent abuse.
 - Store a hash of the magic‑link token instead of the raw token for extra security.
 
 ---
 
-*Document created on 2025‑12‑05.*
+_Document created on 2025‑12‑05._
