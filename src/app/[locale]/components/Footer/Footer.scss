@@ -1,22 +1,23 @@
+@use 'sass:color';
 @use '../../../tokens' as *;
 @use '../../../mixins' as *;
 @use '../../../colors' as *;
 
 .footer {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: $space-6;
-  padding: $space-12 $space-6;
-  margin-top: $space-20;
   background: linear-gradient(
     180deg,
     transparent 0%,
     rgba($light-black, 0.5) 100%
   );
   border-top: 1px solid rgba($yellow, 0.1);
+  display: flex;
+  flex-direction: column;
   font-size: $text-sm;
+  gap: $space-6;
+  justify-content: center;
+  margin-top: $space-20;
+  padding: $space-12 $space-6;
 
   @media (min-width: $breakpoint-md) {
     flex-direction: row;
@@ -34,46 +35,46 @@
     }
 
     &-container {
+      align-items: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: $space-2;
       max-width: 150px;
 
       p {
-        margin: 0;
-        font-size: $text-xs;
         color: $text-muted;
+        font-size: $text-xs;
+        margin: 0;
         text-align: center;
       }
     }
 
     img {
-      max-width: 100%;
-      height: auto;
       filter: drop-shadow(0 0 10px rgba($yellow, 0.3));
+      height: auto;
+      max-width: 100%;
     }
   }
 
   a {
     color: $yellow;
+    position: relative;
     text-decoration: none;
     transition: all $duration-fast $ease-out;
-    position: relative;
 
     &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0%;
-      height: 2px;
       background: $yellow;
+      bottom: -2px;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
       transition: width $duration-normal $ease-out;
+      width: 0%;
     }
 
     &:hover {
-      color: lighten($yellow, 10%);
+      color: color.adjust($yellow, $lightness: 10%);
 
       &::after {
         width: 100%;
@@ -82,7 +83,7 @@
   }
 
   p {
-    margin: 0;
     color: $text-secondary;
+    margin: 0;
   }
 }

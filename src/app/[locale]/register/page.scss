@@ -34,10 +34,10 @@
   }
 
   &__loading {
-    text-align: center;
-    padding: 3em 2em;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgb(255 255 255 / 10%);
     border-radius: 1em;
+    padding: 3em 2em;
+    text-align: center;
 
     p {
       font-size: 1.2em;
@@ -46,12 +46,12 @@
   }
 
   &__error {
-    padding: 1em;
-    background-color: rgba(255, 59, 48, 0.1);
-    border: 2px solid rgba(255, 59, 48, 0.5);
+    background-color: rgb(255 59 48 / 10%);
+    border: 2px solid rgb(255 59 48 / 50%);
     border-radius: 1em;
     color: #ff3b30;
     margin-bottom: 1em;
+    padding: 1em;
     text-align: center;
 
     p {

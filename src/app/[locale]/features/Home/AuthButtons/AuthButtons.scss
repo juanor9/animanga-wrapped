@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../../tokens' as *;
 @use '../../../../mixins' as *;
 @use '../../../../colors' as *;
@@ -15,19 +16,20 @@
   &__link {
     @include button-primary;
 
-    width: 100%;
-    padding: $space-4 $space-6;
     font-size: $text-lg;
     font-weight: $font-bold;
+    padding: $space-4 $space-6;
     text-align: center;
     transition: all $duration-normal $ease-out;
+    width: 100%;
 
     &:first-child {
       background: $teal;
       border-color: $teal;
+      color: $white; // White text for WCAG AA contrast with dark teal
 
       &:hover {
-        background: lighten($teal, 8%);
+        background: color.adjust($teal, $lightness: 8%);
         box-shadow: 0 0 20px rgba($teal, 0.5);
       }
     }
@@ -35,9 +37,10 @@
     &:last-child {
       background: $pink;
       border-color: $pink;
+      color: $white; // White text for WCAG AA contrast with dark pink
 
       &:hover {
-        background: lighten($pink, 8%);
+        background: color.adjust($pink, $lightness: 8%);
         box-shadow: 0 0 20px rgba($pink, 0.5);
       }
     }

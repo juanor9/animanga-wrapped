@@ -4,16 +4,16 @@
 .share-button {
   @include cta-button;
 
+  align-items: center;
+  bottom: calc($aw-safe-margin-bottom-cta + 60px);
+  display: flex;
+  gap: $aw-space-xs;
+  left: 50%;
+
   // Posición fija en la zona inferior de la historia
   position: fixed;
-  bottom: calc($aw-safe-margin-bottom-cta + 60px);
-  left: 50%;
   transform: translateX(-50%);
   z-index: $aw-z-controls;
-
-  display: flex;
-  align-items: center;
-  gap: $aw-space-xs;
 
   @media (min-width: #{$aw-story-width}) {
     bottom: calc($aw-safe-margin-bottom-cta + 80px);
@@ -21,8 +21,8 @@
 
   &:disabled {
     &:hover {
-      transform: translateX(-50%);
       background: #3c3c3c;
+      transform: translateX(-50%);
     }
 
     &:active {

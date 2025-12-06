@@ -2,15 +2,15 @@
 @use '../../styles/tokens' as *;
 
 .brand-footer {
-  position: fixed;
+  align-items: center;
   bottom: $aw-safe-margin-bottom-cta;
-  left: 0;
-  right: 0;
-  z-index: $aw-z-content;
   display: flex;
   justify-content: center;
-  align-items: center;
+  left: 0;
   pointer-events: none;
+  position: fixed;
+  right: 0;
+  z-index: $aw-z-content;
 }
 
 .brand-footer__text {

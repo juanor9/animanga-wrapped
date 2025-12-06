@@ -6,11 +6,11 @@
 }
 
 .slide-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: $wrapped-space-lg;
+  justify-content: center;
   padding: $wrapped-space-xl;
 }
 
@@ -19,6 +19,7 @@
   font-weight: $wrapped-font-bold;
   line-height: 1.2;
   margin: 0;
+
   @include text-with-shadow('lg');
 }
 
@@ -32,11 +33,13 @@
   font-weight: $wrapped-font-medium;
   margin: 0;
   opacity: 0.9;
+
   @include text-with-shadow('md');
 }
 
 .slide-year {
   @include big-number;
+
   font-size: $wrapped-text-3xl;
   margin-top: $wrapped-space-xl;
 }
@@ -46,6 +49,7 @@
   font-weight: $wrapped-font-black;
   line-height: 1.3;
   margin: 0;
+
   @include text-with-shadow('lg');
 }
 
@@ -60,11 +64,13 @@
   font-weight: $wrapped-font-medium;
   margin: 0;
   opacity: 0.9;
+
   @include text-with-shadow('md');
 }
 
 .slide-big-number {
   @include big-number;
+
   margin: $wrapped-space-md 0;
 }
 
@@ -72,6 +78,7 @@
   font-size: $wrapped-text-xl;
   font-weight: $wrapped-font-semibold;
   margin: 0;
+
   @include text-with-shadow('md');
 }
 
@@ -80,10 +87,11 @@
   font-weight: $wrapped-font-normal;
   margin: $wrapped-space-lg 0;
   opacity: 0.9;
+
   @include text-with-shadow('sm');
 
   strong {
-    font-weight: $wrapped-font-bold;
     color: $wrapped-accent-success;
+    font-weight: $wrapped-font-bold;
   }
 }

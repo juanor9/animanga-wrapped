@@ -2,6 +2,7 @@
 // Animanga 2025 - Global Styles
 // ============================================================================
 
+@use 'sass:color';
 @use './colors' as *;
 @use './tokens' as *;
 @use './mixins' as *;
@@ -29,12 +30,12 @@ html {
 }
 
 body {
+  background: $black;
+  color: $text-primary;
   font-family: $font-family;
   font-size: $text-lg;
   font-weight: $font-regular;
   line-height: $leading-normal;
-  color: $text-primary;
-  background: $black;
   overflow-x: hidden;
 }
 
@@ -55,32 +56,32 @@ h3 {
 }
 
 h4 {
+  color: $text-primary;
   font-size: $text-3xl;
   font-weight: $font-semibold;
   line-height: $leading-tight;
-  color: $text-primary;
-  margin: 0 0 $space-4 0;
+  margin: 0 0 $space-4;
 }
 
 h5 {
+  color: $text-primary;
   font-size: $text-2xl;
   font-weight: $font-medium;
   line-height: $leading-tight;
-  color: $text-primary;
-  margin: 0 0 $space-3 0;
+  margin: 0 0 $space-3;
 }
 
 h6 {
+  color: $text-primary;
   font-size: $text-xl;
   font-weight: $font-medium;
   line-height: $leading-tight;
-  color: $text-primary;
-  margin: 0 0 $space-3 0;
+  margin: 0 0 $space-3;
 }
 
 p {
-  margin: 0 0 $space-4 0;
   line-height: $leading-relaxed;
+  margin: 0 0 $space-4;
 }
 
 a {
@@ -89,14 +90,14 @@ a {
   transition: color $duration-fast $ease-out;
 
   &:hover {
-    color: lighten($yellow, 10%);
+    color: color.adjust($yellow, $lightness: 10%);
     text-decoration: underline;
   }
 
   &:focus-visible {
+    border-radius: $radius-sm;
     outline: 2px solid $yellow;
     outline-offset: 2px;
-    border-radius: $radius-sm;
   }
 }
 
@@ -111,19 +112,19 @@ i {
 }
 
 code {
-  font-family: 'Courier New', monospace;
   background: rgba($yellow, 0.1);
-  padding: 2px 6px;
   border-radius: $radius-sm;
+  font-family: 'Courier New', monospace;
   font-size: 0.9em;
+  padding: 2px 6px;
 }
 
 pre {
   background: rgba($light-black, 0.6);
-  padding: $space-4;
   border-radius: $radius-md;
-  overflow-x: auto;
   margin: $space-4 0;
+  overflow-x: auto;
+  padding: $space-4;
 
   code {
     background: none;
@@ -141,8 +142,8 @@ ol {
   padding: 0;
 
   li {
-    margin-bottom: $space-2;
     line-height: $leading-relaxed;
+    margin-bottom: $space-2;
   }
 }
 
@@ -151,9 +152,9 @@ ol {
 // ============================================================================
 
 img {
-  max-width: 100%;
-  height: auto;
   display: block;
+  height: auto;
+  max-width: 100%;
 }
 
 svg {
@@ -167,42 +168,45 @@ svg {
 input,
 textarea,
 select {
+  background: rgba($light-black, 0.6);
+  border: 2px solid rgba($yellow, 0.4); // Increased from 1px and 0.2 opacity
+  border-radius: $radius-md;
+  color: $text-primary;
   font-family: $font-family;
   font-size: $text-base;
-  color: $text-primary;
-  background: rgba($light-black, 0.6);
-  border: 1px solid rgba($yellow, 0.2);
-  border-radius: $radius-md;
   padding: $space-3 $space-4;
   transition: all $duration-normal $ease-out;
 
   &:focus {
-    outline: none;
     border-color: $yellow;
     box-shadow: $shadow-glow-yellow;
+    outline: 3px solid $yellow; // Clear outline in addition to border
+    outline-offset: 2px;
   }
 
   &::placeholder {
     color: $text-muted;
+    opacity: 0.7; // Ensure placeholder is distinguishable from value
   }
 
   &:disabled {
-    opacity: 0.5;
+    border-color: rgba($text-muted, 0.3);
     cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
 textarea {
-  resize: vertical;
   min-height: 100px;
+  resize: vertical;
 }
 
 button {
-  font-family: $font-family;
-  cursor: pointer;
-  border: none;
   background: none;
+  border: none;
   color: inherit;
+  cursor: pointer;
+  font-family: $font-family;
 
   &:disabled {
     cursor: not-allowed;
@@ -294,22 +298,23 @@ button {
 // ============================================================================
 
 .sr-only {
-  position: absolute;
-  width: 1px;
+  border-width: 0;
+  clip: rect(0, 0, 0, 0);
   height: 1px;
-  padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  padding: 0;
+  position: absolute;
   white-space: nowrap;
-  border-width: 0;
+  width: 1px;
 }
 
 // Focus visible para navegación por teclado
 :focus-visible {
-  outline: 2px solid $yellow;
-  outline-offset: 2px;
   border-radius: $radius-sm;
+  box-shadow: 0 0 0 3px rgba($black, 0.9), 0 0 0 6px $yellow; // Double ring for contrast
+  outline: 3px solid $yellow; // Increased from 2px for better visibility
+  outline-offset: 3px; // Increased offset
 }
 
 // Reducir movimiento para usuarios que lo prefieren

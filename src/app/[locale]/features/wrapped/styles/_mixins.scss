@@ -6,40 +6,41 @@
 
 // Story container base - Proporción 9:16 fija
 @mixin story-container {
+  aspect-ratio: $aw-story-ratio;
+  background: $aw-bg-deep-navy;
+  margin: 0 auto;
+  max-width: $aw-story-width;
+  overflow: hidden;
   position: relative;
   width: 100%;
-  max-width: $aw-story-width;
-  aspect-ratio: $aw-story-ratio;
-  margin: 0 auto;
-  overflow: hidden;
-  background: $aw-bg-deep-navy;
 }
 
 // Safe area content - Márgenes seguros para textos y CTAs
 @mixin safe-area-content {
+  padding-bottom: $aw-safe-margin-vertical;
   padding-left: $aw-safe-margin-horizontal;
   padding-right: $aw-safe-margin-horizontal;
   padding-top: $aw-safe-margin-vertical;
-  padding-bottom: $aw-safe-margin-vertical;
 }
 
 // Full slide - Posicionamiento absoluto de pantalla completa
 @mixin full-slide {
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+
   @include safe-area-content;
 }
 
 // Centered content - Contenido centrado vertical y horizontalmente
 @mixin center-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
+  justify-content: center;
   text-align: center;
 }
 
@@ -112,8 +113,8 @@
   font-family: $aw-font-family;
   font-size: 96px;
   font-weight: $aw-font-bold;
-  line-height: 1;
   letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 // ============================================================================
@@ -121,23 +122,23 @@
 // ============================================================================
 
 @mixin progress-bar {
-  position: absolute;
-  top: $aw-space-s;
-  left: $aw-safe-margin-horizontal;
-  right: $aw-safe-margin-horizontal;
-  height: $aw-progress-bar-height;
-  z-index: $aw-z-progress;
   display: flex;
   gap: $aw-space-xxs;
+  height: $aw-progress-bar-height;
+  left: $aw-safe-margin-horizontal;
+  position: absolute;
+  right: $aw-safe-margin-horizontal;
+  top: $aw-space-s;
+  z-index: $aw-z-progress;
 }
 
 @mixin progress-segment {
+  background: rgb(255 255 255 / 30%);
+  border-radius: $aw-radius-pill;
+  cursor: pointer;
   flex: 1;
   height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: $aw-radius-pill;
   overflow: hidden;
-  cursor: pointer;
   transition: opacity $aw-duration-tap ease;
 
   &:hover {
@@ -146,8 +147,8 @@
 }
 
 @mixin progress-segment-fill {
-  height: 100%;
   background: $aw-accent-cream;
+  height: 100%;
   transform-origin: left;
   transition: transform 0.2s linear;
 }
@@ -157,21 +158,22 @@
 // ============================================================================
 
 @mixin cta-button {
-  display: inline-flex;
   align-items: center;
+  background: $aw-cta-bg;
+  border: $aw-cta-border-width solid $aw-cta-border;
+  border-radius: $aw-radius-pill;
+  box-shadow: $aw-shadow-1;
+  color: $aw-cta-text;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: $aw-font-semibold;
   justify-content: center;
   min-height: $aw-cta-min-height;
   padding: $aw-cta-padding-v $aw-cta-padding-h;
-  background: $aw-cta-bg;
-  color: $aw-cta-text;
-  border: $aw-cta-border-width solid $aw-cta-border;
-  border-radius: $aw-radius-pill;
-  @include type-body-m;
-  font-weight: $aw-font-semibold;
-  cursor: pointer;
   transition: all $aw-duration-tap $aw-ease-out;
-  box-shadow: $aw-shadow-1;
   user-select: none;
+
+  @include type-body-m;
 
   &:hover {
     background: lighten($aw-cta-bg, 5%);
@@ -183,8 +185,8 @@
 
   &:disabled {
     background: #3c3c3c;
-    color: #aaaaaa;
     border-color: #3c3c3c;
+    color: #aaa;
     cursor: not-allowed;
     opacity: 0.6;
   }
@@ -195,16 +197,17 @@
 // ============================================================================
 
 @mixin domain-pill {
-  display: inline-flex;
   align-items: center;
+  background: $aw-pill-bg;
+  border-radius: $aw-radius-pill;
+  box-shadow: $aw-shadow-1;
+  color: $aw-pill-text;
+  display: inline-flex;
+  font-weight: $aw-font-medium;
   justify-content: center;
   padding: $aw-pill-padding-v $aw-pill-padding-h;
-  background: $aw-pill-bg;
-  color: $aw-pill-text;
-  border-radius: $aw-radius-pill;
+
   @include type-caption;
-  font-weight: $aw-font-medium;
-  box-shadow: $aw-shadow-1;
 }
 
 // ============================================================================
@@ -212,29 +215,30 @@
 // ============================================================================
 
 @mixin toast {
-  position: fixed;
-  bottom: calc($aw-safe-margin-bottom-cta + $aw-cta-min-height + $aw-space-m);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: $aw-toast-padding-v $aw-toast-padding-h;
-  background: $aw-toast-bg;
-  color: $aw-toast-text;
-  border-radius: $aw-radius-m;
-  @include type-body-m;
-  box-shadow: $aw-shadow-1;
-  z-index: $aw-z-toast;
-  display: flex;
   align-items: center;
-  gap: $aw-space-xs;
-  max-width: 90%;
   backdrop-filter: blur(10px);
+  background: $aw-toast-bg;
+  border-radius: $aw-radius-m;
+  bottom: calc($aw-safe-margin-bottom-cta + $aw-cta-min-height + $aw-space-m);
+  box-shadow: $aw-shadow-1;
+  color: $aw-toast-text;
+  display: flex;
+  gap: $aw-space-xs;
+  left: 50%;
+  max-width: 90%;
+  padding: $aw-toast-padding-v $aw-toast-padding-h;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: $aw-z-toast;
+
+  @include type-body-m;
 }
 
 @mixin toast-icon {
-  width: 20px;
-  height: 20px;
   color: $aw-toast-accent;
   flex-shrink: 0;
+  height: 20px;
+  width: 20px;
 }
 
 // ============================================================================
@@ -242,12 +246,12 @@
 // ============================================================================
 
 @mixin exportable-card {
-  position: relative;
-  width: 100%;
-  max-width: $aw-story-width;
   aspect-ratio: $aw-story-ratio;
   box-shadow: $aw-shadow-2;
+  max-width: $aw-story-width;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 // ============================================================================
@@ -256,9 +260,9 @@
 
 // Donut chart base
 @mixin donut-chart($size: 280px) {
-  width: $size;
   height: $size;
   position: relative;
+  width: $size;
 }
 
 @mixin donut-segment($color, $start-angle, $end-angle) {
@@ -277,29 +281,31 @@
 }
 
 @mixin bar-item {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: $aw-space-m;
 }
 
 @mixin bar-label {
   @include type-body-m;
+
+  flex-shrink: 0;
   font-weight: $aw-font-medium;
   min-width: 60px;
-  flex-shrink: 0;
 }
 
 @mixin bar-fill {
-  height: 32px;
+  align-items: center;
   background: $aw-chart-year-bar;
   border-radius: $aw-radius-s;
-  transition: width $aw-duration-chart $aw-ease-out;
   display: flex;
-  align-items: center;
+  font-weight: $aw-font-semibold;
+  height: 32px;
   justify-content: flex-end;
   padding-right: $aw-space-s;
+  transition: width $aw-duration-chart $aw-ease-out;
+
   @include type-body-s;
-  font-weight: $aw-font-semibold;
 
   &.highlighted {
     background: $aw-chart-year-highlight;
@@ -312,13 +318,10 @@
 
 // Patrón de fondo del club
 @mixin club-pattern-bg {
-  position: relative;
   background: $aw-bg-deep-navy;
+  position: relative;
 
   &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
     background-image: linear-gradient(
         0deg,
         $aw-club-line 1px,
@@ -327,29 +330,33 @@
       linear-gradient(90deg, $aw-club-line 1px, transparent 1px),
       repeating-linear-gradient(
         45deg,
-        $aw-club-block 0px,
+        $aw-club-block 0,
         $aw-club-block 10px,
         transparent 10px,
         transparent 20px
       );
     background-size: 40px 40px, 40px 40px, 80px 80px;
+    content: '';
+    inset: 0;
     opacity: 1;
     pointer-events: none;
+    position: absolute;
   }
 }
 
 // Emblema hexagonal del club
 @mixin club-emblem($size: 200px) {
+  align-items: center;
+  display: flex;
+  height: $size;
+  justify-content: center;
   position: relative;
   width: $size;
-  height: $size;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   .emblem-hex {
-    width: 100%;
-    height: 100%;
+    align-items: center;
+    background: $aw-club-hex-fill;
+    border: 3px solid $aw-club-hex-border;
     clip-path: polygon(
       50% 0%,
       100% 25%,
@@ -358,28 +365,28 @@
       0% 75%,
       0% 25%
     );
-    background: $aw-club-hex-fill;
-    border: 3px solid $aw-club-hex-border;
     display: flex;
-    align-items: center;
+    height: 100%;
     justify-content: center;
+    width: 100%;
   }
 
   .emblem-icon {
-    font-size: calc($size * 0.4);
     color: $aw-club-icon-main;
+    font-size: calc($size * 0.4);
   }
 }
 
 // Banda del nombre del club
 @mixin club-banner {
-  padding: $aw-space-m $aw-space-xl;
   background: $aw-club-banner-bg;
   color: $aw-club-banner-text;
-  @include type-heading-m;
+  letter-spacing: 0.05em;
+  padding: $aw-space-m $aw-space-xl;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+
+  @include type-heading-m;
 }
 
 // ============================================================================
@@ -393,18 +400,18 @@
 
 // Overlay oscurecedor
 @mixin overlay-darken {
-  position: absolute;
-  inset: 0;
   background: $aw-overlay-darken;
+  inset: 0;
   pointer-events: none;
+  position: absolute;
 }
 
 // Overlay aclarador
 @mixin overlay-lighten {
-  position: absolute;
-  inset: 0;
   background: $aw-overlay-lighten;
+  inset: 0;
   pointer-events: none;
+  position: absolute;
 }
 
 // Número gigante de fondo
@@ -412,17 +419,17 @@
   position: relative;
 
   &::before {
+    color: currentcolor;
     content: '#{$number}';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-family: $aw-font-family;
     font-size: 400px;
     font-weight: $aw-font-black;
-    color: currentColor;
+    left: 50%;
     opacity: 0.06;
     pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 0;
   }
 }
@@ -433,8 +440,8 @@
 
 // Fade in
 @mixin fade-in($duration: 0.5s, $delay: 0s) {
-  opacity: 0;
   animation: fadeIn $duration $aw-ease-out $delay forwards;
+  opacity: 0;
 }
 
 @keyframes fadeIn {
@@ -445,9 +452,9 @@
 
 // Slide up
 @mixin slide-up($duration: 0.6s, $delay: 0s, $distance: 20px) {
+  animation: slideUp $duration $aw-ease-out $delay forwards;
   opacity: 0;
   transform: translateY($distance);
-  animation: slideUp $duration $aw-ease-out $delay forwards;
 }
 
 @keyframes slideUp {
@@ -459,9 +466,9 @@
 
 // Scale in
 @mixin scale-in($duration: 0.6s, $delay: 0s) {
+  animation: scaleIn $duration $aw-ease-out $delay forwards;
   opacity: 0;
   transform: scale(0.7);
-  animation: scaleIn $duration $aw-ease-out $delay forwards;
 }
 
 @keyframes scaleIn {
@@ -471,9 +478,12 @@
   }
 }
 
-// Pulse (loop infinito)
+// Pulse (loop infinito - conditional on motion preference)
 @mixin pulse($duration: 2s) {
-  animation: pulse $duration ease-in-out infinite;
+  // Only animate if user hasn't requested reduced motion
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pulse $duration ease-in-out infinite;
+  }
 }
 
 @keyframes pulse {
@@ -492,12 +502,12 @@
 // ============================================================================
 
 @mixin tap-zone-left {
+  cursor: pointer;
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: $aw-tap-zone-side;
-  height: 100%;
-  cursor: pointer;
   z-index: $aw-z-controls;
 
   &:active {
@@ -506,12 +516,12 @@
 }
 
 @mixin tap-zone-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: $aw-tap-zone-side;
-  height: 100%;
   cursor: pointer;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: $aw-tap-zone-side;
   z-index: $aw-z-controls;
 
   &:active {
@@ -525,11 +535,11 @@
 
 // Cover de anime/manga
 @mixin cover-image($width: 200px, $height: 280px) {
-  width: $width;
-  height: $height;
-  object-fit: cover;
   border-radius: $aw-radius-m;
   box-shadow: $aw-shadow-2;
+  height: $height;
+  object-fit: cover;
+  width: $width;
 }
 
 // ============================================================================
@@ -539,11 +549,11 @@
 // Text with shadow (antiguo mixin)
 @mixin text-with-shadow($size: 'md') {
   @if $size == 'sm' {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   } @else if $size == 'lg' {
-    text-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 8px 32px rgb(0 0 0 / 30%);
   } @else {
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 4px 16px rgb(0 0 0 / 20%);
   }
 }
 
@@ -553,10 +563,19 @@
   background-size: 100% 100%;
 }
 
-// Animated background (antiguo mixin)
+// Animated background (antiguo mixin - conditional on motion preference)
 @mixin animated-bg {
   background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
+
+  // Only animate if user hasn't requested reduced motion
+  @media (prefers-reduced-motion: no-preference) {
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  // Static background position for reduced motion
+  @media (prefers-reduced-motion: reduce) {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes gradient-shift {
@@ -575,19 +594,19 @@
 
 // Wrapped button (antiguo mixin)
 @mixin wrapped-button {
-  padding: $aw-space-m $aw-space-xl;
-  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  background: rgb(255 255 255 / 10%);
   border: 2px solid $aw-text-on-dark;
   border-radius: $aw-radius-pill;
   color: $aw-text-on-dark;
+  cursor: pointer;
   font-size: $aw-type-heading-s-size;
   font-weight: $aw-font-semibold;
-  cursor: pointer;
+  padding: $aw-space-m $aw-space-xl;
   transition: all $aw-duration-transition $aw-ease-out;
-  backdrop-filter: blur(10px);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(255 255 255 / 20%);
     transform: scale(1.05);
   }
 
@@ -598,9 +617,9 @@
 
 // Glass card (antiguo mixin)
 @mixin glass-card {
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 20%);
   border-radius: $aw-radius-m;
   box-shadow: $aw-shadow-2;
 }

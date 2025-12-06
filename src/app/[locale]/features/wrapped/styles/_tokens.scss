@@ -40,8 +40,8 @@ $aw-bg-deep-navy: #050816;
 // 3. COLORES - TEXTO
 // ============================================================================
 
-$aw-text-on-light: #111111;
-$aw-text-on-dark: #ffffff;
+$aw-text-on-light: #111;
+$aw-text-on-dark: #fff;
 $aw-text-muted-light: #f5f5f5;
 $aw-text-muted-dark: #3d3d3d;
 
@@ -60,17 +60,17 @@ $aw-accent-violet-deep: #3b14a7;
 // ============================================================================
 
 // Botón "Compartir esta historia"
-$aw-cta-bg: #111111;
-$aw-cta-text: #ffffff;
+$aw-cta-bg: #111;
+$aw-cta-text: #fff;
 $aw-cta-border: #ffd64d;
 
 // Pill dominio (animanga-wrapped.vercel.app)
-$aw-pill-bg: #111111;
+$aw-pill-bg: #111;
 $aw-pill-text: #ffd64d;
 
 // Toast / mensaje flotante
-$aw-toast-bg: rgba(30, 30, 30, 0.92);
-$aw-toast-text: #ffffff;
+$aw-toast-bg: rgb(30 30 30 / 92%);
+$aw-toast-text: #fff;
 $aw-toast-accent: #16e0bd;
 
 // ============================================================================
@@ -93,27 +93,27 @@ $aw-chart-year-highlight: #ff5ed9;
 // ============================================================================
 
 // Patrón de fondo
-$aw-club-line: rgba(255, 255, 255, 0.12);
-$aw-club-block: rgba(59, 20, 167, 0.18);
+$aw-club-line: rgb(255 255 255 / 12%);
+$aw-club-block: rgb(59 20 167 / 18%);
 
 // Emblema hexagonal
 $aw-club-hex-border: #b6ff3b;
-$aw-club-hex-fill: #111111;
+$aw-club-hex-fill: #111;
 $aw-club-icon-main: #7b5cff;
 $aw-club-icon-detail-1: #ff5ed9;
 $aw-club-icon-detail-2: #33e1ff;
 
 // Banda nombre del club
 $aw-club-banner-bg: #b6ff3b;
-$aw-club-banner-text: #111111;
+$aw-club-banner-text: #111;
 
 // ============================================================================
 // 8. COLORES - OVERLAYS
 // ============================================================================
 
-$aw-overlay-darken: rgba(0, 0, 0, 0.18);
-$aw-overlay-lighten: rgba(255, 255, 255, 0.08);
-$aw-overlay-bg-pattern: rgba(0, 0, 0, 0.06); // Números gigantes de fondo
+$aw-overlay-darken: rgb(0 0 0 / 18%);
+$aw-overlay-lighten: rgb(255 255 255 / 8%);
+$aw-overlay-bg-pattern: rgb(0 0 0 / 6%); // Números gigantes de fondo
 
 // ============================================================================
 // 9. TIPOGRAFÍA - JERARQUÍA DE TAMAÑOS
@@ -184,13 +184,13 @@ $aw-radius-pill: 9999px;
 // Shadow 1 - Para botones, pill
 $aw-shadow-1-y: 4px;
 $aw-shadow-1-blur: 12px;
-$aw-shadow-1-color: rgba(0, 0, 0, 0.18);
+$aw-shadow-1-color: rgb(0 0 0 / 18%);
 $aw-shadow-1: 0 #{$aw-shadow-1-y} #{$aw-shadow-1-blur} #{$aw-shadow-1-color};
 
 // Shadow 2 - Para tarjeta exportable
 $aw-shadow-2-y: 8px;
 $aw-shadow-2-blur: 24px;
-$aw-shadow-2-color: rgba(0, 0, 0, 0.24);
+$aw-shadow-2-color: rgb(0 0 0 / 24%);
 $aw-shadow-2: 0 #{$aw-shadow-2-y} #{$aw-shadow-2-blur} #{$aw-shadow-2-color};
 
 // ============================================================================
@@ -215,7 +215,7 @@ $aw-duration-tap: 180ms; // Feedback de tap (150-200ms)
 
 $aw-tap-zone-side: 25%; // 25% lateral para navegación
 $aw-tap-zone-center: 50%; // 50% centro sin acción
-$aw-tap-feedback-overlay: rgba(0, 0, 0, 0.1);
+$aw-tap-feedback-overlay: rgb(0 0 0 / 10%);
 
 // ============================================================================
 // 15. COMPONENTES - DIMENSIONES ESPECÍFICAS
@@ -324,10 +324,10 @@ $wrapped-radius-xl: 32px;
 $wrapped-radius-full: $aw-radius-pill;
 
 // Shadows (mapear a nuevo sistema)
-$wrapped-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-$wrapped-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-$wrapped-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-$wrapped-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.4);
+$wrapped-shadow-sm: 0 2px 8px rgb(0 0 0 / 10%);
+$wrapped-shadow-md: 0 4px 16px rgb(0 0 0 / 20%);
+$wrapped-shadow-lg: 0 8px 32px rgb(0 0 0 / 30%);
+$wrapped-shadow-xl: 0 12px 48px rgb(0 0 0 / 40%);
 
 // Animation timings
 $wrapped-duration-fast: 0.2s;

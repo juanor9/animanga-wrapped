@@ -12,9 +12,9 @@
 }
 
 .toast__message {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @keyframes toastSlideIn {

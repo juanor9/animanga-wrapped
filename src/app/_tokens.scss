@@ -70,16 +70,16 @@ $radius-full: 9999px;
 // SOMBRAS
 // ============================================================================
 
-$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-$shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.4);
-$shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.5);
+$shadow-sm: 0 2px 8px rgb(0 0 0 / 10%);
+$shadow-md: 0 4px 16px rgb(0 0 0 / 20%);
+$shadow-lg: 0 8px 32px rgb(0 0 0 / 30%);
+$shadow-xl: 0 12px 48px rgb(0 0 0 / 40%);
+$shadow-2xl: 0 24px 64px rgb(0 0 0 / 50%);
 
 // Sombras de color
-$shadow-glow-yellow: 0 0 20px rgba(255, 214, 77, 0.4);
-$shadow-glow-pink: 0 0 20px rgba(255, 94, 217, 0.4);
-$shadow-glow-teal: 0 0 20px rgba(22, 224, 189, 0.4);
+$shadow-glow-yellow: 0 0 20px rgb(255 214 77 / 40%);
+$shadow-glow-pink: 0 0 20px rgb(255 94 217 / 40%);
+$shadow-glow-teal: 0 0 20px rgb(22 224 189 / 40%);
 
 // ============================================================================
 // TRANSICIONES Y ANIMACIONES
@@ -89,7 +89,6 @@ $duration-fast: 0.15s;
 $duration-normal: 0.3s;
 $duration-slow: 0.5s;
 $duration-slower: 0.8s;
-
 $ease-in: cubic-bezier(0.4, 0, 1, 1);
 $ease-out: cubic-bezier(0, 0, 0.2, 1);
 $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
