@@ -28,6 +28,12 @@ $aw-actions-zone-height: 12%; // 10-15% de altura
 // 2. COLORES - FONDOS PRINCIPALES
 // ============================================================================
 
+// Spotify Wrapped 2025 inspired backgrounds
+$aw-bg-dark: #2c2c2c; // Main dark background
+$aw-bg-light: #e8e2d5; // Main light/beige background
+$aw-bg-darker: #1a1a1a; // Darker variant
+
+// Legacy colorful backgrounds (mantener para retrocompatibilidad)
 $aw-bg-orange: #ff7a3c;
 $aw-bg-pink: #ff5ed9;
 $aw-bg-yellow: #ffd64d;
@@ -49,6 +55,13 @@ $aw-text-muted-dark: #3d3d3d;
 // 4. COLORES - ACENTOS
 // ============================================================================
 
+// Spotify Wrapped 2025 geometric decorations
+$aw-accent-purple-arc: #8b7fc8; // Purple arcs
+$aw-accent-yellow-line: #ffd700; // Yellow diagonal lines
+$aw-accent-white-line: #ffffff; // White diagonal lines
+$aw-accent-black-circle: #000000; // Black decorative circles
+
+// Legacy accents
 $aw-accent-cream: #fff5d6;
 $aw-accent-cyan: #33e1ff;
 $aw-accent-hot-pink: #ff3ba7;
@@ -122,6 +135,13 @@ $aw-overlay-bg-pattern: rgb(0 0 0 / 6%); // Números gigantes de fondo
 // Font families
 $aw-font-family: 'Poppins', -apple-system, blinkmacsystemfont, 'Segoe UI',
   roboto, 'Helvetica Neue', arial, sans-serif;
+$aw-font-display: 'Arial Black', 'Poppins', -apple-system, sans-serif; // Ultra bold for Spotify style
+
+// Spotify Wrapped 2025 inspired display sizes
+$aw-type-mega-size: 120px; // For main artist names, big numbers
+$aw-type-mega-line: 110px;
+$aw-type-hero-size: 80px; // For secondary emphasis
+$aw-type-hero-line: 85px;
 
 // Display / Frases grandes
 $aw-type-display-size: 40px;

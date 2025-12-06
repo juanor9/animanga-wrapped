@@ -16,10 +16,7 @@ const S01_Opening = ({ userName, year = 2025 }) => {
   }, []);
 
   return (
-    <SlideBase
-      background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      className="chapter1-slide"
-    >
+    <SlideBase background="#2c2c2c" className="chapter1-slide with-arcs">
       <div className="slide-content">
         <h1 ref={titleRef} className="slide-title">
           Tenemos todo listo para ti,

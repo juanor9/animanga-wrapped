@@ -8,6 +8,14 @@
     "signup": "Registrarse",
     "loading": "Cargando..."
   },
+  "home": {
+    "title": "Tu Año de Anime y Manga Resumido",
+    "subtitle": "Obtén estadísticas relevantes sobre el anime que viste o el manga que leíste. Comparte con todos lo que es importante para ti",
+    "popularAnimeTitle": "Anime Popular Este Año",
+    "popularMangaTitle": "Manga Popular Este Año",
+    "popularAnimeLabel": "Carrusel de Anime Popular",
+    "popularMangaLabel": "Carrusel de Manga Popular"
+  },
   "hero": {
     "title": "Tu Año de Anime y Manga en Resumen",
     "subtitle": "Obtén estadísticas relevantes sobre el anime que viste o el manga que leíste. Comparte con todos lo que es importante para ti"

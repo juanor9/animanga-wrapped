@@ -10,8 +10,15 @@
 // ============================================================================
 
 // Font family
-$font-family: 'Poppins', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
-  'Helvetica Neue', arial, sans-serif;
+$font-family:
+  'Poppins',
+  -apple-system,
+  blinkmacsystemfont,
+  'Segoe UI',
+  roboto,
+  'Helvetica Neue',
+  arial,
+  sans-serif;
 
 // Font sizes
 $text-xs: 12px;
@@ -126,3 +133,28 @@ $container-md: 768px;
 $container-lg: 1024px;
 $container-xl: 1280px;
 $container-2xl: 1536px;
+
+// ============================================================================
+// SPOTIFY WRAPPED DESIGN TOKENS
+// ============================================================================
+
+// Decorative circles
+$circle-sm: 40px;
+$circle-md: 80px;
+$circle-lg: 120px;
+$circle-xl: 160px;
+
+// Number outlines/borders
+$number-outline-width: 3px;
+$number-outline-width-lg: 5px;
+
+// Text boxes (for lists)
+$text-box-padding-v: 16px;
+$text-box-padding-h: 24px;
+$text-box-border-radius: 8px;
+$text-box-gap: 12px;
+
+// Geometric patterns
+$pattern-line-width: 2px;
+$pattern-line-width-thick: 4px;
+$pattern-spacing: 20px;

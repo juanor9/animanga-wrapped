@@ -1,0 +1,165 @@
+// ============================================================================
+// SPOTIFY WRAPPED 2025 MIXINS
+// ============================================================================
+
+@use './tokens' as *;
+@use './colors' as *;
+
+// Beige background with geometric decorations
+@mixin spotify-beige-background {
+  background: $spotify-beige;
+  color: $text-on-light;
+  position: relative;
+}
+
+// Outlined number (like "25" with lime green fill and dark border)
+@mixin spotify-outlined-number($fill-color: $spotify-lime, $outline-color: $text-on-light) {
+  color: $fill-color;
+  font-family: $font-family;
+  font-size: 120px;
+  font-weight: $font-black;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow:
+    #{$number-outline-width} 0 0 $outline-color,
+    -#{$number-outline-width} 0 0 $outline-color,
+    0 #{$number-outline-width} 0 $outline-color,
+    0 -#{$number-outline-width} 0 $outline-color,
+    #{$number-outline-width} #{$number-outline-width} 0 $outline-color,
+    -#{$number-outline-width} -#{$number-outline-width} 0 $outline-color,
+    #{$number-outline-width} -#{$number-outline-width} 0 $outline-color,
+    -#{$number-outline-width} #{$number-outline-width} 0 $outline-color;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 80px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 60px;
+  }
+}
+
+// Text box for lists (black background with white text)
+@mixin spotify-text-box {
+  align-items: center;
+  background: $spotify-text-box-bg;
+  border-radius: $text-box-border-radius;
+  color: $spotify-text-box-text;
+  display: flex;
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  gap: $space-4;
+  padding: $text-box-padding-v $text-box-padding-h;
+  text-transform: none;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-xl;
+    padding: 12px 20px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $text-lg;
+    padding: 10px 16px;
+  }
+}
+
+// Decorative circle
+@mixin spotify-decorative-circle($size: $circle-md, $color: $spotify-circle-black) {
+  background: $color;
+  border-radius: 50%;
+  height: $size;
+  position: absolute;
+  width: $size;
+}
+
+// Diagonal stripes pattern (enhanced from wrapped styles)
+@mixin spotify-diagonal-stripes($color1: $yellow, $color2: $white, $opacity: 0.15) {
+  &::before {
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: $opacity;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+}
+
+// Container for numbered list items
+@mixin spotify-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: $text-box-gap;
+  margin: $space-8 0;
+  max-width: 600px;
+  width: 100%;
+
+  @media (max-width: $breakpoint-md) {
+    max-width: 90%;
+  }
+}
+
+// List item with number and text box
+@mixin spotify-list-item {
+  align-items: center;
+  display: flex;
+  gap: $space-4;
+  position: relative;
+
+  .list-number {
+    color: $text-on-light;
+    flex-shrink: 0;
+    font-size: $text-3xl;
+    font-weight: $font-black;
+    width: 50px;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: $text-2xl;
+      width: 40px;
+    }
+  }
+
+  .list-content {
+    @include spotify-text-box;
+    flex: 1;
+  }
+}
+
+// Bold stat display (for dark backgrounds)
+@mixin spotify-stat-number($color: $spotify-number-purple) {
+  color: $color;
+  font-family: $font-family;
+  font-size: 100px;
+  font-weight: $font-black;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: none;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 70px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 50px;
+  }
+}
+
+// Geometric pattern container
+@mixin spotify-pattern-container {
+  overflow: hidden;
+  position: relative;
+
+  .pattern-circles {
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .pattern-lines {
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+}

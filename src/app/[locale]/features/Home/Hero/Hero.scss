@@ -1,94 +1,127 @@
 @use '../../../../tokens' as *;
-@use '../../../../mixins' as *;
-@use '../../../../colors' as *;
 
 .hero {
-  @include section;
-
-  background: linear-gradient(135deg, rgba($purple, 0.08) 0%, rgba($pink, 0.04) 100%);
-  border-radius: $radius-2xl;
+  align-items: center;
+  background: #ebe7de;
   display: flex;
   flex-direction: column;
-  gap: $space-8;
+  gap: $space-12;
+  justify-content: center;
+  min-height: 700px;
   overflow: hidden;
   padding: $space-12 $space-6;
   position: relative;
 
-  // Efecto de brillo de fondo estático (sin animación)
-  &::before {
-    background: radial-gradient(
-      circle,
-      rgba($yellow, 0.06) 0%,
-      transparent 70%
-    );
-    content: '';
-    height: 50%;
-    pointer-events: none;
-    position: absolute;
-    right: -25%;
-    top: -25%;
-    width: 50%;
-  }
-
   @media (min-width: $breakpoint-md) {
-    align-items: center;
     flex-direction: row;
+    gap: $space-16;
+    min-height: 800px;
     padding: $space-16 $space-12;
   }
 
+  // Curved lines decoration at top (like Spotify Wrapped)
+  &::before {
+    border-bottom: 3px solid #111;
+    border-radius: 50%;
+    content: '';
+    height: 200px;
+    left: -10%;
+    position: absolute;
+    top: 80px;
+    transform: rotate(-5deg);
+    width: 120%;
+  }
+
+  &::after {
+    border-bottom: 3px solid #111;
+    border-radius: 50%;
+    content: '';
+    height: 180px;
+    left: -5%;
+    position: absolute;
+    top: 100px;
+    transform: rotate(3deg);
+    width: 110%;
+  }
+
   &__copy {
-    flex: 1;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    max-width: 700px;
+    position: relative;
+    text-align: center;
     z-index: 1;
 
-    h1 {
-      // Uso de color sólido en lugar de gradient para mejor accesibilidad
-      color: $yellow;
-      font-size: $text-5xl;
-      font-weight: $font-black;
-      line-height: $leading-tight;
-      margin-bottom: $space-6;
-
-      @media (min-width: $breakpoint-md) {
-        font-size: $text-6xl;
-      }
+    @media (min-width: $breakpoint-md) {
+      flex: 1;
     }
+  }
 
-    p {
-      color: $text-secondary;
-      font-size: $text-xl;
-      line-height: $leading-relaxed;
-      margin: 0;
+  &__title {
+    color: #111;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
 
-      @media (min-width: $breakpoint-md) {
-        font-size: $text-2xl;
-      }
+    @media (min-width: $breakpoint-md) {
+      font-size: 64px;
+    }
+  }
+
+  &__subtitle {
+    background-color: rgba(235, 231, 222, 1);
+    color: #111;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 0;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 20px;
     }
   }
 
   &__forms {
-    background: $orange-gradient;
-    border-radius: $radius-xl;
-    box-shadow: $shadow-xl;
-    color: $white;
+    background: #fff;
+    border: 3px solid #111;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    color: #111;
     flex-shrink: 0;
-    max-width: 400px;
-    padding: $space-8;
+    max-width: 420px;
+    padding: $space-10;
+    position: relative;
     width: 100%;
     z-index: 1;
 
     @media (min-width: $breakpoint-md) {
-      min-width: 380px;
+      min-width: 400px;
     }
   }
-}
 
-// Animaciones opcionales solo si el usuario NO ha solicitado reduced motion
-@media (prefers-reduced-motion: no-preference) {
-  .hero__copy {
-    animation: slideUp 0.8s $ease-out;
-  }
+  // Large decorative year element at bottom right
+  &__year {
+    align-items: flex-end;
+    bottom: 20px;
+    color: #ff5722;
+    display: flex;
+    font-size: 200px;
+    font-weight: 900;
+    justify-content: flex-end;
+    -webkit-text-stroke: 6px #111;
+    paint-order: stroke fill;
+    pointer-events: none;
+    position: absolute;
+    right: 20px;
+    z-index: 0;
 
-  .hero__forms {
-    animation: scaleIn 0.8s $ease-out 0.2s backwards;
+    @media (min-width: $breakpoint-md) {
+      bottom: -129px;
+      font-size: 307px;
+      -webkit-text-stroke: 8px #111;
+      right: -90px;
+    }
   }
 }

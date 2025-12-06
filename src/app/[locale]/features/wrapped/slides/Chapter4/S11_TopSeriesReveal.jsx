@@ -5,6 +5,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter4.scss';
+
 const S11_TopSeriesReveal = ({ topSeries }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
@@ -28,12 +29,12 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
 
   return (
     <SlideBase
-      background="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-      className="chapter4-slide"
+      background="#e8e2d5"
+      className="chapter4-slide with-diagonal-stripes"
       shareRef={shareRef}
     >
       <div className="slide-content">
-        <h2 ref={titleRef} className="slide-label">
+        <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Tu serie principal fue
         </h2>
 
@@ -46,11 +47,11 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
           />
         )}
 
-        <h3 ref={seriesTitleRef} className="anime-title">
+        <h3 ref={seriesTitleRef} className="anime-title" style={{ color: '#111' }}>
           {topSeries.title}
         </h3>
 
-        <div ref={statsRef} className="anime-stats">
+        <div ref={statsRef} className="anime-stats" style={{ color: '#111' }}>
           <div className="anime-stats__item">
             <span className="anime-stats__value">{hours}h</span>
             <span className="anime-stats__label">vistas</span>

@@ -3,45 +3,94 @@
 
 .chapter2-slide {
   color: $wrapped-text-primary;
+  overflow: hidden;
+  position: relative;
+
+  // Purple arcs decoration for dark backgrounds
+  &.with-arcs {
+    @include purple-arcs-decoration;
+  }
+
+  // Geometric lines for light backgrounds
+  &.with-lines {
+    @include geometric-lines;
+  }
+
+  // Diagonal stripes for beige backgrounds (Spotify Wrapped style)
+  &.with-diagonal-stripes {
+    &::before {
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 0, 0, 0.04) 20px,
+        rgba(0, 0, 0, 0.04) 40px
+      );
+      content: '';
+      height: 250px;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 0;
+    }
+  }
 }
 
 .genre-list {
   list-style: none;
-  margin: $wrapped-space-lg 0;
-  max-width: 600px;
+  margin: $wrapped-space-xl 0;
+  max-width: 700px;
   padding: 0;
+  position: relative;
   width: 100%;
+  z-index: 1;
 }
 
 .genre-list__item {
-  align-items: center;
-  backdrop-filter: blur(10px);
-  background: rgb(255 255 255 / 10%);
-  border-radius: $wrapped-radius-md;
-  display: flex;
-  font-size: $wrapped-text-lg;
-  font-weight: $wrapped-font-semibold;
-  gap: $wrapped-space-md;
-  margin-bottom: $wrapped-space-sm;
-  padding: $wrapped-space-md;
+  @include ranked-list-item;
 
-  @include text-with-shadow('sm');
+  background: transparent;
+  border-bottom: 2px solid currentcolor;
+  margin-bottom: $wrapped-space-md;
+  opacity: 0.9;
+  padding-bottom: $wrapped-space-md;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: translateX(8px);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .genre-list__number {
-  align-items: center;
-  background: rgb(255 255 255 / 20%);
-  border-radius: $wrapped-radius-full;
-  display: flex;
+  @include type-heading-l;
+
   flex-shrink: 0;
-  font-weight: $wrapped-font-bold;
-  height: 40px;
-  justify-content: center;
-  width: 40px;
+  font-weight: $wrapped-font-black;
+  width: 50px;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-heading-m-size;
+    width: 40px;
+  }
 }
 
 .genre-list__name {
+  @include type-heading-s;
+
   flex: 1;
+
+  @media (width <= 768px) {
+    font-size: $aw-type-body-l-size;
+  }
 }
 
 .genres-card {
@@ -95,4 +144,116 @@
   margin-top: $wrapped-space-lg;
   opacity: 0.7;
   padding-top: $wrapped-space-md;
+}
+
+// ============================================================================
+// SPOTIFY WRAPPED STYLES
+// ============================================================================
+
+// Spotify genres list with text boxes
+.spotify-genres-list {
+  position: relative;
+
+  .decorative-circle {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 0;
+
+    &.circle-black-1 {
+      background: #000;
+      height: 100px;
+      right: 10%;
+      top: 5%;
+      width: 100px;
+    }
+
+    &.circle-red-1 {
+      background: #ff4444;
+      bottom: 15%;
+      height: 80px;
+      right: 5%;
+      width: 80px;
+    }
+
+    &.circle-orange-1 {
+      background: #ff6633;
+      bottom: 25%;
+      height: 60px;
+      right: 15%;
+      width: 60px;
+    }
+
+    &.circle-black-2 {
+      background: #000;
+      bottom: 5%;
+      height: 120px;
+      right: 8%;
+      width: 120px;
+    }
+
+    @media (width <= 768px) {
+      transform: scale(0.7);
+    }
+
+    @media (width <= 480px) {
+      transform: scale(0.5);
+    }
+  }
+}
+
+.spotify-genre-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 40px 0;
+  max-width: 600px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  @media (width <= 768px) {
+    max-width: 90%;
+  }
+}
+
+.spotify-genre-item {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  position: relative;
+
+  .genre-number {
+    color: #111;
+    flex-shrink: 0;
+    font-size: 32px;
+    font-weight: 900;
+    width: 50px;
+
+    @media (width <= 768px) {
+      font-size: 24px;
+      width: 40px;
+    }
+  }
+
+  .genre-text-box {
+    align-items: center;
+    background: #1a1a1a;
+    color: #ffffff;
+    display: flex;
+    flex: 1;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 16px 24px;
+    text-transform: none;
+
+    @media (width <= 768px) {
+      font-size: 20px;
+      padding: 12px 20px;
+    }
+
+    @media (width <= 480px) {
+      font-size: 18px;
+      padding: 10px 16px;
+    }
+  }
 }

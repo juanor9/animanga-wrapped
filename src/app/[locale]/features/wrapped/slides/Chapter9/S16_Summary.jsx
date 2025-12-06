@@ -6,6 +6,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, staggerIn } from '../../utils/animations';
 import './Chapter9.scss';
+
 const S16_Summary = ({ wrappedData, onComplete }) => {
   const router = useRouter();
   const shareRef = useRef(null);
@@ -47,12 +48,12 @@ const S16_Summary = ({ wrappedData, onComplete }) => {
 
   return (
     <SlideBase
-      background="linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)"
-      className="chapter9-slide"
+      background="#e8e2d5"
+      className="chapter9-slide with-diagonal-stripes"
       shareRef={shareRef}
     >
       <div className="slide-content">
-        <h2 ref={titleRef} className="summary-title">
+        <h2 ref={titleRef} className="summary-title" style={{ color: '#111' }}>
           Tu Animanga Wrapped 2025
         </h2>
 
@@ -64,6 +65,7 @@ const S16_Summary = ({ wrappedData, onComplete }) => {
                 statsRef.current[index] = el;
               }}
               className="summary-card__item"
+              style={{ color: '#111' }}
             >
               <span className="summary-card__label">{stat.label}</span>
               <span className="summary-card__value">{stat.value}</span>
