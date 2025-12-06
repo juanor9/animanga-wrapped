@@ -152,10 +152,10 @@
 .slide-big-number {
   @include type-mega;
 
-  margin: $wrapped-space-l 0;
+  margin: $wrapped-space-lg 0;
 
   @media (width <= 768px) {
-    margin: $wrapped-space-m 0;
+    margin: $wrapped-space-md 0;
   }
 }
 
@@ -202,7 +202,7 @@
 
   @media (width <= 768px) {
     margin: $wrapped-space-xl 0;
-    padding: $wrapped-space-l;
+    padding: $wrapped-space-lg;
   }
 }
 

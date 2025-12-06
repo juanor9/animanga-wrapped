@@ -17,6 +17,20 @@
   }
 }
 
+// S10_EpisodesTotal - Big number for total episodes
+.chapter4-slide.s10-episodes-total {
+  .slide-big-number {
+    margin: $wrapped-space-lg 0;
+  }
+}
+
+// S11_TopSeriesReveal - Top series reveal slide
+.chapter4-slide.s11-top-series-reveal {
+  .slide-big-number {
+    margin: $wrapped-space-lg 0;
+  }
+}
+
 .slide-question {
   @include type-heading-m;
 
@@ -27,7 +41,7 @@
 .anime-cover {
   @include cover-image(250px, 350px);
 
-  margin: $wrapped-space-l 0;
+  margin: $wrapped-space-lg 0;
 
   @media (width <= 768px) {
     @include cover-image(200px, 280px);
@@ -37,7 +51,7 @@
 .anime-title {
   @include type-hero;
 
-  margin: $wrapped-space-l 0;
+  margin: $wrapped-space-lg 0;
   max-width: 85%;
   text-align: center;
 
@@ -60,7 +74,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: $wrapped-space-s;
+  gap: $wrapped-space-sm;
 }
 
 .anime-stats__value {
@@ -81,10 +95,10 @@
 .series-list {
   display: flex;
   flex-direction: column;
-  gap: $wrapped-space-l;
+  gap: $wrapped-space-lg;
   margin: $wrapped-space-2xl 0;
   max-width: 700px;
-  padding: 0 $wrapped-space-l;
+  padding: 0 $wrapped-space-lg;
   position: relative;
   width: 100%;
   z-index: 1;
@@ -108,7 +122,7 @@
   }
 
   @media (width <= 768px) {
-    gap: $wrapped-space-m;
+    gap: $wrapped-space-md;
   }
 }
 
@@ -122,6 +136,8 @@
     font-size: $aw-type-heading-m-size;
     width: 40px;
   }
+}
+
 .anime-title {
   @include type-heading-m;
 
