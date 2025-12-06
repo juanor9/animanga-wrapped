@@ -1,27 +1,37 @@
-@use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
+@use '../../styles/tokens' as *;
 
 .share-button {
-  @include wrapped-button;
+  @include cta-button;
 
   align-items: center;
+  bottom: calc($aw-safe-margin-bottom-cta + 60px);
   display: flex;
-  font-size: $wrapped-text-sm;
-  gap: $wrapped-space-xs;
-  padding: $wrapped-space-sm $wrapped-space-md;
+  gap: $aw-space-xs;
+  left: 50%;
+
+  // Posición fija en la zona inferior de la historia
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: $aw-z-controls;
+
+  @media (min-width: #{$aw-story-width}) {
+    bottom: calc($aw-safe-margin-bottom-cta + 80px);
+  }
 
   &:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-
     &:hover {
-      background: rgb(255 255 255 / 10%);
-      transform: none;
+      background: #3c3c3c;
+      transform: translateX(-50%);
+    }
+
+    &:active {
+      transform: translateX(-50%);
     }
   }
 }
 
 .share-button__icon {
-  font-size: $wrapped-text-base;
+  font-size: 20px;
   line-height: 1;
 }

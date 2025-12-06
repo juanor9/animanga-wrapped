@@ -1,22 +1,20 @@
+@use '../../styles/mixins' as *;
 @use '../../styles/tokens' as *;
 
 .brand-footer {
   align-items: center;
-  bottom: $wrapped-brand-position-bottom;
+  bottom: $aw-safe-margin-bottom-cta;
   display: flex;
-  height: $wrapped-brand-height;
   justify-content: center;
   left: 0;
   pointer-events: none;
   position: fixed;
   right: 0;
-  z-index: $wrapped-z-content;
+  z-index: $aw-z-content;
 }
 
 .brand-footer__text {
-  color: rgb(255 255 255 / 80%);
-  font-size: $wrapped-text-sm;
-  font-weight: $wrapped-font-medium;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+  @include domain-pill;
+
+  pointer-events: auto;
 }

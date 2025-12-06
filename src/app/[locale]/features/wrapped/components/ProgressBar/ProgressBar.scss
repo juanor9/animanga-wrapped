@@ -1,55 +1,53 @@
+@use '../../styles/mixins' as *;
 @use '../../styles/tokens' as *;
 
 .progress-bar {
-  display: flex;
-  gap: 4px;
-  left: 0;
+  @include progress-bar;
+
   margin: 0 auto;
-  max-width: $wrapped-story-width;
-  padding: 0 $wrapped-safe-zone-horizontal;
+  max-width: $aw-story-width;
+
+  // Ajuste para móvil - posición fija en la parte superior
   position: fixed;
-  right: 0;
-  top: $wrapped-safe-zone-top - 60px;
-  z-index: $wrapped-z-progress;
+
+  @media (min-width: #{$aw-story-width}) {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: $aw-story-width;
+  }
 }
 
 .progress-bar__segment {
+  @include progress-segment;
+
   background: transparent;
   border: none;
-  cursor: pointer;
-  flex: 1;
-  height: 3px;
   padding: 8px 0;
-  transition: opacity $wrapped-duration-fast;
-
-  &:hover {
-    opacity: 0.8;
-  }
 
   &:focus-visible {
-    outline: 2px solid $wrapped-text-primary;
+    outline: 2px solid $aw-accent-cream;
     outline-offset: 2px;
   }
 }
 
 .progress-bar__track {
   background: rgb(255 255 255 / 30%);
-  border-radius: 2px;
-  height: 3px;
+  border-radius: $aw-radius-pill;
+  height: $aw-progress-bar-height;
   overflow: hidden;
   position: relative;
   width: 100%;
 }
 
 .progress-bar__fill {
-  background: $wrapped-text-primary;
-  border-radius: 2px;
+  @include progress-segment-fill;
+
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   transform: scaleX(0);
-  transform-origin: left;
   width: 100%;
 }
 

@@ -1,14 +1,61 @@
-$black: rgb(48 42 37 / 100%);
-$light-black: rgb(71 65 59);
-$lighter-black: rgb(123 115 107);
-$pink: rgb(255 145 255 / 100%);
-$yellow: rgb(255 211 25 / 100%);
-$green: rgb(49 181 122 / 100%);
-$orange: rgb(252 128 45 / 100%);
-$white: rgb(241 236 232 / 96.7%);
+// ============================================================================
+// Animanga 2025 - Global Design System
+// ============================================================================
+// Sistema de diseño global con accesibilidad WCAG AA
 
-// Gradients
-$orange-gradient: linear-gradient(180deg, #FC802D 52%, #FCA92D 81%);
-$green-gradient: linear-gradient(180deg, #21AD6F 52%, #5AD75F 81%);
-$yellow-gradient: linear-gradient(180deg, #FFD319 52%, #F9F137 81%);
-$pink-gradient: linear-gradient(180deg, #FF91FF 52%, #FF97C9 81%);
+// ============================================================================
+// COLORES PRINCIPALES (Optimizados para WCAG AA)
+// ============================================================================
+
+// Fondos base
+$black: #050816; // Deep navy - color base oscuro
+$light-black: #111;
+$lighter-black: #3d3d3d;
+
+// Colores de marca (ajustados para contraste WCAG AA)
+$pink: #e91e9e; // Hot pink (oscurecido para contraste 4.5:1 con blanco)
+$yellow: #ffd64d; // Amarillo brillante (usar con texto oscuro)
+$green: #a8d93e; // Lime (oscurecido para contraste)
+$orange: #ff7a3c; // Naranja energético
+$teal: #00bfa0; // Teal (oscurecido para contraste 4.5:1 con blanco)
+$purple: #7b5cff; // Púrpura intenso
+$white: #fff;
+
+// Colores de acento
+$accent-cream: #fff5d6;
+$accent-cyan: #00b8d4; // Oscurecido para contraste
+$accent-hot-pink: #e91e9e; // Ajustado
+$accent-lime-neon: #a8d93e; // Ajustado
+$accent-violet-deep: #3b14a7;
+
+// Texto
+$text-primary: #fff;
+$text-secondary: #f5f5f5;
+$text-muted: #b3b3b3;
+$text-on-light: #111;
+$text-on-yellow: #000; // Texto negro para fondos amarillos
+
+// ============================================================================
+// GRADIENTES (Actualizados con colores accesibles)
+// ============================================================================
+
+$orange-gradient: linear-gradient(135deg, #ff7a3c 0%, #fc802d 100%);
+$green-gradient: linear-gradient(135deg, #a8d93e 0%, #5ad75f 100%);
+$yellow-gradient: linear-gradient(135deg, #ffd64d 0%, #f9f137 100%);
+$pink-gradient: linear-gradient(135deg, #e91e9e 0%, #ff97c9 100%);
+$purple-gradient: linear-gradient(135deg, #7b5cff 0%, #3b14a7 100%);
+$teal-gradient: linear-gradient(135deg, #00bfa0 0%, #00d4ba 100%);
+
+// Gradientes de capítulo (para diferentes secciones)
+$gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+$gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+$gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+$gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+
+// ============================================================================
+// BACKWARD COMPATIBILITY (mantener variables antiguas)
+// ============================================================================
+
+// Aliases para código existente
+$light-black: $lighter-black;

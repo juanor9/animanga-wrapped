@@ -1,33 +1,94 @@
-@import '../../../../colors';
-
+@use '../../../../tokens' as *;
+@use '../../../../mixins' as *;
+@use '../../../../colors' as *;
 
 .hero {
-  background-color: $light-black;
-  border-radius: 3em;
+  @include section;
+
+  background: linear-gradient(135deg, rgba($purple, 0.08) 0%, rgba($pink, 0.04) 100%);
+  border-radius: $radius-2xl;
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  width: 100%;
+  gap: $space-8;
+  overflow: hidden;
+  padding: $space-12 $space-6;
+  position: relative;
 
-  @media (width >= 1000px) {
+  // Efecto de brillo de fondo estático (sin animación)
+  &::before {
+    background: radial-gradient(
+      circle,
+      rgba($yellow, 0.06) 0%,
+      transparent 70%
+    );
+    content: '';
+    height: 50%;
+    pointer-events: none;
+    position: absolute;
+    right: -25%;
+    top: -25%;
+    width: 50%;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    align-items: center;
     flex-direction: row;
+    padding: $space-16 $space-12;
   }
 
   &__copy {
-    min-width: 66%;
-  }
+    flex: 1;
+    z-index: 1;
 
-  &__header {
-    color: $yellow;
+    h1 {
+      // Uso de color sólido en lugar de gradient para mejor accesibilidad
+      color: $yellow;
+      font-size: $text-5xl;
+      font-weight: $font-black;
+      line-height: $leading-tight;
+      margin-bottom: $space-6;
+
+      @media (min-width: $breakpoint-md) {
+        font-size: $text-6xl;
+      }
+    }
+
+    p {
+      color: $text-secondary;
+      font-size: $text-xl;
+      line-height: $leading-relaxed;
+      margin: 0;
+
+      @media (min-width: $breakpoint-md) {
+        font-size: $text-2xl;
+      }
+    }
   }
 
   &__forms {
-    background-color: $orange;
-    border-radius: 2em;
-    color: $black;
-    min-width: 33%;
-    padding: 2em;
+    background: $orange-gradient;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-xl;
+    color: $white;
+    flex-shrink: 0;
+    max-width: 400px;
+    padding: $space-8;
+    width: 100%;
+    z-index: 1;
+
+    @media (min-width: $breakpoint-md) {
+      min-width: 380px;
+    }
+  }
+}
+
+// Animaciones opcionales solo si el usuario NO ha solicitado reduced motion
+@media (prefers-reduced-motion: no-preference) {
+  .hero__copy {
+    animation: slideUp 0.8s $ease-out;
   }
 
+  .hero__forms {
+    animation: scaleIn 0.8s $ease-out 0.2s backwards;
+  }
 }

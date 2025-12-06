@@ -1,37 +1,329 @@
-// Force rebuild
-@import './colors';
-@import 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,800;1,300;1,500;1,800&display=swap';
+// ============================================================================
+// Animanga 2025 - Global Styles
+// ============================================================================
+
+@use 'sass:color';
+@use './colors' as *;
+@use './tokens' as *;
+@use './mixins' as *;
+
+// Importar fuentes
+@import 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+
+// Importar normalize
 @import './normalize';
+
+// ============================================================================
+// BASE STYLES
+// ============================================================================
 
 * {
   box-sizing: border-box;
-  font-family: Poppins, sans-serif;
-}
-
-html {
-  max-width: 100vw;
-  min-width: 100%;
-}
-
-body {
-  background-color: $black;
-  color: white;
-  font-size: 18px;
-  margin: auto;
-  max-width: 100vw;
-  min-width: 100%;
+  margin: 0;
   padding: 0;
 }
 
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: $black;
+  color: $text-primary;
+  font-family: $font-family;
+  font-size: $text-lg;
+  font-weight: $font-regular;
+  line-height: $leading-normal;
+  overflow-x: hidden;
+}
+
+// ============================================================================
+// TIPOGRAFÍA
+// ============================================================================
+
+h1 {
+  @include heading-1;
+}
+
+h2 {
+  @include heading-2;
+}
+
+h3 {
+  @include heading-3;
+}
+
+h4 {
+  color: $text-primary;
+  font-size: $text-3xl;
+  font-weight: $font-semibold;
+  line-height: $leading-tight;
+  margin: 0 0 $space-4;
+}
+
+h5 {
+  color: $text-primary;
+  font-size: $text-2xl;
+  font-weight: $font-medium;
+  line-height: $leading-tight;
+  margin: 0 0 $space-3;
+}
+
+h6 {
+  color: $text-primary;
+  font-size: $text-xl;
+  font-weight: $font-medium;
+  line-height: $leading-tight;
+  margin: 0 0 $space-3;
+}
+
 p {
-  line-height: 1.5em;
+  line-height: $leading-relaxed;
+  margin: 0 0 $space-4;
 }
 
 a {
   color: $yellow;
+  text-decoration: none;
+  transition: color $duration-fast $ease-out;
+
+  &:hover {
+    color: color.adjust($yellow, $lightness: 10%);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    border-radius: $radius-sm;
+    outline: 2px solid $yellow;
+    outline-offset: 2px;
+  }
 }
 
-h1,
-h2 {
-  color: $yellow;
+strong,
+b {
+  font-weight: $font-bold;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+code {
+  background: rgba($yellow, 0.1);
+  border-radius: $radius-sm;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  padding: 2px 6px;
+}
+
+pre {
+  background: rgba($light-black, 0.6);
+  border-radius: $radius-md;
+  margin: $space-4 0;
+  overflow-x: auto;
+  padding: $space-4;
+
+  code {
+    background: none;
+    padding: 0;
+  }
+}
+
+// ============================================================================
+// LISTAS
+// ============================================================================
+
+ul,
+ol {
+  margin: 0 0 $space-4 $space-6;
+  padding: 0;
+
+  li {
+    line-height: $leading-relaxed;
+    margin-bottom: $space-2;
+  }
+}
+
+// ============================================================================
+// IMÁGENES Y MEDIA
+// ============================================================================
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+svg {
+  display: block;
+}
+
+// ============================================================================
+// FORMULARIOS
+// ============================================================================
+
+input,
+textarea,
+select {
+  background: rgba($light-black, 0.6);
+  border: 2px solid rgba($yellow, 0.4); // Increased from 1px and 0.2 opacity
+  border-radius: $radius-md;
+  color: $text-primary;
+  font-family: $font-family;
+  font-size: $text-base;
+  padding: $space-3 $space-4;
+  transition: all $duration-normal $ease-out;
+
+  &:focus {
+    border-color: $yellow;
+    box-shadow: $shadow-glow-yellow;
+    outline: 3px solid $yellow; // Clear outline in addition to border
+    outline-offset: 2px;
+  }
+
+  &::placeholder {
+    color: $text-muted;
+    opacity: 0.7; // Ensure placeholder is distinguishable from value
+  }
+
+  &:disabled {
+    border-color: rgba($text-muted, 0.3);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: $font-family;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// ============================================================================
+// SCROLLBAR GLOBAL
+// ============================================================================
+
+* {
+  @include scrollbar;
+}
+
+// ============================================================================
+// UTILIDADES
+// ============================================================================
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gradient {
+  @include text-gradient($yellow-gradient);
+}
+
+// ============================================================================
+// ANIMACIONES GLOBALES
+// ============================================================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Clases de animación
+.animate-fadeIn {
+  animation: fadeIn 0.5s $ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s $ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.6s $ease-out;
+}
+
+// ============================================================================
+// ACCESIBILIDAD
+// ============================================================================
+
+.sr-only {
+  border-width: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// Focus visible para navegación por teclado
+:focus-visible {
+  border-radius: $radius-sm;
+  box-shadow: 0 0 0 3px rgba($black, 0.9), 0 0 0 6px $yellow; // Double ring for contrast
+  outline: 3px solid $yellow; // Increased from 2px for better visibility
+  outline-offset: 3px; // Increased offset
+}
+
+// Reducir movimiento para usuarios que lo prefieren
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

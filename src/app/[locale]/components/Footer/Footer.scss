@@ -1,28 +1,89 @@
-.footer{
+@use 'sass:color';
+@use '../../../tokens' as *;
+@use '../../../mixins' as *;
+@use '../../../colors' as *;
+
+.footer {
   align-items: center;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba($light-black, 0.5) 100%
+  );
+  border-top: 1px solid rgba($yellow, 0.1);
   display: flex;
   flex-direction: column;
-  font-size: .8em;
-  gap: 1em;
+  font-size: $text-sm;
+  gap: $space-6;
   justify-content: center;
-  padding: 1em 2em;
+  margin-top: $space-20;
+  padding: $space-12 $space-6;
 
-  @media (width >= 768px) {
+  @media (min-width: $breakpoint-md) {
     flex-direction: row;
     justify-content: space-between;
-    margin-top:3em ;
+    padding: $space-12;
   }
 
-  &__logo{
+  &__logo {
     flex-shrink: 0;
     max-width: 150px;
+    transition: transform $duration-normal $ease-out;
 
-    &-container{
-      max-width: 150px;
+    &:hover {
+      transform: scale(1.05);
     }
 
-    & img{
+    &-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: $space-2;
+      max-width: 150px;
+
+      p {
+        color: $text-muted;
+        font-size: $text-xs;
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+    img {
+      filter: drop-shadow(0 0 10px rgba($yellow, 0.3));
+      height: auto;
       max-width: 100%;
     }
+  }
+
+  a {
+    color: $yellow;
+    position: relative;
+    text-decoration: none;
+    transition: all $duration-fast $ease-out;
+
+    &::after {
+      background: $yellow;
+      bottom: -2px;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      transition: width $duration-normal $ease-out;
+      width: 0%;
+    }
+
+    &:hover {
+      color: color.adjust($yellow, $lightness: 10%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  p {
+    color: $text-secondary;
+    margin: 0;
   }
 }

@@ -1,35 +1,29 @@
 @use './tokens' as *;
 
-// Story container mixin
+// ============================================================================
+// 1. LAYOUT - STORY CONTAINER
+// ============================================================================
+
+// Story container base - Proporción 9:16 fija
 @mixin story-container {
-  aspect-ratio: $wrapped-story-ratio;
-  background: $wrapped-bg-darker;
+  aspect-ratio: $aw-story-ratio;
+  background: $aw-bg-deep-navy;
   margin: 0 auto;
-  max-width: $wrapped-story-width;
+  max-width: $aw-story-width;
   overflow: hidden;
   position: relative;
   width: 100%;
 }
 
-// Safe area content
+// Safe area content - Márgenes seguros para textos y CTAs
 @mixin safe-area-content {
-  padding-bottom: $wrapped-safe-zone-bottom;
-  padding-left: $wrapped-safe-zone-horizontal;
-  padding-right: $wrapped-safe-zone-horizontal;
-  padding-top: $wrapped-safe-zone-top;
+  padding-bottom: $aw-safe-margin-vertical;
+  padding-left: $aw-safe-margin-horizontal;
+  padding-right: $aw-safe-margin-horizontal;
+  padding-top: $aw-safe-margin-vertical;
 }
 
-// Centered content
-@mixin center-content {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  text-align: center;
-}
-
-// Full story slide
+// Full slide - Posicionamiento absoluto de pantalla completa
 @mixin full-slide {
   height: 100%;
   left: 0;
@@ -40,27 +34,548 @@
   @include safe-area-content;
 }
 
-// Text with shadow for readability
-@mixin text-with-shadow($size: 'md') {
-  @if $size == 'sm' {
-    text-shadow: $wrapped-shadow-sm;
-  } @else if $size == 'lg' {
-    text-shadow: $wrapped-shadow-lg;
-  } @else {
-    text-shadow: $wrapped-shadow-md;
+// Centered content - Contenido centrado vertical y horizontalmente
+@mixin center-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+// ============================================================================
+// 2. TIPOGRAFÍA
+// ============================================================================
+
+// Display - Frases grandes de apertura
+@mixin type-display {
+  font-family: $aw-font-family;
+  font-size: $aw-type-display-size;
+  font-weight: $aw-font-semibold;
+  line-height: $aw-type-display-line;
+}
+
+// Headings
+@mixin type-heading-l {
+  font-family: $aw-font-family;
+  font-size: $aw-type-heading-l-size;
+  font-weight: $aw-font-bold;
+  line-height: $aw-type-heading-l-line;
+}
+
+@mixin type-heading-m {
+  font-family: $aw-font-family;
+  font-size: $aw-type-heading-m-size;
+  font-weight: $aw-font-bold;
+  line-height: $aw-type-heading-m-line;
+}
+
+@mixin type-heading-s {
+  font-family: $aw-font-family;
+  font-size: $aw-type-heading-s-size;
+  font-weight: $aw-font-semibold;
+  line-height: $aw-type-heading-s-line;
+}
+
+// Body
+@mixin type-body-l {
+  font-family: $aw-font-family;
+  font-size: $aw-type-body-l-size;
+  font-weight: $aw-font-regular;
+  line-height: $aw-type-body-l-line;
+}
+
+@mixin type-body-m {
+  font-family: $aw-font-family;
+  font-size: $aw-type-body-m-size;
+  font-weight: $aw-font-regular;
+  line-height: $aw-type-body-m-line;
+}
+
+@mixin type-body-s {
+  font-family: $aw-font-family;
+  font-size: $aw-type-body-s-size;
+  font-weight: $aw-font-regular;
+  line-height: $aw-type-body-s-line;
+}
+
+// Caption
+@mixin type-caption {
+  font-family: $aw-font-family;
+  font-size: $aw-type-caption-size;
+  font-weight: $aw-font-regular;
+  line-height: $aw-type-caption-line;
+}
+
+// Número grande (minutos, porcentajes, etc.)
+@mixin big-number {
+  font-family: $aw-font-family;
+  font-size: 96px;
+  font-weight: $aw-font-bold;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+// ============================================================================
+// 3. COMPONENTES - BARRA DE PROGRESO
+// ============================================================================
+
+@mixin progress-bar {
+  display: flex;
+  gap: $aw-space-xxs;
+  height: $aw-progress-bar-height;
+  left: $aw-safe-margin-horizontal;
+  position: absolute;
+  right: $aw-safe-margin-horizontal;
+  top: $aw-space-s;
+  z-index: $aw-z-progress;
+}
+
+@mixin progress-segment {
+  background: rgb(255 255 255 / 30%);
+  border-radius: $aw-radius-pill;
+  cursor: pointer;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  transition: opacity $aw-duration-tap ease;
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 
-// Gradient background
+@mixin progress-segment-fill {
+  background: $aw-accent-cream;
+  height: 100%;
+  transform-origin: left;
+  transition: transform 0.2s linear;
+}
+
+// ============================================================================
+// 4. COMPONENTES - BOTÓN CTA
+// ============================================================================
+
+@mixin cta-button {
+  align-items: center;
+  background: $aw-cta-bg;
+  border: $aw-cta-border-width solid $aw-cta-border;
+  border-radius: $aw-radius-pill;
+  box-shadow: $aw-shadow-1;
+  color: $aw-cta-text;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: $aw-font-semibold;
+  justify-content: center;
+  min-height: $aw-cta-min-height;
+  padding: $aw-cta-padding-v $aw-cta-padding-h;
+  transition: all $aw-duration-tap $aw-ease-out;
+  user-select: none;
+
+  @include type-body-m;
+
+  &:hover {
+    background: lighten($aw-cta-bg, 5%);
+  }
+
+  &:active {
+    transform: scale($aw-cta-scale-pressed);
+  }
+
+  &:disabled {
+    background: #3c3c3c;
+    border-color: #3c3c3c;
+    color: #aaa;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// ============================================================================
+// 5. COMPONENTES - PILL DE DOMINIO
+// ============================================================================
+
+@mixin domain-pill {
+  align-items: center;
+  background: $aw-pill-bg;
+  border-radius: $aw-radius-pill;
+  box-shadow: $aw-shadow-1;
+  color: $aw-pill-text;
+  display: inline-flex;
+  font-weight: $aw-font-medium;
+  justify-content: center;
+  padding: $aw-pill-padding-v $aw-pill-padding-h;
+
+  @include type-caption;
+}
+
+// ============================================================================
+// 6. COMPONENTES - TOAST
+// ============================================================================
+
+@mixin toast {
+  align-items: center;
+  backdrop-filter: blur(10px);
+  background: $aw-toast-bg;
+  border-radius: $aw-radius-m;
+  bottom: calc($aw-safe-margin-bottom-cta + $aw-cta-min-height + $aw-space-m);
+  box-shadow: $aw-shadow-1;
+  color: $aw-toast-text;
+  display: flex;
+  gap: $aw-space-xs;
+  left: 50%;
+  max-width: 90%;
+  padding: $aw-toast-padding-v $aw-toast-padding-h;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: $aw-z-toast;
+
+  @include type-body-m;
+}
+
+@mixin toast-icon {
+  color: $aw-toast-accent;
+  flex-shrink: 0;
+  height: 20px;
+  width: 20px;
+}
+
+// ============================================================================
+// 7. COMPONENTES - TARJETA EXPORTABLE
+// ============================================================================
+
+@mixin exportable-card {
+  aspect-ratio: $aw-story-ratio;
+  box-shadow: $aw-shadow-2;
+  max-width: $aw-story-width;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+// ============================================================================
+// 8. COMPONENTES - GRÁFICOS
+// ============================================================================
+
+// Donut chart base
+@mixin donut-chart($size: 280px) {
+  height: $size;
+  position: relative;
+  width: $size;
+}
+
+@mixin donut-segment($color, $start-angle, $end-angle) {
+  fill: none;
+  stroke: $color;
+  stroke-width: $aw-donut-thickness;
+  transition: stroke-dashoffset $aw-duration-chart $aw-ease-out;
+}
+
+// Barras horizontales
+@mixin bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: $aw-space-s;
+  width: 100%;
+}
+
+@mixin bar-item {
+  align-items: center;
+  display: flex;
+  gap: $aw-space-m;
+}
+
+@mixin bar-label {
+  @include type-body-m;
+
+  flex-shrink: 0;
+  font-weight: $aw-font-medium;
+  min-width: 60px;
+}
+
+@mixin bar-fill {
+  align-items: center;
+  background: $aw-chart-year-bar;
+  border-radius: $aw-radius-s;
+  display: flex;
+  font-weight: $aw-font-semibold;
+  height: 32px;
+  justify-content: flex-end;
+  padding-right: $aw-space-s;
+  transition: width $aw-duration-chart $aw-ease-out;
+
+  @include type-body-s;
+
+  &.highlighted {
+    background: $aw-chart-year-highlight;
+  }
+}
+
+// ============================================================================
+// 9. COMPONENTES - CLUB/PERSONA
+// ============================================================================
+
+// Patrón de fondo del club
+@mixin club-pattern-bg {
+  background: $aw-bg-deep-navy;
+  position: relative;
+
+  &::before {
+    background-image: linear-gradient(
+        0deg,
+        $aw-club-line 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, $aw-club-line 1px, transparent 1px),
+      repeating-linear-gradient(
+        45deg,
+        $aw-club-block 0,
+        $aw-club-block 10px,
+        transparent 10px,
+        transparent 20px
+      );
+    background-size: 40px 40px, 40px 40px, 80px 80px;
+    content: '';
+    inset: 0;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+// Emblema hexagonal del club
+@mixin club-emblem($size: 200px) {
+  align-items: center;
+  display: flex;
+  height: $size;
+  justify-content: center;
+  position: relative;
+  width: $size;
+
+  .emblem-hex {
+    align-items: center;
+    background: $aw-club-hex-fill;
+    border: 3px solid $aw-club-hex-border;
+    clip-path: polygon(
+      50% 0%,
+      100% 25%,
+      100% 75%,
+      50% 100%,
+      0% 75%,
+      0% 25%
+    );
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .emblem-icon {
+    color: $aw-club-icon-main;
+    font-size: calc($size * 0.4);
+  }
+}
+
+// Banda del nombre del club
+@mixin club-banner {
+  background: $aw-club-banner-bg;
+  color: $aw-club-banner-text;
+  letter-spacing: 0.05em;
+  padding: $aw-space-m $aw-space-xl;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include type-heading-m;
+}
+
+// ============================================================================
+// 10. UTILIDADES - FONDOS Y OVERLAYS
+// ============================================================================
+
+// Fondo con color sólido
+@mixin bg-solid($color) {
+  background: $color;
+}
+
+// Overlay oscurecedor
+@mixin overlay-darken {
+  background: $aw-overlay-darken;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+// Overlay aclarador
+@mixin overlay-lighten {
+  background: $aw-overlay-lighten;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+// Número gigante de fondo
+@mixin bg-pattern-number($number) {
+  position: relative;
+
+  &::before {
+    color: currentcolor;
+    content: '#{$number}';
+    font-family: $aw-font-family;
+    font-size: 400px;
+    font-weight: $aw-font-black;
+    left: 50%;
+    opacity: 0.06;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+}
+
+// ============================================================================
+// 11. UTILIDADES - ANIMACIONES COMUNES
+// ============================================================================
+
+// Fade in
+@mixin fade-in($duration: 0.5s, $delay: 0s) {
+  animation: fadeIn $duration $aw-ease-out $delay forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+// Slide up
+@mixin slide-up($duration: 0.6s, $delay: 0s, $distance: 20px) {
+  animation: slideUp $duration $aw-ease-out $delay forwards;
+  opacity: 0;
+  transform: translateY($distance);
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Scale in
+@mixin scale-in($duration: 0.6s, $delay: 0s) {
+  animation: scaleIn $duration $aw-ease-out $delay forwards;
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Pulse (loop infinito - conditional on motion preference)
+@mixin pulse($duration: 2s) {
+  // Only animate if user hasn't requested reduced motion
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pulse $duration ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+// ============================================================================
+// 12. UTILIDADES - ZONAS TÁCTILES
+// ============================================================================
+
+@mixin tap-zone-left {
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: $aw-tap-zone-side;
+  z-index: $aw-z-controls;
+
+  &:active {
+    background: $aw-tap-feedback-overlay;
+  }
+}
+
+@mixin tap-zone-right {
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: $aw-tap-zone-side;
+  z-index: $aw-z-controls;
+
+  &:active {
+    background: $aw-tap-feedback-overlay;
+  }
+}
+
+// ============================================================================
+// 13. UTILIDADES - IMÁGENES
+// ============================================================================
+
+// Cover de anime/manga
+@mixin cover-image($width: 200px, $height: 280px) {
+  border-radius: $aw-radius-m;
+  box-shadow: $aw-shadow-2;
+  height: $height;
+  object-fit: cover;
+  width: $width;
+}
+
+// ============================================================================
+// RETROCOMPATIBILIDAD - Mixins para código existente
+// ============================================================================
+
+// Text with shadow (antiguo mixin)
+@mixin text-with-shadow($size: 'md') {
+  @if $size == 'sm' {
+    text-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  } @else if $size == 'lg' {
+    text-shadow: 0 8px 32px rgb(0 0 0 / 30%);
+  } @else {
+    text-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+  }
+}
+
+// Gradient background (antiguo mixin)
 @mixin gradient-bg($gradient) {
   background: $gradient;
   background-size: 100% 100%;
 }
 
-// Animated background
+// Animated background (antiguo mixin - conditional on motion preference)
 @mixin animated-bg {
-  animation: gradient-shift 8s ease infinite;
   background-size: 200% 200%;
+
+  // Only animate if user hasn't requested reduced motion
+  @media (prefers-reduced-motion: no-preference) {
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  // Static background position for reduced motion
+  @media (prefers-reduced-motion: reduce) {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes gradient-shift {
@@ -77,38 +592,18 @@
   }
 }
 
-// Number display
-@mixin big-number {
-  color: $wrapped-text-primary;
-  font-family: $wrapped-font-display;
-  font-size: $wrapped-text-4xl; // 128px - too large for mobile
-  font-weight: $wrapped-font-black;
-  line-height: 1;
-
-  @include text-with-shadow('lg');
-
-  // Responsive sizes for smaller screens
-  @media (width <= 768px) {
-    font-size: min(20vw, 80px); // Scale down, max 80px
-  }
-
-  @media (width <= 480px) {
-    font-size: min(18vw, 64px); // Even smaller on very small screens
-  }
-}
-
-// Button styles
+// Wrapped button (antiguo mixin)
 @mixin wrapped-button {
   backdrop-filter: blur(10px);
   background: rgb(255 255 255 / 10%);
-  border: 2px solid $wrapped-text-primary;
-  border-radius: $wrapped-radius-full;
-  color: $wrapped-text-primary;
+  border: 2px solid $aw-text-on-dark;
+  border-radius: $aw-radius-pill;
+  color: $aw-text-on-dark;
   cursor: pointer;
-  font-size: $wrapped-text-base;
-  font-weight: $wrapped-font-semibold;
-  padding: $wrapped-space-sm $wrapped-space-lg;
-  transition: all $wrapped-duration-normal $wrapped-ease-out;
+  font-size: $aw-type-heading-s-size;
+  font-weight: $aw-font-semibold;
+  padding: $aw-space-m $aw-space-xl;
+  transition: all $aw-duration-transition $aw-ease-out;
 
   &:hover {
     background: rgb(255 255 255 / 20%);
@@ -120,20 +615,11 @@
   }
 }
 
-// Glass card effect
+// Glass card (antiguo mixin)
 @mixin glass-card {
   backdrop-filter: blur(20px);
   background: rgb(255 255 255 / 10%);
   border: 1px solid rgb(255 255 255 / 20%);
-  border-radius: $wrapped-radius-lg;
-  box-shadow: $wrapped-shadow-xl;
-}
-
-// Cover image
-@mixin cover-image($width: 200px, $height: 280px) {
-  border-radius: $wrapped-radius-md;
-  box-shadow: $wrapped-shadow-lg;
-  height: $height;
-  object-fit: cover;
-  width: $width;
+  border-radius: $aw-radius-m;
+  box-shadow: $aw-shadow-2;
 }
