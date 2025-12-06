@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation';
 import WrappedClient from './WrappedClient';
 
 export const dynamic = 'force-dynamic';
@@ -8,18 +7,8 @@ export const metadata = {
   description: 'Your year in anime, wrapped up',
 };
 
-export default async function WrappedPage() {
-  // TODO: Get user from session/auth
-  // For now, redirect to login if not authenticated
-  // This will be implemented with proper auth integration
-
-  const isAuthenticated = false; // Replace with actual auth check
-  const anilistId = null; // Replace with actual user data
-  const userName = null; // Replace with actual user data
-
-  if (!isAuthenticated || !anilistId) {
-    redirect('/register');
-  }
-
-  return <WrappedClient anilistId={anilistId} userName={userName} />;
+export default function WrappedPage() {
+  // Authentication and data fetching will be handled client-side in WrappedClient
+  // since the auth token is stored in localStorage (client-only)
+  return <WrappedClient />;
 }

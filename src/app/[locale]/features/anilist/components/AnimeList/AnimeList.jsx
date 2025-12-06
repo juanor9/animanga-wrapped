@@ -26,13 +26,17 @@ const ALAnimeList = ({ userId, checkFunc }) => {
         }));
         setAnimeList(animeListWithIds);
       } catch (error) {
-        throw new Error(error);
+        // Log error but don't throw - this prevents breaking the component tree
+        console.error('Error fetching anime list:', error);
+        // Set loading state to 'error' to show error UI
+        setLoadingAnimeList('error');
+        checkFunc(false);
       }
     };
     if (userId) {
       fetchAnimeList();
     }
-  }, [userId]);
+  }, [userId, checkFunc]);
 
   useEffect(() => {
     if (!Array.isArray(animeList) || animeList.length < 0) {
@@ -87,6 +91,10 @@ const ALAnimeList = ({ userId, checkFunc }) => {
       <h2>Anime List Activity</h2>
       {loadingAnimeList === 'loading' ? (
         <Spinner />
+      ) : loadingAnimeList === 'error' ? (
+        <div className="anime-list__error">
+          <p>⚠️ Unable to load anime list. Please try again later.</p>
+        </div>
       ) : (
         <article className="anime-list__list-container">
           {animeList.map((e) => (

@@ -1,9 +1,11 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-import { cache } from 'react';
 
-const getClient = cache(
-  () =>
-    new ApolloClient({
+// Create a singleton Apollo Client instance
+let client;
+
+const getClient = () => {
+  if (!client) {
+    client = new ApolloClient({
       link: new HttpLink({
         uri: 'https://graphql.anilist.co',
       }),
@@ -14,7 +16,9 @@ const getClient = cache(
           },
         },
       }),
-    })
-);
+    });
+  }
+  return client;
+};
 
 export default getClient;
