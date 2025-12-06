@@ -119,3 +119,30 @@ npm run a11y
 - Prefer early returns
 - Keep components small and focused
 - Use meaningful variable names
+
+## Wrapped Data System
+
+### Episode Counting (CRITICAL)
+
+When working with AniList activity data, `progress` field semantics are:
+
+- **`"9"`** → User watched episode 9 = **1 episode** (NOT 9 episodes!)
+- **`"116 - 120"`** → User watched episodes 116-120 = **5 episodes** (calculate difference)
+- **`null`** → No progress = **0 episodes**
+
+**Never** use the progress number directly as episode count. Always use `parseEpisodesWatched()` from `wrappedDataProcessor.js`.
+
+### Wrapped Data Processing
+
+- Process **on-demand** (first visit to `/wrapped`, not during registration)
+- Skip manga entries (no `duration` field)
+- Validate calculations: `isNaN()`, `isFinite()`
+- Cache results in MongoDB to avoid regeneration
+
+### Common Pitfalls
+
+1. **Wrong**: `episodesWatched = parseInt(progress)` → gives 120 for "116 - 120"
+2. **Correct**: Calculate range difference → gives 5 for "116 - 120"
+3. **Always** skip activities where `media.duration === 0` (manga)
+
+See `ARCHITECTURE.md` for full system documentation.

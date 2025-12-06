@@ -14,14 +14,51 @@ const UserLogin = () => {
   const { error, magicLinkSent, magicLinkEmail, userToken, loading } = useSelector(
     (state) => state.userData
   );
+  const user = useSelector((state) => state.UserReducer?.user);
 
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    if (userToken) {
-      router.push('./user');
-    }
-  }, [userToken, router]);
+    const checkWrappedAndRedirect = async () => {
+      if (!userToken) return;
+
+      const anilistId = user?.anilistId;
+
+      // If we don't have anilistId, default to user profile
+      if (!anilistId) {
+        router.push('/user');
+        return;
+      }
+
+      try {
+        const currentYear = new Date().getFullYear();
+        const response = await fetch(`/api/wrapped?anilistId=${anilistId}&year=${currentYear}`);
+
+        if (!response.ok) {
+          // If wrapped API fails, default to user profile
+          router.push('/user');
+          return;
+        }
+
+        const data = await response.json();
+
+        // If user has completed wrapped this year, go to profile
+        // Otherwise (not_started or in_progress), show wrapped
+        if (data.status === 'completed') {
+          router.push('/user');
+        } else {
+          router.push('/wrapped');
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error checking wrapped status:', error);
+        // Default to user profile on error
+        router.push('/user');
+      }
+    };
+
+    checkWrappedAndRedirect();
+  }, [userToken, user, router]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);

@@ -19,6 +19,7 @@ Restart the dev server after changing the `.env` file. The magic‑link email wi
 ## Production
 
 When deploying to production:
+
 1. Verify your domain (`animanga-wrapped.com`) in the Resend dashboard (add the domain and follow the DNS TXT‑record verification steps).
 2. Change the variable to the production URL:
 

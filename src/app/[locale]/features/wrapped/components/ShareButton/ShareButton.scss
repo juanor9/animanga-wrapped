@@ -3,19 +3,20 @@
 
 .share-button {
   @include wrapped-button;
-  display: flex;
+
   align-items: center;
-  gap: $wrapped-space-xs;
+  display: flex;
   font-size: $wrapped-text-sm;
+  gap: $wrapped-space-xs;
   padding: $wrapped-space-sm $wrapped-space-md;
 
   &:disabled {
-    opacity: 0.6;
     cursor: not-allowed;
+    opacity: 0.6;
 
     &:hover {
+      background: rgb(255 255 255 / 10%);
       transform: none;
-      background: rgba(255, 255, 255, 0.1);
     }
   }
 }

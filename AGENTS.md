@@ -186,6 +186,53 @@ src/
 - `axe-core` - Core accessibility engine
 - `jsdom` - Server-side DOM for testing
 
+## Wrapped Data System
+
+### Architecture Overview
+
+The Wrapped system generates personalized "year in review" statistics by processing AniList activity data. Key points:
+
+- **On-demand generation**: Data is processed when user first visits `/wrapped`, not during registration
+- **Caching**: Results are stored in MongoDB to avoid regeneration
+- **Episode counting**: Special logic to handle AniList progress strings ("9", "116 - 120", null)
+
+### Key Files
+
+- **Processor**: `src/app/lib/wrappedDataProcessor.js` - Core algorithm
+- **API**: `src/app/api/wrapped/route.js` - GET (fetch/generate) and POST (update progress)
+- **Model**: `src/app/api/models/WrappedProgress.js` - MongoDB schema
+- **Client**: `src/app/[locale]/wrapped/WrappedClient.jsx` - UI component
+
+### Data Flow
+
+```
+User visits /wrapped → Check DB → [Not found] → Fetch user lists
+                                                     ↓
+                                            Process activities
+                                                     ↓
+                                           Generate statistics
+                                                     ↓
+                                            Save to MongoDB
+                                                     ↓
+                                            Return to client
+```
+
+### Critical Implementation Notes
+
+**Episode Counting**:
+
+- `"9"` → 1 episode (watched episode 9)
+- `"116 - 120"` → 5 episodes (range: 120 - 116 + 1)
+- Never use progress number directly
+
+**Validation**:
+
+- Skip manga (duration = null)
+- Validate all calculations with `isNaN()` and `isFinite()`
+- Filter activities by year
+
+See `ARCHITECTURE.md` for complete documentation.
+
 ## Critical Configuration (DO NOT TOUCH)
 
 ### Internationalization (i18n)
