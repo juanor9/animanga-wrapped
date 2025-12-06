@@ -5,6 +5,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter3.scss';
+
 const S09_OtakuAge = ({ weightedYear }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
@@ -30,15 +31,15 @@ const S09_OtakuAge = ({ weightedYear }) => {
         <div className="stripe-white"></div>
 
         <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
-          Tu edad otaku es
+          Mi edad sonora
         </h2>
 
-        <div ref={yearRef} className="slide-big-number" style={{ color: '#111' }}>
-          {decade}s
+        <div ref={yearRef} className="spotify-outlined-number">
+          {decade}
         </div>
 
         <p ref={descRef} className="slide-description" style={{ color: '#111' }}>
-          Porque la mayoría del anime que viste se estrenó en esa década
+          Porque escuché música de esta época: <strong>Finales de la década de {decade}</strong>
         </p>
 
         <div ref={ctaRef}>

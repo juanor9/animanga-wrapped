@@ -6,6 +6,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, staggerIn } from '../../utils/animations';
 import './Chapter9.scss';
+
 const S16_Summary = ({ wrappedData, onComplete }) => {
   const router = useRouter();
   const shareRef = useRef(null);
@@ -46,12 +47,12 @@ const S16_Summary = ({ wrappedData, onComplete }) => {
   ];
 
   return (
-    <SlideBase background="#e8e2d5" className="chapter9-slide with-lines" shareRef={shareRef}>
+    <SlideBase
+      background="#e8e2d5"
+      className="chapter9-slide with-diagonal-stripes"
+      shareRef={shareRef}
+    >
       <div className="slide-content">
-        <div className="geometric-line line-1"></div>
-        <div className="geometric-line line-2"></div>
-        <div className="geometric-line line-3"></div>
-
         <h2 ref={titleRef} className="summary-title" style={{ color: '#111' }}>
           Tu Animanga Wrapped 2025
         </h2>

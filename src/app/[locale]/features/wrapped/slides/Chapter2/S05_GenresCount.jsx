@@ -5,6 +5,7 @@ import SlideBase from '../../components/SlideBase/SlideBase';
 import { useCounterAnimation } from '../../hooks/useGSAP';
 import { fadeIn, slideUp } from '../../utils/animations';
 import './Chapter2.scss';
+
 const S05_GenresCount = ({ genresCount }) => {
   const titleRef = useRef(null);
   const numberRef = useRef(null);
@@ -18,17 +19,13 @@ const S05_GenresCount = ({ genresCount }) => {
   useCounterAnimation(numberRef, genresCount, 1.2, 0);
 
   return (
-    <SlideBase background="#e8e2d5" className="chapter2-slide with-lines">
+    <SlideBase background="#e8e2d5" className="chapter2-slide with-diagonal-stripes">
       <div className="slide-content">
-        <div className="geometric-line line-1"></div>
-        <div className="geometric-line line-2"></div>
-        <div className="geometric-line line-3"></div>
-
         <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Viste anime de
         </h2>
 
-        <div ref={numberRef} className="slide-big-number" style={{ color: '#111' }}>
+        <div ref={numberRef} className="spotify-outlined-number">
           {genresCount}
         </div>
 

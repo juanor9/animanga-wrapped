@@ -14,6 +14,11 @@ export const GET_POPULAR_ANIME = gql`
           large
           medium
         }
+        studios(isMain: true) {
+          nodes {
+            name
+          }
+        }
       }
     }
   }
@@ -46,6 +51,16 @@ export const GET_POPULAR_MANGA = gql`
         }
         description
         genres
+        staff(perPage: 1) {
+          edges {
+            role
+            node {
+              name {
+                full
+              }
+            }
+          }
+        }
       }
     }
   }

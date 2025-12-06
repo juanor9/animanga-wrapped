@@ -1,17 +1,54 @@
 @import '../../../../../colors';
 
-.loginSignup{
-  &__button{
-    background-color: $pink;
-    border: none;
-    border-radius: .5em;
-    color: $light-black;
-    flex-grow: 1;
-    padding: .5em;
+.loginSignup {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 
-    &-container{
-      display: flex;
-      gap: 1em;
+  &__header {
+    text-align: center;
+  }
+
+  &__title {
+    color: #111;
+    font-size: 26px;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+  }
+
+  &__description {
+    color: #111;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &__tabs {
+    border-bottom: 3px solid #111;
+    display: flex;
+    gap: 0;
+  }
+
+  &__tab {
+    background: transparent;
+    border: none;
+    border-bottom: 4px solid transparent;
+    color: #111;
+    cursor: pointer;
+    flex: 1;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 14px 16px;
+    transition: border-color 0.2s ease;
+
+    &--active {
+      border-bottom-color: #111;
+      font-weight: 900;
     }
+  }
+
+  &__content {
+    padding-top: 8px;
   }
 }

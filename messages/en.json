@@ -8,6 +8,14 @@
     "signup": "Sign Up",
     "loading": "Loading..."
   },
+  "home": {
+    "title": "Your Anime and Manga Year Wrapped",
+    "subtitle": "Get relevant statistics on your watched anime or read manga. Share with everyone what is important for you",
+    "popularAnimeTitle": "Popular Anime This Year",
+    "popularMangaTitle": "Popular Manga This Year",
+    "popularAnimeLabel": "Popular Anime Slider",
+    "popularMangaLabel": "Popular Manga Slider"
+  },
   "hero": {
     "title": "Your Anime and Manga Year Wrapped",
     "subtitle": "Get relevant statiscics on your watched anime or read manga. Share with everyone what is important for you"

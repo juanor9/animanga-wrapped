@@ -5,6 +5,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn, slideUp } from '../../utils/animations';
 import './Chapter4.scss';
+
 const S11_TopSeriesReveal = ({ topSeries }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
@@ -27,12 +28,12 @@ const S11_TopSeriesReveal = ({ topSeries }) => {
   const hours = Math.floor(topSeries.minutesWatched / 60);
 
   return (
-    <SlideBase background="#e8e2d5" className="chapter4-slide with-lines" shareRef={shareRef}>
+    <SlideBase
+      background="#e8e2d5"
+      className="chapter4-slide with-diagonal-stripes"
+      shareRef={shareRef}
+    >
       <div className="slide-content">
-        <div className="geometric-line line-1"></div>
-        <div className="geometric-line line-2"></div>
-        <div className="geometric-line line-3"></div>
-
         <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Tu serie principal fue
         </h2>

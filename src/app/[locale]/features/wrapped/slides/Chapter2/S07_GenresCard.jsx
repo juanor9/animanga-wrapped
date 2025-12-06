@@ -5,6 +5,7 @@ import ShareButton from '../../components/ShareButton/ShareButton';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { fadeIn, scaleIn } from '../../utils/animations';
 import './Chapter2.scss';
+
 const S07_GenresCard = ({ topGenres = [] }) => {
   const shareRef = useRef(null);
   const cardRef = useRef(null);
@@ -16,12 +17,12 @@ const S07_GenresCard = ({ topGenres = [] }) => {
   }, []);
 
   return (
-    <SlideBase background="#e8e2d5" className="chapter2-slide with-lines" shareRef={shareRef}>
+    <SlideBase
+      background="#e8e2d5"
+      className="chapter2-slide with-diagonal-stripes"
+      shareRef={shareRef}
+    >
       <div className="slide-content">
-        <div className="geometric-line line-1"></div>
-        <div className="geometric-line line-2"></div>
-        <div className="geometric-line line-3"></div>
-
         <div ref={cardRef} className="genres-card">
           <h3 className="genres-card__title" style={{ color: '#111' }}>
             Mis Géneros 2025

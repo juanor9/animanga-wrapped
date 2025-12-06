@@ -6,6 +6,7 @@ import SlideBase from '../../components/SlideBase/SlideBase';
 import { useCounterAnimation } from '../../hooks/useGSAP';
 import { fadeIn, slideUp } from '../../utils/animations';
 import './Chapter1.scss';
+
 const S03_TotalMinutes = ({ totalMinutes }) => {
   const shareRef = useRef(null);
   const titleRef = useRef(null);
@@ -32,16 +33,12 @@ const S03_TotalMinutes = ({ totalMinutes }) => {
           Minutos escuchados
         </h2>
 
-        <div ref={numberRef} className="slide-big-number">
+        <div ref={numberRef} className="spotify-stat-number">
           {totalMinutes.toLocaleString()}
         </div>
 
         <p ref={descRef} className="slide-description">
-          minutos de anime
-        </p>
-
-        <p ref={daysRef} className="slide-equivalent">
-          Eso equivale a <strong>{days}</strong> días
+          Escuchaste {totalMinutes.toLocaleString()} minutos. Eso equivale a {days} días. Qué bien.
         </p>
 
         <div ref={ctaRef}>

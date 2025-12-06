@@ -18,7 +18,11 @@ const S12_TopSeriesList = ({ topSeries = [] }) => {
   }, []);
 
   return (
-    <SlideBase background="#e8e2d5" className="chapter4-slide with-stripes" shareRef={shareRef}>
+    <SlideBase
+      background="#e8e2d5"
+      className="chapter4-slide with-diagonal-stripes"
+      shareRef={shareRef}
+    >
       <div className="slide-content">
         <h2 ref={titleRef} className="slide-label" style={{ color: '#111' }}>
           Mis series principales

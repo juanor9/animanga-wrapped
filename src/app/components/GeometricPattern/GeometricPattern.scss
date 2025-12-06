@@ -1,0 +1,63 @@
+@use '../../tokens' as *;
+@use '../../colors' as *;
+
+.geometric-pattern {
+  height: 100%;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.pattern-circles,
+.pattern-lines {
+  height: 100%;
+  left: 0;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.decorative-circle {
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.3s ease;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.decorative-line {
+  position: absolute;
+  transform-origin: center;
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+  .decorative-circle {
+    // Scale down circles on smaller screens
+    transform: scale(0.8);
+  }
+
+  .decorative-line {
+    // Reduce line heights on smaller screens
+    height: 80% !important;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .decorative-circle {
+    transform: scale(0.6);
+  }
+
+  .decorative-line {
+    height: 60% !important;
+  }
+}

@@ -74,15 +74,16 @@ const UserLogin = () => {
   return (
     <section className="user-registration">
       {magicLinkSent ? (
-        <div className="user-registration__magic-link-sent">
-          <h2>{t('checkYourEmail')}</h2>
-          <p>{t('magicLinkSent', { email: magicLinkEmail })}</p>
-          <p className="user-registration__help">{t('magicLinkHelp')}</p>
+        <div className="user-registration__success">
+          <h3 className="user-registration__success-title">{t('checkYourEmail')}</h3>
+          <p className="user-registration__success-text">
+            {t('magicLinkSent', { email: magicLinkEmail })}
+          </p>
+          <p className="user-registration__success-help">{t('magicLinkHelp')}</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="user-registration__form">
-          <h2>{t('loginTitle')}</h2>
-          <p className="user-registration__description">{t('loginDescription')}</p>
+          <p className="user-registration__instructions">{t('loginDescription')}</p>
 
           <label htmlFor="email" className="user-registration__label">
             {tCommon('email')}
@@ -93,6 +94,7 @@ const UserLogin = () => {
               onChange={handleEmailChange}
               type="email"
               value={email}
+              placeholder="your@email.com"
               required
               disabled={loading}
             />

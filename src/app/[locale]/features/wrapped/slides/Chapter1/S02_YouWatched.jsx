@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import SlideBase from '../../components/SlideBase/SlideBase';
 import { slideUp } from '../../utils/animations';
 import './Chapter1.scss';
+
 const S02_YouWatched = () => {
   const line1Ref = useRef(null);
   const line2Ref = useRef(null);
@@ -14,12 +15,8 @@ const S02_YouWatched = () => {
   }, []);
 
   return (
-    <SlideBase background="#e8e2d5" className="chapter1-slide with-lines">
+    <SlideBase background="#e8e2d5" className="chapter1-slide with-diagonal-stripes">
       <div className="slide-content">
-        <div className="geometric-line line-1"></div>
-        <div className="geometric-line line-2"></div>
-        <div className="geometric-line line-3"></div>
-
         <h1 ref={line1Ref} className="slide-statement" style={{ color: '#111' }}>
           Tú viste anime.
         </h1>

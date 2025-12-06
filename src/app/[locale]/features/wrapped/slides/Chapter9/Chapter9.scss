@@ -15,6 +15,27 @@
   &.with-lines {
     @include geometric-lines;
   }
+
+  // Diagonal stripes for beige backgrounds (Spotify Wrapped style)
+  &.with-diagonal-stripes {
+    &::before {
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 0, 0, 0.04) 20px,
+        rgba(0, 0, 0, 0.04) 40px
+      );
+      content: '';
+      height: 250px;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 0;
+    }
+  }
 }
 
 .slide-year-large {

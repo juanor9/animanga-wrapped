@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import PopularAnimeCard from '../PopularAnimeCard/PopularAnimeCard';
 import './PopularSlider.scss';
 
 const PopularSliderClient = ({ popularAnime, popularManga }) => {
+  const t = useTranslations('home');
   const animeSliderRef = useRef(null);
   const mangaSliderRef = useRef(null);
 
@@ -77,34 +79,34 @@ const PopularSliderClient = ({ popularAnime, popularManga }) => {
 
   return (
     <section className="slider">
-      <h2>Popular Anime This Year</h2>
+      <h2>{t('popularAnimeTitle')}</h2>
       <div
         className="slider__container"
         tabIndex="0"
         ref={animeSliderRef}
         role="slider"
-        aria-label="Popular Anime Slider"
+        aria-label={t('popularAnimeLabel')}
         aria-valuemin={0}
         aria-valuemax={animeScroll.max}
         aria-valuenow={animeScroll.now}
       >
-        {popularAnime?.map((anime) => (
-          <PopularAnimeCard key={anime.id} item={anime} />
+        {popularAnime?.map((anime, index) => (
+          <PopularAnimeCard key={anime.id} item={anime} rank={index + 1} type="anime" />
         ))}
       </div>
-      <h2>Popular Manga This Year</h2>
+      <h2>{t('popularMangaTitle')}</h2>
       <div
         className="slider__container"
         tabIndex="0"
         ref={mangaSliderRef}
         role="slider"
-        aria-label="Popular Manga Slider"
+        aria-label={t('popularMangaLabel')}
         aria-valuemin={0}
         aria-valuemax={mangaScroll.max}
         aria-valuenow={mangaScroll.now}
       >
-        {popularManga?.map((manga) => (
-          <PopularAnimeCard key={manga.id} item={manga} />
+        {popularManga?.map((manga, index) => (
+          <PopularAnimeCard key={manga.id} item={manga} rank={index + 1} type="manga" />
         ))}
       </div>
     </section>

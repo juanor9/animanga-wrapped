@@ -5,6 +5,7 @@ import SlideBase from '../../components/SlideBase/SlideBase';
 import { useCounterAnimation } from '../../hooks/useGSAP';
 import { fadeIn, slideUp } from '../../utils/animations';
 import './Chapter4.scss';
+
 const S10_EpisodesTotal = ({ totalEpisodes }) => {
   const titleRef = useRef(null);
   const numberRef = useRef(null);
@@ -26,7 +27,7 @@ const S10_EpisodesTotal = ({ totalEpisodes }) => {
           Viste
         </h2>
 
-        <div ref={numberRef} className="slide-big-number">
+        <div ref={numberRef} className="spotify-stat-number">
           {totalEpisodes}
         </div>
 

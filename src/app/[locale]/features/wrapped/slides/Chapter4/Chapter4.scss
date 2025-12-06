@@ -122,10 +122,13 @@
     font-size: $aw-type-heading-m-size;
     width: 40px;
   }
+.anime-title {
+  @include type-heading-m;
+
+  margin: $wrapped-space-md 0;
 }
 
 .series-list__cover {
-  border-radius: $aw-radius-s;
   flex-shrink: 0;
   height: 120px;
   object-fit: cover;

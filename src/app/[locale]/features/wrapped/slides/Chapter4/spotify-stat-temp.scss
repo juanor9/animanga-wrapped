@@ -1,0 +1,19 @@
+// Spotify stat number (for dark backgrounds with purple/blue color)
+.spotify-stat-number {
+  color: #8b7fc8;
+  font-family: $aw-font-family;
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 32px 0;
+  text-transform: none;
+
+  @media (width <= 768px) {
+    font-size: 70px;
+  }
+
+  @media (width <= 480px) {
+    font-size: 50px;
+  }
+}
