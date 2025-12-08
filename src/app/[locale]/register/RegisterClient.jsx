@@ -46,7 +46,6 @@ const Register = () => {
         termsAccepted: consentData.terms,
         privacyAccepted: consentData.privacy,
       };
-      console.log('🔍 Dispatching to Redux:', reduxData);
 
       // IMPORTANT: Save to localStorage to persist across OAuth redirect
       if (typeof window !== 'undefined') {
@@ -79,7 +78,7 @@ const Register = () => {
     if (savedConsent) {
       try {
         const consentData = JSON.parse(savedConsent);
-        console.log('🔍 Restoring consent data from localStorage:', consentData);
+
         dispatch(newUser(consentData));
       } catch (error) {
         console.error('Failed to parse consent data from localStorage:', error);
@@ -126,7 +125,7 @@ const Register = () => {
                 anilistAccessToken: anilistData.anilistAccessToken,
                 anilistTokenExpiry: anilistData.anilistTokenExpiry,
               };
-              console.log('🔍 Dispatching AniList data to Redux:', anilistReduxData);
+
               dispatch(newUser(anilistReduxData));
 
               // Clear localStorage after successful OAuth

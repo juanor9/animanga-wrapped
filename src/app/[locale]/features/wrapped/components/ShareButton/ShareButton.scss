@@ -1,5 +1,5 @@
 @use '../../styles/mixins' as *;
-@use '../../styles/tokens' as *;
+@use '../../styles/wrapped-tokens' as *;
 
 .share-button {
   @include cta-button;

@@ -1,4 +1,4 @@
-@use './tokens' as *;
+@use './wrapped-tokens' as *;
 
 // ============================================================================
 // 1. LAYOUT - STORY CONTAINER
@@ -322,11 +322,8 @@
   position: relative;
 
   &::before {
-    background-image: linear-gradient(
-        0deg,
-        $aw-club-line 1px,
-        transparent 1px
-      ),
+    background-image:
+      linear-gradient(0deg, $aw-club-line 1px, transparent 1px),
       linear-gradient(90deg, $aw-club-line 1px, transparent 1px),
       repeating-linear-gradient(
         45deg,
@@ -335,7 +332,10 @@
         transparent 10px,
         transparent 20px
       );
-    background-size: 40px 40px, 40px 40px, 80px 80px;
+    background-size:
+      40px 40px,
+      40px 40px,
+      80px 80px;
     content: '';
     inset: 0;
     opacity: 1;
@@ -357,14 +357,7 @@
     align-items: center;
     background: $aw-club-hex-fill;
     border: 3px solid $aw-club-hex-border;
-    clip-path: polygon(
-      50% 0%,
-      100% 25%,
-      100% 75%,
-      50% 100%,
-      0% 75%,
-      0% 25%
-    );
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
     height: 100%;
     justify-content: center;
@@ -543,7 +536,11 @@
 }
 
 // Spotify Wrapped style circular image frame
-@mixin circular-image-frame($size: 300px, $border-width: 4px, $border-color: $aw-accent-purple-arc) {
+@mixin circular-image-frame(
+  $size: 300px,
+  $border-width: 4px,
+  $border-color: $aw-accent-purple-arc
+) {
   align-items: center;
   display: flex;
   height: $size;
