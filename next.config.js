@@ -12,6 +12,10 @@ const nextConfig = {
   //     }
   //   ];
   // },
+  // Sass configuration to resolve imports from src/app
+  sassOptions: {
+    includePaths: ['./src/app'],
+  },
   // // Otras configuraciones existentes
 };
 
