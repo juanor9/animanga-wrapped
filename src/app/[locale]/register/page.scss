@@ -89,9 +89,9 @@
     }
 
     &--pink {
-      background: $pink;
-      border-color: #111;
-      color: #111;
+      background: #2b2b2b;
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
     }
   }
 
@@ -103,6 +103,7 @@
     position: relative;
     transition: transform 0.3s ease-out;
     z-index: 1;
+    overflow: hidden;
 
     @media (min-width: $breakpoint-md) {
       gap: $space-8;

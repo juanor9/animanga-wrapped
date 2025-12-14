@@ -85,7 +85,7 @@ If you didn't request this, ignore this email.
 
   // Skip actual email sending in development (non‑production) environments or when using localhost
   if (process.env.NODE_ENV !== 'production' || (BASE_URL && BASE_URL.includes('localhost'))) {
-    // eslint-disable-next-line no-console
+     
     console.log('🔧 Development mode: skipping Resend email send. Magic link would be:', magicLink);
     return; // exit without calling Resend
   }
@@ -100,15 +100,15 @@ If you didn't request this, ignore this email.
     });
 
     if (error) {
-      // eslint-disable-next-line no-console
+       
       console.error('Error sending magic link:', error);
       throw new Error('Failed to send magic link email');
     }
 
-    // eslint-disable-next-line no-console
+     
     console.log(`Magic link sent to ${email}`);
   } catch (error) {
-    // eslint-disable-next-line no-console
+     
     console.error('Error sending magic link:', error);
     throw new Error('Failed to send magic link email');
   }

@@ -100,18 +100,44 @@ const RegistrationForm = ({ color }) => {
         });
       }
 
+      // Fallback: recover consent data from localStorage if missing in Redux (e.g. after refresh)
+      let { isAdult, termsAccepted, privacyAccepted } = user;
+
+      if (typeof window !== 'undefined' && (!isAdult || !termsAccepted || !privacyAccepted)) {
+        try {
+          const savedConsent = window.localStorage.getItem('consentData');
+          if (savedConsent) {
+            const parsed = JSON.parse(savedConsent);
+            if (parsed) {
+              if (parsed.isAdult) isAdult = parsed.isAdult;
+              if (parsed.termsAccepted) termsAccepted = parsed.termsAccepted;
+              if (parsed.privacyAccepted) privacyAccepted = parsed.privacyAccepted;
+            }
+          }
+        } catch (e) {
+          console.error('Error recovering consent data from localStorage:', e);
+        }
+      }
+
       const userData = {
         ...user,
         email: email.toLowerCase(),
         country,
         lists: filteredLists,
+        isAdult,
+        termsAccepted,
+        privacyAccepted,
       };
 
-      // DEBUG: Log what we're sending
-      console.log('🔍 User data being sent to API:', userData);
-      console.log('🔍 Redux user state:', user);
-      console.log('🔍 Selected lists:', selectedLists);
-      console.log('🔍 Filtered lists:', filteredLists);
+      // DEBUG: Inspect payload before sending
+      console.log('🐞 DEBUG - Final userData being sent to API:', userData);
+      console.log('🐞 DEBUG - Redux user state:', user);
+      if (typeof window !== 'undefined') {
+        console.log(
+          '🐞 DEBUG - localStorage consentData:',
+          window.localStorage.getItem('consentData')
+        );
+      }
 
       // REMOVED: Do not update Redux state before success to avoid side effects
       // dispatch(newUser(userData));
@@ -120,6 +146,8 @@ const RegistrationForm = ({ color }) => {
       const result = await dispatch(createUser(userData));
 
       if (createUser.rejected.match(result)) {
+        console.error('❌ API Request Failed:', result);
+
         // Extract error message safely and ensure it's a string
         const payload = result.payload || {};
         let errorMessage =
@@ -136,7 +164,8 @@ const RegistrationForm = ({ color }) => {
 
       // Clear consent data from localStorage after successful registration
       if (typeof window !== 'undefined') {
-        window.localStorage.removeItem('consentData');
+        // window.localStorage.removeItem('consentData');
+        // Keep it for now until we are sure it works
       }
 
       // Redirect to user dashboard on success
@@ -151,6 +180,35 @@ const RegistrationForm = ({ color }) => {
 
   return (
     <div className="registration-form">
+      {/* Decorative diagonal stripes - ONLY YELLOW */}
+      <div className="registration-form__decorative-stripes">
+        <svg
+          width="300"
+          height="300"
+          viewBox="0 0 300 300"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Yellow stripes only - positioned away from text */}
+          <rect
+            x="0"
+            y="0"
+            width="50"
+            height="600"
+            fill="#f1c40f"
+            transform="rotate(-45 150 150)"
+          />
+          <rect
+            x="70"
+            y="0"
+            width="50"
+            height="600"
+            fill="#f1c40f"
+            transform="rotate(-45 150 150)"
+          />
+        </svg>
+      </div>
+
       {!anilistConnected ? (
         <div className="registration-form__anilist">
           <h2>{t('title')}</h2>

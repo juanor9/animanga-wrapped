@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop */
+ 
 import getClient from './apollo-client';
 import {
   GET_VIEWER,

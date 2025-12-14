@@ -78,7 +78,14 @@ const UserAL = ({ settings, checkFunc }) => {
   // Componente de retorno
   return (
     <div className="user-al">
-      <p>Username: {username}</p>
+      {viewerData?.Viewer?.avatar?.large && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={viewerData.Viewer.avatar.large} alt="User avatar" className="user-al__avatar" />
+        </>
+      )}
+      <p className="user-al__name">Username: {username}</p>
+      <div className="user-al__stats">{/* Add any future stats here */}</div>
       {settings.anime && settings.anime === true ? (
         <ALAnimeList userId={userId} checkFunc={checkFunc} />
       ) : null}

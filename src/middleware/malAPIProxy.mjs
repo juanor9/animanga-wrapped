@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+ 
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const MALProxy = (req, res, next) => {
