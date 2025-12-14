@@ -164,7 +164,9 @@ const AnimeSeries = ({ list }) => {
         }
         throw new Error('Image upload failed');
       } catch (error) {
-        throw new Error(`Error downloading or uploading image: ${error}`);
+        // eslint-disable-next-line no-console
+        console.error(`Error downloading or uploading image for ${filename}:`, error);
+        return null; // Return null instead of throwing to prevent app crash
       }
     },
     [dispatch, listUsername]
@@ -173,17 +175,27 @@ const AnimeSeries = ({ list }) => {
   useEffect(() => {
     const processImages = async () => {
       if (sortedWatchedMinutes && sortedWatchedMinutes.length > 0) {
-        const newTopWatchedMinutesPromises = sortedWatchedMinutes.map(async (element) => {
-          const alImage = element.image;
-          const parts = alImage.split('/');
-          const newPath = parts.slice(3).join('/');
-          const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
-          const cloudinaryUrl = await downloadToCloudinary(newUrl, element.anime);
+        // Only process top 5 to save resources, matching render logic
+        const rawTopWatchedMinutes = sortedWatchedMinutes.slice(0, 5);
 
-          return {
-            ...element,
-            image: cloudinaryUrl,
-          };
+        const newTopWatchedMinutesPromises = rawTopWatchedMinutes.map(async (element) => {
+          const alImage = element.image;
+          // Construct proxy URL safely
+          try {
+            if (!alImage) return element;
+            const parts = alImage.split('/');
+            const newPath = parts.slice(3).join('/');
+            const newUrl = `${serverUrl}/api/al/sources/${newPath}`;
+            const cloudinaryUrl = await downloadToCloudinary(newUrl, element.anime);
+
+            return {
+              ...element,
+              image: cloudinaryUrl || element.image, // Fallback to original image if upload fails
+            };
+          } catch (e) {
+            console.error('Error constructing image URL', e);
+            return element;
+          }
         });
 
         const newTopWatchedMinutes = await Promise.all(newTopWatchedMinutesPromises);
@@ -201,10 +213,16 @@ const AnimeSeries = ({ list }) => {
         <ol className="story__list-container">
           {Array.isArray(topWatchedMinutes) && topWatchedMinutes.length > 0
             ? topWatchedMinutes.slice(0, 5).map((item) => {
-                const url = item.image;
-                const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
-                const parts = url.split('image/upload/');
-                const image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
+                let image = item.image;
+                // Only try to inject cloudinary transformations if it is a cloudinary url
+                if (image && image.includes('image/upload/')) {
+                  const cloudinaryParams = 'ar_1:1,c_crop/ar_1:1,c_scale,w_300/';
+                  const parts = image.split('image/upload/');
+                  if (parts.length > 1) {
+                    image = `${parts[0]}image/upload/${cloudinaryParams}${parts[1]}`;
+                  }
+                }
+
                 return (
                   <li key={uuidv4()} className="story__list-item">
                     <picture className="story__list-image">

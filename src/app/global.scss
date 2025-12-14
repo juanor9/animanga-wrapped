@@ -91,13 +91,14 @@ a {
   transition: color $duration-fast $ease-out;
 
   &:hover {
-    color: color.adjust($yellow, $lightness: 10%);
+    color: $black;
     text-decoration: underline;
+    background-color: $white;
   }
 
   &:focus-visible {
-    border-radius: $radius-sm;
-    outline: 2px solid $yellow;
+    border-radius: 0;
+    outline: 2px solid $black;
     outline-offset: 2px;
   }
 }
@@ -179,9 +180,8 @@ select {
   transition: all $duration-normal $ease-out;
 
   &:focus {
-    border-color: $yellow;
-    box-shadow: $shadow-glow-yellow;
-    outline: 3px solid $yellow; // Clear outline in addition to border
+    border-color: $black;
+    outline: 3px solid $black; // Clear outline in addition to border
     outline-offset: 2px;
   }
 
@@ -312,11 +312,11 @@ button {
 
 // Focus visible para navegación por teclado
 :focus-visible {
-  border-radius: $radius-sm;
+  border-radius: 0;
   box-shadow:
     0 0 0 3px rgba($black, 0.9),
-    0 0 0 6px $yellow; // Double ring for contrast
-  outline: 3px solid $yellow; // Increased from 2px for better visibility
+    0 0 0 6px $black; // Double ring for contrast
+  outline: 3px solid $black; // Increased from 2px for better visibility
   outline-offset: 3px; // Increased offset
 }
 

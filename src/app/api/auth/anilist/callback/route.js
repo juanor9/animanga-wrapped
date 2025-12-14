@@ -54,7 +54,7 @@ export async function POST(request) {
       anilistTokenExpiry: tokenExpiry,
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
+     
     console.error('AniList callback error:', error);
     return NextResponse.json(
       { error: 'Failed to process AniList authentication', details: error.message },

@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+ 
 import { createSlice } from '@reduxjs/toolkit';
 import uploadImage from '../../app/[locale]/features/userStats/services/upload';
 

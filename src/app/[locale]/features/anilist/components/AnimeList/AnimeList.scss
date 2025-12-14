@@ -1,14 +1,58 @@
-.anime-list{
-  font-size: 0.8em;
+@import '../../../../../_colors';
 
-  &__loading{
-    color: aquamarine;
+.anime-list {
+  width: 100%;
+  margin-top: 1.5rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: $white;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
   }
 
-  &__list-container{
+  &__loading {
+    color: $spotify-lime;
+    font-weight: bold;
+  }
+
+  &__error {
+    color: red;
+    font-weight: bold;
+    border: 2px solid red;
+    padding: 1rem;
+    display: inline-block;
+  }
+
+  &__list-container {
     display: flex;
-    gap: 1em;
-    overflow-x: scroll;
+    gap: 1.5rem;
+    overflow-x: auto;
     overflow-y: hidden;
+    padding: 1rem 0.5rem 2rem 0.5rem; /* Bottom padding for shadow space */
+    scrollbar-width: auto;
+    scrollbar-color: $spotify-lime rgba($white, 0.15);
+
+    &::-webkit-scrollbar {
+      height: 14px; /* Much thicker for visibility */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($white, 0.15);
+      border-radius: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $spotify-lime;
+      border-radius: 7px;
+      border: 3px solid $black; /* Creates a gap effect around the thumb */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: lighten($spotify-lime, 10%);
+    }
   }
 }

@@ -2,15 +2,16 @@ import './ActivityCard.scss';
 
 const ActivityCard = ({ activity }) => {
   function convertTimestampToDate(timestamp) {
-    const date = new Date(timestamp * 1000);
-
-    return date.toDateString();
+    if (!timestamp) return '';
+    const dateObj = new Date(timestamp * 1000);
+    return dateObj.toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
   }
 
-  const date = convertTimestampToDate(activity.createdAt);
-  const { status, progress, media } = activity;
-  const title = media.title.userPreferred;
-  const image = media.coverImage.medium;
+  const { status, progress, media, createdAt } = activity;
 
   if (
     status === 'plans to watch' ||
@@ -22,17 +23,38 @@ const ActivityCard = ({ activity }) => {
     return null;
   }
 
+  const date = convertTimestampToDate(createdAt);
+  const title = media?.title?.userPreferred || 'Unknown Title';
+  const image = media?.coverImage?.large || media?.coverImage?.medium;
+
+  // Helper for status formatting
+  const getStatusStyle = (s) => {
+    switch (s?.toLowerCase()) {
+      case 'completed':
+        return 'completed';
+      case 'current':
+      case 'watching':
+      case 'reading':
+        return 'current';
+      default:
+        return 'default';
+    }
+  };
+
   return (
-    <div className="activity-card">
-      <picture>
-        <img src={image} alt={title} />
-      </picture>
-      <div>
-        <p>{title}</p>
-        <p>Date: {date}</p>
-        <p>
-          Status: {status} {progress || null}
-        </p>
+    <div className={`activity-card activity-card--${getStatusStyle(status)}`}>
+      <div className="activity-card__image-container">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={image} alt={title} className="activity-card__image" />
+        <span className="activity-card__status-badge">
+          {status} {progress ? ` ${progress}` : ''}
+        </span>
+      </div>
+      <div className="activity-card__content">
+        <h3 className="activity-card__title" title={title}>
+          {title}
+        </h3>
+        <p className="activity-card__date">{date}</p>
       </div>
     </div>
   );
