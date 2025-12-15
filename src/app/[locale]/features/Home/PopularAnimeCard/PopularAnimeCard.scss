@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #1a1a1a;
   border: 2px solid #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -18,7 +18,7 @@
   &:hover {
     background-color: #a8ff35;
     border-color: #111;
-    box-shadow: 0 4px 16px rgba(168, 255, 53, 0.4);
+    box-shadow: 0 4px 16px rgb(168 255 53 / 40%);
     text-decoration: none;
     transform: translateY(-2px);
 

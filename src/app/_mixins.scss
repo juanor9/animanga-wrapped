@@ -135,11 +135,9 @@
     @media (prefers-reduced-motion: no-preference) {
       background: $gradient;
       background-clip: text;
-      background-clip: text;
       -webkit-text-fill-color: transparent;
 
       // Asegurar que el texto sea seleccionable
-      user-select: text;
       user-select: text;
     }
   }

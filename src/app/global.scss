@@ -7,6 +7,7 @@
 @use './tokens' as *;
 @use './mixins' as *;
 @use './spotify-mixins' as *;
+@use './theme-variables' as *;
 
 // Importar fuentes
 @import 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
@@ -91,9 +92,9 @@ a {
   transition: color $duration-fast $ease-out;
 
   &:hover {
+    background-color: $white;
     color: $black;
     text-decoration: underline;
-    background-color: $white;
   }
 
   &:focus-visible {
@@ -316,6 +317,7 @@ button {
   box-shadow:
     0 0 0 3px rgba($black, 0.9),
     0 0 0 6px $black; // Double ring for contrast
+
   outline: 3px solid $black; // Increased from 2px for better visibility
   outline-offset: 3px; // Increased offset
 }

@@ -5,56 +5,58 @@
    --------------------------------------------------------------- */
 
 .user-al {
+  align-items: center;
+
   /* Dark container style */
   background: $black;
   border: 3px solid $white;
-  box-shadow: 6px 6px 0 rgba($white, 0.2);
   border-radius: 0;
-  padding: 1.5rem 2rem;
+  box-shadow: 6px 6px 0 rgba($white, 0.2);
+  color: $white;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  font-family: Inter, system-ui, sans-serif;
   gap: 1rem;
-  width: 100%;
-  max-width: 800px;
   margin: 0 auto;
-  color: $white;
-  font-family: 'Inter', system-ui, sans-serif;
-  text-align: center;
+  max-width: 800px;
+  padding: 1.5rem 2rem;
   position: relative;
+  text-align: center;
+  width: 100%;
   z-index: 1;
 
   .user-al__avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid $white;
-    box-shadow: 0 0 0 4px rgba($white, 0.1);
     background-color: $lighter-black;
+    border: 3px solid $white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba($white, 0.1);
+    height: 100px;
+    object-fit: cover;
+    width: 100px;
   }
 
   .user-al__name {
+    color: $white;
     font-size: 1.5rem;
     font-weight: 800;
-    color: $white;
-    text-transform: uppercase;
     letter-spacing: -0.5px;
     margin: 0;
+    text-transform: uppercase;
   }
 
   .user-al__stats {
     width: 100%;
+
     /* Future stats styling */
   }
 
   /* Responsive adjustments */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     padding: 1rem;
 
     .user-al__avatar {
-      width: 80px;
       height: 80px;
+      width: 80px;
     }
 
     .user-al__name {

@@ -23,8 +23,8 @@
         -45deg,
         transparent,
         transparent 20px,
-        rgba(0, 0, 0, 0.04) 20px,
-        rgba(0, 0, 0, 0.04) 40px
+        rgb(0 0 0 / 4%) 20px,
+        rgb(0 0 0 / 4%) 40px
       );
       content: '';
       height: 250px;
@@ -168,7 +168,7 @@
     }
 
     &.circle-red-1 {
-      background: #ff4444;
+      background: #f44;
       bottom: 15%;
       height: 80px;
       right: 5%;
@@ -176,7 +176,7 @@
     }
 
     &.circle-orange-1 {
-      background: #ff6633;
+      background: #f63;
       bottom: 25%;
       height: 60px;
       right: 15%;
@@ -238,7 +238,7 @@
   .genre-text-box {
     align-items: center;
     background: #1a1a1a;
-    color: #ffffff;
+    color: #fff;
     display: flex;
     flex: 1;
     font-size: 24px;
