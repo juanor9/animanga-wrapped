@@ -1,0 +1,145 @@
+// ============================================================================
+// Theme Variables - CSS Custom Properties
+// ============================================================================
+// These CSS custom properties will be dynamically updated by the ThemeProvider
+// Default values are set to the 2025 theme
+
+:root {
+  // ============================================================================
+  // COLOR VARIABLES
+  // ============================================================================
+
+  // Primary brand colors
+  --theme-color-primary: #a8d93e;
+  --theme-color-secondary: #8b7fc8;
+  --theme-color-accent: #ffd700;
+
+  // Background colors
+  --theme-color-bgDark: #2c2c2c;
+  --theme-color-bgDarker: #1a1a1a;
+  --theme-color-bgLight: #e8e2d5;
+
+  // Text colors
+  --theme-color-textOnDark: #fff;
+  --theme-color-textOnLight: #111;
+  --theme-color-textMuted: #f5f5f5;
+
+  // Accent colors
+  --theme-color-yellow: #ffd700;
+  --theme-color-orange: #f63;
+  --theme-color-lime: #a8d93e;
+  --theme-color-pink: #ff5ed9;
+  --theme-color-teal: #16e0bd;
+  --theme-color-purple: #8b7fc8;
+  --theme-color-cyan: #33e1ff;
+
+  // Decorative
+  --theme-color-cream: #f5f0e8;
+  --theme-color-hotPink: #ff5ed9;
+  --theme-color-limeNeon: #a8d93e;
+  --theme-color-violetDeep: #3b14a7;
+
+  // ============================================================================
+  // GRADIENT VARIABLES
+  // ============================================================================
+
+  --theme-gradient-chapter1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --theme-gradient-chapter2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --theme-gradient-chapter3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --theme-gradient-chapter4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --theme-gradient-chapter5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --theme-gradient-chapter6: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+  --theme-gradient-chapter7: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --theme-gradient-chapter8: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  --theme-gradient-chapter9: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+
+  // Utility gradients
+  --theme-gradient-orange: linear-gradient(135deg, #ff7a3c 0%, #fc802d 100%);
+  --theme-gradient-green: linear-gradient(135deg, #a8d93e 0%, #5ad75f 100%);
+  --theme-gradient-yellow: linear-gradient(135deg, #ffd64d 0%, #f9f137 100%);
+  --theme-gradient-pink: linear-gradient(135deg, #ff5ed9 0%, #ff97c9 100%);
+  --theme-gradient-purple: linear-gradient(135deg, #7b5cff 0%, #3b14a7 100%);
+  --theme-gradient-teal: linear-gradient(135deg, #16e0bd 0%, #00d4ba 100%);
+
+  // ============================================================================
+  // TOKEN VARIABLES
+  // ============================================================================
+
+  // CTA colors
+  --theme-token-ctaBg: #111;
+  --theme-token-ctaText: #fff;
+  --theme-token-ctaBorder: #a8d93e;
+
+  // Pill colors
+  --theme-token-pillBg: #111;
+  --theme-token-pillText: #a8d93e;
+
+  // Club/Persona colors
+  --theme-token-clubHexBorder: #a8d93e;
+  --theme-token-clubHexFill: #111;
+  --theme-token-clubBannerBg: #a8d93e;
+  --theme-token-clubBannerText: #111;
+}
+
+// ============================================================================
+// HELPER CLASSES
+// ============================================================================
+// Optional utility classes for quick theme color application
+
+.theme-bg-primary {
+  background-color: var(--theme-color-primary);
+}
+
+.theme-bg-secondary {
+  background-color: var(--theme-color-secondary);
+}
+
+.theme-text-primary {
+  color: var(--theme-color-primary);
+}
+
+.theme-text-secondary {
+  color: var(--theme-color-secondary);
+}
+
+.theme-border-primary {
+  border-color: var(--theme-color-primary);
+}
+
+.theme-gradient-chapter {
+  &-1 {
+    background: var(--theme-gradient-chapter1);
+  }
+
+  &-2 {
+    background: var(--theme-gradient-chapter2);
+  }
+
+  &-3 {
+    background: var(--theme-gradient-chapter3);
+  }
+
+  &-4 {
+    background: var(--theme-gradient-chapter4);
+  }
+
+  &-5 {
+    background: var(--theme-gradient-chapter5);
+  }
+
+  &-6 {
+    background: var(--theme-gradient-chapter6);
+  }
+
+  &-7 {
+    background: var(--theme-gradient-chapter7);
+  }
+
+  &-8 {
+    background: var(--theme-gradient-chapter8);
+  }
+
+  &-9 {
+    background: var(--theme-gradient-chapter9);
+  }
+}

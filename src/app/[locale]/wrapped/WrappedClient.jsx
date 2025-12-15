@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { ThemeProvider } from '../../contexts/ThemeProvider';
 import Spinner from '../components/Spinner/Spinner';
 import WrappedContainer from '../features/wrapped/components/WrappedContainer/WrappedContainer';
 import * as Slides from '../features/wrapped/slides';
@@ -172,13 +173,15 @@ const WrappedClient = ({ anilistId, userName }) => {
   const canSkip = progress?.status === 'completed';
 
   return (
-    <WrappedContainer
-      slides={slides}
-      onComplete={handleComplete}
-      onProgress={handleProgress}
-      initialSlide={progress?.lastSlideIndex || 0}
-      canSkip={canSkip}
-    />
+    <ThemeProvider year={year}>
+      <WrappedContainer
+        slides={slides}
+        onComplete={handleComplete}
+        onProgress={handleProgress}
+        initialSlide={progress?.lastSlideIndex || 0}
+        canSkip={canSkip}
+      />
+    </ThemeProvider>
   );
 };
 

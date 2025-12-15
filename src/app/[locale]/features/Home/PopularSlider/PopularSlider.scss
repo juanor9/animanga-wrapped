@@ -42,7 +42,7 @@
     display: block; // Changed from inline-block to block for full width
     font-size: 32px;
     font-weight: 900;
-    margin: 0 0 24px 0; // Remove default margins
+    margin: 0 0 24px; // Remove default margins
     margin-left: calc(-50vw + 50%); // Extend to left edge
     margin-right: calc(-50vw + 50%); // Extend to right edge
     padding: 12px calc(50vw - 50%); // Padding to match container width

@@ -58,7 +58,7 @@
   &__section {
     background: #fff;
     border: 3px solid #111;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
     color: #111;
     min-width: 100%;
     padding: $space-10;
@@ -90,7 +90,7 @@
 
     &--pink {
       background: #2b2b2b;
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgb(255 255 255 / 20%);
       color: #fff;
     }
   }
@@ -100,10 +100,10 @@
     gap: $space-6;
     margin: 0 auto;
     max-width: 800px;
+    overflow: hidden;
     position: relative;
     transition: transform 0.3s ease-out;
     z-index: 1;
-    overflow: hidden;
 
     @media (min-width: $breakpoint-md) {
       gap: $space-8;
@@ -113,7 +113,7 @@
   &__loading {
     background: #fff;
     border: 3px solid #111;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
     color: #111;
     padding: $space-12 $space-8;
     text-align: center;
@@ -128,7 +128,7 @@
   &__error {
     background: #fff;
     border: 3px solid #ff3b30;
-    box-shadow: 0 8px 24px rgba(255, 59, 48, 0.2);
+    box-shadow: 0 8px 24px rgb(255 59 48 / 20%);
     color: #ff3b30;
     margin-bottom: $space-6;
     padding: $space-6;
@@ -169,7 +169,7 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0 3px rgb(0 0 0 / 20%);
       outline: none;
     }
 
@@ -224,7 +224,7 @@
   }
 
   &__formal-text {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255 255 255 / 90%);
     border: 2px solid #111;
     color: #111;
     font-size: 14px;
@@ -239,14 +239,14 @@
     }
 
     &::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.05);
+      background: rgb(0 0 0 / 5%);
     }
 
     &::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
+      background: rgb(0 0 0 / 20%);
 
       &:hover {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgb(0 0 0 / 30%);
       }
     }
 
@@ -294,7 +294,7 @@
 
     &:focus {
       border-color: #111;
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 0 3px rgb(0 0 0 / 10%);
       outline: none;
     }
 

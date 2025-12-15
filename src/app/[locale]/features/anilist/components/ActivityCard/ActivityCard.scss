@@ -7,12 +7,12 @@
   box-shadow: 4px 4px 0 rgba($black, 1);
   display: flex;
   flex-direction: column;
-  min-width: 160px;
+  font-family: Inter, system-ui, sans-serif;
   max-width: 160px;
+  min-width: 160px;
   overflow: hidden;
   position: relative;
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  font-family: 'Inter', system-ui, sans-serif;
 
   /* Status Color Variations (Bottom border accent) */
   &--completed {
@@ -28,8 +28,8 @@
   }
 
   &:hover {
-    transform: translateY(-4px);
     box-shadow: 6px 6px 0 rgba($black, 1);
+    transform: translateY(-4px);
 
     .activity-card__image {
       transform: scale(1.05);
@@ -37,62 +37,62 @@
   }
 
   &__image-container {
-    position: relative;
-    width: 100%;
+    border-bottom: 3px solid $black;
     height: 220px;
     overflow: hidden;
-    border-bottom: 3px solid $black;
+    position: relative;
+    width: 100%;
   }
 
   &__image {
-    width: 100%;
+    display: block;
     height: 100%;
     object-fit: cover;
-    display: block;
     transition: transform 0.4s ease;
+    width: 100%;
   }
 
   &__status-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
     background: $black;
+    border: 2px solid $white;
+    box-shadow: 2px 2px 0 rgba($black, 0.5);
     color: $white;
     font-size: 0.7rem;
     font-weight: 800;
-    text-transform: uppercase;
+    left: 8px;
     padding: 4px 8px;
-    border: 2px solid $white;
-    box-shadow: 2px 2px 0 rgba($black, 0.5);
+    position: absolute;
+    text-transform: uppercase;
+    top: 8px;
     z-index: 10;
   }
 
   &__content {
-    padding: 0.75rem;
+    background: $white;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    background: $white;
     flex-grow: 1;
+    gap: 0.25rem;
+    padding: 0.75rem;
   }
 
   &__title {
+    -webkit-box-orient: vertical;
+    color: $black;
+    display: -webkit-box;
     font-size: 0.9rem;
     font-weight: 800;
-    color: $black;
-    margin: 0;
-    line-height: 1.2;
-    display: -webkit-box;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    line-height: 1.2;
+    margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: uppercase;
   }
 
   &__date {
-    font-size: 0.75rem;
     color: #666;
+    font-size: 0.75rem;
     font-weight: 600;
     margin: 0;
     margin-top: auto; /* Push to bottom if we have space */
